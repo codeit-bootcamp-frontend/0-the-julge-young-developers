@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@types/classnames": "^2.3.1",
@@ -36,10 +37,18 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.3",
     "sass": "^1.63.6",
     "stylelint": "^15.10.1",
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-property-sort-order-smacss": "^9.1.0",
     "stylelint-config-standard-scss": "^10.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   }
 }
