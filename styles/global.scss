@@ -1,5 +1,5 @@
 /* stylelint-disable property-no-vendor-prefix */
-@use "variables";
+@use 'variables';
 
 * {
   box-sizing: border-box;
@@ -156,7 +156,7 @@ blockquote::before,
 blockquote::after,
 q::before,
 q::after {
-  content: "";
+  content: '';
   content: none;
 }
 
