@@ -1,8 +1,10 @@
-export const metadata = {
-  title: "더줄게",
-  description:
-    "급하게 일손이 필요한 자리에 더 많은 시급을 제공해서 아르바이트생을 구할 수 있는 서비스",
-};
+import { META_ROOT } from "@/app/_meta";
+
+import { spoqaHanSansNeo } from "@/public/fonts/localfonts";
+
+import "@/styles/global.scss";
+
+export const metadata = META_ROOT;
 
 export default function RootLayout({
   children,
@@ -10,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={spoqaHanSansNeo.className}>
       <body>{children}</body>
     </html>
   );
