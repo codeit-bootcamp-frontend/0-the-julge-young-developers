@@ -13,6 +13,5 @@
     "^[./]"
   ],
   "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true,
-  "importOrderBuiltinModulesToTop": true
+  "importOrderSortSpecifiers": true
 }
