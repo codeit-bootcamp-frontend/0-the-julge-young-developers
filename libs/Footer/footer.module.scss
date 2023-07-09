@@ -22,11 +22,13 @@
 }
 
 .copyright {
+  height: 16px;
   grid-area: copyright;
 }
 
 .links {
   @include flexbox();
+  height: 22px;
   gap: 30px;
   grid-area: links;
 }
@@ -41,6 +43,7 @@
 .socials {
   @include flexbox(space-between);
   width: 95px;
+  height: 22px;
   grid-area: socials;
 }
 
@@ -59,14 +62,16 @@
 @include utils.mobile {
   .footer {
     height: 126px;
-    padding: 0 20px;
+    padding: 20px 20px 0;
     @include utils.font-style();
     .wrapper {
+      height: 78px;
       display: grid;
       grid-template-areas:
         "links socials"
         "copyright .";
       row-gap: 40px;
+      margin: 0;
     }
   }
 }
