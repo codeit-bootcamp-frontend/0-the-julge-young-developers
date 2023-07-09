@@ -6,9 +6,9 @@
   "endOfLine": "auto",
   "importOrder": [
     "^(react/(.*)$)|^(react$)",
+    "<THIRD_PARTY_MODULES>",
     "^(next/(.*)$)|^(next$)",
     "^@/libs/(.*)$",
-    "<THIRD_PARTY_MODULES>",
     "^types$",
     "^[./]"
   ],
