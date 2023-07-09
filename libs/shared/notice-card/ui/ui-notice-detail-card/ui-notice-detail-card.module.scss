@@ -24,6 +24,7 @@
     height: var(--img-height);
     border-radius: var(--img-border-radius);
     position: relative;
+    overflow: hidden;
 
     .closedLayer {
       position: absolute;
