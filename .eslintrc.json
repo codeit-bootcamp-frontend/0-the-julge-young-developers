@@ -47,7 +47,7 @@
           }
         ],
         "pathGroupsExcludedImportTypes": ["react"], // React import은 내장 모듈 그룹 앞에 배치하지 않음
-        "newlines-between": "always", // 서로 다른 import 그룹 사이에는 개행 필요
+        // "newlines-between": "always", // 서로 다른 import 그룹 사이에는 개행 필요
         "alphabetize": {
           "order": "asc", // import 정렬을 알파벳순으로 설정
           "caseInsensitive": true // 대소문자 구분하지 않고 정렬
