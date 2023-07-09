@@ -1,13 +1,19 @@
 import classnames from 'classnames/bind'
 
+import UiCommonLayout from '@/libs/shared/common-layout/ui/ui-common-layout/ui-common-layout'
+
 import styles from './data-access-modal-content-mock.module.scss'
 
 const cx = classnames.bind(styles)
 
 export default function MockModalContent() {
   return (
-    <>
-      <h1 className={cx('title')}>가게 정보</h1>
+    <UiCommonLayout
+      title="가게 정보"
+      titleSize={28}
+      titleAlign="start"
+      gap={32}
+    >
       <form>
         <h3 className={cx('subTitle')}>가게 이름</h3>
         <div className={cx('inputWrapper')}>
@@ -33,6 +39,15 @@ export default function MockModalContent() {
           등록하기
         </button>
       </form>
-    </>
+    </UiCommonLayout>
   )
 }
+
+/**
+ * CommonModal의 예시 content mock 데이터입니다.
+ * 
+ * 사용 예시
+ * <UiCommonModal padding="60px 32px">
+      <MockModalContent />
+    </UiCommonModal>
+ */
