@@ -44,3 +44,11 @@ $breakpoint-tablet: 1200px;
     font-weight: 700;
   }
 }
+
+// flexbox
+@mixin flexbox($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
