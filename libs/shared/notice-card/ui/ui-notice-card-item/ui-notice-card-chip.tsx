@@ -27,17 +27,21 @@ export default function UiNoticeCardChip({
   }
 
   return (
-    <div className={cx('chipWrapper')}>
-      <span className={cx('chipText', { closed })}>{chipText()}</span>
+    <div
+      className={cx('chipWrapper', {
+        closed,
+        red: !closed && isShowChip === 'red',
+        orange: !closed && isShowChip === 'orange',
+      })}
+    >
+      <span className={cx('chipText')}>{chipText()}</span>
       <div className={cx('imgContainer')}>
         <Image
           className={cx('img')}
-          src={
-            closed
-              ? '/images/arrow-up-bold-gray.svg'
-              : '/images/arrow-up-bold-white.svg'
-          }
+          src="/images/arrow-up-bold-white.svg"
           alt="arrow-upper"
+          width={20}
+          height={20}
         />
       </div>
     </div>
