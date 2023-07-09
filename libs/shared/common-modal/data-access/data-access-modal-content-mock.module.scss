@@ -1,0 +1,36 @@
+@use '@/styles/utils';
+
+.title {
+  font-size: 28px;
+  margin-bottom: 32px;
+}
+
+.subTitle {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.inputWrapper {
+  padding: 16px 20px;
+  background-color: utils.$white;
+  margin-bottom: 24px;
+}
+
+.input {
+  width: 100%;
+  font-size: 16px;
+}
+
+.input::placeholder {
+  // font-size: 16px;
+  color: utils.$gray-brt2;
+}
+
+.register {
+  padding: 14px 126.5px;
+  background-color: #ea3c12;
+  color: utils.$white;
+  display: flex;
+  margin: 0 auto;
+  cursor: pointer;
+}
