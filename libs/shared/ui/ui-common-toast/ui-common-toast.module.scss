@@ -1,0 +1,14 @@
+@use '@/styles/utils';
+
+.toastContent {
+  color: utils.$white;
+  background-color: utils.$red-brt2;
+  @include utils.font-style('body1');
+  border-radius: 5px;
+  padding: 1rem 1.6rem;
+  display: inline-block;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
