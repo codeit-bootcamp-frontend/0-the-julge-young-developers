@@ -1,0 +1,72 @@
+@use "@/styles/utils";
+
+@mixin flexbox($spaces: center) {
+  display: flex;
+  justify-content: $spaces;
+  align-items: center;
+}
+
+.footer {
+  @include flexbox();
+  width: 100%;
+  height: 100px;
+  background-color: utils.$gray-brt5;
+  color: utils.$gray-brt1;
+  @include utils.font-style("body1");
+}
+
+.wrapper {
+  @include flexbox(space-between);
+  width: 964px;
+  margin: auto;
+}
+
+.copyright {
+  grid-area: copyright;
+}
+
+.links {
+  @include flexbox();
+  gap: 30px;
+  grid-area: links;
+}
+
+.link {
+  text-decoration: none;
+  &:visited {
+    color: utils.$gray-brt1;
+  }
+}
+
+.socials {
+  @include flexbox(space-between);
+  width: 95px;
+  grid-area: socials;
+}
+
+.social-wrapper {
+  @include flexbox();
+  width: 25px;
+  height: 25px;
+}
+
+@include utils.tablet {
+  .footer {
+    padding: 0 32px;
+  }
+}
+
+@include utils.mobile {
+  .footer {
+    height: 126px;
+    padding: 0 20px;
+    @include utils.font-style();
+    .wrapper {
+      display: grid;
+      grid-template-areas:
+        "links socials"
+        "copyright .";
+      row-gap: 40px;
+    }
+  }
+}
