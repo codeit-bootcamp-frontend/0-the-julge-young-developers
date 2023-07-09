@@ -1,6 +1,6 @@
 import facebook from "/public/images/facebook-square.svg";
 import instagram from "/public/images/instagram.svg";
-import styles from "@/libs/Footer/footer.module.scss";
+import styles from "@/libs/footer/ui/ui-footer/footer.module.scss";
 import email from "@/public/images/envelop-square.svg";
 import classnames from "classnames/bind";
 import Image from "next/image";
