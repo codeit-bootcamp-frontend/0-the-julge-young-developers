@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import classNames from 'classnames/bind'
 
-import Image from 'next/image'
-
 import UiNoticeCardChip from '@/libs/shared/notice-card/ui/ui-notice-card-item/ui-notice-card-chip'
 import { utilCalcChangeRate } from '@/libs/shared/notice-card/util/util-calc-change-rate'
 import { utilCalcPayDiff } from '@/libs/shared/notice-card/util/util-calc-pay-diff'
@@ -42,23 +40,31 @@ export default function UiNoticeDetailCard({
     <div className={cx('detailCardWrapper')}>
       <div className={cx('imgContainer')}>
         <img className={cx('img')} src={imageUrl} alt={name} />
-        {closed && <div className={cx('closedLayer')}>마감 완료</div>}
+        {closed && (
+          <div className={cx('closedLayer')}>
+            <span className={cx('closedText')}>마감 완료</span>
+          </div>
+        )}
       </div>
       <div className={cx('card')}>
-        <h3 className={cx('title')}>시급</h3>
-        <div className={cx('payContainer')}>
-          <span className={cx('pay', { closed })}>{hourlyPay}</span>
-          {changeRate && (
-            <UiNoticeCardChip
-              isShowChip={isShowChip}
-              changeRate={changeRate}
-              closed={closed}
-            />
-          )}
+        <div className={cx('cardHeader')}>
+          <h3 className={cx('title')}>시급</h3>
+          <div className={cx('payContainer')}>
+            <span
+              className={cx('pay', { closed })}
+            >{`${hourlyPay.toLocaleString()}원`}</span>
+            {changeRate && (
+              <UiNoticeCardChip
+                isShowChip={isShowChip}
+                changeRate={changeRate}
+                closed={closed}
+              />
+            )}
+          </div>
         </div>
         <div className={cx('durationContainer')}>
           <div className={cx('imgContainer', 'icon')}>
-            <Image
+            <img
               className={cx('img')}
               src={closed ? '/images/clock-disabled.svg' : '/images/clock.svg'}
               alt="clock"
@@ -70,7 +76,7 @@ export default function UiNoticeDetailCard({
         </div>
         <div className={cx('addressContainer')}>
           <div className={cx('imgContainer', 'icon')}>
-            <Image
+            <img
               className={cx('img')}
               src={
                 closed
