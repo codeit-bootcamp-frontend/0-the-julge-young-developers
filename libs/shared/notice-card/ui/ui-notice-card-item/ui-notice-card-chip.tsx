@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import classNames from 'classnames/bind'
 
+import Image from 'next/image'
+
 import { CardChips } from '@/libs/shared/notice-card/util/util-calc-pay-diff'
 
 import styles from './ui-notice-card-item.module.scss'
@@ -28,7 +30,7 @@ export default function UiNoticeCardChip({
     <div className={cx('chipWrapper')}>
       <span className={cx('chipText', { closed })}>{chipText()}</span>
       <div className={cx('imgContainer')}>
-        <img
+        <Image
           className={cx('img')}
           src={
             closed
