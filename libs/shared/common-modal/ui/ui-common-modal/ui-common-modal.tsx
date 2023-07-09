@@ -23,10 +23,16 @@ export default function UiCommonModal({
 
   return (
     <div className={cx('backgroundGray')} style={{ padding }}>
-      <button className={cx('close')} type="button" onClick={handleCloseModal}>
-        <Image src="/images/close.svg" width={32} height={32} alt="닫기" />
-      </button>
-      {children}
+      <div className={cx('modalContainer')}>
+        <button
+          className={cx('close')}
+          type="button"
+          onClick={handleCloseModal}
+        >
+          <Image src="/images/close.svg" width={32} height={32} alt="닫기" />
+        </button>
+        {children}
+      </div>
     </div>
   )
 }
