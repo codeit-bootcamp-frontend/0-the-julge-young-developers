@@ -1,5 +1,5 @@
-const Input = () => {
-  return <div>Input</div>;
-};
+function Input() {
+  return <div>Input</div>
+}
 
-export default Input;
+export default Input
