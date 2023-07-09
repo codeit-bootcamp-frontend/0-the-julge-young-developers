@@ -4,17 +4,8 @@
   background-color: utils.$gray-brt5;
 }
 
-.modalContainer {
-  max-width: 964px;
-  margin: 0 auto;
-  padding: 60px 0;
-  position: relative;
-}
-
 .close {
   cursor: pointer;
   background-color: inherit;
-  position: absolute;
-  top: 60px;
-  right: 0;
+  float: right;
 }
