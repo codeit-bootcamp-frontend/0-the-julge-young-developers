@@ -22,13 +22,13 @@ export default function Footer() {
           </Link>
         </div>
         <div className={cx("socials")}>
-          <div className={cx("social-wrapper")}>
+          <div className={cx("socialWrapper")}>
             <Image src={email} alt="email" width={21.88} height={21.88} />
           </div>
-          <div className={cx("social-wrapper")}>
+          <div className={cx("socialWrapper")}>
             <Image src={facebook} alt="facebook" width={21.88} height={21.88} />
           </div>
-          <div className={cx("social-wrapper")}>
+          <div className={cx("socialWrapper")}>
             <Image src={instagram} alt="instagram" width={21.88} height={21.88} />
           </div>
         </div>
