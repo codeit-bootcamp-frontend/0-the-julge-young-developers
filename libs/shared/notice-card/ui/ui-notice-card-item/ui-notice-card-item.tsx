@@ -38,7 +38,7 @@ export default function UiNoticeCardItem({
   return (
     <div className={cx('cardWrapper', { closed })}>
       <div className={cx('imgContainer', 'header')}>
-        <Image className={cx('img')} src={imageUrl} alt={name} />
+        <img className={cx('img')} src={imageUrl} alt={name} />
         {closed && <div className={cx('closedLayer')}>마감 완료</div>}
       </div>
       <h3 className={cx('title', { closed })}>{name}</h3>
