@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 import { CardChips } from '@/libs/shared/notice-card/util/util-calc-pay-diff'
 
-import styles from './ui-notice-card-item.module.scss'
+import styles from './ui-notice-card-chip.module.scss'
 
 const cx = classNames.bind(styles)
 

@@ -1,0 +1,44 @@
+@use '@/styles/utils';
+
+.img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.chipWrapper {
+  display: flex;
+  height: 36px;
+  padding: 12px;
+  align-items: center;
+  gap: 6px;
+  border-radius: 20px;
+}
+.chipWrapper.red {
+  background: utils.$red-brt1;
+}
+.chipWrapper.orange {
+  background: utils.$red-brt2;
+}
+.chipWrapper.closed {
+  background: utils.$gray-brt4;
+}
+
+.chipWrapper,
+.chipWrapper.closed,
+.chipWrapper.orange,
+.chipWrapper.red {
+  .chipText {
+    color: utils.$white;
+    text-align: center;
+    @include utils.font-style('body2Bold');
+    font-style: normal;
+    line-height: normal;
+  }
+
+  .imgContainer {
+    width: 20px;
+    height: 20px;
+  }
+}
