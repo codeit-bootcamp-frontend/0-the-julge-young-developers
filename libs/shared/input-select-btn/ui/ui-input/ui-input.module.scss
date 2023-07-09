@@ -1,0 +1,33 @@
+@use '@/styles/utils';
+
+.inputWrap {
+  @include utils.flexbox(column, start, start);
+  gap: 8px;
+}
+
+.title {
+  @include utils.font-style('body1');
+  line-height: 26px;
+}
+
+.inputBox {
+  width: 100%;
+  height: 58px;
+  border-radius: 5px;
+  border: 1px solid utils.$gray-brt3;
+  padding: 16px 20px;
+  color: utils.$black;
+  @include utils.font-style('body1');
+  line-height: 26px;
+
+  &::placeholder {
+    color: utils.$gray-brt2; /* 색상 설정 */
+  }
+}
+
+.validText {
+  @include utils.font-style('caption');
+  line-height: 16px;
+  color: utils.$red-brt1;
+  margin-left: 8px;
+}
