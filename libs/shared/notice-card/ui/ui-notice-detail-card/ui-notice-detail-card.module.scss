@@ -8,6 +8,9 @@
 }
 
 .detailCardWrapper {
+  border-radius: 12px;
+  border: 1px solid utils.$gray-brt4;
+  background: utils.$white;
   width: 949px;
   padding: 24px;
   display: flex;
