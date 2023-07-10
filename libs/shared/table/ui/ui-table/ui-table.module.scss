@@ -1,0 +1,76 @@
+@use '@/styles/utils';
+@use 'sass:list';
+
+$col-widths-pc: (228px, 300px, 200px, 236px);
+$col-widths-tablet: (228px, 300px, 200px, 220px);
+
+// TODO: 2~3열 width 시안에 안써있음. 실제로 보면서 맞추자
+$col-widths-mobile: (189px, 300px, 200px, 162px);
+
+.wrapper {
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    // TODO: 스크롤바 꾸미기 or 스크롤 할 때 그림자 넣기
+    display: none;
+  }
+}
+
+.table {
+  // TODO: 위 배열 값을 더한 함수 형태로 만들자
+  width: 964px;
+
+  @include utils.tablet {
+    width: 948px;
+  }
+
+  @include utils.mobile {
+    width: 851px;
+  }
+
+  th:first-child {
+    background-color: utils.$red-brt4;
+  }
+
+  td:first-child {
+    background: utils.$gray-brt5;
+  }
+
+  th:first-child,
+  td:first-child {
+    position: sticky;
+    z-index: 10;
+    left: 0;
+  }
+}
+
+.headRow {
+  height: 50px;
+  border-bottom: 1px solid utils.$gray-brt3;
+  background-color: utils.$red-brt4;
+  line-height: 50px;
+  text-align: left;
+  @include utils.font-style;
+}
+
+.headCell {
+  padding-left: 12px;
+
+  @for $i from 1 through length($col-widths-pc) {
+    &:nth-child(#{$i}) {
+      width: list.nth($col-widths-pc, $i);
+    }
+
+    @include utils.tablet {
+      &:nth-child(#{$i}) {
+        width: list.nth($col-widths-tablet, $i);
+      }
+    }
+
+    @include utils.mobile {
+      &:nth-child(#{$i}) {
+        width: list.nth($col-widths-mobile, $i);
+      }
+    }
+  }
+}

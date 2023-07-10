@@ -1,0 +1,10 @@
+@use '@/styles/utils';
+
+.wrapper {
+  position: relative;
+  width: 100%; // TODO: sum 함수로 사용
+  overflow: hidden;
+  border: 1px solid utils.$gray-brt3;
+  border-radius: 10px;
+  background: utils.$gray-brt5;
+}

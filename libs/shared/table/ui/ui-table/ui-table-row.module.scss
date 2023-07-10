@@ -1,0 +1,25 @@
+@use '@/styles/utils';
+
+.bodyRow {
+  border-bottom: 1px solid utils.$gray-brt3;
+  @include utils.font-style(body1);
+}
+
+.bodyCell {
+  padding: 20px 12px;
+  vertical-align: middle;
+}
+
+.contentCell {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.statusCell {
+  @include utils.flexbox(row, center, flex-start);
+
+  gap: 12px;
+}
