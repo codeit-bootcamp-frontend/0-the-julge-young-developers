@@ -20,7 +20,7 @@ const cx = classNames.bind(styles)
  * @param children 레이아웃 content
  * @returns title과 content를 결합한 기본 레이아웃
  */
-export default function UiCommonLayoutTest({
+export default function UiCommonLayout({
   title,
   titleAlign = 'start',
   titleSize = 28,
