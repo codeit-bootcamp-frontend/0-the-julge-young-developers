@@ -1,4 +1,4 @@
-import { UiNotificationItem } from '@/libs/shared/notification-modal/ui/ui-notification-list/ui-notification-list'
+import { UiNotificationItem } from '@/libs/shared/notification-modal/ui/ui-notification-modal/ui-notification-modal'
 
 const MOCK_NOTIFICATION: UiNotificationItem[] = [
   {

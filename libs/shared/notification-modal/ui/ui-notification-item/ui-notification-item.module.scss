@@ -8,6 +8,7 @@
   border: 1px solid #e5e4e7;
   border-radius: 5px;
   gap: 4px;
+  background-color: utils.$white;
 }
 
 .status {
@@ -30,8 +31,12 @@
   color: utils.$black;
 }
 
-.acceptEmphasis {
+.acceptedEmphasis {
   color: utils.$blue-brt1;
+}
+
+.rejectedEmphasis {
+  color: utils.$red-brt1;
 }
 
 .timeDiff {

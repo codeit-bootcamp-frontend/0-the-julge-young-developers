@@ -24,7 +24,7 @@ export function UiAcceptedNotificationItem({
       <div className={cx('status', 'accepted')} />
       <p className={cx('result')}>
         {name}({duration}) 공고 지원이{' '}
-        <span className={cx('acceptEmphasis')}>승인</span>되었어요.
+        <span className={cx('acceptedEmphasis')}>승인</span>되었어요.
       </p>
       <p className={cx('timeDiff')}>{timeDiff}</p>
     </div>
