@@ -76,10 +76,10 @@
         font-style: normal;
         line-height: normal;
         @include utils.font-style('h3');
-      }
 
-      .title.closed {
-        color: utils.$gray-brt3;
+        &.closed {
+          color: utils.$gray-brt3;
+        }
       }
 
       .durationContainer {
@@ -98,10 +98,10 @@
 
           font-style: normal;
           line-height: 22px;
-        }
 
-        .duration.closed {
-          color: utils.$gray-brt3;
+          &.closed {
+            color: utils.$gray-brt3;
+          }
         }
       }
 
@@ -121,10 +121,10 @@
 
           font-style: normal;
           line-height: 22px;
-        }
 
-        .address.closed {
-          color: utils.$gray-brt3;
+          &.closed {
+            color: utils.$gray-brt3;
+          }
         }
       }
     }
@@ -142,10 +142,10 @@
         text-align: center;
         @include utils.flexbox;
         @include utils.font-style('h2');
-      }
 
-      .pay.closed {
-        color: utils.$gray-brt3;
+        &.closed {
+          color: utils.$gray-brt3;
+        }
       }
     }
   }

@@ -15,6 +15,18 @@
   border-radius: 20px;
   gap: 6px;
 
+  &.red {
+    background: utils.$red-brt1;
+  }
+
+  &.orange {
+    background: utils.$red-brt2;
+  }
+
+  &.closed {
+    background: utils.$gray-brt4;
+  }
+
   .chipText {
     color: utils.$white;
     font-style: normal;
@@ -27,18 +39,6 @@
     width: 20px;
     height: 20px;
   }
-}
-
-.chipWrapper.red {
-  background: utils.$red-brt1;
-}
-
-.chipWrapper.orange {
-  background: utils.$red-brt2;
-}
-
-.chipWrapper.closed {
-  background: utils.$gray-brt4;
 }
 
 @include utils.mobile {
