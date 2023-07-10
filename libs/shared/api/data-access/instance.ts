@@ -7,11 +7,7 @@ import axios, {
 
 import { CustomAxiosInterface } from '@/libs/shared/api/type-api'
 
-const logOnDev = (message: string) => {
-  if (process.env.NODE_ENV === 'development') {
-    console.log(message)
-  }
-}
+import { logOnDev } from '../util/util-log'
 
 export const instance: CustomAxiosInterface = axios.create({
   baseURL:
