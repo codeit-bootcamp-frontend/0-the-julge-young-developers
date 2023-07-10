@@ -45,3 +45,43 @@
     height: 20px;
   }
 }
+
+@include utils.mobile {
+  .chipWrapper,
+  .chipWrapper.red,
+  .chipWrapper.orange,
+  .chipWrapper.closed {
+    background: transparent;
+
+    .chipText {
+      @include utils.font-style('caption');
+    }
+
+    .imgContainer {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .chipWrapper.red {
+    .chipText {
+      color: utils.$red-brt1;
+    }
+
+    .imgContainer {
+      filter: invert(48%) sepia(85%) saturate(4021%) hue-rotate(337deg)
+        brightness(105%) contrast(103%);
+    }
+  }
+
+  .chipWrapper.orange {
+    .chipText {
+      color: utils.$red-brt2;
+    }
+
+    .imgContainer {
+      filter: invert(54%) sepia(98%) saturate(285%) hue-rotate(322deg)
+        brightness(100%) contrast(103%);
+    }
+  }
+}
