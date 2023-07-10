@@ -1,0 +1,41 @@
+@use '@/styles/utils';
+
+.modalContainer {
+  @include utils.flexbox(column, initial, center);
+
+  width: 298px;
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.checkImage {
+  margin-bottom: 16px;
+}
+
+.description {
+  margin-bottom: 32px;
+  @include utils.font-style('body1');
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 8px;
+
+  button {
+    padding: 10px 20.5px;
+    border-radius: 6px;
+    background-color: inherit;
+    cursor: pointer;
+    @include utils.font-style('body2Bold');
+  }
+
+  .cancelButton {
+    border: 1px solid utils.$primary;
+    color: utils.$primary;
+  }
+
+  .acceptButton {
+    background-color: utils.$primary;
+    color: utils.$white;
+  }
+}
