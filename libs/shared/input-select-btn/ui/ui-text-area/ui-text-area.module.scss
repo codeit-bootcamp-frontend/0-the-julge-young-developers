@@ -1,0 +1,36 @@
+@use '@/styles/utils';
+
+.wrap {
+  @include utils.flexbox(column, start, start);
+
+  gap: 8px;
+}
+
+.title {
+  @include utils.font-style('body1');
+
+  line-height: 26px;
+}
+
+.textArea {
+  width: 100%;
+  height: 153px;
+  padding: 16px 20px;
+  border: 1px solid utils.$gray-brt3;
+  border-radius: 5px;
+  color: utils.$black;
+  line-height: 26px;
+  @include utils.font-style('body1');
+
+  &::placeholder {
+    color: utils.$gray-brt2; /* 색상 설정 */
+  }
+}
+
+.validText {
+  @include utils.font-style('caption');
+
+  margin-left: 8px;
+  color: utils.$red-brt1;
+  line-height: 16px;
+}
