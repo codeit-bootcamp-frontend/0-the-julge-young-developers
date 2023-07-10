@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 
 import { MOCK_DOMAIN, MOCK_NOTICES } from '../data-access/data-access-mock'
 import UiNoticeCardItem from '../ui/ui-notice-card-item/ui-notice-card-item'
-import UiNoticeCardList from '../ui/ui-notice-card-list /ui-notice-card-list'
+import UiNoticeCardList from '../ui/ui-notice-card-list/ui-notice-card-list'
 import { utilCalcChangeRate } from '../util/util-calc-change-rate'
 import { utilCalcPayDiff } from '../util/util-calc-pay-diff'
 
