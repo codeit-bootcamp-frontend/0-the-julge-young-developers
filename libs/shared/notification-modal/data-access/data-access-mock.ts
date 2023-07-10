@@ -1,4 +1,6 @@
-const MOCK_NOTIFICATION = [
+import { UiNotificationItem } from '@/libs/shared/notification-modal/ui/ui-notification-list/ui-notification-list'
+
+const MOCK_NOTIFICATION: UiNotificationItem[] = [
   {
     id: 0,
     name: 'HS 과일주스',
