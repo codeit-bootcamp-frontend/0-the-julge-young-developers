@@ -1,4 +1,4 @@
-@use "@/styles/utils";
+@use '@/styles/utils';
 
 .footer {
   @include utils.flexbox();
@@ -6,7 +6,7 @@
   height: 100px;
   background-color: utils.$gray-brt5;
   color: utils.$gray-brt1;
-  @include utils.font-style("body1");
+  @include utils.font-style('body1');
 }
 
 .wrapper {
@@ -62,8 +62,8 @@
       height: 78px;
       display: grid;
       grid-template-areas:
-        "links socials"
-        "copyright .";
+        'links socials'
+        'copyright .';
       row-gap: 40px;
       margin: 0;
     }
