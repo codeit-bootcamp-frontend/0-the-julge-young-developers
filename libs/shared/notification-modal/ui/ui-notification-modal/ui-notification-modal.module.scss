@@ -9,12 +9,6 @@
   box-shadow: 0 2px 8px 0 rgb(120 116 134 / 25%);
 }
 
-.title {
-  @include utils.font-style('h3');
-
-  margin-bottom: 16px;
-}
-
 .notificationList {
   @include utils.flexbox(column, initial, initial);
 

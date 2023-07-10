@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind'
 
+import UiCommonLayout from '@/libs/shared/common-layout/ui/ui-common-layout/ui-common-layout'
 import {
   UiAcceptedNotificationItem,
   UiRejectedNotificationItem,
@@ -28,26 +29,31 @@ export default function UiNotificationModal({
 }: UiNotificationModalProps) {
   return (
     <div className={cx('modalContainer')}>
-      <h1 className={cx('title')}>알림 {itemList.length}개</h1>
-      <div className={cx('notificationList')}>
-        {itemList.map((item) =>
-          item.result === 'accepted' ? (
-            <UiAcceptedNotificationItem
-              key={item.id}
-              name={item.name}
-              duration={item.duration}
-              createdAt={item.createdAt}
-            />
-          ) : (
-            <UiRejectedNotificationItem
-              key={item.id}
-              name={item.name}
-              duration={item.duration}
-              createdAt={item.createdAt}
-            />
-          ),
-        )}
-      </div>
+      <UiCommonLayout
+        title={`알림 ${itemList.length}개`}
+        titleSize={20}
+        gap={16}
+      >
+        <div className={cx('notificationList')}>
+          {itemList.map((item) =>
+            item.result === 'accepted' ? (
+              <UiAcceptedNotificationItem
+                key={item.id}
+                name={item.name}
+                duration={item.duration}
+                createdAt={item.createdAt}
+              />
+            ) : (
+              <UiRejectedNotificationItem
+                key={item.id}
+                name={item.name}
+                duration={item.duration}
+                createdAt={item.createdAt}
+              />
+            ),
+          )}
+        </div>
+      </UiCommonLayout>
     </div>
   )
 }
