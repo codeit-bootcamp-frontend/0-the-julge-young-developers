@@ -34,7 +34,7 @@ const MOCK_NOTICES = [
     originalHourlyPay: 9000,
     imageUrl:
       'https://bootcamp-project-api.s3.ap-northeast-2.amazonaws.com/0-1/the-julge/1bdb43c8-ff08-4a46-81b0-7f91efced98c-jinju4.png',
-    closed: true,
+    closed: false,
   },
   {
     name: '성경만두3',
