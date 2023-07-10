@@ -3,6 +3,7 @@ import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
+import { chipText } from '@/libs/shared/notice-card/util/util-calc-chip-text'
 import { CardChips } from '@/libs/shared/notice-card/util/util-calc-pay-diff'
 
 import styles from './ui-notice-card-chip.module.scss'
@@ -20,12 +21,6 @@ export default function UiNoticeCardChip({
   changeRate,
   closed,
 }: UiNoticeCardChipProps) {
-  const chipText = () => {
-    if (isShowChip === 'red' || isShowChip === 'orange') {
-      return `기존 시급보다 ${changeRate}%`
-    }
-  }
-
   return (
     <div
       className={cx('chipWrapper', {
@@ -34,7 +29,7 @@ export default function UiNoticeCardChip({
         orange: !closed && isShowChip === 'orange',
       })}
     >
-      <span className={cx('chipText')}>{chipText()}</span>
+      <span className={cx('chipText')}>{chipText(isShowChip, changeRate)}</span>
       <div className={cx('imgContainer')}>
         <Image
           className={cx('img')}
