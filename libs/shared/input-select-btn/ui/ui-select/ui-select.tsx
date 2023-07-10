@@ -21,13 +21,13 @@ type UiSelectAllProps = UiSelectProps & Options & InputRequiredProps
 export default forwardRef(function UiSelect(
   {
     title,
-    isOpen,
+    isOpen = false,
     selectedOption,
     toggleDropdown,
     handleOptionSelect,
     handleInputChange,
     options,
-    isRequired,
+    isRequired = false,
   }: UiSelectAllProps,
   ref: ForwardedRef<HTMLDivElement>,
 ) {
@@ -50,22 +50,24 @@ export default forwardRef(function UiSelect(
           width={16}
           height={16}
         />
+        <div className={cx('optionsWrap')}>
+          {isOpen && (
+            <ul className={cx('options')}>
+              {options.map((option) => (
+                <li key={option.value} className={cx('option')}>
+                  <button
+                    type="button"
+                    onClick={() => handleOptionSelect(option.value)}
+                    className={cx('optionButton')}
+                  >
+                    {option.value}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </button>
-      {isOpen && (
-        <ul className={cx('options')}>
-          {options.map((option) => (
-            <li key={option.value} className={cx('option')}>
-              <button
-                type="button"
-                onClick={() => handleOptionSelect(option.value)}
-                className={cx('optionButton')}
-              >
-                {option.value}
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   )
 })
