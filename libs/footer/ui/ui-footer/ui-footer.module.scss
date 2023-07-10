@@ -1,7 +1,8 @@
 @use '@/styles/utils';
 
 .footer {
-  @include utils.flexbox();
+  @include utils.flexbox;
+
   width: 100%;
   height: 100px;
   background-color: utils.$gray-brt5;
@@ -11,24 +12,27 @@
 
 .wrapper {
   @include utils.flexbox($justify: space-between);
+
   width: 964px;
   margin: auto;
 }
 
 .copyright {
-  height: 16px;
   grid-area: copyright;
+  height: 16px;
 }
 
 .links {
-  @include utils.flexbox();
+  @include utils.flexbox;
+
+  grid-area: links;
   height: 22px;
   gap: 30px;
-  grid-area: links;
 }
 
 .link {
   text-decoration: none;
+
   &:visited {
     color: utils.$gray-brt1;
   }
@@ -36,13 +40,15 @@
 
 .socials {
   @include utils.flexbox($justify: space-between);
+
+  grid-area: socials;
   width: 95px;
   height: 22px;
-  grid-area: socials;
 }
 
 .socialWrapper {
-  @include utils.flexbox();
+  @include utils.flexbox;
+
   width: 25px;
   height: 25px;
 }
@@ -57,15 +63,16 @@
   .footer {
     height: 126px;
     padding: 20px 20px 0;
-    @include utils.font-style();
+    @include utils.font-style;
+
     .wrapper {
-      height: 78px;
       display: grid;
       grid-template-areas:
         'links socials'
         'copyright .';
-      row-gap: 40px;
+      height: 78px;
       margin: 0;
+      row-gap: 40px;
     }
   }
 }
