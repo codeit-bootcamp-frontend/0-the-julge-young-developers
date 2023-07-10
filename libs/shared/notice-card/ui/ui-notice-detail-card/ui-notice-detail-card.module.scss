@@ -176,3 +176,92 @@
     }
   }
 }
+
+@include utils.mobile {
+  .detailCardWrapper {
+    width: 351px;
+    padding: 20px;
+
+    .imgContainer {
+      --img-width: 311px;
+      --img-height: 178px;
+      --img-border-radius: 12px;
+    }
+
+    .card {
+      padding-top: 12px;
+
+      .cardHeader {
+        .title {
+          font-size: 14px;
+        }
+
+        .payContainer {
+          .pay {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            letter-spacing: 0.48px;
+          }
+        }
+      }
+
+      .durationContainer {
+        .imgContainer.icon {
+          width: 16px;
+          height: 16px;
+
+          .img {
+            object-fit: fill;
+          }
+        }
+
+        .duration {
+          @include utils.font-style('body2');
+
+          display: flex;
+          flex: 1 0 0;
+          flex-direction: column;
+          justify-content: center;
+          line-height: 100%;
+        }
+      }
+
+      .addressContainer {
+        .imgContainer.icon {
+          width: 16px;
+          height: 16px;
+
+          .img {
+            object-fit: fill;
+          }
+        }
+
+        .address {
+          @include utils.font-style('body2');
+
+          display: flex;
+          flex: 1 0 0;
+          flex-direction: column;
+          justify-content: center;
+          line-height: 100%;
+        }
+      }
+
+      .description {
+        @include utils.font-style('body2');
+
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
+        justify-content: center;
+        line-height: 22px;
+      }
+
+      .btnWrapper {
+        margin-top: 12px;
+      }
+    }
+  }
+}

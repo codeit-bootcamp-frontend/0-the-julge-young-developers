@@ -14,24 +14,7 @@
   padding: 12px;
   border-radius: 20px;
   gap: 6px;
-}
 
-.chipWrapper.red {
-  background: utils.$red-brt1;
-}
-
-.chipWrapper.orange {
-  background: utils.$red-brt2;
-}
-
-.chipWrapper.closed {
-  background: utils.$gray-brt4;
-}
-
-.chipWrapper,
-.chipWrapper.closed,
-.chipWrapper.orange,
-.chipWrapper.red {
   .chipText {
     color: utils.$white;
     font-style: normal;
@@ -46,16 +29,27 @@
   }
 }
 
+.chipWrapper.red {
+  background: utils.$red-brt1;
+}
+
+.chipWrapper.orange {
+  background: utils.$red-brt2;
+}
+
+.chipWrapper.closed {
+  background: utils.$gray-brt4;
+}
+
 @include utils.mobile {
-  .chipWrapper,
-  .chipWrapper.red,
-  .chipWrapper.orange,
-  .chipWrapper.closed {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    background: transparent;
-    gap: 2px;
+  .chipWrapper {
+    &.isCardItem {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      gap: 2px;
+      background: transparent;
+    }
 
     .chipText {
       @include utils.font-style('caption');
@@ -67,7 +61,7 @@
     }
   }
 
-  .chipWrapper.red {
+  .chipWrapper.red.isCardItem {
     .chipText {
       color: utils.$red-brt1;
     }
@@ -78,7 +72,7 @@
     }
   }
 
-  .chipWrapper.orange {
+  .chipWrapper.orange.isCardItem {
     .chipText {
       color: utils.$red-brt2;
     }
@@ -89,7 +83,7 @@
     }
   }
 
-  .chipWrapper.closed {
+  .chipWrapper.closed.isCardItem {
     .chipText {
       color: utils.$gray-brt4;
     }

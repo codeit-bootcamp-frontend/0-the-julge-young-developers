@@ -91,6 +91,7 @@ export default function UiNoticeCardItem({
           >{`${hourlyPay.toLocaleString()}원`}</span>
           {changeRate && (
             <UiNoticeCardChip
+              isCardItem={true}
               isShowChip={isShowChip}
               changeRate={changeRate}
               closed={closed}
