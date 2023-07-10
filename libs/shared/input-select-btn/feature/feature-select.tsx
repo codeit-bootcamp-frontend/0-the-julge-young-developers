@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-import UiSelect from '../ui/ui-select/ui-select'
+import UiSelect from '@/libs/shared/input-select-btn/ui/ui-select/ui-select'
 
 function Select({ title, options, isRequired }: InputRequiredProps & Options) {
   const [isOpen, setIsOpen] = useState(false)
