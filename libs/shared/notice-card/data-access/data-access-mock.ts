@@ -49,46 +49,4 @@ const MOCK_NOTICES = [
   },
 ]
 
-/**
- * 사용 예시 
- * 
- * <>
-      <UiNoticeDetailCard
-        name="성경만두4"
-        imageUrl="https://bootcamp-project-api.s3.ap-northeast-2.amazonaws.com/0-1/the-julge/d3fdf139-8b17-46ac-8e72-9ceb9893ae68-xef.jpeg"
-        duration="2023-01-03 15:00~ 18:00"
-        workhour={3}
-        address="서울시 종로구"
-        closed={false}
-        description="살려주세요"
-        hourlyPay={19000}
-        originalHourlyPay={9500}
-      >
-        <button type="button">버튼</button>
-      </UiNoticeDetailCard>
-
-      <UiNoticeCardList
-        title={MOCK_DOMAIN.title}
-        // filterElement={<div>순서/상세필터 컴포넌트</div>}
-        // ref={first}
-      >
-        {MOCK_NOTICES.map((notice) => (
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          <UiNoticeCardItem key={notice.name} {...notice} />
-          // <UiNoticeCardItem
-          //   key={notice.name}
-          //   name={notice.name}
-          //   duration={notice.duration}
-          //   workhour={notice.workhour}
-          //   address={notice.address}
-          //   hourlyPay={notice.hourlyPay}
-          //   originalHourlyPay={notice.originalHourlyPay}
-          //   imageUrl={notice.imageUrl}
-          //   closed={notice.closed}
-          // />
-        ))}
-      </UiNoticeCardList>
-    </>
- */
-
 export { MOCK_DOMAIN, MOCK_NOTICES }

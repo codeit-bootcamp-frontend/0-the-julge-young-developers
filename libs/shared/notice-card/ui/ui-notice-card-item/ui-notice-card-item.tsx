@@ -1,13 +1,9 @@
-'use client'
-
 /* eslint-disable @next/next/no-img-element */
 import classNames from 'classnames/bind'
 
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 
-import { utilCalcChangeRate } from '@/libs/shared/notice-card/util/util-calc-change-rate'
-import { utilCalcPayDiff } from '@/libs/shared/notice-card/util/util-calc-pay-diff'
+import { CardChips } from '@/libs/shared/notice-card/util/util-calc-pay-diff'
 
 import UiNoticeCardChip from './ui-notice-card-chip'
 import styles from './ui-notice-card-item.module.scss'
@@ -20,9 +16,11 @@ interface UiNoticeCardItemProps {
   workhour: number
   address: string
   hourlyPay: number
-  originalHourlyPay: number
   imageUrl: string
   closed: boolean
+  changeRate: undefined | number
+  isShowChip: CardChips
+  handleClickToDetail: () => void
 }
 
 export default function UiNoticeCardItem({
@@ -31,21 +29,12 @@ export default function UiNoticeCardItem({
   workhour,
   address,
   hourlyPay,
-  originalHourlyPay,
   imageUrl,
   closed,
+  changeRate,
+  isShowChip,
+  handleClickToDetail,
 }: UiNoticeCardItemProps) {
-  const router = useRouter()
-  const isShowChip = utilCalcPayDiff(hourlyPay, originalHourlyPay)
-  const changeRate = utilCalcChangeRate(hourlyPay, originalHourlyPay)
-
-  const handleClickToDetail = () => {
-    if (closed) return
-    // eslint-disable-next-line no-warning-comments
-    // TODO: api 적용 후 상세 페이지로 이동
-    router.push('/')
-  }
-
   return (
     <div
       role="presentation"
