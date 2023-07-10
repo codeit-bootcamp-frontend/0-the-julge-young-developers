@@ -1,0 +1,85 @@
+@use '@/styles/utils';
+
+.filterContainer {
+  max-width: 390px;
+  overflow: hidden;
+  border: 1px solid utils.$gray-brt4;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 rgb(120 116 134 / 25%);
+}
+
+.filterContent {
+  @include utils.flexbox(column, initial, initial);
+
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.title {
+  @include utils.font-style('h3');
+}
+
+.subtitle {
+  @include utils.font-style('body1');
+
+  margin-bottom: 12px;
+}
+
+.inputContainer {
+  @include utils.flexbox(row, initial);
+
+  gap: 12px;
+}
+
+.inputWrapper {
+  padding: 16px 20px;
+  border: 1px solid utils.$gray-brt3;
+  border-radius: 6px;
+
+  &.startInput {
+    width: 1005;
+  }
+
+  &.priceInput {
+    width: 169px;
+  }
+
+  input {
+    width: 100%;
+    @include utils.font-style('body1');
+  }
+
+  ::placeholder {
+    color: utils.$gray-brt2;
+  }
+}
+
+.buttonContainer {
+  @include utils.flexbox;
+
+  gap: 8px;
+
+  button {
+    @include utils.font-style('body1Bold');
+
+    border-radius: 6px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .initButton {
+    padding: 14px 18.5px;
+    border: 1px solid utils.$primary;
+    background-color: utils.$white;
+    color: utils.$primary;
+  }
+
+  .applyButton {
+    // width: auto;
+    flex-grow: 1;
+    padding: 14px 0;
+    border: 1px solid utils.$primary;
+    background-color: utils.$primary;
+    color: utils.$white;
+  }
+}
