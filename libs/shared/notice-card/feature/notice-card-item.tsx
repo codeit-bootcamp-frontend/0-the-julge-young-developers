@@ -13,8 +13,6 @@ export default function NoticeCardItem() {
 
   const handleClickToDetail = (isClosed: boolean) => {
     if (isClosed) return
-    // eslint-disable-next-line no-warning-comments
-    // TODO: api 적용 후 상세 페이지로 이동
     router.push('/')
   }
 
