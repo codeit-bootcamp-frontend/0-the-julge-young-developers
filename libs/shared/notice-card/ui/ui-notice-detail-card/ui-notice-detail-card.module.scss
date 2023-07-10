@@ -64,7 +64,6 @@
     .cardHeader {
       display: flex;
       flex-direction: column;
-      width: 293px;
       gap: 8px;
 
       .title {
@@ -79,13 +78,15 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
+        gap: 8px;
 
         .pay {
           color: utils.$black;
+          font-size: 28px;
           font-style: normal;
-          letter-spacing: 0.48px;
+          font-weight: 700;
+          letter-spacing: 0.56px;
           line-height: normal;
-          @include utils.font-style('h2');
         }
 
         .pay.closed {
@@ -141,12 +142,37 @@
     }
 
     .description {
-      height: 78px;
+      height: auto;
+      max-height: 52px;
       color: utils.$black;
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
       line-height: 26px;
+    }
+
+    .btnWrapper {
+      margin-top: 4px;
+    }
+  }
+}
+
+@include utils.tablet {
+  .detailCardWrapper {
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 680px;
+
+    .imgContainer {
+      --img-width: 632px;
+      --img-height: 360px;
+      --img-border-radius: 12px;
+    }
+
+    .card {
+      .btnWrapper {
+        margin-top: 8px;
+      }
     }
   }
 }
