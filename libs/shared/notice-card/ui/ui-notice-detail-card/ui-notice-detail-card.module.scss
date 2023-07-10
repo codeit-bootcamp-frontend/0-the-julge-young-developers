@@ -1,69 +1,70 @@
 @use '@/styles/utils';
 
 .img {
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
 }
 
 .detailCardWrapper {
-  border-radius: 12px;
-  border: 1px solid utils.$gray-brt4;
-  background: utils.$white;
-  width: 949px;
-  padding: 24px;
   display: flex;
   justify-content: space-between;
+  width: 949px;
+  padding: 24px;
+  border: 1px solid utils.$gray-brt4;
+  border-radius: 12px;
+  background: utils.$white;
 
   .imgContainer {
     --img-width: 539px;
     --img-height: 308px;
     --img-border-radius: 12px;
+
+    position: relative;
     width: var(--img-width);
     height: var(--img-height);
-    border-radius: var(--img-border-radius);
-    position: relative;
     overflow: hidden;
+    border-radius: var(--img-border-radius);
 
     .closedLayer {
+      display: flex;
       position: absolute;
       top: 0;
       left: 0;
+      align-items: center;
+      justify-content: center;
       width: var(--img-width);
       height: var(--img-height);
       border-radius: var(--img-border-radius);
       background-color: #000000b2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
 
       .closedText {
+        color: utils.$gray-brt3;
         font-size: 28px;
         font-style: normal;
         font-weight: 700;
-        line-height: normal;
         letter-spacing: 0.56px;
-        color: utils.$gray-brt3;
+        line-height: normal;
         text-align: center;
       }
     }
   }
 
   .card {
-    width: 346px;
-    padding-top: 16px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: flex-start;
     align-self: stretch;
+    justify-content: space-between;
+    width: 346px;
+    padding-top: 16px;
     gap: 12px;
 
     .cardHeader {
-      width: 293px;
       display: flex;
       flex-direction: column;
+      width: 293px;
       gap: 8px;
 
       .title {
@@ -75,17 +76,18 @@
       }
 
       .payContainer {
-        width: 100%;
         display: flex;
         justify-content: space-between;
+        width: 100%;
 
         .pay {
           color: utils.$black;
-          @include utils.font-style('h2');
           font-style: normal;
-          line-height: normal;
           letter-spacing: 0.48px;
+          line-height: normal;
+          @include utils.font-style('h2');
         }
+
         .pay.closed {
           color: utils.$gray-brt3;
         }
@@ -93,8 +95,8 @@
     }
 
     .durationContainer {
-      width: 100%;
       display: flex;
+      width: 100%;
       gap: 6px;
 
       .imgContainer.icon {
@@ -105,41 +107,46 @@
       .duration {
         color: utils.$gray-brt1;
         @include utils.font-style('body1');
+
         font-style: normal;
         line-height: 26px;
       }
+
       .duration.closed {
         color: utils.$gray-brt3;
       }
     }
 
     .addressContainer {
-      width: 100%;
       display: flex;
+      width: 100%;
       gap: 6px;
 
       .imgContainer.icon {
         width: 20px;
         height: 20px;
       }
+
       .address {
         color: utils.$gray-brt1;
         @include utils.font-style('body1');
+
         font-style: normal;
         line-height: 26px;
       }
+
       .address.closed {
         color: utils.$gray-brt3;
       }
     }
 
     .description {
+      height: 78px;
       color: utils.$black;
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
       line-height: 26px;
-      height: 78px;
     }
   }
 }
