@@ -1,0 +1,30 @@
+@use '@/styles/utils';
+
+.searchbar {
+  width: 450px;
+  height: 40px;
+  padding-left: 40px;
+  border-radius: 10px;
+  background-color: utils.$gray-brt5;
+  background-image: url('/images/search.svg');
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 20px 20px;
+  color: utils.$gray-brt2;
+  @include utils.font-style;
+}
+
+@include utils.tablet {
+  .searchbar {
+    width: 344px;
+  }
+}
+
+@include utils.mobile {
+  .searchbar {
+    width: 335px;
+    height: 36px;
+    background-size: 16px 16px;
+    @include utils.font-style('caption');
+  }
+}
