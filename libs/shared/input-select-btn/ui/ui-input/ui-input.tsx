@@ -10,11 +10,7 @@ export default function UiInput({
   title,
   valid,
   isValid,
-}: {
-  title: string
-  valid: string
-  isValid: boolean
-}) {
+}: Valid & InputRequiredProps) {
   return (
     <div className={cx('inputWrap')}>
       <div className={cx('title')}>{title}</div>
