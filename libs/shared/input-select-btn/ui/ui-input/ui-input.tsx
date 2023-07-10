@@ -15,7 +15,7 @@ export default function UiInput({
     <div className={cx('inputWrap')}>
       <div className={cx('title')}>{title}</div>
       <input className={cx('inputBox')} type="text" placeholder="입력" />
-      <div className={cx('validText', { isValid })}>{valid}</div>
+      {isValid && <div className={cx('validText')}>{valid}</div>}
     </div>
   )
 }
