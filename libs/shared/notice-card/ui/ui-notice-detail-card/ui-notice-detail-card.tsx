@@ -88,8 +88,9 @@ export default function UiNoticeDetailCard({
           </div>
           <p className={cx('address', { closed })}>{address}</p>
         </div>
+
         <p className={cx('description')}>{description}</p>
-        {children}
+        <div className={cx('btnWrapper')}>{children}</div>
       </div>
     </div>
   )

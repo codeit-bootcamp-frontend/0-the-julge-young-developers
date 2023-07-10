@@ -34,7 +34,7 @@ const MOCK_NOTICES = [
     originalHourlyPay: 9000,
     imageUrl:
       'https://bootcamp-project-api.s3.ap-northeast-2.amazonaws.com/0-1/the-julge/1bdb43c8-ff08-4a46-81b0-7f91efced98c-jinju4.png',
-    closed: true,
+    closed: false,
   },
   {
     name: '성경만두3',
@@ -48,5 +48,24 @@ const MOCK_NOTICES = [
     closed: false,
   },
 ]
+
+/**
+ * 컴포넌트 사용 예시 
+      <UiNoticeDetailCard
+        name="성경만두4"
+        imageUrl="https://bootcamp-project-api.s3.ap-northeast-2.amazonaws.com/0-1/the-julge/d3fdf139-8b17-46ac-8e72-9ceb9893ae68-xef.jpeg"
+        duration="2023-01-03 15:00~ 18:00"
+        workhour={3}
+        address="서울시 종로구"
+        closed={false}
+        description="살려주세요"
+        hourlyPay={19000}
+        originalHourlyPay={9500}
+      >
+        <button type="button">버튼</button>
+      </UiNoticeDetailCard>
+
+      <NoticeCardItem />
+ */
 
 export { MOCK_DOMAIN, MOCK_NOTICES }

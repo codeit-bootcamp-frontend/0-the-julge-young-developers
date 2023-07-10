@@ -30,3 +30,19 @@
     gap: 31px 14px;
   }
 }
+
+@include utils.mobile {
+  .wrapper {
+    gap: 16px;
+
+    .titleHeader {
+      .title {
+        font-size: 20px;
+      }
+    }
+
+    .listWrapper {
+      gap: 16px 8px;
+    }
+  }
+}

@@ -11,12 +11,14 @@ import styles from './ui-notice-card-chip.module.scss'
 const cx = classNames.bind(styles)
 
 interface UiNoticeCardChipProps {
+  isCardItem?: boolean
   isShowChip: CardChips
   changeRate: undefined | number
   closed: boolean
 }
 
 export default function UiNoticeCardChip({
+  isCardItem,
   isShowChip,
   changeRate,
   closed,
@@ -27,6 +29,7 @@ export default function UiNoticeCardChip({
         closed,
         red: !closed && isShowChip === 'red',
         orange: !closed && isShowChip === 'orange',
+        isCardItem,
       })}
     >
       <span className={cx('chipText')}>{chipText(isShowChip, changeRate)}</span>

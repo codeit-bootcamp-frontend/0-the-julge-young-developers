@@ -68,7 +68,7 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      gap: 9px;
+      gap: 8px;
 
       .title {
         width: 100%;
@@ -76,10 +76,10 @@
         font-style: normal;
         line-height: normal;
         @include utils.font-style('h3');
-      }
 
-      .title.closed {
-        color: utils.$gray-brt3;
+        &.closed {
+          color: utils.$gray-brt3;
+        }
       }
 
       .durationContainer {
@@ -98,10 +98,10 @@
 
           font-style: normal;
           line-height: 22px;
-        }
 
-        .duration.closed {
-          color: utils.$gray-brt3;
+          &.closed {
+            color: utils.$gray-brt3;
+          }
         }
       }
 
@@ -121,10 +121,10 @@
 
           font-style: normal;
           line-height: 22px;
-        }
 
-        .address.closed {
-          color: utils.$gray-brt3;
+          &.closed {
+            color: utils.$gray-brt3;
+          }
         }
       }
     }
@@ -139,11 +139,94 @@
         font-style: normal;
         letter-spacing: 0.48px;
         line-height: normal;
+        text-align: center;
+        @include utils.flexbox;
         @include utils.font-style('h2');
+
+        &.closed {
+          color: utils.$gray-brt3;
+        }
+      }
+    }
+  }
+}
+
+@include utils.mobile {
+  .cardWrapper {
+    width: 171px;
+    padding: 12px;
+    gap: 12px;
+
+    .imgContainer.header {
+      --img-width: 147px;
+      --img-height: 84px;
+
+      .closedLayer {
+        .closedText {
+          @include utils.font-style('h3');
+        }
+      }
+    }
+
+    .cardSection {
+      width: 147px;
+
+      .sectionContent {
+        .title {
+          @include utils.font-style('body1Bold');
+
+          line-height: 20px;
+        }
+
+        .durationContainer {
+          .imgContainer.icon {
+            width: 16px;
+            height: 16px;
+
+            .img {
+              object-fit: fill;
+            }
+          }
+
+          .duration {
+            @include utils.font-style('caption');
+
+            display: flex;
+            flex: 1 0 0;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 100%;
+          }
+        }
+
+        .addressContainer {
+          .imgContainer.icon {
+            width: 16px;
+            height: 16px;
+
+            .img {
+              object-fit: fill;
+            }
+          }
+
+          .address {
+            @include utils.font-style('caption');
+
+            display: flex;
+            flex: 1 0 0;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 100%;
+          }
+        }
       }
 
-      .pay.closed {
-        color: utils.$gray-brt3;
+      .payContainer {
+        @include utils.flexbox(column, flex-start, flex-start);
+
+        .pay {
+          @include utils.font-style('h4Bold');
+        }
       }
     }
   }
