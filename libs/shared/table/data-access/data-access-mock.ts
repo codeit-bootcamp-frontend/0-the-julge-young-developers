@@ -30,7 +30,15 @@ const MOCK_APPLICATION_HISTORIES = [
   },
 ]
 
-const MOCK_APPLICANT_LISTS = [
+export interface ApplicantList {
+  id: string
+  status: 'pending' | 'accepted' | 'rejected'
+  userName: string
+  description: string
+  phone: string
+}
+
+const MOCK_APPLICANT_LISTS: ApplicantList[] = [
   {
     id: 'a', // application_id: 상태 클릭 시 변동에 활용
     status: 'pending',

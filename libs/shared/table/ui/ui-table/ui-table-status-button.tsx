@@ -4,12 +4,22 @@ import styles from './ui-table-status-button.module.scss'
 
 const cx = classnames.bind(styles)
 
-// interface UiTableStatusButtonProps {}
+interface UiTableStatusButtonProps {
+  action: 'reject' | 'accept'
+}
 
-export default function UiTableStatusButton() {
+export default function UiTableStatusButton({
+  action,
+}: UiTableStatusButtonProps) {
   return (
-    <button className={cx('button')} type="button">
-      거절하기
+    <button
+      className={cx('button', {
+        accept: action === 'accept',
+        reject: action === 'reject',
+      })}
+      type="button"
+    >
+      {action === 'reject' ? '거절하기' : '승인하기'}
     </button>
   )
 }

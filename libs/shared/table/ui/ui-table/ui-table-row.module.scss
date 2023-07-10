@@ -19,7 +19,7 @@
 }
 
 .statusCell {
-  @include utils.flexbox(row, center, flex-start);
+  @include utils.flexbox(row, flex-start, center);
 
   gap: 12px;
 }

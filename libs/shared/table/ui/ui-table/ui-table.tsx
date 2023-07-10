@@ -1,36 +1,40 @@
 import classnames from 'classnames/bind'
 
-import TableRow from './ui-table-row'
+import {
+  COL_NAMES,
+  MOCK_APPLICANT_LISTS,
+} from '@/libs/shared/table/data-access/data-access-mock'
+import UiPagination from '@/libs/shared/table/ui/ui-pagination/ui-pagination'
+import TableRow from '@/libs/shared/table/ui/ui-table/ui-table-row'
+
 import styles from './ui-table.module.scss'
 
 const cx = classnames.bind(styles)
 
 export default function UiTable() {
-  const colNames = {
-    employer: ['신청자', '소개', '전화번호', '상태'],
-    employee: ['가게', '일자', '시급', '상태'],
-  }
-
   const userType = 'employer'
 
   return (
-    <div className={cx('wrapper')}>
-      <table className={cx('table')}>
-        <thead>
-          <tr className={cx('headRow')}>
-            {colNames[userType].map((colName) => (
-              <th key={colName} className={cx('headCell')}>
-                {colName}
-              </th>
+    <div className={cx('tableWrapper')}>
+      <div className={cx('tableContentWrapper')}>
+        <table className={cx('table')}>
+          <thead>
+            <tr className={cx('headRow')}>
+              {COL_NAMES[userType].map((colName) => (
+                <th key={colName} className={cx('headCell')}>
+                  {colName}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {MOCK_APPLICANT_LISTS.map((list) => (
+              <TableRow key={list.id} content={list} />
             ))}
-          </tr>
-        </thead>
-        <tbody>
-          <TableRow />
-          <TableRow />
-          <TableRow />
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
+      <UiPagination />
     </div>
   )
 }
