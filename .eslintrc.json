@@ -20,6 +20,7 @@
     "prettier"
   ],
   "rules": {
+    "react/jsx-props-no-spreading": "off", // spreading
     "react/react-in-jsx-scope": "off", // React를 import하지 않아도 JSX 사용 가능 (React 17부터)
     "react/jsx-filename-extension": [
       "error",
