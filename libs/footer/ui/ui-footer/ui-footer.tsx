@@ -3,7 +3,7 @@ import classnames from 'classnames/bind'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import styles from '@/libs/footer/ui/ui-footer/ui-footer.module.scss'
+import styles from './ui-footer.module.scss'
 
 const cx = classnames.bind(styles)
 
