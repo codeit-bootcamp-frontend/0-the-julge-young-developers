@@ -36,8 +36,6 @@
 .locationItem {
   @include utils.font-style('body2');
 
-  background-color: inherit;
   line-height: 32px;
   text-align: start;
-  cursor: pointer;
 }

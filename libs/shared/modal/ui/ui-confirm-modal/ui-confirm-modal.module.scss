@@ -13,16 +13,16 @@
 }
 
 .description {
-  margin-bottom: 32px;
   @include utils.font-style('body1');
+
+  margin-bottom: 32px;
 }
 
 .confirmButton {
+  @include utils.font-style('body2Bold');
+
   padding: 10px 20.5px;
   border: 1px solid utils.$primary;
   border-radius: 6px;
-  background-color: inherit;
   color: utils.$primary;
-  cursor: pointer;
-  @include utils.font-style('body2Bold');
 }

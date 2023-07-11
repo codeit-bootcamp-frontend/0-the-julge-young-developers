@@ -64,7 +64,6 @@
 
     border-radius: 6px;
     white-space: nowrap;
-    cursor: pointer;
   }
 
   .initButton {
@@ -75,7 +74,6 @@
   }
 
   .applyButton {
-    // width: auto;
     flex-grow: 1;
     padding: 14px 0;
     border: 1px solid utils.$primary;

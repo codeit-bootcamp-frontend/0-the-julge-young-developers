@@ -24,8 +24,6 @@
   button {
     padding: 10px 20.5px;
     border-radius: 6px;
-    background-color: inherit;
-    cursor: pointer;
     @include utils.font-style('body2Bold');
   }
 
