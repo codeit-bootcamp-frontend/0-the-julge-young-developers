@@ -1,6 +1,6 @@
 @use '@/styles/utils';
 
-.badge {
+.closeChip {
   @include utils.font-style('body2Bold');
   @include utils.flexbox;
 
