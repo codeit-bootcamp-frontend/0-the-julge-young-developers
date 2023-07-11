@@ -44,3 +44,9 @@
 
   color: utils.$gray-brt2;
 }
+
+@include utils.mobile {
+  .itemContainer {
+    width: 100%;
+  }
+}
