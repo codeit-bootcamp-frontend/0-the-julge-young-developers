@@ -1,7 +1,7 @@
 @use '@/styles/utils';
 
 .filterContainer {
-  max-width: 390px;
+  width: 390px;
   overflow: hidden;
   border: 1px solid utils.$gray-brt4;
   border-radius: 10px;
@@ -93,5 +93,16 @@
     border: 1px solid utils.$primary;
     background-color: utils.$primary;
     color: utils.$white;
+  }
+}
+
+@include utils.mobile {
+  .filterContainer {
+    position: fixed;
+    width: 100%;
+    inset: 0;
+    border: none;
+    border-radius: none;
+    box-shadow: none;
   }
 }
