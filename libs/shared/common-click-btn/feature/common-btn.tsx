@@ -6,6 +6,17 @@ export function CommonActiveOutlineBtn(props: OmitCommonBtnProps) {
   return <UiCommonClickBtn outline={true} status="active" {...props} />
 }
 
+export function CommonActiveOutlineConfirmBtn(props: OmitCommonBtnProps) {
+  return (
+    <UiCommonClickBtn
+      outline={true}
+      status="active"
+      confirm={true}
+      {...props}
+    />
+  )
+}
+
 export function CommonActiveBtn(props: OmitCommonBtnProps) {
   return <UiCommonClickBtn status="active" {...props} />
 }
