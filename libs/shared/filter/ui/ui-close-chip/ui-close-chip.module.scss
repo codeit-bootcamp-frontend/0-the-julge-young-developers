@@ -1,0 +1,12 @@
+@use '@/styles/utils';
+
+.closeChip {
+  @include utils.font-style('body2Bold');
+  @include utils.flexbox;
+
+  padding: 6px 10px;
+  border-radius: 20px;
+  background-color: utils.$red-brt4;
+  color: utils.$primary;
+  gap: 4px;
+}
