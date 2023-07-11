@@ -1,12 +1,16 @@
 import classnames from 'classnames/bind'
 
-import UiPaginationArrow from './ui-pagination-arrow'
+import { UiPaginationProps } from '@/libs/shared/table/type-table'
+import UiPaginationArrow from '@/libs/shared/table/ui/ui-pagination/ui-pagination-arrow'
+
 import styles from './ui-pagination.module.scss'
 
 const cx = classnames.bind(styles)
 
-export default function UiPagination() {
-  const isActive = true
+export default function UiPagination({
+  pageNum,
+  shownPageNums,
+}: UiPaginationProps) {
   return (
     <div className={cx('wrapper')}>
       <div className={cx('content')}>
@@ -14,27 +18,15 @@ export default function UiPagination() {
           <UiPaginationArrow disable={true} />
         </button>
         <div className={cx('numbers')}>
-          <button className={cx('number', { isActive })} type="button">
-            1
-          </button>
-          <button className={cx('number')} type="button">
-            2
-          </button>
-          <button className={cx('number')} type="button">
-            3
-          </button>
-          <button className={cx('number')} type="button">
-            4
-          </button>
-          <button className={cx('number')} type="button">
-            5
-          </button>
-          <button className={cx('number')} type="button">
-            6
-          </button>
-          <button className={cx('number')} type="button">
-            7
-          </button>
+          {shownPageNums.map((num) => (
+            <button
+              className={cx('number', { isActive: pageNum === num })}
+              type="button"
+              key={num}
+            >
+              {num}
+            </button>
+          ))}
         </div>
         <button type="button">
           <UiPaginationArrow direction="right" />

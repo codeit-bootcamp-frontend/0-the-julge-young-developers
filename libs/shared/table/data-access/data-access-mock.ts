@@ -1,42 +1,36 @@
+import {
+  ApplicantList,
+  ApplicationHistory,
+} from '@/libs/shared/table/type-table'
+
 const COL_NAMES = {
   employer: ['신청자', '소개', '전화번호', '상태'],
   employee: ['가게', '일자', '시급', '상태'],
 }
 
-const MOCK_APPLICATION_HISTORIES = [
+const MOCK_APPLICATION_HISTORIES: ApplicationHistory[] = [
   {
     id: 'a',
     status: 'pending',
     duration: '2023-01-03 15:00 ~ 18:00', // startsAt + workhour를 활용해서 이 형식으로 변환해야 한다.\
-    shapName: 'HS 과일주스',
-    workhour: 2,
-    hourlyPay: 15000,
+    shopName: 'HS 과일주스',
+    hourlyPay: '15,000원',
   },
   {
     id: 'b',
     status: 'accepted',
     duration: '2023-01-03 15:00 ~ 18:00', // startsAt + workhour를 활용해서 이 형식으로 변환해야 한다.\
-    shapName: 'HS 과일주스',
-    workhour: 2,
-    hourlyPay: 15000,
+    shopName: 'HS 과일주스',
+    hourlyPay: '15,000원',
   },
   {
     id: 'c',
     status: 'rejected',
     duration: '2023-01-03 15:00 ~ 18:00', // startsAt + workhour를 활용해서 이 형식으로 변환해야 한다.\
-    shapName: 'HS 과일주스',
-    workhour: 2,
-    hourlyPay: 15000,
+    shopName: 'HS 과일주스',
+    hourlyPay: '15,000원',
   },
 ]
-
-export interface ApplicantList {
-  id: string
-  status: 'pending' | 'accepted' | 'rejected'
-  userName: string
-  description: string
-  phone: string
-}
 
 const MOCK_APPLICANT_LISTS: ApplicantList[] = [
   {
