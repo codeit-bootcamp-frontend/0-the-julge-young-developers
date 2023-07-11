@@ -2,6 +2,7 @@
 
 $color-active: utils.$primary;
 $color-inactive: utils.$gray-brt2;
+$color-confirm: utils.$blue-brt1;
 
 .button {
   border: 1px;
@@ -20,16 +21,25 @@ $color-inactive: utils.$gray-brt2;
   &.medium {
     @include utils.font-style('body1Bold');
 
-    width: 108px;
+    width: fit-content;
     height: 37px;
     padding: 10px 20px;
     line-height: 16.8px;
   }
 
+  &.mediumSmall {
+    @include utils.font-style('body2Bold');
+
+    width: fit-content;
+    height: 38px;
+    padding: 10px 20px;
+    line-height: 17.53px;
+  }
+
   &.small {
     @include utils.font-style('caption');
 
-    width: 82px;
+    width: fit-content;
     height: 32px;
     padding: 8px 12px;
     line-height: 16px;
@@ -43,6 +53,11 @@ $color-inactive: utils.$gray-brt2;
       border: 1px solid $color-active;
       background-color: utils.$white;
       color: $color-active;
+
+      &.confirm {
+        border: 1px solid $color-confirm;
+        color: $color-confirm;
+      }
     }
   }
 
