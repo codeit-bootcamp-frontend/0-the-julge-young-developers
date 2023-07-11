@@ -71,6 +71,7 @@
 .buttonContainer {
   @include utils.flexbox;
 
+  background-color: utils.$white;
   gap: 8px;
 
   button {
@@ -104,5 +105,15 @@
     border: none;
     border-radius: none;
     box-shadow: none;
+  }
+
+  .buttonContainer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 16px 12px;
+    border-top: 1px solid utils.$gray-brt4;
+    background-color: util;
   }
 }
