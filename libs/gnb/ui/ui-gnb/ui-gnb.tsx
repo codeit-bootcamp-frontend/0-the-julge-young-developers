@@ -9,17 +9,12 @@ import UiSearchbar from '../ui-searchbar/ui-searchbar'
 
 const cx = classNames.bind(styles)
 
-interface Props {
-  isLogin: boolean
-  handleClickMovePage: () => void
-  handleClickOpenModal: () => void
-}
-
 export default function UiGnb({
   isLogin,
+  hasNotification,
   handleClickMovePage,
   handleClickOpenModal,
-}: Props) {
+}: GnbProps) {
   return (
     <nav className={cx('gnb')}>
       <div className={cx('wrapper')}>
@@ -40,9 +35,10 @@ export default function UiGnb({
         {isLogin ? (
           <div className={cx('buttons')}>
             <UiButton name="내 가게" handleClickButton={handleClickMovePage} />
-            <button type="button" onClick={handleClickOpenModal}>
-              모달 open 버튼
-            </button>
+            <UiButton
+              activeStatus={hasNotification ? 'active' : 'inactive'}
+              handleClickButton={handleClickOpenModal}
+            />
           </div>
         ) : (
           <div className={cx('buttons')}>
