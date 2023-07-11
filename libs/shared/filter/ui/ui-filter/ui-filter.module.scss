@@ -15,14 +15,25 @@
   margin-bottom: 40px;
 }
 
+.section {
+  @include utils.flexbox(column, initial, initial);
+
+  gap: 12px;
+}
+
 .title {
   @include utils.font-style('h3');
 }
 
 .subtitle {
   @include utils.font-style('body1');
+}
 
-  margin-bottom: 12px;
+.selectedChipContainer {
+  @include utils.flexbox(row, initial, initial);
+
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .inputContainer {
@@ -37,11 +48,14 @@
   border-radius: 6px;
 
   &.startInput {
-    width: 1005;
+    width: 100%;
   }
 
   &.priceInput {
+    @include utils.flexbox(row);
+
     width: 169px;
+    gap: 10px;
   }
 
   input {
