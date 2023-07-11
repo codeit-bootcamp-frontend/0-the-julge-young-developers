@@ -1,0 +1,75 @@
+@use '@/styles/utils';
+
+.selectWrap {
+  @include utils.flexbox(column, start, start);
+
+  gap: 8px;
+}
+
+.title {
+  @include utils.font-style('body1');
+
+  line-height: 26px;
+}
+
+.select {
+  position: relative;
+  width: 100%;
+  height: 58px;
+
+  .img {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+}
+
+.inputBox {
+  width: 100%;
+  height: 100%;
+  padding: 16px 20px;
+  border: 1px solid utils.$gray-brt3;
+  border-radius: 5px;
+  color: utils.$black;
+  line-height: 26px;
+  @include utils.font-style('body1');
+
+  &::placeholder {
+    color: utils.$gray-brt2;
+  }
+}
+
+.optionsWrap {
+  position: relative;
+
+  .options {
+    @include utils.flexbox(column, start, center);
+
+    position: absolute;
+    top: 8px;
+    width: 100%;
+    max-height: 230px;
+    overflow-y: auto;
+    border: 1px solid utils.$gray-brt4;
+    border-radius: 6px;
+    background-color: utils.$white;
+    box-shadow: 0 4px 25px 0 #0000001a;
+  }
+}
+
+.option {
+  @include utils.font-style('body2');
+
+  width: 100%;
+  height: 46px;
+  padding: 12px 0;
+  border-bottom: 1px solid utils.$gray-brt4;
+  color: utils.$black;
+  line-height: 22px;
+  text-align: center;
+}
+
+.optionButton {
+  width: 100%;
+}

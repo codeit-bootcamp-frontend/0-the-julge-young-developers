@@ -164,3 +164,13 @@ table {
   border-spacing: 0;
   border-collapse: collapse;
 }
+
+button {
+  padding: 0;
+  overflow: visible;
+  border: none;
+  border-radius: 0;
+  background: inherit;
+  box-shadow: none;
+  cursor: pointer;
+}
