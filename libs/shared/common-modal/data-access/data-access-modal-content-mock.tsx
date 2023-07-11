@@ -1,10 +1,10 @@
-import classnames from 'classnames/bind'
+import classNames from 'classnames/bind'
 
 import UiCommonLayout from '@/libs/shared/common-layout/ui/ui-common-layout/ui-common-layout'
 
 import styles from './data-access-modal-content-mock.module.scss'
 
-const cx = classnames.bind(styles)
+const cx = classNames.bind(styles)
 
 export default function MockModalContent() {
   return (

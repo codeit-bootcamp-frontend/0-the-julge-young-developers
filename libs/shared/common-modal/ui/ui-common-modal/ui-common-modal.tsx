@@ -1,6 +1,6 @@
 'use client'
 
-import classnames from 'classnames/bind'
+import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
@@ -14,7 +14,7 @@ interface UiCommonModalProps {
   children: React.ReactNode
 }
 
-const cx = classnames.bind(styles)
+const cx = classNames.bind(styles)
 
 export default function UiCommonModal({
   padding = 0,
