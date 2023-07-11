@@ -1,25 +1,35 @@
-type ModalTypes = 'confirm' | 'action'
+// type ModalTypes = 'confirm' | 'action'
 
-interface ModalProps {
-  type: ModalTypes
-  description: string
-  actionType?: ActionModalTypes
+// interface ModalProps {
+//   type: ModalTypes
+//   description: string
+//   actionType?: ActionModalTypes
+//   onClick: () => void
+// }
+interface ConfirmModalProps {
+  text: string
+  onConfirm: () => void
 }
 
-type ActionModalTypes = 'reject' | 'accept' | 'cancel'
+type ActionTypes = 'reject' | 'accept' | 'cancel'
 
 interface ActionModalProps {
-  type: ActionModalTypes
-  description: string
+  type: ActionTypes
+  text: string
+  onCancel: () => void
+  onAccept: () => void
 }
 
 interface UiActionModalProps {
-  description: string
+  text: string
   cancelText: string
   acceptText: string
+  onCancel: () => void
+  onAccept: () => void
 }
 
 interface UiConfirmModalProps {
-  description: string
+  text: string
   confirmText: string
+  onConfirm: () => void
 }

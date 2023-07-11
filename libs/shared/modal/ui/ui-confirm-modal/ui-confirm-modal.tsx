@@ -11,8 +11,9 @@ import styles from './ui-confirm-modal.module.scss'
 const cx = classNames.bind(styles)
 
 export default function UiConfirmModal({
-  description,
+  text,
   confirmText,
+  onConfirm,
 }: UiConfirmModalProps) {
   return (
     <div className={cx('modalContainer')}>
@@ -23,13 +24,11 @@ export default function UiConfirmModal({
         width={24}
         height={24}
       />
-      <h3 className={cx('description')}>{description}</h3>
+      <h3 className={cx('description')}>{text}</h3>
       <CommonActiveOutlineBtn
         text={confirmText}
         size="mediumSmall"
-        onClick={() => {
-          console.log('버튼 눌림')
-        }}
+        onClick={onConfirm}
       />
     </div>
   )
