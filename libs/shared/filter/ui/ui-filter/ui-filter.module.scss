@@ -2,7 +2,7 @@
 
 .filterContainer {
   width: 390px;
-  overflow: hidden;
+  overflow: auto;
   border: 1px solid utils.$gray-brt4;
   border-radius: 10px;
   box-shadow: 0 2px 8px 0 rgb(120 116 134 / 25%);
@@ -101,10 +101,11 @@
   .filterContainer {
     position: fixed;
     width: 100%;
-    inset: 0;
+    margin-bottom: 60px;
     border: none;
-    border-radius: none;
+    border-radius: 0;
     box-shadow: none;
+    inset: 0;
   }
 
   .buttonContainer {
@@ -114,6 +115,5 @@
     left: 0;
     padding: 16px 12px;
     border-top: 1px solid utils.$gray-brt4;
-    background-color: util;
   }
 }
