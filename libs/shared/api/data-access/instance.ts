@@ -13,7 +13,7 @@ export const instance: CustomAxiosInterface = axios.create({
   baseURL:
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000'
-      : 'https://bootcamp-api.codeit.kr/api/0-1/the-julge',
+      : process.env.BASE_URL,
   headers: {
     'Content-Type': 'application/json',
     Accept: '*/*',
