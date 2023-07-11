@@ -12,7 +12,7 @@ interface UiNotificationItemProps {
 
 const cx = classNames.bind(styles)
 
-export function UiAcceptedNotificationItem({
+function UiAcceptedNotificationItem({
   name,
   duration,
   createdAt,
@@ -31,7 +31,7 @@ export function UiAcceptedNotificationItem({
   )
 }
 
-export function UiRejectedNotificationItem({
+function UiRejectedNotificationItem({
   name,
   duration,
   createdAt,
@@ -49,3 +49,5 @@ export function UiRejectedNotificationItem({
     </div>
   )
 }
+
+export { UiAcceptedNotificationItem, UiRejectedNotificationItem }
