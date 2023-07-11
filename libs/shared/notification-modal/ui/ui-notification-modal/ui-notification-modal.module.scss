@@ -1,0 +1,16 @@
+@use '@/styles/utils';
+
+.modalContainer {
+  width: 368px;
+  padding: 24px 20px;
+  border: 1px solid utils.$gray-brt3;
+  border-radius: 10px;
+  background-color: utils.$red-brt4;
+  box-shadow: 0 2px 8px 0 rgb(120 116 134 / 25%);
+}
+
+.notificationList {
+  @include utils.flexbox(column, initial, initial);
+
+  gap: 8px;
+}
