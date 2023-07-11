@@ -58,7 +58,7 @@ const getUserAlertsList = async (
  * 
  * @example 
  *  ```
- *  
+ *  테스트 TODO 
     ```
  * 
  * @param userId 유저 id (string)
