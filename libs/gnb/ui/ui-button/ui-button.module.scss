@@ -1,14 +1,16 @@
 @use '@/styles/utils';
 
 .button {
+  height: 20px;
   background-color: transparent;
-  @include utils.font-style('body1Bold');
-
   line-height: 20px;
+  @include utils.font-style('body1Bold');
 }
 
 @include utils.mobile {
   .button {
     @include utils.font-style('body2Bold');
+
+    height: 17px;
   }
 }
