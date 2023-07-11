@@ -230,7 +230,7 @@ const getShopNotice = async (
 }
 
 /**
- * 가게의 특정 공고 조회 api
+ * 가게의 특정 공고 수정 api
  * 
  * @example 
  *  ```
