@@ -19,7 +19,10 @@ import { getRequest, postRequest, putRequest } from '../common'
  *   - 성공(200) : 유저 데이터를 담고 있는 item 객체와 hateos 개념인 links 객체
  *   - 실패(404) : "존재하지 않거나 비밀번호가 일치하지 않습니다"
  */
-const signIn = async (email: string, password: string) => {
+const signIn = async (
+  email: string,
+  password: string,
+): Promise<UserSignIn | string | undefined> => {
   try {
     const response = await postRequest<UserSignIn>('/token', {
       email,
@@ -55,7 +58,11 @@ const signIn = async (email: string, password: string) => {
  *   - 실패(400) : "올바른 이일이 아닙니다. | 올바른 사용자 타입이 아닙니다. 'employee', 'employer' 중 하나여야 합니다."
  *   - 실패(409) : "이미 존재하는 이메일입니다."
  */
-const signUp = async (email: string, password: string, type: string) => {
+const signUp = async (
+  email: string,
+  password: string,
+  type: string,
+): Promise<UserSignUp | string | undefined> => {
   try {
     const response = await postRequest<UserSignUp>('/users', {
       email,
@@ -84,7 +91,9 @@ const signUp = async (email: string, password: string, type: string) => {
  *   - 성공(200) : 유저 데이터를 담고 있는 item 객체와 hateos 개념인 links 객체
  *   - 실패(404) : "존재하지 않는 사용자입니다."
  */
-const getUserInfo = async (uid: string) => {
+const getUserInfo = async (
+  uid: string,
+): Promise<UserData | string | undefined> => {
   try {
     const response = await getRequest<UserData>(`/users/${uid}`)
     return response
@@ -126,7 +135,7 @@ const updateUserInfo = async (
   phone: string,
   address: string,
   bio = '성',
-) => {
+): Promise<UserData | string | undefined> => {
   try {
     const response = await putRequest<UserData>(`/users/${uid}`, {
       name,
