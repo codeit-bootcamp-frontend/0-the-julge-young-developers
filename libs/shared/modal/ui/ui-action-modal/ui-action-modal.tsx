@@ -4,12 +4,6 @@ import Image from 'next/image'
 
 import styles from './ui-action-modal.module.scss'
 
-interface UiActionModalProps {
-  description: string
-  cancelText: string
-  acceptText: string
-}
-
 const cx = classNames.bind(styles)
 
 export default function UiActionModal({

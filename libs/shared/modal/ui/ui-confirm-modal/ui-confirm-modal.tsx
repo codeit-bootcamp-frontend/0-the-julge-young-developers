@@ -4,11 +4,6 @@ import Image from 'next/image'
 
 import styles from './ui-confirm-modal.module.scss'
 
-interface UiConfirmModalProps {
-  description: string
-  confirmText: string
-}
-
 const cx = classNames.bind(styles)
 
 export default function UiConfirmModal({
