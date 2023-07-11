@@ -13,7 +13,7 @@ type FeatureInputProps = Variant &
   Partial<Options> &
   Partial<Valid>
 
-function Input({
+export default function Input({
   variant = 'input',
   title,
   valid,
@@ -46,5 +46,3 @@ function Input({
     )
   }
 }
-
-export default Input
