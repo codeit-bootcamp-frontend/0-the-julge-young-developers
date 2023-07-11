@@ -10,7 +10,7 @@ export default function UiButton({
   name,
   activeStatus,
   handleClickButton,
-}: Props) {
+}: ButtonProps) {
   return (
     <button type="button" onClick={handleClickButton} className={cx('button')}>
       {name || (

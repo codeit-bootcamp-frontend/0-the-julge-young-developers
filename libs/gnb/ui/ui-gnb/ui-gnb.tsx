@@ -14,7 +14,7 @@ export default function UiGnb({
   hasNotification,
   handleClickMovePage,
   handleClickOpenModal,
-}: Props) {
+}: GnbProps) {
   return (
     <nav className={cx('gnb')}>
       <div className={cx('wrapper')}>

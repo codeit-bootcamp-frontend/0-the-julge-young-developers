@@ -1,11 +1,11 @@
-interface Props {
+interface GnbProps {
   isLogin: boolean
   hasNotification: boolean
   handleClickMovePage: () => void
   handleClickOpenModal: () => void
 }
 
-interface Props {
+interface ButtonProps {
   name?: string
   activeStatus?: string
   handleClickButton: () => void
