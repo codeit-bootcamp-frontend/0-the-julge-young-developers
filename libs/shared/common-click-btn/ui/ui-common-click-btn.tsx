@@ -11,12 +11,18 @@ function UiCommonClickBtn({
   outline,
   size,
   status,
+  confirm,
   onClick,
 }: CommonBtnProps) {
   return (
     <button
       type="button"
-      className={cx('button', { outline, [size]: size, [status]: status })}
+      className={cx('button', {
+        outline,
+        confirm,
+        [size]: size,
+        [status]: status,
+      })}
       onClick={onClick}
     >
       {text}

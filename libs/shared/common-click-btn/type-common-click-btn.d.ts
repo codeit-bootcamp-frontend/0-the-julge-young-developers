@@ -1,9 +1,10 @@
 interface CommonBtnProps {
   text: string
-  outline: booelan
-  size: 'large' | 'medium' | 'small'
+  size: 'large' | 'medium' | 'mediumSmall' | 'small'
   status: 'active' | 'inactive'
+  outline?: boolean
+  confirm?: boolean
   onClick: () => void
 }
 
-type OmitCommonBtnProps = Omit<CommonBtnProps, 'outline', 'status'>
+type OmitCommonBtnProps = Omit<CommonBtnProps, 'outline' | 'status' | 'confirm'>
