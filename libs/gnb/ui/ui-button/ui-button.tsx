@@ -6,12 +6,6 @@ import styles from './ui-button.module.scss'
 
 const cx = classNames.bind(styles)
 
-interface Props {
-  name?: string
-  activeStatus?: string
-  handleClickButton: () => void
-}
-
 export default function UiButton({
   name,
   activeStatus,

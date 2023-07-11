@@ -9,13 +9,6 @@ import UiSearchbar from '../ui-searchbar/ui-searchbar'
 
 const cx = classNames.bind(styles)
 
-interface Props {
-  isLogin: boolean
-  hasNotification: boolean
-  handleClickMovePage: () => void
-  handleClickOpenModal: () => void
-}
-
 export default function UiGnb({
   isLogin,
   hasNotification,
