@@ -2,18 +2,17 @@
 @use 'sass:list';
 
 $col-widths-pc: (228px, 300px, 200px, 236px);
-$col-widths-tablet: (228px, 300px, 200px, 220px);
-
-// TODO: 2~3열 width 시안에 안써있음. 실제로 보면서 맞추자
-$col-widths-mobile: (189px, 300px, 200px, 162px);
+$col-widths-mobile: (189px, 270px, 180px, 162px);
+$total-width-pc: 0;
+$total-width-mobile: 0;
 
 .tableWrapper {
   position: relative;
-  width: 100%; // TODO: sum 함수로 사용
+  width: 100%;
   overflow: hidden;
   border: 1px solid utils.$gray-brt3;
   border-radius: 10px;
-  background: utils.$gray-brt5;
+  background: utils.$white;
 }
 
 .tableContentWrapper {
@@ -26,15 +25,10 @@ $col-widths-mobile: (189px, 300px, 200px, 162px);
 }
 
 .table {
-  // TODO: 위 배열 값을 더한 함수 형태로 만들자
-  width: 964px;
-
-  @include utils.tablet {
-    width: 948px;
-  }
+  width: utils.sum-list($col-widths-pc);
 
   @include utils.mobile {
-    width: 851px;
+    width: utils.sum-list($col-widths-mobile);
   }
 
   th:first-child {
@@ -42,7 +36,7 @@ $col-widths-mobile: (189px, 300px, 200px, 162px);
   }
 
   td:first-child {
-    background: utils.$gray-brt5;
+    background: utils.$white;
   }
 
   th:first-child,
@@ -60,20 +54,24 @@ $col-widths-mobile: (189px, 300px, 200px, 162px);
   line-height: 50px;
   text-align: left;
   @include utils.font-style;
+
+  @include utils.mobile {
+    height: 40px;
+    line-height: 40px;
+    @include utils.font-style(caption);
+  }
 }
 
 .headCell {
   padding-left: 12px;
 
+  @include utils.mobile {
+    padding-left: 8px;
+  }
+
   @for $i from 1 through length($col-widths-pc) {
     &:nth-child(#{$i}) {
       width: list.nth($col-widths-pc, $i);
-    }
-
-    @include utils.tablet {
-      &:nth-child(#{$i}) {
-        width: list.nth($col-widths-tablet, $i);
-      }
     }
 
     @include utils.mobile {
