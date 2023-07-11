@@ -11,12 +11,14 @@ const cx = classNames.bind(styles)
 
 interface Props {
   isLogin: boolean
+  hasNotification: boolean
   handleClickMovePage: () => void
   handleClickOpenModal: () => void
 }
 
 export default function UiGnb({
   isLogin,
+  hasNotification,
   handleClickMovePage,
   handleClickOpenModal,
 }: Props) {
@@ -40,9 +42,10 @@ export default function UiGnb({
         {isLogin ? (
           <div className={cx('buttons')}>
             <UiButton name="내 가게" handleClickButton={handleClickMovePage} />
-            <button type="button" onClick={handleClickOpenModal}>
-              모달 open 버튼
-            </button>
+            <UiButton
+              activeStatus={hasNotification ? 'active' : 'inactive'}
+              handleClickButton={handleClickOpenModal}
+            />
           </div>
         ) : (
           <div className={cx('buttons')}>
