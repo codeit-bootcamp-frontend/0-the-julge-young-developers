@@ -25,21 +25,4 @@
 .buttonContainer {
   display: flex;
   gap: 8px;
-
-  button {
-    padding: 10px 20.5px;
-    border-radius: 6px;
-    @include utils.font-style('body2Bold');
-  }
-
-  .cancelButton {
-    border: 1px solid utils.$primary;
-    background-color: utils.$white;
-    color: utils.$primary;
-  }
-
-  .acceptButton {
-    background-color: utils.$primary;
-    color: utils.$white;
-  }
 }

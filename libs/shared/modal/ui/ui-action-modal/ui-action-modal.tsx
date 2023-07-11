@@ -1,6 +1,13 @@
+'use client'
+
 import classNames from 'classnames/bind'
 
 import Image from 'next/image'
+
+import {
+  CommonActiveBtn,
+  CommonActiveOutlineBtn,
+} from '@/libs/shared/common-click-btn/feature/common-btn'
 
 import styles from './ui-action-modal.module.scss'
 
@@ -22,12 +29,20 @@ export default function UiActionModal({
       />
       <h3 className={cx('description')}>{description}</h3>
       <div className={cx('buttonContainer')}>
-        <button className={cx('cancelButton')} type="button">
-          {cancelText}
-        </button>
-        <button className={cx('acceptButton')} type="button">
-          {acceptText}
-        </button>
+        <CommonActiveOutlineBtn
+          text={cancelText}
+          size="mediumSmall"
+          onClick={() => {
+            console.log('버튼 눌림')
+          }}
+        />
+        <CommonActiveBtn
+          text={acceptText}
+          size="mediumSmall"
+          onClick={() => {
+            console.log('버튼 눌림')
+          }}
+        />
       </div>
     </div>
   )

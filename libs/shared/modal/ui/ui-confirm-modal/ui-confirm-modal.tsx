@@ -1,6 +1,10 @@
+'use client'
+
 import classNames from 'classnames/bind'
 
 import Image from 'next/image'
+
+import { CommonActiveOutlineBtn } from '@/libs/shared/common-click-btn/feature/common-btn'
 
 import styles from './ui-confirm-modal.module.scss'
 
@@ -20,9 +24,13 @@ export default function UiConfirmModal({
         height={24}
       />
       <h3 className={cx('description')}>{description}</h3>
-      <button className={cx('confirmButton')} type="button">
-        {confirmText}
-      </button>
+      <CommonActiveOutlineBtn
+        text={confirmText}
+        size="mediumSmall"
+        onClick={() => {
+          console.log('버튼 눌림')
+        }}
+      />
     </div>
   )
 }
