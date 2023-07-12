@@ -10,7 +10,7 @@ import { getRequest, postRequest, putRequest } from '../common'
 /**
  * 가게의 특정 공고의 지원 목록 조회 api
  * 
- * @example 
+ * @example 사용 예시
  *  ```
  *  const data = await getNoticeApplicationList(
         '4490151c-5217-4157-b072-9c37b05bed47',
@@ -18,6 +18,17 @@ import { getRequest, postRequest, putRequest } from '../common'
         1,
         4,
       )
+    ```
+
+    @example 에러 처리 예시 
+    ```
+    if (response instanceof Error) {
+        // 알 수 없는 에러 처리 
+      } else if (typeof response === 'string') {
+        // 에러 메시지에 맞게 처리 
+      } else {
+        // response 데이터 가공 
+      }
     ```
  * 
  * @param shopId 가게 id (string)
@@ -34,7 +45,7 @@ const getNoticeApplicationList = async (
   noticeId: string,
   offset?: number,
   limit?: number,
-): Promise<NoticeApplicationList | string | undefined> => {
+): Promise<NoticeApplicationList | string | Error> => {
   try {
     let query = ''
 
@@ -57,18 +68,30 @@ const getNoticeApplicationList = async (
     if (axios.isAxiosError(error)) {
       return error.response?.data.message
     }
+    return error as Error
   }
 }
 
 /**
  *  가게의 특정 공고 지원 등록 api
  * 
- * @example 
+ * @example 사용 예시
  *  ```
  *  const data = await registerNoticeApplication(
         '4490151c-5217-4157-b072-9c37b05bed47',
         'f3937135-2fd5-45a8-9432-dadb68fe1a8b',
       )
+    ```
+
+    @example 에러 처리 예시 
+    ```
+    if (response instanceof Error) {
+        // 알 수 없는 에러 처리 
+      } else if (typeof response === 'string') {
+        // 에러 메시지에 맞게 처리 
+      } else {
+        // response 데이터 가공 
+      }
     ```
  * 
  * @param shopId 가게 id (string)
@@ -83,7 +106,7 @@ const getNoticeApplicationList = async (
 const registerNoticeApplication = async (
   shopId: string,
   noticeId: string,
-): Promise<NoticeApplicationListItem | string | undefined> => {
+): Promise<NoticeApplicationListItem | string | Error> => {
   try {
     const response = await postRequest<NoticeApplicationListItem>(
       `/shops/${shopId}/notices/${noticeId}/applications`,
@@ -95,13 +118,14 @@ const registerNoticeApplication = async (
     if (axios.isAxiosError(error)) {
       return error.response?.data.message
     }
+    return error as Error
   }
 }
 
 /**
  *  가게의 특정 공고 지원 승인 또는 거절 (TODO) api
  * 
- * @example 
+ * @example 사용 예시
  *  ```
  *  const data = await getNoticeApplicationResult(
         '4490151c-5217-4157-b072-9c37b05bed47',
@@ -109,6 +133,17 @@ const registerNoticeApplication = async (
         'b0058646-c28a-46df-840a-6be603652dfb',
         'accepted',
       )
+    ```
+
+    @example 에러 처리 예시 
+    ```
+    if (response instanceof Error) {
+        // 알 수 없는 에러 처리 
+      } else if (typeof response === 'string') {
+        // 에러 메시지에 맞게 처리 
+      } else {
+        // response 데이터 가공 
+      }
     ```
  * 
  * @param shopId 가게 id (string)
@@ -128,7 +163,7 @@ const getNoticeApplicationResult = async (
   noticeId: string,
   applicationId: string,
   status: 'accepted' | 'rejected',
-): Promise<NoticeApplicationListItem | string | undefined> => {
+): Promise<NoticeApplicationListItem | string | Error> => {
   try {
     const response = await putRequest<NoticeApplicationListItem>(
       `/shops/${shopId}/notices/${noticeId}/applications/${applicationId}`,
@@ -141,17 +176,29 @@ const getNoticeApplicationResult = async (
     if (axios.isAxiosError(error)) {
       return error.response?.data.message
     }
+    return error as Error
   }
 }
 
 /**
  *  유저의 지원 목록 api
  * 
- * @example 
+ * @example 사용 예시
  *  ```
  *  const data = await getNoticeUserApplication(
         '04d92006-8a81-4a22-84cc-6e2c7d0260b9',
       )
+    ```
+
+    @example 에러 처리 예시 
+    ```
+    if (response instanceof Error) {
+        // 알 수 없는 에러 처리 
+      } else if (typeof response === 'string') {
+        // 에러 메시지에 맞게 처리 
+      } else {
+        // response 데이터 가공 
+      }
     ```
  * 
  * @param userId 유저 id (string)
@@ -167,7 +214,7 @@ const getNoticeUserApplication = async (
   userId: string,
   offset?: number,
   limit?: number,
-): Promise<NoticeUserApplicationData | string | undefined> => {
+): Promise<NoticeUserApplicationData | string | Error> => {
   try {
     let query = ''
 
@@ -190,6 +237,7 @@ const getNoticeUserApplication = async (
     if (axios.isAxiosError(error)) {
       return error.response?.data.message
     }
+    return error as Error
   }
 }
 
