@@ -42,8 +42,16 @@ export default function UiGnb({
           </div>
         ) : (
           <div className={cx('buttons')}>
-            <UiButton name="로그인" handleClickButton={handleClickMovePage} />
-            <UiButton name="회원가입" handleClickButton={handleClickMovePage} />
+            <UiButton
+              name="로그인"
+              id="login"
+              handleClickButton={handleClickMovePage}
+            />
+            <UiButton
+              name="회원가입"
+              id="signup"
+              handleClickButton={handleClickMovePage}
+            />
           </div>
         )}
       </div>
