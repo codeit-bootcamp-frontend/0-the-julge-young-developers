@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 import classNames from 'classnames/bind'
 
@@ -11,7 +11,6 @@ import {
 import UiCommonLayout from '@/libs/shared/common-layout/ui/ui-common-layout/ui-common-layout'
 import UiCommonModal from '@/libs/shared/common-modal/ui/ui-common-modal/ui-common-modal'
 import { LOCATIONS } from '@/libs/shared/filter/data-access/data-access-location'
-import { MOCK_SELECTED_LOCATIONS } from '@/libs/shared/filter/data-access/data-access-mock'
 import UiDivider from '@/libs/shared/filter/ui/ui-divider/ui-divider'
 import UiLocationContainer from '@/libs/shared/filter/ui/ui-location-container/ui-location-container'
 import UiSelectedChip from '@/libs/shared/filter/ui/ui-selected-chip/ui-selected-chip'
@@ -22,7 +21,25 @@ import styles from './ui-filter.module.scss'
 const cx = classNames.bind(styles)
 
 export default function UiFilter() {
-  const inputRef = useRef(null)
+  const [selectedLocations, setSelectedLocations] = useState<string[]>([])
+  const startInputRef = useRef<HTMLInputElement>(null)
+  const priceInputRef = useRef<HTMLInputElement>(null)
+
+  const handleInit = () => {
+    setSelectedLocations([])
+    if (startInputRef.current) {
+      startInputRef.current.value = ''
+    }
+    if (priceInputRef.current) {
+      priceInputRef.current.value = ''
+    }
+  }
+
+  const handleClickLocation = (location: string) => {
+    selectedLocations.push(location)
+    setSelectedLocations([...selectedLocations])
+  }
+
   return (
     <div className={cx('filterContainer')}>
       <UiCommonModal
@@ -34,10 +51,13 @@ export default function UiFilter() {
           <div className={cx('filterContent')}>
             <div className={cx('section')}>
               <h2 className={cx('subtitle')}>위치</h2>
-              <UiLocationContainer locations={LOCATIONS} />
-              {MOCK_SELECTED_LOCATIONS.length !== 0 && (
+              <UiLocationContainer
+                locations={LOCATIONS}
+                onSelect={handleClickLocation}
+              />
+              {selectedLocations.length !== 0 && (
                 <div className={cx('selectedChipContainer')}>
-                  {MOCK_SELECTED_LOCATIONS.map((location) => (
+                  {selectedLocations.map((location) => (
                     <UiSelectedChip key={location}>{location}</UiSelectedChip>
                   ))}
                 </div>
@@ -49,7 +69,7 @@ export default function UiFilter() {
                 variant="input"
                 title="시작일"
                 isRequired={true}
-                // ref={inputRef}
+                ref={startInputRef}
               />
             </div>
             <UiDivider />
@@ -59,7 +79,7 @@ export default function UiFilter() {
                   variant="input"
                   title="금액"
                   isRequired={true}
-                  ref={inputRef}
+                  ref={priceInputRef}
                   suffix="원"
                 />
                 <span className={cx('sideText')}>이상부터</span>
@@ -71,9 +91,7 @@ export default function UiFilter() {
               <CommonActiveOutlineBtn
                 text="초기화"
                 size="large"
-                onClick={() => {
-                  console.log('초기화')
-                }}
+                onClick={handleInit}
               />
             </div>
             <div className={cx('applyButton')}>
