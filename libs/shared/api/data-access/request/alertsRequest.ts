@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { UserAlertsListData } from '../../type-api'
+import { UserAlertsListData } from '../../types/type-alerts'
 import { getRequest, putRequest } from '../common'
 
 /**

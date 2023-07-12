@@ -5,7 +5,7 @@ import axios, {
   InternalAxiosRequestConfig,
 } from 'axios'
 
-import { CustomAxiosInterface } from '@/libs/shared/api/type-api'
+import { CustomAxiosInterface } from '@/libs/shared/api/types/type-instance'
 
 import { logOnDev } from '../util/util-log'
 
@@ -31,7 +31,7 @@ instance.interceptors.request.use(
     if (config && config.headers) {
       config.headers.Authorization =
         // `Bearer ${인증할 때 받은 토큰을 쿠키에 저장했다면, 그걸 여기서 가져옵니다.}`
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0ZTU2MGFhOC1hZTVhLTQwZTEtYTZlMC0yYTFlOGI4NjZkMTciLCJpYXQiOjE2ODg5OTE5NDR9.-Rcb0dKKwGgAnYPi35ybu_z3jcaL3wU59amDyaSHVLw'
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0ZTU2MGFhOC1hZTVhLTQwZTEtYTZlMC0yYTFlOGI4NjZkMTciLCJpYXQiOjE2ODkwNzkyODJ9.iYxgy_lXltX3HaWd6FNbxw_DYv88RPFtzxQtt1tA6VQ'
       config.headers['Content-Type'] = 'application/json'
     }
 

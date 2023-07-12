@@ -9,7 +9,7 @@ import {
   ShopNoticesData,
   ShopNoticesProps,
   UpdatedShopNotice,
-} from '../../type-api'
+} from '../../types/type-notice'
 import { getRequest, postRequest, putRequest } from '../common'
 
 /**

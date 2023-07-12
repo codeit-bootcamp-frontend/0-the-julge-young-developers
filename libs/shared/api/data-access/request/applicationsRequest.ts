@@ -4,7 +4,7 @@ import {
   NoticeApplicationList,
   NoticeApplicationListItem,
   NoticeUserApplicationData,
-} from '../../type-api'
+} from '../../types/type-application'
 import { getRequest, postRequest, putRequest } from '../common'
 
 /**

@@ -1,6 +1,10 @@
 import axios from 'axios'
 
-import { UserData, UserSignIn, UserSignUp } from '@/libs/shared/api/type-api'
+import {
+  UserData,
+  UserSignIn,
+  UserSignUp,
+} from '@/libs/shared/api/types/type-user'
 
 import { getRequest, postRequest, putRequest } from '../common'
 
