@@ -29,7 +29,7 @@ import { getRequest, postRequest, putRequest } from '../common'
         // 데이터 가공 구간  
           const { token } = data.item
           console.log(token)
-          setCookie('token', token)
+          setCookie('token', token) // 로그인 후 이렇게 쿠키 설정해야 합니다. 
       }
     ```
 
