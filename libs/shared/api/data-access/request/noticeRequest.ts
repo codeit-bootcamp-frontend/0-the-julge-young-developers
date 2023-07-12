@@ -15,7 +15,7 @@ import { getRequest, postRequest, putRequest } from '../common'
 /**
  * 전체 공고 목록 조회 api
  * 
- * @example 
+ * @example 사용 예시
  *  ```
  *  const data = await getNotices({
         offset: 1,
@@ -29,6 +29,17 @@ import { getRequest, postRequest, putRequest } from '../common'
         sort: 'pay',
         startsAtGte: '2023-12-14T18:00:00.000Z',
       })
+    ```
+
+     @example 에러 처리 예시 
+    ```
+    if (response instanceof Error) {
+        // 알 수 없는 에러 처리 
+      } else if (typeof response === 'string') {
+        // 에러 메시지에 맞게 처리 
+      } else {
+        // response 데이터 가공 
+      }
     ```
  * 
  * @param offset? 조회 시작 기준 (number)
@@ -50,7 +61,7 @@ const getNotices = async ({
   startsAtGte,
   hourlyPayGte,
   sort,
-}: NoticesProps): Promise<NoticesData | string | undefined> => {
+}: NoticesProps): Promise<NoticesData | string | Error> => {
   try {
     let query = ''
 
@@ -89,18 +100,30 @@ const getNotices = async ({
     if (axios.isAxiosError(error)) {
       return error.response?.data.message
     }
+    return error as Error
   }
 }
 
 /**
  * 가게의 공고 목록 조회 api
  * 
- * @example 
+ * @example 사용 예시 
  *  ```
  *  const data = await getShopNotices({
         shopId: '4490151c-5217-4157-b072-9c37b05bed47',
         offset: 1,
       })
+    ```
+
+     @example 에러 처리 예시 
+    ```
+    if (response instanceof Error) {
+        // 알 수 없는 에러 처리 
+      } else if (typeof response === 'string') {
+        // 에러 메시지에 맞게 처리 
+      } else {
+        // response 데이터 가공 
+      }
     ```
  * 
  * @param shopId 가게 id (string)
@@ -115,7 +138,7 @@ const getShopNotices = async ({
   shopId,
   offset,
   limit,
-}: ShopNoticesProps): Promise<ShopNoticesData | string | undefined> => {
+}: ShopNoticesProps): Promise<ShopNoticesData | string | Error> => {
   try {
     let query = ''
 
@@ -137,13 +160,14 @@ const getShopNotices = async ({
     if (axios.isAxiosError(error)) {
       return error.response?.data.message
     }
+    return error as Error
   }
 }
 
 /**
  * 가게 공고 등록 api
  * 
- * @example 
+ * @example 사용 예시
  *  ```
  *  const data = await registerShopNotice({
         shopId: '4490151c-5217-4157-b072-9c37b05bed47',
@@ -152,6 +176,17 @@ const getShopNotices = async ({
         workhour: 4,
         description: '테스트',
       })
+    ```
+
+     @example 에러 처리 예시 
+    ```
+    if (response instanceof Error) {
+        // 알 수 없는 에러 처리 
+      } else if (typeof response === 'string') {
+        // 에러 메시지에 맞게 처리 
+      } else {
+        // response 데이터 가공 
+      }
     ```
  * 
  * @param shopId 가게 id (string)
@@ -174,7 +209,7 @@ const registerShopNotice = async ({
   workhour,
   description,
 }: RegisterdShopNoticeProps): Promise<
-  RegisterdShopNoticeData | string | undefined
+  RegisterdShopNoticeData | string | Error
 > => {
   try {
     const response = await postRequest<RegisterdShopNoticeData>(
@@ -192,18 +227,30 @@ const registerShopNotice = async ({
     if (axios.isAxiosError(error)) {
       return error.response?.data.message
     }
+    return error as Error
   }
 }
 
 /**
  * 가게의 특정 공고 조회 api
  * 
- * @example 
+ * @example 사용 예시
  *  ```
  *  const data = await getShopNotice(
         '4490151c-5217-4157-b072-9c37b05bed47',
         'f3937135-2fd5-45a8-9432-dadb68fe1a8b',
       )
+    ```
+
+    @example 에러 처리 예시 
+    ```
+    if (response instanceof Error) {
+        // 알 수 없는 에러 처리 
+      } else if (typeof response === 'string') {
+        // 에러 메시지에 맞게 처리 
+      } else {
+        // response 데이터 가공 
+      }
     ```
  * 
  * @param shopId 가게 id (string)
@@ -216,7 +263,7 @@ const registerShopNotice = async ({
 const getShopNotice = async (
   shopId: string,
   noticeId: string,
-): Promise<ShopNoticeData | string | undefined> => {
+): Promise<ShopNoticeData | string | Error> => {
   try {
     const response = await getRequest<ShopNoticeData>(
       `/shops/${shopId}/notices/${noticeId}`,
@@ -226,13 +273,14 @@ const getShopNotice = async (
     if (axios.isAxiosError(error)) {
       return error.response?.data.message
     }
+    return error as Error
   }
 }
 
 /**
  * 가게의 특정 공고 수정 api
  * 
- * @example 
+ * @example 사용 예시
  *  ```
  *  const data = await updateShopNotice(
         '4490151c-5217-4157-b072-9c37b05bed47',
@@ -242,6 +290,17 @@ const getShopNotice = async (
         4,
         '테스트',
       )
+    ```
+
+    @example 에러 처리 예시 
+    ```
+    if (response instanceof Error) {
+        // 알 수 없는 에러 처리 
+      } else if (typeof response === 'string') {
+        // 에러 메시지에 맞게 처리 
+      } else {
+        // response 데이터 가공 
+      }
     ```
  * 
  * @param shopId 가게 id (string)
@@ -265,7 +324,7 @@ const updateShopNotice = async (
   startsAt: string,
   workhour: number,
   description: string,
-): Promise<UpdatedShopNotice | string | undefined> => {
+): Promise<UpdatedShopNotice | string | Error> => {
   try {
     const response = await putRequest<UpdatedShopNotice>(
       `/shops/${shopId}/notices/${noticeId}`,
@@ -281,6 +340,7 @@ const updateShopNotice = async (
     if (axios.isAxiosError(error)) {
       return error.response?.data.message
     }
+    return error as Error
   }
 }
 
