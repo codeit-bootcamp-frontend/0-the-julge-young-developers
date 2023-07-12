@@ -7,9 +7,20 @@ import { getRequest, postRequest, putRequest } from '../common'
 /**
  * 로그인 api
  * 
- * @example 
+ * @example 사용 예시 
  *  ```
  *  const data = await signIn('nodejs111@nodejs888.com', 'nodejs999')
+    ```
+
+      @example 에러 처리 예시 
+    ```
+    if (response instanceof Error) {
+        // 알 수 없는 에러 처리 
+      } else if (typeof response === 'string') {
+        // 에러 메시지에 맞게 처리 
+      } else {
+        // response 데이터 가공 
+      }
     ```
  * 
  * @param email 유저 이메일 (string)
@@ -22,7 +33,7 @@ import { getRequest, postRequest, putRequest } from '../common'
 const signIn = async (
   email: string,
   password: string,
-): Promise<UserSignIn | string | undefined> => {
+): Promise<UserSignIn | string | Error> => {
   try {
     const response = await postRequest<UserSignIn>('/token', {
       email,
@@ -34,19 +45,31 @@ const signIn = async (
     if (axios.isAxiosError(error)) {
       return error.response?.data.message
     }
+    return error as Error
   }
 }
 
 /**
  * 회원가입 api
  * 
- * @example 
+ * @example 사용 예시 
  *  ```
  *  const data = await signUp(
         'nodejs666@nodejs888.com',
         'nodejs999',
         'employ',
       )
+    ```
+
+      @example 에러 처리 예시 
+    ```
+    if (response instanceof Error) {
+        // 알 수 없는 에러 처리 
+      } else if (typeof response === 'string') {
+        // 에러 메시지에 맞게 처리 
+      } else {
+        // response 데이터 가공 
+      }
     ```
  * 
  * @param email 유저 이메일 (string)
@@ -62,7 +85,7 @@ const signUp = async (
   email: string,
   password: string,
   type: string,
-): Promise<UserSignUp | string | undefined> => {
+): Promise<UserSignUp | string | Error> => {
   try {
     const response = await postRequest<UserSignUp>('/users', {
       email,
@@ -74,15 +97,27 @@ const signUp = async (
     if (axios.isAxiosError(error)) {
       return error.response?.data.message
     }
+    return error as Error
   }
 }
 
 /**
  * 유저 정보 조회 api
  * 
- * @example 
+ * @example 사용 예시 
  *  ```
  *  const data = await getUserInfo('d30c89b8-8f26-4506-a534-a46205338849')
+    ```
+
+      @example 에러 처리 예시 
+    ```
+    if (response instanceof Error) {
+        // 알 수 없는 에러 처리 
+      } else if (typeof response === 'string') {
+        // 에러 메시지에 맞게 처리 
+      } else {
+        // response 데이터 가공 
+      }
     ```
  * 
  * @param uid 유저 id (string)
@@ -91,9 +126,7 @@ const signUp = async (
  *   - 성공(200) : 유저 데이터를 담고 있는 item 객체와 hateos 개념인 links 객체
  *   - 실패(404) : "존재하지 않는 사용자입니다."
  */
-const getUserInfo = async (
-  uid: string,
-): Promise<UserData | string | undefined> => {
+const getUserInfo = async (uid: string): Promise<UserData | string | Error> => {
   try {
     const response = await getRequest<UserData>(`/users/${uid}`)
     return response
@@ -101,6 +134,7 @@ const getUserInfo = async (
     if (axios.isAxiosError(error)) {
       return error.response?.data.message
     }
+    return error as Error
   }
 }
 
@@ -115,6 +149,17 @@ const getUserInfo = async (
         '010-0000-0000',
         '서울시 종로구',
       )
+    ```
+
+      @example 에러 처리 예시 
+    ```
+    if (response instanceof Error) {
+        // 알 수 없는 에러 처리 
+      } else if (typeof response === 'string') {
+        // 에러 메시지에 맞게 처리 
+      } else {
+        // response 데이터 가공 
+      }
     ```
  * 
  * @param uid 유저 id (string)
@@ -135,7 +180,7 @@ const updateUserInfo = async (
   phone: string,
   address: string,
   bio = '성',
-): Promise<UserData | string | undefined> => {
+): Promise<UserData | string | Error> => {
   try {
     const response = await putRequest<UserData>(`/users/${uid}`, {
       name,
@@ -149,6 +194,7 @@ const updateUserInfo = async (
     if (axios.isAxiosError(error)) {
       return error.response?.data.message
     }
+    return error as Error
   }
 }
 
