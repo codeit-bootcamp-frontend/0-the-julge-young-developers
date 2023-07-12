@@ -23,7 +23,7 @@ export default forwardRef(function Input(
     isRequired,
     suffix,
   }: FeatureInputProps,
-  ref: ForwardedRef<HTMLInputElement>,
+  ref: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>,
 ) {
   if (variant === 'input') {
     return (
@@ -33,7 +33,7 @@ export default forwardRef(function Input(
         isValid={isValid as boolean}
         isRequired={isRequired}
         suffix={suffix}
-        ref={ref}
+        ref={ref as ForwardedRef<HTMLInputElement>}
       />
     )
   }
@@ -43,7 +43,7 @@ export default forwardRef(function Input(
         title={title}
         options={options}
         isRequired={isRequired}
-        ref={ref}
+        ref={ref as ForwardedRef<HTMLInputElement>}
       />
     )
   }
@@ -55,7 +55,7 @@ export default forwardRef(function Input(
         valid={valid as string}
         isValid={isValid as boolean}
         isRequired={isRequired}
-        ref={ref}
+        ref={ref as ForwardedRef<HTMLTextAreaElement>}
       />
     )
   }
