@@ -1,18 +1,32 @@
 @use '@/styles/utils';
 
-.backgroundGray {
+.bgGray {
+  position: fixed;
+  right: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 60px 0;
   background-color: utils.$gray-brt5;
 }
 
-.backgroundWhite {
-  background-color: utils.$white;
-}
-
-.modalContainer {
+.modalContent {
   max-width: 964px;
   margin: 0 auto;
 }
 
 .close {
   float: right;
+}
+
+@include utils.tablet {
+  .bgGray {
+    padding: 60px 32px;
+  }
+}
+
+@include utils.mobile {
+  .bgGray {
+    padding: 40px 12px;
+  }
 }

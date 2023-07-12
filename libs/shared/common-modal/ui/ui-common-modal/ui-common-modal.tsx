@@ -11,9 +11,6 @@ import styles from './ui-common-modal.module.scss'
 const cx = classNames.bind(styles)
 
 export default function UiCommonModal({
-  padding = 0,
-  borderRadius = 0,
-  backgroundColor = 'Gray',
   closeButtonSize = 32,
   children,
 }: UiCommonModalProps) {
@@ -22,11 +19,8 @@ export default function UiCommonModal({
   }
 
   return (
-    <div
-      className={cx(`background${backgroundColor}`)}
-      style={{ padding, borderRadius }}
-    >
-      <div className={cx('modalContainer')}>
+    <div className={cx('bgGray')}>
+      <div className={cx('modalContent')}>
         <button
           className={cx('close')}
           type="button"
