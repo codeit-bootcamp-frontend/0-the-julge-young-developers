@@ -30,11 +30,11 @@ instance.interceptors.request.use(
      */
 
     if (config && config.headers) {
-      const cookie = getCookie('token')
+      const token = getCookie('token')
 
       // 인증할 때 받은 토큰을 쿠키에 저장했다면 가져옵니다.
-      if (cookie) {
-        config.headers.Authorization = `Bearer ${cookie}`
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`
         config.headers['Content-Type'] = 'application/json'
       }
     }
