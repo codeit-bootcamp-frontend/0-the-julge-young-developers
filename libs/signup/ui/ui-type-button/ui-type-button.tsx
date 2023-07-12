@@ -10,12 +10,12 @@ const cx = classNames.bind(styles)
 export default function UiTypeButton({
   type,
   isButtonClicked,
-  handleClick,
+  onClick,
 }: TypeButtonProps) {
   return (
     <button
       type="button"
-      onClick={() => handleClick(type)}
+      onClick={() => onClick(type)}
       className={cx(
         'typeButton',
         isButtonClicked ? 'clickedButton' : 'unclickedButton',
