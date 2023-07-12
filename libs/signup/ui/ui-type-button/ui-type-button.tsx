@@ -2,8 +2,9 @@ import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
+import { TypeButtonProps } from '@/libs/signup/type-signup'
+
 import styles from './ui-type-button.module.scss'
-import { TypeButtonProps } from '../../type-signup'
 
 const cx = classNames.bind(styles)
 

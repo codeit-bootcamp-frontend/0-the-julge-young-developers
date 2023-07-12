@@ -1,7 +1,8 @@
 import classNames from 'classnames/bind'
 
+import UiButtonContainer from '@/libs/signup/ui/ui-button-container/ui-button-container'
+
 import styles from './ui-usertype-selection.module.scss'
-import UiButtonContainer from '../ui-button-container/ui-button-container'
 
 const cx = classNames.bind(styles)
 

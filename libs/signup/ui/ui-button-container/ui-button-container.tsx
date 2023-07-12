@@ -4,10 +4,10 @@ import { useState } from 'react'
 
 import classNames from 'classnames/bind'
 
+import { UserType } from '@/libs/signup/type-signup'
 import UiTypeButton from '@/libs/signup/ui/ui-type-button/ui-type-button'
 
 import styles from './ui-button-container.module.scss'
-import { UserType } from '../../type-signup'
 
 const cx = classNames.bind(styles)
 
