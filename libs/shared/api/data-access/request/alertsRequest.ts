@@ -6,13 +6,24 @@ import { getRequest, putRequest } from '../common'
 /**
  *  유저의 알림 목록 조회 api
  * 
- * @example 
+ * @example 사용 예시
  *  ```
  *  const data = await getUserAlertsList(
         '04d92006-8a81-4a22-84cc-6e2c7d0260b9',
         1,
         4,
       )
+    ```
+
+    @example 에러 처리 예시 
+    ```
+    if (response instanceof Error) {
+        // 알 수 없는 에러 처리 
+      } else if (typeof response === 'string') {
+        // 에러 메시지에 맞게 처리 
+      } else {
+        // response 데이터 가공 
+      }
     ```
  * 
  * @param userId 유저 id (string)
@@ -27,7 +38,7 @@ const getUserAlertsList = async (
   userId: string,
   offset?: number,
   limit?: number,
-): Promise<UserAlertsListData | string | undefined> => {
+): Promise<UserAlertsListData | string | Error> => {
   try {
     let query = ''
 
@@ -50,15 +61,27 @@ const getUserAlertsList = async (
     if (axios.isAxiosError(error)) {
       return error.response?.data.message
     }
+    return error as Error
   }
 }
 
 /**
  *  알림 읽음 처리 api
  * 
- * @example 
+ * @example 사용 예시
  *  ```
  *  테스트 TODO 
+    ```
+
+    @example 에러 처리 예시 
+    ```
+    if (response instanceof Error) {
+        // 알 수 없는 에러 처리 
+      } else if (typeof response === 'string') {
+        // 에러 메시지에 맞게 처리 
+      } else {
+        // response 데이터 가공 
+      }
     ```
  * 
  * @param userId 유저 id (string)
@@ -73,7 +96,7 @@ const getUserAlertsList = async (
 const clearAlerts = async (
   userId: string,
   alertId: string,
-): Promise<UserAlertsListData | string | undefined> => {
+): Promise<UserAlertsListData | string | Error> => {
   try {
     const response = await putRequest<UserAlertsListData>(
       `/users/${userId}/alerts/${alertId}`,
@@ -84,6 +107,7 @@ const clearAlerts = async (
     if (axios.isAxiosError(error)) {
       return error.response?.data.message
     }
+    return error as Error
   }
 }
 
