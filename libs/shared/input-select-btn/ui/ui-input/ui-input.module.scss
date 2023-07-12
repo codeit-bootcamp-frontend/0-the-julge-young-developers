@@ -4,6 +4,7 @@
   @include utils.flexbox(column, start, start);
 
   gap: 8px;
+  width: 100%;
 }
 
 .title {
