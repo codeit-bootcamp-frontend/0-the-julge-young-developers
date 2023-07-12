@@ -1,6 +1,6 @@
 @use '@/styles/utils';
 
-.closeChip {
+.selectedChip {
   @include utils.font-style('body2Bold');
   @include utils.flexbox;
 
