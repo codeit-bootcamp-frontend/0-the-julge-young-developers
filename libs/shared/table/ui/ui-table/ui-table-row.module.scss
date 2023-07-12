@@ -3,11 +3,19 @@
 .bodyRow {
   border-bottom: 1px solid utils.$gray-brt3;
   @include utils.font-style(body1);
+
+  @include utils.mobile {
+    @include utils.font-style(body2);
+  }
 }
 
 .bodyCell {
   padding: 20px 12px;
   vertical-align: middle;
+
+  @include utils.mobile {
+    padding: 9px 8px;
+  }
 }
 
 .contentCell {
@@ -22,4 +30,8 @@
   @include utils.flexbox(row, flex-start, center);
 
   gap: 12px;
+
+  @include utils.mobile {
+    gap: 8px;
+  }
 }

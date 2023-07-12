@@ -17,6 +17,11 @@
 
   gap: 2px;
   @include utils.font-style;
+
+  @include utils.mobile {
+    gap: 4px;
+    @include utils.font-style(caption);
+  }
 }
 
 .number {
@@ -30,5 +35,10 @@
   &.isActive {
     background-color: utils.$red-brt2;
     color: utils.$white;
+  }
+
+  @include utils.mobile {
+    width: 32px;
+    height: 32px;
   }
 }
