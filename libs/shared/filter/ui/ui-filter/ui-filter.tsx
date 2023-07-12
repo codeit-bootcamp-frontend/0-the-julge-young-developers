@@ -1,5 +1,13 @@
+'use client'
+
+import { useRef } from 'react'
+
 import classNames from 'classnames/bind'
 
+import {
+  CommonActiveBtn,
+  CommonActiveOutlineBtn,
+} from '@/libs/shared/common-click-btn/feature/common-btn'
 import UiCommonLayout from '@/libs/shared/common-layout/ui/ui-common-layout/ui-common-layout'
 import UiCommonModal from '@/libs/shared/common-modal/ui/ui-common-modal/ui-common-modal'
 import { LOCATIONS } from '@/libs/shared/filter/data-access/data-access-location'
@@ -14,6 +22,7 @@ import styles from './ui-filter.module.scss'
 const cx = classNames.bind(styles)
 
 export default function UiFilter() {
+  const inputRef = useRef(null)
   return (
     <div className={cx('filterContainer')}>
       <UiCommonModal
@@ -36,27 +45,60 @@ export default function UiFilter() {
             </div>
             <UiDivider />
             <div className={cx('section')}>
-              <Input variant="input" title="시작일" isRequired={true} />
+              <Input
+                variant="input"
+                title="시작일"
+                isRequired={true}
+                // ref={inputRef}
+              />
             </div>
             <UiDivider />
             <div className={cx('section')}>
-              <h2 className={cx('subtitle')}>금액</h2>
+              {/* <h2 className={cx('subtitle')}>금액</h2>
               <div className={cx('inputContainer')}>
                 <div className={cx('inputWrapper', 'priceInput')}>
                   <input placeholder="입력" />
                   <span>원</span>
                 </div>
                 이상부터
+              </div> */}
+              <div className={cx('priceInput')}>
+                <Input
+                  variant="input"
+                  title="금액"
+                  isRequired={true}
+                  ref={inputRef}
+                  suffix="원"
+                />
+                <span className={cx('sideText')}>이상부터</span>
               </div>
             </div>
           </div>
           <div className={cx('buttonContainer')}>
-            <button className={cx('initButton')} type="button">
+            <div className={cx('initButton')}>
+              <CommonActiveOutlineBtn
+                text="초기화"
+                size="large"
+                onClick={() => {
+                  console.log('초기화')
+                }}
+              />
+            </div>
+            <div className={cx('applyButton')}>
+              <CommonActiveBtn
+                text="적용하기"
+                size="large"
+                onClick={() => {
+                  console.log('적용하기')
+                }}
+              />
+            </div>
+            {/* <button className={cx('initButton')} type="button">
               초기화
             </button>
             <button className={cx('applyButton')} type="button">
               적용하기
-            </button>
+            </button> */}
           </div>
         </UiCommonLayout>
       </UiCommonModal>

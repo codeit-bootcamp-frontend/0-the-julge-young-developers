@@ -42,29 +42,16 @@
   gap: 12px;
 }
 
-.inputWrapper {
-  padding: 16px 20px;
-  border: 1px solid utils.$gray-brt3;
-  border-radius: 6px;
+.priceInput {
+  display: flex;
+  position: relative;
+  width: 50%;
 
-  &.startInput {
-    width: 100%;
-  }
-
-  &.priceInput {
-    @include utils.flexbox(row);
-
-    width: 169px;
-    gap: 10px;
-  }
-
-  input {
-    width: 100%;
-    @include utils.font-style('body1');
-  }
-
-  ::placeholder {
-    color: utils.$gray-brt2;
+  .sideText {
+    position: absolute;
+    top: 50px;
+    right: -75px;
+    white-space: nowrap;
   }
 }
 
@@ -74,27 +61,31 @@
   background-color: utils.$white;
   gap: 8px;
 
-  button {
-    @include utils.font-style('body1Bold');
-
-    border-radius: 6px;
-    white-space: nowrap;
-  }
-
   .initButton {
-    padding: 14px 18.5px;
-    border: 1px solid utils.$primary;
-    background-color: utils.$white;
-    color: utils.$primary;
+    width: 82px;
   }
 
-  .applyButton {
-    flex-grow: 1;
-    padding: 14px 0;
-    border: 1px solid utils.$primary;
-    background-color: utils.$primary;
-    color: utils.$white;
-  }
+  // button {
+  //   @include utils.font-style('body1Bold');
+
+  //   border-radius: 6px;
+  //   white-space: nowrap;
+  // }
+
+  // .initButton {
+  //   padding: 14px 18.5px;
+  //   border: 1px solid utils.$primary;
+  //   background-color: utils.$white;
+  //   color: utils.$primary;
+  // }
+
+  // .applyButton {
+  //   flex-grow: 1;
+  //   padding: 14px 0;
+  //   border: 1px solid utils.$primary;
+  //   background-color: utils.$primary;
+  //   color: utils.$white;
+  // }
 }
 
 @include utils.mobile {
