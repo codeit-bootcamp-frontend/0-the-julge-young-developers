@@ -8,11 +8,24 @@ const cx = classNames.bind(styles)
 
 export default function UiButton({
   name,
+  id,
   activeStatus,
   handleClickButton,
 }: ButtonProps) {
+  const handleClickMovePage = () => {
+    handleClickButton(id as string)
+  }
+
+  const handleClickOpenModal = () => {
+    handleClickButton()
+  }
+
   return (
-    <button type="button" onClick={handleClickButton} className={cx('button')}>
+    <button
+      type="button"
+      onClick={name ? handleClickMovePage : handleClickOpenModal}
+      className={cx('button')}
+    >
       {name || (
         <Image
           src={`/images/notification-${activeStatus}.svg`}
