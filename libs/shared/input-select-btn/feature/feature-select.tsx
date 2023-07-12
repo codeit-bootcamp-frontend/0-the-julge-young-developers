@@ -1,10 +1,13 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { ForwardedRef, forwardRef, useEffect, useRef, useState } from 'react'
 
 import UiSelect from '@/libs/shared/input-select-btn/ui/ui-select/ui-select'
 
-function Select({ title, options, isRequired }: InputRequiredProps & Options) {
+export default forwardRef(function Select(
+  { title, options, isRequired }: InputProps & Options,
+  ref: ForwardedRef<HTMLInputElement>,
+) {
   const [isOpen, setIsOpen] = useState(false)
   const [selectedOption, setSelectedOption] = useState('')
 
@@ -58,9 +61,8 @@ function Select({ title, options, isRequired }: InputRequiredProps & Options) {
       handleInputChange={handleInputChange}
       options={filteredOptions}
       isRequired={isRequired}
-      ref={dropdownRef}
+      dropdownRef={dropdownRef}
+      ref={ref}
     />
   )
-}
-
-export default Select
+})

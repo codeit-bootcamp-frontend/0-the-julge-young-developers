@@ -11,12 +11,13 @@ const cx = classNames.bind(styles)
 interface UiSelectProps {
   isOpen: boolean
   selectedOption: string
+  dropdownRef: ForwardedRef<HTMLDivElement>
   toggleDropdown: () => void
   handleOptionSelect: (value: string) => void
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-type UiSelectAllProps = UiSelectProps & Options & InputRequiredProps
+type UiSelectAllProps = UiSelectProps & Options & InputProps
 
 export default forwardRef(function UiSelect(
   {
@@ -28,11 +29,12 @@ export default forwardRef(function UiSelect(
     handleInputChange,
     options,
     isRequired = false,
+    dropdownRef,
   }: UiSelectAllProps,
-  ref: ForwardedRef<HTMLDivElement>,
+  ref: ForwardedRef<HTMLInputElement>,
 ) {
   return (
-    <div className={cx('selectWrap')} ref={ref}>
+    <div className={cx('selectWrap')} ref={dropdownRef}>
       <div className={cx('title')}>{title}</div>
       <button type="button" className={cx('select')}>
         <input
@@ -42,6 +44,7 @@ export default forwardRef(function UiSelect(
           onClick={toggleDropdown}
           value={selectedOption}
           placeholder="선택"
+          ref={ref}
         />
         <Image
           src={isOpen ? '/images/dropdown-up.svg' : '/images/dropdown.svg'}
