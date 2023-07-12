@@ -52,6 +52,14 @@ const uploadImageToS3 = async (
  * 이미지 업로드 total api
  * 
  * @example 
+ * const presignedUrl = await uploadImage (file)
+ * 
+ * @example 에러처리
+ *     if (response instanceof Error) {
+        // 알 수 없는 에러 처리 
+      }  else { // 성공시
+        // presigndUrl string 반환
+      }
  *  ```
     ```
  * @param name 
