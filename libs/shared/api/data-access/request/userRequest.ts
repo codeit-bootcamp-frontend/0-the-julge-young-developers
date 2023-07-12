@@ -136,12 +136,12 @@ const signUp = async (
 
       @example 에러 처리 예시 
     ```
-    if (response instanceof Error) {
+    if (res instanceof Error) {
         // 알 수 없는 에러 처리 
-      } else if (typeof response === 'string') {
+      } else if (typeof res === 'string') {
         // 에러 메시지에 맞게 처리 
       } else {
-        // response 데이터 가공 
+        // res 데이터 가공 
       }
     ```
  * 
@@ -178,12 +178,12 @@ const getUserInfo = async (uid: string): Promise<UserData | string | Error> => {
 
       @example 에러 처리 예시 
     ```
-    if (response instanceof Error) {
+    if (res instanceof Error) {
         // 알 수 없는 에러 처리 
-      } else if (typeof response === 'string') {
+      } else if (typeof res === 'string') {
         // 에러 메시지에 맞게 처리 
       } else {
-        // response 데이터 가공 
+        // res 데이터 가공 
       }
     ```
  * 
