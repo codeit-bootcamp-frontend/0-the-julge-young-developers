@@ -37,6 +37,12 @@ export default function UiFilter() {
     }
   }
 
+  const handleApply = () => {
+    console.log('선택 위치:', selectedLocations)
+    console.log('시작일:', startInputRef.current?.value)
+    console.log('금액:', priceInputRef.current?.value)
+  }
+
   const handleSelectLocation = (location: string) => {
     selectedLocations.add(location)
     setSelectedLocations(new Set(selectedLocations))
@@ -110,9 +116,7 @@ export default function UiFilter() {
               <CommonActiveBtn
                 text="적용하기"
                 size="large"
-                onClick={() => {
-                  console.log('적용하기')
-                }}
+                onClick={handleApply}
               />
             </div>
           </div>
