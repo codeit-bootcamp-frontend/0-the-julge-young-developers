@@ -2,6 +2,16 @@
 interface ShopInfo {
   name: string
   category:
+    | '한식'
+    | '중식'
+    | '일식'
+    | '양식'
+    | '분식'
+    | '카페'
+    | '편의점'
+    | '기타'
+
+  address1:
     | '서울시 종로구'
     | '서울시 중구'
     | '서울시 용산구'
@@ -27,8 +37,6 @@ interface ShopInfo {
     | '서울시 강남구'
     | '서울시 송파구'
     | '서울시 강동구'
-
-  address1: string
   address2: string
   description: string
   imageUrl: string
@@ -37,25 +45,27 @@ interface ShopInfo {
 
 // shopRequest Response data
 interface ShopData {
-  id: string
-  name: string
-  category: string
-  address1: string
-  address2: string
-  description: string
-  imageUrl: string
-  originalHourlyPay: number
-  user: {
-    item: {
-      id: string
-      email: string
-      type: string
-      name?: string // optional
-      phone?: string // optional
-      address?: string // optional
-      bio?: string // optional
+  item: {
+    id: string
+    name: string
+    category: string
+    address1: string
+    address2: string
+    description: string
+    imageUrl: string
+    originalHourlyPay: number
+    user: {
+      item: {
+        id: string
+        email: string
+        type: string
+        name?: string // optional
+        phone?: string // optional
+        address?: string // optional
+        bio?: string // optional
+      }
+      href: string
     }
-    href: string
   }
   links: Links[]
 }
