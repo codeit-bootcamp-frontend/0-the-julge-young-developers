@@ -9,6 +9,7 @@
     "<THIRD_PARTY_MODULES>",
     "^(next/(.*)$)|^(next$)",
     "^@/libs/(.*)$",
+    "^@/public/(.*)$",
     "^types$",
     "^[./]"
   ],

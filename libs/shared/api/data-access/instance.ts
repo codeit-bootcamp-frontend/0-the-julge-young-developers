@@ -4,6 +4,7 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios'
+import { getCookie } from 'cookies-next'
 
 import { CustomAxiosInterface } from '@/libs/shared/api/types/type-instance'
 
@@ -29,10 +30,13 @@ instance.interceptors.request.use(
      */
 
     if (config && config.headers) {
-      config.headers.Authorization =
-        // `Bearer ${인증할 때 받은 토큰을 쿠키에 저장했다면, 그걸 여기서 가져옵니다.}`
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0ZTU2MGFhOC1hZTVhLTQwZTEtYTZlMC0yYTFlOGI4NjZkMTciLCJpYXQiOjE2ODkwNzkyODJ9.iYxgy_lXltX3HaWd6FNbxw_DYv88RPFtzxQtt1tA6VQ'
-      config.headers['Content-Type'] = 'application/json'
+      const token = getCookie('token')
+
+      // 인증할 때 받은 토큰을 쿠키에 저장했다면 가져옵니다.
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+        config.headers['Content-Type'] = 'application/json'
+      }
     }
 
     if (process.env.NODE_ENV === 'development') {

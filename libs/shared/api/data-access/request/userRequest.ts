@@ -13,7 +13,28 @@ import { getRequest, postRequest, putRequest } from '../common'
  * 
  * @example 사용 예시 
  *  ```
- *  const data = await signIn('nodejs111@nodejs888.com', 'nodejs999')
+ *  // 로그인하고 받은 토큰을 setCookie를 사용해서 쿠키에 저장해야 합니다. 
+ *  import { setCookie } from 'cookies-next'
+ * 
+ * const { userId, setUserId } = useUserContext()
+ * 
+   const data = await signIn(
+        'test-employer1@codeit.com',
+        'test-employer1@codeit.com',
+      )
+
+      if (data instanceof Error) {
+        // 알 수 없는 에러 처리
+      } else if (typeof data === 'string') {
+        // 에러 메시지에 맞게 처리
+      } else {
+        // 데이터 가공 구간  
+          const { token, user } = data.item
+          console.log(token)
+          setCookie('token', token) // 로그인 후 이렇게 쿠키 설정해야 합니다. 
+          setUserId(user.item.id) // 유저 id를 전역 상태로 저장합니다. 
+          
+      }
     ```
 
       @example 에러 처리 예시 
