@@ -21,12 +21,14 @@ import styles from './ui-filter.module.scss'
 const cx = classNames.bind(styles)
 
 export default function UiFilter() {
-  const [selectedLocations, setSelectedLocations] = useState<string[]>([])
+  const [selectedLocations, setSelectedLocations] = useState<Set<string>>(
+    new Set(),
+  )
   const startInputRef = useRef<HTMLInputElement>(null)
   const priceInputRef = useRef<HTMLInputElement>(null)
 
   const handleInit = () => {
-    setSelectedLocations([])
+    setSelectedLocations(new Set<string>())
     if (startInputRef.current) {
       startInputRef.current.value = ''
     }
@@ -35,9 +37,14 @@ export default function UiFilter() {
     }
   }
 
-  const handleClickLocation = (location: string) => {
-    selectedLocations.push(location)
-    setSelectedLocations([...selectedLocations])
+  const handleSelectLocation = (location: string) => {
+    selectedLocations.add(location)
+    setSelectedLocations(new Set(selectedLocations))
+  }
+
+  const handleCancelLocation = (location: string) => {
+    selectedLocations.delete(location)
+    setSelectedLocations(new Set(selectedLocations))
   }
 
   return (
@@ -53,12 +60,17 @@ export default function UiFilter() {
               <h2 className={cx('subtitle')}>위치</h2>
               <UiLocationContainer
                 locations={LOCATIONS}
-                onSelect={handleClickLocation}
+                onSelect={handleSelectLocation}
               />
-              {selectedLocations.length !== 0 && (
+              {selectedLocations.size !== 0 && (
                 <div className={cx('selectedChipContainer')}>
-                  {selectedLocations.map((location) => (
-                    <UiSelectedChip key={location}>{location}</UiSelectedChip>
+                  {Array.from(selectedLocations).map((location) => (
+                    <UiSelectedChip
+                      key={location}
+                      onCancel={handleCancelLocation}
+                    >
+                      {location}
+                    </UiSelectedChip>
                   ))}
                 </div>
               )}
