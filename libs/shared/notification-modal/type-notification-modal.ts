@@ -19,4 +19,8 @@ interface UiNotificationModalProps {
   onClose: (isOpen: boolean) => void
 }
 
-export type { UiNotificationItemProps, UiNotificationModalProps }
+export type {
+  UiNotificationItemProps,
+  UiNotificationItem,
+  UiNotificationModalProps,
+}
