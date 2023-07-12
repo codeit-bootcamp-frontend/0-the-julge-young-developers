@@ -4,15 +4,9 @@ import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
-import styles from './ui-common-modal.module.scss'
+import { UiCommonModalProps } from '@/libs/shared/common-modal/type-common-modal'
 
-interface UiCommonModalProps {
-  padding?: string | number
-  borderRadius?: number
-  backgroundColor?: 'White' | 'Gray'
-  closeButtonSize?: number
-  children: React.ReactNode
-}
+import styles from './ui-common-modal.module.scss'
 
 const cx = classNames.bind(styles)
 

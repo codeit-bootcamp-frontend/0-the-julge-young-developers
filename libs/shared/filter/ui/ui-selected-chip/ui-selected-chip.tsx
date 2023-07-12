@@ -4,13 +4,9 @@ import Image from 'next/image'
 
 import styles from './ui-selected-chip.module.scss'
 
-interface UiSelectedChipProps {
-  children: string
-}
-
 const cx = classNames.bind(styles)
 
-export default function UiSelectedChip({ children }: UiSelectedChipProps) {
+export default function UiSelectedChip({ children }: { children: string }) {
   return (
     <button className={cx('selectedChip')} type="button">
       {children}

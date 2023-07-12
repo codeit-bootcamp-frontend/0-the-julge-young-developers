@@ -2,15 +2,13 @@ import classNames from 'classnames/bind'
 
 import styles from './ui-location-container.module.scss'
 
-interface UiLocationContainerProps {
-  locations: string[]
-}
-
 const cx = classNames.bind(styles)
 
 export default function UiLocationContainer({
   locations,
-}: UiLocationContainerProps) {
+}: {
+  locations: string[]
+}) {
   return (
     <div className={cx('locationContainer')}>
       <div className={cx('locationContent')}>

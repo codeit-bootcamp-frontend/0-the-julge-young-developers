@@ -1,14 +1,8 @@
 import classNames from 'classnames/bind'
 
-import styles from './ui-common-layout.module.scss'
+import { UiCommonLayoutProps } from '@/libs/shared/common-layout/type-common-layout'
 
-interface UiCommonLayoutProps {
-  title: string
-  titleAlign?: 'start' | 'center'
-  titleSize?: number
-  gap?: number
-  children: React.ReactNode
-}
+import styles from './ui-common-layout.module.scss'
 
 const cx = classNames.bind(styles)
 

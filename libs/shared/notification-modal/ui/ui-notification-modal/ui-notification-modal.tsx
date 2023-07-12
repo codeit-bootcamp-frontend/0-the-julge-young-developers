@@ -3,27 +3,13 @@ import classNames from 'classnames/bind'
 import Image from 'next/image'
 
 import UiCommonLayout from '@/libs/shared/common-layout/ui/ui-common-layout/ui-common-layout'
+import { UiNotificationModalProps } from '@/libs/shared/notification-modal/type-notification-modal'
 import {
   UiAcceptedNotificationItem,
   UiRejectedNotificationItem,
 } from '@/libs/shared/notification-modal/ui/ui-notification-item/ui-notification-item'
 
 import styles from './ui-notification-modal.module.scss'
-
-export interface UiNotificationItem {
-  id: number
-  name: string
-  duration: string
-  startsAt: string
-  workhour: number
-  createdAt: string
-  result: string
-}
-
-interface UiNotificationModalProps {
-  itemList: UiNotificationItem[]
-  onClose: (isOpen: boolean) => void
-}
 
 const cx = classNames.bind(styles)
 
