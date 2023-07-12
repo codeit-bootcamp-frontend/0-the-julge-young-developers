@@ -1,7 +1,6 @@
 import classnames from 'classnames/bind'
 
 import { TableData } from '@/libs/shared/table/type-table'
-import UiTableStatusButton from '@/libs/shared/table/ui/ui-table/ui-table-status-button'
 import UiTableStatusChip from '@/libs/shared/table/ui/ui-table/ui-table-status-chip'
 
 import styles from './ui-table-row.module.scss'
@@ -24,8 +23,8 @@ export default function UiTableRow({ item }: { item: TableData }) {
         <div className={cx('statusCell')}>
           {item.status === 'pending' ? (
             <>
-              <UiTableStatusButton action="reject" />
-              <UiTableStatusButton action="accept" />
+              <button type="button">거절하기</button>
+              <button type="button">승인하기</button>
             </>
           ) : (
             <UiTableStatusChip status={item.status} />
