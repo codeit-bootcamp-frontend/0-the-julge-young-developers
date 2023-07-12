@@ -2,11 +2,11 @@
 
 .bgGray {
   position: fixed;
-  right: 0;
-  left: 0;
+  inset: 70px 0 0;
   width: 100vw;
-  height: 100vh;
+  max-height: 100vh;
   padding: 60px 0;
+  overflow: auto;
   background-color: utils.$gray-brt5;
 }
 
@@ -27,6 +27,7 @@
 
 @include utils.mobile {
   .bgGray {
+    top: 102px;
     padding: 40px 12px;
   }
 }
