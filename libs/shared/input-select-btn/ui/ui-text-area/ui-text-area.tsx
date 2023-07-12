@@ -11,7 +11,7 @@ export default function UiTextArea({
   valid,
   isValid,
   isRequired,
-}: Valid & InputRequiredProps) {
+}: Valid & InputProps) {
   return (
     <div className={cx('wrap')}>
       <div className={cx('title')}>{title}</div>
