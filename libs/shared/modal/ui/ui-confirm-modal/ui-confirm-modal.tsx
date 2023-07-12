@@ -1,19 +1,19 @@
+'use client'
+
 import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
-import styles from './ui-confirm-modal.module.scss'
+import { CommonActiveOutlineBtn } from '@/libs/shared/common-click-btn/feature/common-btn'
 
-interface UiConfirmModalProps {
-  description: string
-  confirmText: string
-}
+import styles from './ui-confirm-modal.module.scss'
 
 const cx = classNames.bind(styles)
 
 export default function UiConfirmModal({
-  description,
+  text,
   confirmText,
+  onConfirm,
 }: UiConfirmModalProps) {
   return (
     <div className={cx('modalContainer')}>
@@ -24,10 +24,12 @@ export default function UiConfirmModal({
         width={24}
         height={24}
       />
-      <h3 className={cx('description')}>{description}</h3>
-      <button className={cx('confirmButton')} type="button">
-        {confirmText}
-      </button>
+      <h3 className={cx('description')}>{text}</h3>
+      <CommonActiveOutlineBtn
+        text={confirmText}
+        size="mediumSmall"
+        onClick={onConfirm}
+      />
     </div>
   )
 }

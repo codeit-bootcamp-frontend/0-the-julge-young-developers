@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ForwardedRef, forwardRef } from 'react'
 
 import classNames from 'classnames/bind'
 
@@ -6,12 +6,10 @@ import styles from './ui-text-area.module.scss'
 
 const cx = classNames.bind(styles)
 
-export default function UiTextArea({
-  title,
-  valid,
-  isValid,
-  isRequired,
-}: Valid & InputRequiredProps) {
+export default forwardRef(function UiTextArea(
+  { title, valid, isValid, isRequired }: Valid & InputProps,
+  ref: ForwardedRef<HTMLTextAreaElement>,
+) {
   return (
     <div className={cx('wrap')}>
       <div className={cx('title')}>{title}</div>
@@ -19,8 +17,9 @@ export default function UiTextArea({
         className={cx('textArea')}
         placeholder="입력"
         required={isRequired}
+        ref={ref}
       />
       {isValid && <div className={cx('validText')}>{valid}</div>}
     </div>
   )
-}
+})

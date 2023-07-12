@@ -14,3 +14,26 @@
 
   gap: 8px;
 }
+
+.close {
+  display: none;
+}
+
+@include utils.mobile {
+  .modalContainer {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    inset: 0;
+  }
+
+  .close {
+    display: initial;
+    position: fixed;
+    top: 26px;
+    right: 20px;
+  }
+}

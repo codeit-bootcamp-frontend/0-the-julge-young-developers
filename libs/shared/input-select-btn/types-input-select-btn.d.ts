@@ -6,9 +6,10 @@ interface Options {
   options: Option[]
 }
 
-interface InputRequiredProps {
+interface InputProps {
   title: string
   isRequired: boolean
+  suffix?: string
 }
 
 interface Valid {

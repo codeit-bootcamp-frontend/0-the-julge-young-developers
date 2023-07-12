@@ -2,20 +2,21 @@ import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
-import styles from './ui-action-modal.module.scss'
+import {
+  CommonActiveBtn,
+  CommonActiveOutlineBtn,
+} from '@/libs/shared/common-click-btn/feature/common-btn'
 
-interface UiActionModalProps {
-  description: string
-  cancelText: string
-  acceptText: string
-}
+import styles from './ui-action-modal.module.scss'
 
 const cx = classNames.bind(styles)
 
 export default function UiActionModal({
-  description,
+  text,
   cancelText,
   acceptText,
+  onCancel,
+  onAccept,
 }: UiActionModalProps) {
   return (
     <div className={cx('modalContainer')}>
@@ -26,14 +27,18 @@ export default function UiActionModal({
         width={24}
         height={24}
       />
-      <h3 className={cx('description')}>{description}</h3>
+      <h3 className={cx('description')}>{text}</h3>
       <div className={cx('buttonContainer')}>
-        <button className={cx('cancelButton')} type="button">
-          {cancelText}
-        </button>
-        <button className={cx('acceptButton')} type="button">
-          {acceptText}
-        </button>
+        <CommonActiveOutlineBtn
+          text={cancelText}
+          size="mediumSmall"
+          onClick={onCancel}
+        />
+        <CommonActiveBtn
+          text={acceptText}
+          size="mediumSmall"
+          onClick={onAccept}
+        />
       </div>
     </div>
   )

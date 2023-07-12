@@ -1,14 +1,9 @@
 import classNames from 'classnames/bind'
 
+import { UiNotificationItemProps } from '@/libs/shared/notification-modal/type-notification-modal'
 import { utilCalcTimeDiff } from '@/libs/shared/notification-modal/util/util-calc-time-diff'
 
 import styles from './ui-notification-item.module.scss'
-
-interface UiNotificationItemProps {
-  name: string
-  duration: string
-  createdAt: string
-}
 
 const cx = classNames.bind(styles)
 

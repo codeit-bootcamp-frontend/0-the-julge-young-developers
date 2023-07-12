@@ -3,9 +3,14 @@
 .modalContainer {
   @include utils.flexbox(column, initial, center);
 
+  position: fixed;
+  top: 50%;
+  left: 50%;
   width: 298px;
   padding: 24px;
+  transform: translate(-50%, -50%);
   border-radius: 12px;
+  background-color: utils.$white;
 }
 
 .exclamationImage {
@@ -16,13 +21,4 @@
   @include utils.font-style('body1');
 
   margin-bottom: 32px;
-}
-
-.confirmButton {
-  @include utils.font-style('body2Bold');
-
-  padding: 10px 20.5px;
-  border: 1px solid utils.$primary;
-  border-radius: 6px;
-  color: utils.$primary;
 }
