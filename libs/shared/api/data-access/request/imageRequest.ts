@@ -13,36 +13,64 @@ import { postRequest } from '../common'
  * @returns void
  * 
  */
-const createPresignedURL = async (
-  name: string,
-): Promise<CreatePresignedURLData | string | undefined> => {
+const createPresignedURL = async (name: string): Promise<string | Error> => {
   try {
-    const response = await postRequest<CreatePresignedURLData>('/images', {
+    const response = await postRequest<string>('/images', {
       name,
     })
 
     return response
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      return error.response?.data.message
-    }
+    return error as Error
   }
 }
 
 /**
- * S#로 이미지 업로드api
+ * S3로 이미지 업로드api
  * 
  * @example 
  *  ```
     ```
- * @param name : 이미지 title (string)
+ * @param presignedURL : presignedURL url (string)
+ * @param file : 이미지 file (File)
  * @returns void
  * 
  */
-const uploadImage = async (url: string, file: File) => {
-  const res = await axios.put(url, file)
-
-  return res
+const uploadImageToS3 = async (
+  url: string,
+  file: File,
+): Promise<number | Error> => {
+  try {
+    const response = await axios.put(url, file)
+    return response.status
+  } catch (error) {
+    return error as Error
+  }
 }
 
-export { createPresignedURL, uploadImage }
+/**
+ * 이미지 업로드 total api
+ * 
+ * @example 
+ *  ```
+    ```
+ * @param name 
+ * 
+ */
+const uploadImage = async (file: File): Promise<string | Error> => {
+  const presignedURL = await createPresignedURL(file.name)
+
+  if (presignedURL instanceof Error) return presignedURL
+  const uploadStatus = await uploadImageToS3(presignedURL, file)
+
+  if (
+    uploadStatus instanceof Error ||
+    !(uploadStatus >= 200 && uploadStatus < 300)
+  ) {
+    return new Error()
+  }
+
+  return presignedURL
+}
+
+export default uploadImage
