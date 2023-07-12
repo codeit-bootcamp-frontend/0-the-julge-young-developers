@@ -1,5 +1,7 @@
 export interface TypeButtonProps {
-  type: string
+  type: UserType
   isButtonClicked: boolean
-  handleClick: (type: string) => void
+  handleClick: (type: UserType) => void
 }
+
+export type UserType = 'employee' | 'employer'
