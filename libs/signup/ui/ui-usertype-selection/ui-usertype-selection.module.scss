@@ -1,0 +1,11 @@
+@use '@/styles/utils';
+
+.userTypeSelection {
+  width: 350px;
+  height: 79px;
+}
+
+.label {
+  color: utils.$black;
+  @include utils.font-style('body1');
+}
