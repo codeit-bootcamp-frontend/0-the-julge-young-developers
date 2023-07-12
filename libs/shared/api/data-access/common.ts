@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { InternalAxiosRequestConfig } from 'axios'
 
-import { CommonResponse } from '@/libs/shared/api/type-api'
+import { CommonResponse } from '@/libs/shared/api/types/type-instance'
 
 import { instance } from './instance'
 
