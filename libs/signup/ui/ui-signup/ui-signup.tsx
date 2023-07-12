@@ -1,10 +1,13 @@
 'use client'
 
+import { MutableRefObject } from 'react'
+
 import classnames from 'classnames/bind'
 
 import { CommonActiveBtn } from '@/libs/shared/common-click-btn/feature/common-btn'
 import UiCommonLayout from '@/libs/shared/common-layout/ui/ui-common-layout/ui-common-layout'
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
+import { UserType } from '@/libs/signup/type-signup'
 import UiUsertypeSelection from '@/libs/signup/ui/ui-usertype-selection/ui-usertype-selection'
 
 import styles from './ui-signup.module.scss'
@@ -12,14 +15,24 @@ import styles from './ui-signup.module.scss'
 const cx = classnames.bind(styles)
 
 export default function UiSignUp({
-  onClickSignUp,
+  userInputRefs,
+  validEmail,
+  validPw,
+  validPwRepeat,
+  userType,
+  utilCheck,
+  handleClickButton,
+  handleClickSelectUserType,
 }: {
-  onClickSignUp: () => null
+  userInputRefs: MutableRefObject<HTMLInputElement[]>
+  validEmail: boolean
+  validPw: boolean
+  validPwRepeat: boolean
+  userType: UserType
+  utilCheck: (type: string, value: string) => void
+  handleClickButton: () => void
+  handleClickSelectUserType: (type: UserType) => void
 }) {
-  const handleClickButton = () => {
-    onClickSignUp()
-  }
-
   return (
     <div className={cx('wrapper')}>
       <UiCommonLayout
@@ -30,26 +43,45 @@ export default function UiSignUp({
       >
         <form className={cx('form')}>
           <Input
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              utilCheck('email', e.currentTarget.value)
+            }
             variant="input"
             title="이메일"
             valid="잘못된 이메일입니다."
-            isValid={false}
+            isValid={!validEmail}
             isRequired={true}
+            // eslint-disable-next-line no-return-assign, no-param-reassign
+            ref={(el: HTMLInputElement) => (userInputRefs.current[0] = el)}
           />
           <Input
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              utilCheck('pw', e.currentTarget.value)
+            }
             variant="input"
             title="비밀번호"
-            isValid={false}
+            valid="비밀번호는 영문+숫자 조합해서 8자리 이상이어야 합니다."
+            isValid={!validPw}
             isRequired={true}
+            // eslint-disable-next-line no-return-assign, no-param-reassign
+            ref={(el: HTMLInputElement) => (userInputRefs.current[1] = el)}
           />
           <Input
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              utilCheck('pwRepeat', e.currentTarget.value)
+            }
             variant="input"
             title="비밀번호 확인"
             valid="비밀번호가 일치하지 않습니다."
-            isValid={false}
+            isValid={!validPwRepeat}
             isRequired={true}
+            // eslint-disable-next-line no-return-assign, no-param-reassign
+            ref={(el: HTMLInputElement) => (userInputRefs.current[2] = el)}
           />
-          <UiUsertypeSelection />
+          <UiUsertypeSelection
+            userType={userType}
+            onClick={handleClickSelectUserType}
+          />
           <CommonActiveBtn
             text="가입하기"
             size="large"
