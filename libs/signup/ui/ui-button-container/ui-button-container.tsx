@@ -13,7 +13,7 @@ const cx = classNames.bind(styles)
 export default function UiButtonContainer() {
   const [userType, setUserType] = useState('employee')
 
-  const handleClickButton = (type: string) => {
+  const handleClickSelectUserType = (type: string) => {
     if (userType !== type) {
       setUserType(type)
     }
@@ -24,12 +24,12 @@ export default function UiButtonContainer() {
       <UiTypeButton
         type="employee"
         isButtonClicked={userType === 'employee'}
-        handleClick={handleClickButton}
+        onClick={handleClickSelectUserType}
       />
       <UiTypeButton
         type="employer"
         isButtonClicked={userType === 'employer'}
-        handleClick={handleClickButton}
+        onClick={handleClickSelectUserType}
       />
     </div>
   )
