@@ -1,12 +1,13 @@
 interface GnbProps {
   isLogin: boolean
   hasNotification: boolean
-  handleClickMovePage: () => void
+  handleClickMovePage: (pathname?: string) => void
   handleClickOpenModal: () => void
 }
 
 interface ButtonProps {
   name?: string
   activeStatus?: string
-  handleClickButton: () => void
+  id?: string
+  handleClickButton: (pathname?: string) => void
 }
