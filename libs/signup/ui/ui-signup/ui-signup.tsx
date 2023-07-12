@@ -11,9 +11,13 @@ import styles from './ui-signup.module.scss'
 
 const cx = classnames.bind(styles)
 
-export default function UiSignUp({ onSignUp }: { onSignUp: () => null }) {
+export default function UiSignUp({
+  onClickSignUp,
+}: {
+  onClickSignUp: () => null
+}) {
   const handleClickButton = () => {
-    onSignUp()
+    onClickSignUp()
   }
 
   return (

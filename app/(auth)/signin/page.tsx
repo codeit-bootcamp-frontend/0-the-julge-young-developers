@@ -1,3 +1,5 @@
+import SignIn from '@/libs/signin/feature/signin'
+
 export default function SignInPage() {
-  return <div>로그인 페이지</div>
+  return <SignIn />
 }

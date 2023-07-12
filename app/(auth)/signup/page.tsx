@@ -1,3 +1,5 @@
+import SignUp from '@/libs/signup/feature/signup'
+
 export default function SignUpPage() {
-  return <div>회원가입 페이지</div>
+  return <SignUp />
 }
