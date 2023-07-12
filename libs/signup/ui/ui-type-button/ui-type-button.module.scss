@@ -1,0 +1,44 @@
+@use '@/styles/utils';
+
+.typeButton {
+  width: 167px;
+  height: 50px;
+  margin: 0;
+  padding-left: 41px;
+  border-radius: 30px;
+}
+
+.checker {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  @include utils.flexbox;
+}
+
+.unclickedChecker {
+  border: 1px solid utils.$gray-brt3;
+}
+
+.clickedChecker {
+  border: 1px solid utils.$primary;
+  background-color: utils.$primary;
+}
+
+.contentWrapper {
+  @include utils.flexbox($justify: flex-start);
+
+  gap: 9px;
+}
+
+.clickedButton {
+  border: 1px solid utils.$primary;
+}
+
+.unclickedButton {
+  border: 1px solid utils.$gray-brt3;
+}
+
+.buttonName {
+  color: utils.$black;
+  @include utils.font-style('body2');
+}
