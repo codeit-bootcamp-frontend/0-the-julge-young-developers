@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 const STATUS = {
   Pending: 'pending',
   Accepted: 'accepted',
@@ -45,4 +47,14 @@ export interface UiTableProps {
 export interface UiPaginationProps {
   pageNum: number
   shownPageNums: number[]
+}
+
+export interface UiTableRowProps {
+  item: TableData
+  statusCell: ReactNode
+}
+
+export interface UiTableStatusCellProps {
+  userType: UserType
+  status: Status
 }

@@ -4,6 +4,7 @@ import { COL_NAMES } from '@/libs/shared/table/data-access/data-access-mock'
 import { UiTableProps } from '@/libs/shared/table/type-table'
 import UiPagination from '@/libs/shared/table/ui/ui-pagination/ui-pagination'
 import TableRow from '@/libs/shared/table/ui/ui-table/ui-table-row'
+import UiTableStatusCell from '@/libs/shared/table/ui/ui-table/ui-table-status-cell'
 
 import styles from './ui-table.module.scss'
 
@@ -30,7 +31,13 @@ export default function UiTable({
           </thead>
           <tbody>
             {data.map((item) => (
-              <TableRow key={item.id} item={item} />
+              <TableRow
+                key={item.id}
+                item={item}
+                statusCell={
+                  <UiTableStatusCell userType={userType} status={item.status} />
+                }
+              />
             ))}
           </tbody>
         </table>
