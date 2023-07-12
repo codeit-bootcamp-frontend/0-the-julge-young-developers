@@ -15,6 +15,7 @@ type FeatureInputProps = Variant &
 
 export default forwardRef(function Input(
   {
+    onChange,
     variant = 'input',
     title,
     valid,
@@ -28,6 +29,7 @@ export default forwardRef(function Input(
   if (variant === 'input') {
     return (
       <UiInput
+        onChange={onChange}
         title={title}
         valid={valid as string}
         isValid={isValid as boolean}
