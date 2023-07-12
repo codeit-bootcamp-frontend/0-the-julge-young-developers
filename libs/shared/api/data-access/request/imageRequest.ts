@@ -40,9 +40,7 @@ const createPresignedURL = async (
  * 
  */
 const uploadImage = async (url: string, file: File) => {
-  const res = await axios.put(url, {
-    file,
-  })
+  const res = await axios.put(url, file)
 
   return res
 }
