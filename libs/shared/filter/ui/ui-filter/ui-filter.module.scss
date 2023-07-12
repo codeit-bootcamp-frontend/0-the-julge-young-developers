@@ -65,27 +65,9 @@
     width: 82px;
   }
 
-  // button {
-  //   @include utils.font-style('body1Bold');
-
-  //   border-radius: 6px;
-  //   white-space: nowrap;
-  // }
-
-  // .initButton {
-  //   padding: 14px 18.5px;
-  //   border: 1px solid utils.$primary;
-  //   background-color: utils.$white;
-  //   color: utils.$primary;
-  // }
-
-  // .applyButton {
-  //   flex-grow: 1;
-  //   padding: 14px 0;
-  //   border: 1px solid utils.$primary;
-  //   background-color: utils.$primary;
-  //   color: utils.$white;
-  // }
+  .applyButton {
+    width: 260px;
+  }
 }
 
 @include utils.mobile {
@@ -106,5 +88,14 @@
     left: 0;
     padding: 16px 12px;
     border-top: 1px solid utils.$gray-brt4;
+
+    /* flex-grow = 2 : 3 */
+    .initButton {
+      flex-grow: 2;
+    }
+
+    .applyButton {
+      flex-grow: 3;
+    }
   }
 }

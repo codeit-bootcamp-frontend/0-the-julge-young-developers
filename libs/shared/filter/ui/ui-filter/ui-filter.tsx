@@ -54,14 +54,6 @@ export default function UiFilter() {
             </div>
             <UiDivider />
             <div className={cx('section')}>
-              {/* <h2 className={cx('subtitle')}>금액</h2>
-              <div className={cx('inputContainer')}>
-                <div className={cx('inputWrapper', 'priceInput')}>
-                  <input placeholder="입력" />
-                  <span>원</span>
-                </div>
-                이상부터
-              </div> */}
               <div className={cx('priceInput')}>
                 <Input
                   variant="input"
@@ -93,12 +85,6 @@ export default function UiFilter() {
                 }}
               />
             </div>
-            {/* <button className={cx('initButton')} type="button">
-              초기화
-            </button>
-            <button className={cx('applyButton')} type="button">
-              적용하기
-            </button> */}
           </div>
         </UiCommonLayout>
       </UiCommonModal>
