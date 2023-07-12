@@ -1,11 +1,19 @@
 @use '@/styles/utils';
 
 .filterContainer {
+  position: relative;
   width: 390px;
+  padding: 24px 20px;
   overflow: auto;
   border: 1px solid utils.$gray-brt4;
   border-radius: 10px;
+  background-color: utils.$white;
   box-shadow: 0 2px 8px 0 rgb(120 116 134 / 25%);
+}
+
+.closeButton {
+  position: absolute;
+  right: 20px;
 }
 
 .filterContent {
@@ -75,10 +83,15 @@
     position: fixed;
     width: 100%;
     margin-bottom: 60px;
+    padding: 24px 12px;
     border: none;
     border-radius: 0;
     box-shadow: none;
     inset: 0;
+  }
+
+  .closeButton {
+    right: 12px;
   }
 
   .buttonContainer {

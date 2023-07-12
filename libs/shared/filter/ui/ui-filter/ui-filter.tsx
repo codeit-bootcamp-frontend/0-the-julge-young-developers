@@ -4,12 +4,13 @@ import { useRef, useState } from 'react'
 
 import classNames from 'classnames/bind'
 
+import Image from 'next/image'
+
 import {
   CommonActiveBtn,
   CommonActiveOutlineBtn,
 } from '@/libs/shared/common-click-btn/feature/common-btn'
 import UiCommonLayout from '@/libs/shared/common-layout/ui/ui-common-layout/ui-common-layout'
-import UiCommonModal from '@/libs/shared/common-modal/ui/ui-common-modal/ui-common-modal'
 import { LOCATIONS } from '@/libs/shared/filter/data-access/data-access-location'
 import UiDivider from '@/libs/shared/filter/ui/ui-divider/ui-divider'
 import UiLocationContainer from '@/libs/shared/filter/ui/ui-location-container/ui-location-container'
@@ -55,73 +56,70 @@ export default function UiFilter() {
 
   return (
     <div className={cx('filterContainer')}>
-      <UiCommonModal
-        padding="24px 20px"
-        closeButtonSize={24}
-        backgroundColor="White"
-      >
-        <UiCommonLayout title="상세 필터" titleSize={20} gap={24}>
-          <div className={cx('filterContent')}>
-            <div className={cx('section')}>
-              <h2 className={cx('subtitle')}>위치</h2>
-              <UiLocationContainer
-                locations={LOCATIONS}
-                onSelect={handleSelectLocation}
-              />
-              {selectedLocations.size !== 0 && (
-                <div className={cx('selectedChipContainer')}>
-                  {Array.from(selectedLocations).map((location) => (
-                    <UiSelectedChip
-                      key={location}
-                      onCancel={handleCancelLocation}
-                    >
-                      {location}
-                    </UiSelectedChip>
-                  ))}
-                </div>
-              )}
-            </div>
-            <UiDivider />
-            <div className={cx('section')}>
+      <button className={cx('closeButton')} type="button">
+        <Image src="/images/close.svg" alt="닫기" width={24} height={24} />
+      </button>
+      <UiCommonLayout title="상세 필터" titleSize={20} gap={24}>
+        <div className={cx('filterContent')}>
+          <div className={cx('section')}>
+            <h2 className={cx('subtitle')}>위치</h2>
+            <UiLocationContainer
+              locations={LOCATIONS}
+              onSelect={handleSelectLocation}
+            />
+            {selectedLocations.size !== 0 && (
+              <div className={cx('selectedChipContainer')}>
+                {Array.from(selectedLocations).map((location) => (
+                  <UiSelectedChip
+                    key={location}
+                    onCancel={handleCancelLocation}
+                  >
+                    {location}
+                  </UiSelectedChip>
+                ))}
+              </div>
+            )}
+          </div>
+          <UiDivider />
+          <div className={cx('section')}>
+            <Input
+              variant="input"
+              title="시작일"
+              isRequired={true}
+              ref={startInputRef}
+            />
+          </div>
+          <UiDivider />
+          <div className={cx('section')}>
+            <div className={cx('priceInput')}>
               <Input
                 variant="input"
-                title="시작일"
+                title="금액"
                 isRequired={true}
-                ref={startInputRef}
+                ref={priceInputRef}
+                suffix="원"
               />
-            </div>
-            <UiDivider />
-            <div className={cx('section')}>
-              <div className={cx('priceInput')}>
-                <Input
-                  variant="input"
-                  title="금액"
-                  isRequired={true}
-                  ref={priceInputRef}
-                  suffix="원"
-                />
-                <span className={cx('sideText')}>이상부터</span>
-              </div>
+              <span className={cx('sideText')}>이상부터</span>
             </div>
           </div>
-          <div className={cx('buttonContainer')}>
-            <div className={cx('initButton')}>
-              <CommonActiveOutlineBtn
-                text="초기화"
-                size="large"
-                onClick={handleInit}
-              />
-            </div>
-            <div className={cx('applyButton')}>
-              <CommonActiveBtn
-                text="적용하기"
-                size="large"
-                onClick={handleApply}
-              />
-            </div>
+        </div>
+        <div className={cx('buttonContainer')}>
+          <div className={cx('initButton')}>
+            <CommonActiveOutlineBtn
+              text="초기화"
+              size="large"
+              onClick={handleInit}
+            />
           </div>
-        </UiCommonLayout>
-      </UiCommonModal>
+          <div className={cx('applyButton')}>
+            <CommonActiveBtn
+              text="적용하기"
+              size="large"
+              onClick={handleApply}
+            />
+          </div>
+        </div>
+      </UiCommonLayout>
     </div>
   )
 }
