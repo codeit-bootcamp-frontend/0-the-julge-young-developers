@@ -3,8 +3,7 @@
 .bgGray {
   position: fixed;
   inset: 70px 0 0;
-  width: 100vw;
-  max-height: 100vh;
+  width: 100%;
   padding: 60px 0;
   overflow: auto;
   background-color: utils.$gray-brt5;

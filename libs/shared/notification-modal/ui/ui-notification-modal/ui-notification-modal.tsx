@@ -23,18 +23,18 @@ export default function UiNotificationModal({
 
   return (
     <div className={cx('modalContainer')}>
+      <button
+        className={cx('closeButton')}
+        type="button"
+        onClick={handleCloseModal}
+      >
+        <Image src="/images/close.svg" alt="닫기" width={24} height={24} />
+      </button>
       <UiCommonLayout
         title={`알림 ${itemList.length}개`}
         titleSize={20}
         gap={16}
       >
-        <button
-          className={cx('close')}
-          type="button"
-          onClick={handleCloseModal}
-        >
-          <Image src="/images/close.svg" alt="닫기" width={24} height={24} />
-        </button>
         <div className={cx('notificationList')}>
           {itemList.map((item) =>
             item.result === 'accepted' ? (
