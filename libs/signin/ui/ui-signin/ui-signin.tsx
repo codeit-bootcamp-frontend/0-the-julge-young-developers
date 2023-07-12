@@ -10,9 +10,13 @@ import styles from './ui-signin.module.scss'
 
 const cx = classnames.bind(styles)
 
-export default function UiSignIn({ onSignIn }: { onSignIn: () => null }) {
+export default function UiSignIn({
+  onClickSignIn,
+}: {
+  onClickSignIn: () => null
+}) {
   const handleClickButton = () => {
-    onSignIn()
+    onClickSignIn()
   }
 
   return (
