@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+import { SelectProps } from '@/libs/shared/input-select-btn/types/type-select'
+
 export default function useSelect({
   title,
   isRequired,

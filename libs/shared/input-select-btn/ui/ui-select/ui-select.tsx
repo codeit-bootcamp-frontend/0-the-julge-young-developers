@@ -4,6 +4,9 @@ import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
+import { InputProps } from '@/libs/shared/input-select-btn/types/type-input'
+import { Options } from '@/libs/shared/input-select-btn/types/type-select'
+
 import styles from './ui-select.module.scss'
 
 const cx = classNames.bind(styles)
