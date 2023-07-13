@@ -2,7 +2,7 @@ import React from 'react'
 
 import classNames from 'classnames/bind'
 
-import { CommonBtnProps } from '@/libs/shared/click-btn/types/type-click-btn.'
+import { CommonBtnProps } from '@/libs/shared/click-btns/types/type-click-btn.'
 
 import styles from './ui-click-btn.module.scss'
 

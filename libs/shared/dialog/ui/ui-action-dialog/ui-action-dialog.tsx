@@ -3,9 +3,9 @@ import classNames from 'classnames/bind'
 import Image from 'next/image'
 
 import {
-  CommonActiveBtn,
-  CommonActiveOutlineBtn,
-} from '@/libs/shared/click-btn/feature/click-btn'
+  ActiveBtn,
+  ActiveOutlineBtn,
+} from '@/libs/shared/click-btns/feature/click-btns'
 import { UiActionDialogProps } from '@/libs/shared/dialog/type-dialog'
 
 import styles from './ui-action-dialog.module.scss'
@@ -30,16 +30,12 @@ export default function UiActionDialog({
       />
       <h3 className={cx('description')}>{text}</h3>
       <div className={cx('buttonContainer')}>
-        <CommonActiveOutlineBtn
+        <ActiveOutlineBtn
           text={cancelText}
           size="mediumSmall"
           onClick={onCancel}
         />
-        <CommonActiveBtn
-          text={acceptText}
-          size="mediumSmall"
-          onClick={onAccept}
-        />
+        <ActiveBtn text={acceptText} size="mediumSmall" onClick={onAccept} />
       </div>
     </div>
   )

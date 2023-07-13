@@ -3,9 +3,9 @@
 import classnames from 'classnames/bind'
 
 import {
-  CommonActiveOutlineBtn,
-  CommonActiveOutlineConfirmBtn,
-} from '@/libs/shared/click-btn/feature/click-btn'
+  ActiveOutlineBtn,
+  ActiveOutlineConfirmBtn,
+} from '@/libs/shared/click-btns/feature/click-btns'
 import { UiTableStatusCellProps } from '@/libs/shared/table/type-table'
 
 import styles from './ui-table-status-cell.module.scss'
@@ -27,12 +27,12 @@ export default function UiTableStatusCell({
       }
       return (
         <>
-          <CommonActiveOutlineBtn
+          <ActiveOutlineBtn
             text="거절하기"
             size="mediumSmall"
             onClick={() => null}
           />
-          <CommonActiveOutlineConfirmBtn
+          <ActiveOutlineConfirmBtn
             text="승인하기"
             size="mediumSmall"
             onClick={() => null}

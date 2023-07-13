@@ -4,7 +4,7 @@ import { MutableRefObject } from 'react'
 
 import classnames from 'classnames/bind'
 
-import { CommonActiveBtn } from '@/libs/shared/click-btn/feature/click-btn'
+import { ActiveBtn } from '@/libs/shared/click-btns/feature/click-btns'
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
@@ -44,7 +44,7 @@ export default function UiSignIn({
             // eslint-disable-next-line no-return-assign, no-param-reassign
             ref={(el: HTMLInputElement) => (userInputRefs.current[1] = el)}
           />
-          <CommonActiveBtn
+          <ActiveBtn
             text="로그인 하기"
             size="large"
             onClick={handleClickButton}

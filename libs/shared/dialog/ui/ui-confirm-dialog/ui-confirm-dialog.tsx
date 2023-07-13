@@ -4,7 +4,7 @@ import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
-import { CommonActiveOutlineBtn } from '@/libs/shared/click-btn/feature/click-btn'
+import { ActiveOutlineBtn } from '@/libs/shared/click-btns/feature/click-btns'
 import { UiConfirmDialogProps } from '@/libs/shared/dialog/type-dialog'
 
 import styles from './ui-confirm-dialog.module.scss'
@@ -26,7 +26,7 @@ export default function UiConfirmDialog({
         height={24}
       />
       <h3 className={cx('description')}>{text}</h3>
-      <CommonActiveOutlineBtn
+      <ActiveOutlineBtn
         text={confirmText}
         size="mediumSmall"
         onClick={onConfirm}
