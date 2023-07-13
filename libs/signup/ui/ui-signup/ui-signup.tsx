@@ -4,7 +4,7 @@ import { MutableRefObject } from 'react'
 
 import classnames from 'classnames/bind'
 
-import { CommonActiveBtn } from '@/libs/shared/common-click-btn/feature/common-btn'
+import { CommonActiveBtn } from '@/libs/shared/click-btn/feature/click-btn'
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 import { UserType } from '@/libs/signup/type-signup'

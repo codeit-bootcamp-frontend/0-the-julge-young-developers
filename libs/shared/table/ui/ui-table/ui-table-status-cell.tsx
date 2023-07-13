@@ -5,7 +5,7 @@ import classnames from 'classnames/bind'
 import {
   CommonActiveOutlineBtn,
   CommonActiveOutlineConfirmBtn,
-} from '@/libs/shared/common-click-btn/feature/common-btn'
+} from '@/libs/shared/click-btn/feature/click-btn'
 import { UiTableStatusCellProps } from '@/libs/shared/table/type-table'
 
 import styles from './ui-table-status-cell.module.scss'

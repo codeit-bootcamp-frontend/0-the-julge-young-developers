@@ -4,7 +4,7 @@ import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
-import { CommonActiveOutlineBtn } from '@/libs/shared/common-click-btn/feature/common-btn'
+import { CommonActiveOutlineBtn } from '@/libs/shared/click-btn/feature/click-btn'
 import { UiConfirmDialogProps } from '@/libs/shared/dialog/type-dialog'
 
 import styles from './ui-confirm-dialog.module.scss'

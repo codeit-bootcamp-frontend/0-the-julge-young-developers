@@ -9,7 +9,7 @@ import Image from 'next/image'
 import {
   CommonActiveBtn,
   CommonActiveOutlineBtn,
-} from '@/libs/shared/common-click-btn/feature/common-btn'
+} from '@/libs/shared/click-btn/feature/click-btn'
 import { LOCATIONS } from '@/libs/shared/detail-filter/data-access/data-access-location'
 import UiDivider from '@/libs/shared/detail-filter/ui/ui-divider/ui-divider'
 import UiLocationContainer from '@/libs/shared/detail-filter/ui/ui-location-container/ui-location-container'

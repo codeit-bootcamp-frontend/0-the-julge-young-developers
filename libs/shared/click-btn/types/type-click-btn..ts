@@ -1,4 +1,4 @@
-interface CommonBtnProps {
+export interface CommonBtnProps {
   text: string
   size: 'large' | 'medium' | 'mediumSmall' | 'small'
   status: 'active' | 'inactive'
@@ -6,5 +6,7 @@ interface CommonBtnProps {
   confirm?: boolean
   onClick: () => void
 }
-
-type OmitCommonBtnProps = Omit<CommonBtnProps, 'outline' | 'status' | 'confirm'>
+export type OmitCommonBtnProps = Omit<
+  CommonBtnProps,
+  'outline' | 'status' | 'confirm'
+>

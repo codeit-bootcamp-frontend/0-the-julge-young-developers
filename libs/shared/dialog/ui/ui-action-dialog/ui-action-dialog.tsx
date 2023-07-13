@@ -5,7 +5,7 @@ import Image from 'next/image'
 import {
   CommonActiveBtn,
   CommonActiveOutlineBtn,
-} from '@/libs/shared/common-click-btn/feature/common-btn'
+} from '@/libs/shared/click-btn/feature/click-btn'
 import { UiActionDialogProps } from '@/libs/shared/dialog/type-dialog'
 
 import styles from './ui-action-dialog.module.scss'
