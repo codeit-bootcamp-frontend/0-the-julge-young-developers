@@ -2,7 +2,7 @@
 
 import { ForwardedRef, forwardRef } from 'react'
 
-import UiSelect from '@/libs/shared/input-select-btn/ui/ui-select/ui-select'
+import UiSearchSelect from '@/libs/shared/input-select-btn/ui/ui-select/ui-search-select'
 import useSelect from '@/libs/shared/input-select-btn/util/useSelect'
 
 import { SelectProps } from '../types/type-select'
@@ -24,7 +24,7 @@ export default forwardRef(function Select(
   } = useSelect(props)
 
   return (
-    <UiSelect
+    <UiSearchSelect
       title={title}
       isOpen={isOpen}
       selectedOption={selectedOption}

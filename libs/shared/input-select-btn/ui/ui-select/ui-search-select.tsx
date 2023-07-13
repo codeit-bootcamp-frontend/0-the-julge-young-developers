@@ -5,22 +5,16 @@ import classNames from 'classnames/bind'
 import Image from 'next/image'
 
 import { InputProps } from '@/libs/shared/input-select-btn/types/type-input'
-import { Options } from '@/libs/shared/input-select-btn/types/type-select'
+import {
+  Options,
+  UiSearchSelectProps,
+} from '@/libs/shared/input-select-btn/types/type-select'
 
-import styles from './ui-select.module.scss'
+import styles from './ui-search-select.module.scss'
 
 const cx = classNames.bind(styles)
 
-interface UiSelectProps {
-  isOpen: boolean
-  selectedOption: string
-  dropdownRef: ForwardedRef<HTMLDivElement>
-  toggleDropdown: () => void
-  onClickOptionSelect: (value: string) => void
-  onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void
-}
-
-export default forwardRef(function UiSelect(
+export default forwardRef(function UiSearchSelect(
   {
     title,
     isRequired = false,
@@ -31,7 +25,7 @@ export default forwardRef(function UiSelect(
     onClickOptionSelect,
     onChangeInput,
     options,
-  }: UiSelectProps & Options & InputProps,
+  }: UiSearchSelectProps & Options & InputProps,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
   return (
