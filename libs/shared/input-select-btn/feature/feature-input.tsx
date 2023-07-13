@@ -10,6 +10,7 @@ export default forwardRef(function Input(
     onChange,
     variant = 'input',
     title,
+    defaultValue,
     valid,
     isValid,
     isRequired,
@@ -22,6 +23,7 @@ export default forwardRef(function Input(
       <UiInput
         onChange={onChange}
         title={title}
+        defaultValue={defaultValue}
         valid={valid as string}
         isValid={isValid as boolean}
         isRequired={isRequired}
