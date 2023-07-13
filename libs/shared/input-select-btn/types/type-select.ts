@@ -13,7 +13,7 @@ export interface SelectProps {
   title?: string
   isRequired?: boolean
   options: Option[]
-  defaultValueIdx: number
+  defaultValue: string
 }
 
 export interface UiSearchSelectProps {

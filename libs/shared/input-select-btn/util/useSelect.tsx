@@ -4,14 +4,10 @@ import { useEffect, useRef, useState } from 'react'
 
 import { SelectProps } from '@/libs/shared/input-select-btn/types/type-select'
 
-export default function useSelect({ options, defaultValueIdx }: SelectProps) {
+export default function useSelect({ options, defaultValue }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedOption, setSelectedOption] = useState(
-    options[defaultValueIdx]?.value || '',
-  )
-  const [searchedOption, setSearchedOption] = useState(
-    options[defaultValueIdx]?.value || '',
-  )
+  const [selectedOption, setSelectedOption] = useState(defaultValue || '')
+  const [searchedOption, setSearchedOption] = useState(defaultValue || '')
 
   const dropdownRef = useRef<HTMLDivElement>(null)
 
