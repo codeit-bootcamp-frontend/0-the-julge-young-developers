@@ -1,0 +1,49 @@
+@use '@/styles/utils';
+
+.container {
+  width: 665px;
+  padding: 32px;
+  border-radius: 12px;
+  background-color: utils.$red-brt4;
+}
+
+.nameSection {
+  @include utils.flexbox(column, initial, initial);
+
+  gap: 8px;
+  margin-bottom: 12px;
+
+  .nameTitle {
+    @include utils.font-style('body1Bold');
+
+    color: utils.$primary;
+  }
+
+  .name {
+    @include utils.font-style('h1');
+
+    color: utils.$black;
+  }
+}
+
+.phoneAddressSection {
+  @include utils.flexbox(column, initial, initial);
+
+  gap: 12px;
+  margin-bottom: 28px;
+
+  .phoneSection,
+  .addressSection {
+    @include utils.font-style('body1');
+    @include utils.flexbox($justify: initial);
+
+    color: utils.$gray-brt1;
+    gap: 6px;
+  }
+}
+
+.descriptionSection {
+  .description {
+    @include utils.font-style('body1');
+  }
+}
