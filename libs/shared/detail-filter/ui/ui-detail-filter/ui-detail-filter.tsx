@@ -7,9 +7,9 @@ import classNames from 'classnames/bind'
 import Image from 'next/image'
 
 import {
-  CommonActiveBtn,
-  CommonActiveOutlineBtn,
-} from '@/libs/shared/common-click-btn/feature/common-btn'
+  ActiveBtn,
+  ActiveOutlineBtn,
+} from '@/libs/shared/click-btns/feature/click-btns'
 import { LOCATIONS } from '@/libs/shared/detail-filter/data-access/data-access-location'
 import UiDivider from '@/libs/shared/detail-filter/ui/ui-divider/ui-divider'
 import UiLocationContainer from '@/libs/shared/detail-filter/ui/ui-location-container/ui-location-container'
@@ -105,18 +105,10 @@ export default function UiDetailFilter() {
         </div>
         <div className={cx('buttonContainer')}>
           <div className={cx('initButton')}>
-            <CommonActiveOutlineBtn
-              text="초기화"
-              size="large"
-              onClick={handleInit}
-            />
+            <ActiveOutlineBtn text="초기화" size="large" onClick={handleInit} />
           </div>
           <div className={cx('applyButton')}>
-            <CommonActiveBtn
-              text="적용하기"
-              size="large"
-              onClick={handleApply}
-            />
+            <ActiveBtn text="적용하기" size="large" onClick={handleApply} />
           </div>
         </div>
       </UiSimpleLayout>

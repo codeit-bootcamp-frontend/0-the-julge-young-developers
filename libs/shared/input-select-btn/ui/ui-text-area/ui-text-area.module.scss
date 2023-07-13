@@ -1,7 +1,7 @@
 @use '@/styles/utils';
 
 .wrap {
-  @include utils.flexbox(column, start, start);
+  @include utils.flexbox(column, flex-start, flex-start);
 
   gap: 8px;
 }
