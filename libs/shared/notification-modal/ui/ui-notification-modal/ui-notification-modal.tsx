@@ -13,6 +13,11 @@ import styles from './ui-notification-modal.module.scss'
 
 const cx = classNames.bind(styles)
 
+/**
+ * @param itemList 알림 정보가 들어있는 배열 데이터
+ * @param onClose 알림창 close하는 이벤트 핸들러 함수
+ * @returns 알림창 리턴
+ */
 export default function UiNotificationModal({
   itemList,
   onClose,
