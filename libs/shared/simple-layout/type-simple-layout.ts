@@ -1,4 +1,4 @@
-interface UiTitleContentLayoutProps {
+interface UiSimpleLayoutProps {
   title: string
   titleAlign?: 'start' | 'center'
   titleSize?: number
@@ -6,4 +6,4 @@ interface UiTitleContentLayoutProps {
   children: React.ReactNode
 }
 
-export type { UiTitleContentLayoutProps }
+export type { UiSimpleLayoutProps }

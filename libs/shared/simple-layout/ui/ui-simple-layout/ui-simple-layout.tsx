@@ -1,8 +1,8 @@
 import classNames from 'classnames/bind'
 
-import { UiTitleContentLayoutProps } from '@/libs/shared/title-content-layout/type-title-content-layout'
+import { UiSimpleLayoutProps } from '@/libs/shared/simple-layout/type-simple-layout'
 
-import styles from './ui-title-content-layout.module.scss'
+import styles from './ui-simple-layout.module.scss'
 
 const cx = classNames.bind(styles)
 
@@ -14,13 +14,13 @@ const cx = classNames.bind(styles)
  * @param children 레이아웃 content
  * @returns title과 content를 결합한 기본 레이아웃
  */
-export default function UiTitleContentLayout({
+export default function UiSimpleLayout({
   title,
   titleAlign = 'start',
   titleSize = 28,
   gap = 0,
   children,
-}: UiTitleContentLayoutProps) {
+}: UiSimpleLayoutProps) {
   return (
     <>
       <h1

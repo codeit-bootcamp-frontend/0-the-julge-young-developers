@@ -15,7 +15,7 @@ import UiDivider from '@/libs/shared/detail-filter/ui/ui-divider/ui-divider'
 import UiLocationContainer from '@/libs/shared/detail-filter/ui/ui-location-container/ui-location-container'
 import UiSelectedChip from '@/libs/shared/detail-filter/ui/ui-selected-chip/ui-selected-chip'
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
-import UiTitleContentLayout from '@/libs/shared/title-content-layout/ui/ui-title-content-layout/ui-title-content-layout'
+import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
 import styles from './ui-detail-filter.module.scss'
 
@@ -59,7 +59,7 @@ export default function UiDetailFilter() {
       <button className={cx('closeButton')} type="button">
         <Image src="/images/close.svg" alt="닫기" width={24} height={24} />
       </button>
-      <UiTitleContentLayout title="상세 필터" titleSize={20} gap={24}>
+      <UiSimpleLayout title="상세 필터" titleSize={20} gap={24}>
         <div className={cx('filterContent')}>
           <div className={cx('section')}>
             <h2 className={cx('subtitle')}>위치</h2>
@@ -119,7 +119,7 @@ export default function UiDetailFilter() {
             />
           </div>
         </div>
-      </UiTitleContentLayout>
+      </UiSimpleLayout>
     </div>
   )
 }

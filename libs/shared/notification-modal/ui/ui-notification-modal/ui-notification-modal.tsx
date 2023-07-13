@@ -7,7 +7,7 @@ import {
   UiAcceptedNotificationItem,
   UiRejectedNotificationItem,
 } from '@/libs/shared/notification-modal/ui/ui-notification-item/ui-notification-item'
-import UiTitleContentLayout from '@/libs/shared/title-content-layout/ui/ui-title-content-layout/ui-title-content-layout'
+import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
 import styles from './ui-notification-modal.module.scss'
 
@@ -30,7 +30,7 @@ export default function UiNotificationModal({
       >
         <Image src="/images/close.svg" alt="닫기" width={24} height={24} />
       </button>
-      <UiTitleContentLayout
+      <UiSimpleLayout
         title={`알림 ${itemList.length}개`}
         titleSize={20}
         gap={16}
@@ -54,7 +54,7 @@ export default function UiNotificationModal({
             ),
           )}
         </div>
-      </UiTitleContentLayout>
+      </UiSimpleLayout>
     </div>
   )
 }
