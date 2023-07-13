@@ -17,31 +17,28 @@ interface UiSelectProps {
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-type UiSelectAllProps = UiSelectProps & Options & InputProps
-
 export default forwardRef(function UiSelect(
   {
     title,
+    isRequired = false,
     isOpen = false,
     selectedOption,
+    dropdownRef,
     toggleDropdown,
     handleOptionSelect,
     handleInputChange,
     options,
-    isRequired = false,
-    dropdownRef,
-  }: UiSelectAllProps,
+  }: UiSelectProps & Options & InputProps,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
   return (
     <div className={cx('selectWrap')} ref={dropdownRef}>
       <div className={cx('title')}>{title}</div>
-      <button type="button" className={cx('select')}>
+      <button type="button" className={cx('select')} onClick={toggleDropdown}>
         <input
           className={cx('inputBox')}
           required={isRequired}
           onChange={handleInputChange}
-          onClick={toggleDropdown}
           value={selectedOption}
           placeholder="선택"
           ref={ref}
@@ -53,9 +50,11 @@ export default forwardRef(function UiSelect(
           width={16}
           height={16}
         />
-        <div className={cx('optionsWrap')}>
+      </button>
+      <div className={cx('optionsWrap')}>
+        <div className={cx('options')}>
           {isOpen && (
-            <ul className={cx('options')}>
+            <ul className={cx('optionsUl')}>
               {options.map((option) => (
                 <li key={option.value} className={cx('option')}>
                   <button
@@ -70,7 +69,7 @@ export default forwardRef(function UiSelect(
             </ul>
           )}
         </div>
-      </button>
+      </div>
     </div>
   )
 })

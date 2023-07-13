@@ -42,8 +42,14 @@
 
 .optionsWrap {
   position: relative;
+  width: 100%;
+  height: 58px;
+}
 
-  .options {
+.options {
+  position: relative;
+
+  .optionsUl {
     @include utils.flexbox(column, start, center);
 
     position: absolute;
