@@ -1,3 +1,5 @@
+import { Options } from './type-select'
+
 export interface InputProps {
   title: string
   isRequired: boolean
@@ -18,3 +20,11 @@ export interface UiImageInputProps {
   onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void
   children: React.ReactNode
 }
+
+export type Variant = {
+  variant: 'input' | 'explain'
+}
+export type FeatureInputProps = Variant &
+  InputProps &
+  Partial<Options> &
+  Partial<Valid>

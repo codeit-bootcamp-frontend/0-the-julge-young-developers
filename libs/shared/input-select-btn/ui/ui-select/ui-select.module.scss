@@ -1,7 +1,7 @@
 @use '@/styles/utils';
 
 .selectWrap {
-  @include utils.flexbox(column, start, start);
+  @include utils.flexbox(column, flex-start, flex-start);
 
   gap: 8px;
 }
@@ -50,7 +50,7 @@
   position: relative;
 
   .optionsUl {
-    @include utils.flexbox(column, start, center);
+    @include utils.flexbox(column, flex-start, center);
 
     position: absolute;
     top: 8px;
