@@ -1,0 +1,43 @@
+@use '@/styles/utils';
+
+.wrap {
+  @include utils.flexbox(column, start, start);
+
+  gap: 8px;
+}
+
+.title {
+  @include utils.font-style('body1');
+
+  line-height: 26px;
+}
+
+.imgWrap {
+  width: 483px;
+  height: 276px;
+  border-radius: 12px;
+}
+
+.buttonContent {
+  @include utils.flexbox(column, center, center);
+
+  gap: 11px;
+}
+
+.addImageText {
+  color: utils.$gray-brt2;
+  @include utils.font-style('body1Bold');
+
+  line-height: 20px;
+}
+
+.preImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.input {
+  display: none;
+}
