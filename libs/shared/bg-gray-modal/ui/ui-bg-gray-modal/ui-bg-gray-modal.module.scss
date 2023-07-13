@@ -4,29 +4,35 @@
   position: fixed;
   inset: 70px 0 0;
   width: 100%;
-  padding: 60px 0;
   overflow: auto;
-  background-color: utils.$gray-brt5;
+  background-color: utils.$gray-brt6;
 }
 
 .modalContent {
+  position: relative;
   max-width: 964px;
   margin: 0 auto;
 }
 
 .close {
-  float: right;
+  position: absolute;
+  top: 60px;
+  right: 0;
 }
 
 @include utils.tablet {
-  .bgGray {
-    padding: 60px 32px;
+  .close {
+    right: 32px;
   }
 }
 
 @include utils.mobile {
   .bgGray {
     top: 102px;
-    padding: 40px 12px;
+  }
+
+  .close {
+    top: 40px;
+    right: 12px;
   }
 }

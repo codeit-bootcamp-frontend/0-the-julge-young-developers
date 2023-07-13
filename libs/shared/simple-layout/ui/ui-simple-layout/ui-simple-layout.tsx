@@ -22,7 +22,7 @@ export default function UiSimpleLayout({
   children,
 }: UiSimpleLayoutProps) {
   return (
-    <>
+    <div className={cx('container')}>
       <h1
         className={cx('title')}
         style={{
@@ -34,6 +34,6 @@ export default function UiSimpleLayout({
         {title}
       </h1>
       {children}
-    </>
+    </div>
   )
 }
