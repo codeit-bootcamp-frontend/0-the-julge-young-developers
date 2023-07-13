@@ -16,8 +16,8 @@ export default forwardRef(function Select(
     isOpen,
     selectedOption,
     toggleDropdown,
-    handleOptionSelect,
-    handleInputChange,
+    onClickOptionSelect,
+    onChangeInput,
     filteredOptions,
     isRequired,
     dropdownRef,
@@ -29,8 +29,8 @@ export default forwardRef(function Select(
       isOpen={isOpen}
       selectedOption={selectedOption}
       toggleDropdown={toggleDropdown}
-      handleOptionSelect={handleOptionSelect}
-      handleInputChange={handleInputChange}
+      onClickOptionSelect={onClickOptionSelect}
+      onChangeInput={onChangeInput}
       options={filteredOptions}
       isRequired={isRequired}
       dropdownRef={dropdownRef}

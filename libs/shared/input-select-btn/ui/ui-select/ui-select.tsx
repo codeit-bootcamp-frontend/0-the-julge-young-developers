@@ -16,8 +16,8 @@ interface UiSelectProps {
   selectedOption: string
   dropdownRef: ForwardedRef<HTMLDivElement>
   toggleDropdown: () => void
-  handleOptionSelect: (value: string) => void
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onClickOptionSelect: (value: string) => void
+  onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default forwardRef(function UiSelect(
@@ -28,8 +28,8 @@ export default forwardRef(function UiSelect(
     selectedOption,
     dropdownRef,
     toggleDropdown,
-    handleOptionSelect,
-    handleInputChange,
+    onClickOptionSelect,
+    onChangeInput,
     options,
   }: UiSelectProps & Options & InputProps,
   ref: ForwardedRef<HTMLInputElement>,
@@ -41,7 +41,7 @@ export default forwardRef(function UiSelect(
         <input
           className={cx('inputBox')}
           required={isRequired}
-          onChange={handleInputChange}
+          onChange={onChangeInput}
           value={selectedOption}
           placeholder="선택"
           ref={ref}
@@ -62,7 +62,7 @@ export default forwardRef(function UiSelect(
                 <li key={option.value} className={cx('option')}>
                   <button
                     type="button"
-                    onClick={() => handleOptionSelect(option.value)}
+                    onClick={() => onClickOptionSelect(option.value)}
                     className={cx('optionButton')}
                   >
                     {option.value}
