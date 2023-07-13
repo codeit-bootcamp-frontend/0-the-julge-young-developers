@@ -18,6 +18,11 @@ interface UiDetailFilterProps {
 
 interface DetailFilterProps {
   onClickCloseButton: (isShow: boolean) => void
+  onClickApplyButton: (
+    selectedLocations: Set<string>,
+    start: string | undefined,
+    price: string | undefined,
+  ) => void
 }
 
 export type { UiLocationContainerProps, UiDetailFilterProps, DetailFilterProps }

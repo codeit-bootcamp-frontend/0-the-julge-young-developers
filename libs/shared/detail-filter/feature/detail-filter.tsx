@@ -7,6 +7,7 @@ import UiDetailFilter from '@/libs/shared/detail-filter/ui/ui-detail-filter/ui-d
 
 export default function DetailFilter({
   onClickCloseButton,
+  onClickApplyButton,
 }: DetailFilterProps) {
   const [selectedLocations, setSelectedLocations] = useState<Set<string>>(
     new Set(),
@@ -25,7 +26,12 @@ export default function DetailFilter({
   }
 
   const handleClickApplyButton = () => {
-    /* api 요청 필요 */
+    /* api 요청 */
+    onClickApplyButton(
+      selectedLocations,
+      startInputRef.current?.value,
+      priceInputRef.current?.value,
+    )
     console.log('선택 위치:', selectedLocations)
     console.log('시작일:', startInputRef.current?.value)
     console.log('금액:', priceInputRef.current?.value)
