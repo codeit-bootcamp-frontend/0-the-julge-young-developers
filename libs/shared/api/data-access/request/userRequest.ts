@@ -37,7 +37,7 @@ import { getRequest, postRequest, putRequest } from '../common'
       }
     ```
 
-      @example 에러 처리 예시 
+    @example 에러 처리 예시 
     ```
     if (response instanceof Error) {
         // 알 수 없는 에러 처리 
@@ -46,6 +46,71 @@ import { getRequest, postRequest, putRequest } from '../common'
       } else {
         // response 데이터 가공 
       }
+    ```
+
+    @example 로딩 처리 선택지 
+    ```
+    // 1. next/dynamic (api 받아서 렌더링 하는 데이터의 경우)
+    import dynamic from 'next/dynamic'
+    const UiSignIn = dynamic(() => import('@/libs/signin/ui/ui-signin/ui-signin'), {
+      ssr: false,
+    loading: () => <div>다이나믹</div>,
+    })
+
+    // 2. loading state 활용하기
+    const [loading, setLoading] = useState(true)
+  const handleClickSignIn = async (email: string, password: string) => {
+    setLoading(false)
+    const res = await signIn(email, password)
+    if (res instanceof Error) {
+      // 알 수 없는 에러 처리
+    } else if (typeof res === 'string') {
+      // 에러 메시지에 맞게 처리
+    } else {
+      // 데이터 가공 구간
+      // setLoading(true) // "라우터 처리" ? true 처리 필요 없음 : true 처리 필요함
+      const { token } = res.item
+      setCookie('token', token)
+      router.push('/')
+    }
+  }
+
+  return (
+    <div>
+      {!loading && <div>페이지 이동 중...</div>}
+      {loading && (
+        <UiSignIn
+          userInputRefs={userInputRefs}
+          handleClickButton={handleClickButton}
+        />
+      )}
+    </div>
+  )
+    ```
+
+    
+
+    ```
+    // 3. 서버 컴포넌트 로딩 처리 (loading.tsx)
+    // 적절한 경로에 loading.tsx 파일 작성하고
+    // 페이지 에서 다음과 같이 api 요청을 하면 됩니다. 
+    // app/(main)/loading.tsx
+
+    export default function Loading() {
+  // You can add any UI inside Loading, including a Skeleton.
+  return <div>서버 컴포넌트 로딩 중</div>
+}
+
+
+    // app/(main)/page.tsx 
+
+    import { signIn } from '@/libs/shared/api/data-access/request/userRequest'
+
+export default async function Home() {
+  const data = await signIn('nodejs9999@nodejs.com', 'nodejs99')
+  return <main>Home</main>
+}
+
     ```
  * 
  * @param email 유저 이메일 (string)
