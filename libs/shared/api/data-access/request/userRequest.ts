@@ -173,6 +173,7 @@ const getUserInfo = async (uid: string): Promise<UserData | string | Error> => {
         'henry',
         '010-0000-0000',
         '서울시 종로구',
+        '자기 소개'
       )
     ```
 
@@ -191,6 +192,7 @@ const getUserInfo = async (uid: string): Promise<UserData | string | Error> => {
  * @param name 유저 이름 (string)
  * @param phone 유저 연락처 (string)
  * @param address 유저 주소 (양식 : "서울시 XX구") (string)
+ * @param bio 유저 소개 (string)
  *
  * @returns
  *   - 성공(200) : 유저 데이터를 담고 있는 item 객체와 hateos 개념인 links 객체
@@ -204,7 +206,7 @@ const updateUserInfo = async (
   name: string,
   phone: string,
   address: string,
-  bio = '성',
+  bio: string,
 ): Promise<UserData | string | Error> => {
   try {
     const response = await putRequest<UserData>(`/users/${uid}`, {
