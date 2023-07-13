@@ -25,6 +25,9 @@ import { getRequest, putRequest } from '../common'
         // response 데이터 가공 
       }
     ```
+
+    @example 로딩 처리 예시 
+      - signIn JSDOC 참조 
  * 
  * @param userId 유저 id (string)
  * @param offset? 조회 시작 기준 (number)
@@ -83,6 +86,9 @@ const getUserAlertsList = async (
         // response 데이터 가공 
       }
     ```
+
+    @example 로딩 처리 예시 
+      - signIn JSDOC 참조 
  * 
  * @param userId 유저 id (string)
  * @param alertId 알림창 id (string)

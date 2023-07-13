@@ -108,6 +108,10 @@ const registerShop = async (
         // response 데이터 가공 
       }
     ```
+
+    @example 로딩 처리 예시 
+      - signIn JSDOC 참조 
+
  * @param shopId : 가게 id (string)
  * 
  * @returns
@@ -156,6 +160,10 @@ const getShopInfo = async (
         // response 데이터 가공 
       }
     ```
+
+    @example 로딩 처리 예시 
+      - signIn JSDOC 참조 
+      
  * @param shopId : 가게 id (string)
  * 
  * @returns

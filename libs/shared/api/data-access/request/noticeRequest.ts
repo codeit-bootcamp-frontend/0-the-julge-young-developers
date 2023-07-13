@@ -41,6 +41,9 @@ import { getRequest, postRequest, putRequest } from '../common'
         // response 데이터 가공 
       }
     ```
+
+    @example 로딩 처리 예시 
+      - signIn JSDOC 참조 
  * 
  * @param offset? 조회 시작 기준 (number)
  * @param limit? 조회 개수 (number)
@@ -125,6 +128,9 @@ const getNotices = async ({
         // response 데이터 가공 
       }
     ```
+
+    @example 로딩 처리 예시 
+      - signIn JSDOC 참조 
  * 
  * @param shopId 가게 id (string)
  * @param offset? 조회 시작 기준 (number)
@@ -188,6 +194,9 @@ const getShopNotices = async ({
         // response 데이터 가공 
       }
     ```
+
+    @example 로딩 처리 예시 
+      - signIn JSDOC 참조 
  * 
  * @param shopId 가게 id (string)
  * @param hourlyPay 시급 (number)
@@ -252,6 +261,9 @@ const registerShopNotice = async ({
         // response 데이터 가공 
       }
     ```
+
+    @example 로딩 처리 예시 
+      - signIn JSDOC 참조 
  * 
  * @param shopId 가게 id (string)
  * @param noticeId 공고 id (string)
@@ -302,6 +314,9 @@ const getShopNotice = async (
         // response 데이터 가공 
       }
     ```
+
+    @example 로딩 처리 예시 
+      - signIn JSDOC 참조 
  * 
  * @param shopId 가게 id (string)
  * @param noticeId 공고 id (string)

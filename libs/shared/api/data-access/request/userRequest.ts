@@ -161,6 +161,9 @@ const signIn = async (
         // response 데이터 가공 
       }
     ```
+
+    @example 로딩 처리 예시 
+      - signIn JSDOC 참조 
  * 
  * @param email 유저 이메일 (string)
  * @param password 유저 비밀번호 (string)
@@ -209,6 +212,9 @@ const signUp = async (
         // res 데이터 가공 
       }
     ```
+
+    @example 로딩 처리 예시 
+      - signIn JSDOC 참조 
  * 
  * @param uid 유저 id (string)
  *
@@ -252,6 +258,9 @@ const getUserInfo = async (uid: string): Promise<UserData | string | Error> => {
         // res 데이터 가공 
       }
     ```
+
+    @example 로딩 처리 예시 
+      - signIn JSDOC 참조 
  * 
  * @param uid 유저 id (string)
  * @param name 유저 이름 (string)
