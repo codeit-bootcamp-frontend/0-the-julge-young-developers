@@ -10,6 +10,13 @@
   font-weight: 700;
 }
 
+.subtitle {
+  @include utils.font-style('body1Bold');
+
+  margin-bottom: 8px;
+  color: utils.$primary;
+}
+
 @include utils.tablet {
   .container {
     width: 100%;
