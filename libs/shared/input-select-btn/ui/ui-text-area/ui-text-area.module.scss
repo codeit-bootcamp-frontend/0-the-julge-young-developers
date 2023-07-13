@@ -20,6 +20,7 @@
   border-radius: 5px;
   color: utils.$black;
   line-height: 26px;
+  resize: none;
   @include utils.font-style('body1');
 
   &::placeholder {
