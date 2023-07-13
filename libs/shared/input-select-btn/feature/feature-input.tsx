@@ -1,7 +1,11 @@
 import React, { ForwardedRef, forwardRef } from 'react'
 
+import { Options } from 'next/dist/server/base-server'
+
 import UiInput from '@/libs/shared/input-select-btn/ui/ui-input/ui-input'
 import UiTextArea from '@/libs/shared/input-select-btn/ui/ui-text-area/ui-text-area'
+
+import { InputProps, Valid } from '../types/type-input'
 
 type Variant = {
   variant: string

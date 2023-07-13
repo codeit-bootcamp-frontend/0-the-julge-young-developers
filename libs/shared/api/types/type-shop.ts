@@ -1,5 +1,7 @@
+import { Links } from './type-user'
+
 // shopRequest body data
-interface ShopInfo {
+export interface ShopInfo {
   name: string
   category:
     | '한식'
@@ -44,7 +46,7 @@ interface ShopInfo {
 }
 
 // shopRequest Response data
-interface ShopData {
+export interface ShopData {
   item: {
     id: string
     name: string
@@ -68,12 +70,4 @@ interface ShopData {
     }
   }
   links: Links[]
-}
-
-// createPresigned의 response data
-interface CreatePresignedURLData {
-  item: {
-    url: 'string' // Presigned URL
-  }
-  links: Link[]
 }
