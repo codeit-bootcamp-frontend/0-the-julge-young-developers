@@ -1,0 +1,33 @@
+@use '@/styles/utils';
+
+.wrapper {
+  @include utils.flexbox(column);
+
+  width: 100%;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  border: 1px solid utils.$gray-brt4;
+  border-radius: 12px;
+  gap: 24px;
+
+  @include utils.mobile {
+    gap: 16px;
+  }
+}
+
+.text {
+  @include utils.font-style(body1);
+
+  color: utils.$black;
+  @include utils.mobile {
+    @include utils.font-style(body2);
+  }
+}
+
+.buttonWrapper {
+  width: 346px;
+
+  @include utils.mobile {
+    width: 150px;
+  }
+}
