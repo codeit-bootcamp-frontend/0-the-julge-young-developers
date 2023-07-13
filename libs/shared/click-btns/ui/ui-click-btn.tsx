@@ -2,7 +2,9 @@ import React from 'react'
 
 import classNames from 'classnames/bind'
 
-import styles from './ui-common-click-btn.module.scss'
+import { BtnProps } from '@/libs/shared/click-btns/types/type-click-btn.'
+
+import styles from './ui-click-btn.module.scss'
 
 const cx = classNames.bind(styles)
 
@@ -13,7 +15,7 @@ function UiCommonClickBtn({
   status,
   confirm,
   onClick,
-}: CommonBtnProps) {
+}: BtnProps) {
   return (
     <button
       type="button"

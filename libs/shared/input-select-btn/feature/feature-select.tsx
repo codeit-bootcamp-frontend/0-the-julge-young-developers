@@ -1,68 +1,45 @@
 'use client'
 
-import { ForwardedRef, forwardRef, useEffect, useRef, useState } from 'react'
+import { ForwardedRef, forwardRef } from 'react'
 
-import UiSelect from '@/libs/shared/input-select-btn/ui/ui-select/ui-select'
+import UiSearchSelect from '@/libs/shared/input-select-btn/ui/ui-select/ui-search-select'
+import useSelect from '@/libs/shared/input-select-btn/util/useSelect'
+
+import { SelectProps } from '../types/type-select'
+import UiSelectTopShell from '../ui/ui-select/ui-select-top-shell'
 
 export default forwardRef(function Select(
-  { title, options, isRequired }: InputProps & Options,
+  props: SelectProps,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
-  const [isOpen, setIsOpen] = useState(false)
-  const [selectedOption, setSelectedOption] = useState('')
-
-  const dropdownRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false)
-      }
-    }
-
-    document.addEventListener('click', handleClickOutside)
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside)
-    }
-  }, [])
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen)
-    setSelectedOption('')
-  }
-
-  const handleOptionSelect = (value: string) => {
-    setSelectedOption(value)
-    setIsOpen(false)
-  }
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value
-    setSelectedOption(inputValue)
-
-    setIsOpen(true)
-  }
-
-  const filteredOptions = options.filter((option) =>
-    option.value.toLowerCase().includes(selectedOption.toLowerCase()),
-  )
+  const { variant, title, isRequired } = props
+  const {
+    isOpen,
+    selectedOption,
+    toggleDropdown,
+    onClickOptionSelect,
+    onChangeInput,
+    filteredOptions,
+    dropdownRef,
+  } = useSelect(props)
 
   return (
-    <UiSelect
+    <UiSearchSelect
+      variant={variant}
       title={title}
       isOpen={isOpen}
-      selectedOption={selectedOption}
       toggleDropdown={toggleDropdown}
-      handleOptionSelect={handleOptionSelect}
-      handleInputChange={handleInputChange}
+      onClickOptionSelect={onClickOptionSelect}
       options={filteredOptions}
-      isRequired={isRequired}
       dropdownRef={dropdownRef}
-      ref={ref}
-    />
+    >
+      <UiSelectTopShell
+        variant={variant}
+        isRequired={isRequired}
+        selectedOption={selectedOption}
+        onChangeInput={onChangeInput}
+        ref={ref}
+      />
+    </UiSearchSelect>
   )
 })

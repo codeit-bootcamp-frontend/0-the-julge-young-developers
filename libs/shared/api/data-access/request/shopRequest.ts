@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+import { ShopData, ShopInfo } from '../../types/type-shop'
 import { getRequest, postRequest, putRequest } from '../common'
 
 /**

@@ -2,6 +2,8 @@ import { ForwardedRef, forwardRef } from 'react'
 
 import classNames from 'classnames/bind'
 
+import { UiImageInputProps } from '@/libs/shared/input-select-btn/types/type-input'
+
 import styles from './ui-image-input.module.scss'
 
 const cx = classNames.bind(styles)

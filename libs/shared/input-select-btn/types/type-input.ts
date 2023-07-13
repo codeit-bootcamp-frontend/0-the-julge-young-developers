@@ -1,24 +1,18 @@
-type Option = {
-  value: string
-}
+import { Options } from './type-select'
 
-interface Options {
-  options: Option[]
-}
-
-interface InputProps {
+export interface InputProps {
   title: string
   isRequired: boolean
   suffix?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-interface Valid {
+export interface Valid {
   valid: string
   isValid: boolean
 }
 
-interface UiImageInputProps {
+export interface UiImageInputProps {
   title: string
   selectedImage: string
   onDropImgae: (e: React.DragEvent<HTMLDivElement>) => void
@@ -26,3 +20,11 @@ interface UiImageInputProps {
   onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void
   children: React.ReactNode
 }
+
+export type Variant = {
+  variant: 'input' | 'explain'
+}
+export type FeatureInputProps = Variant &
+  InputProps &
+  Partial<Options> &
+  Partial<Valid>

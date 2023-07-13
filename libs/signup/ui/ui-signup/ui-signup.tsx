@@ -4,7 +4,7 @@ import { MutableRefObject } from 'react'
 
 import classnames from 'classnames/bind'
 
-import { CommonActiveBtn } from '@/libs/shared/common-click-btn/feature/common-btn'
+import { ActiveBtn } from '@/libs/shared/click-btns/feature/click-btns'
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 import { UserType } from '@/libs/signup/type-signup'
@@ -82,11 +82,7 @@ export default function UiSignUp({
             userType={userType}
             onClick={handleClickSelectUserType}
           />
-          <CommonActiveBtn
-            text="가입하기"
-            size="large"
-            onClick={handleClickButton}
-          />
+          <ActiveBtn text="가입하기" size="large" onClick={handleClickButton} />
         </form>
       </UiSimpleLayout>
     </div>
