@@ -5,8 +5,8 @@ import { MutableRefObject } from 'react'
 import classnames from 'classnames/bind'
 
 import { CommonActiveBtn } from '@/libs/shared/common-click-btn/feature/common-btn'
-import UiCommonLayout from '@/libs/shared/common-layout/ui/ui-common-layout/ui-common-layout'
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
+import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
 import styles from './ui-signin.module.scss'
 
@@ -21,7 +21,7 @@ export default function UiSignIn({
 }) {
   return (
     <div className={cx('wrapper')}>
-      <UiCommonLayout
+      <UiSimpleLayout
         title="로그인"
         titleAlign="center"
         titleSize={28}
@@ -50,7 +50,7 @@ export default function UiSignIn({
             onClick={handleClickButton}
           />
         </form>
-      </UiCommonLayout>
+      </UiSimpleLayout>
     </div>
   )
 }
