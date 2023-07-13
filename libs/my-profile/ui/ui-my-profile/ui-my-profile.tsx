@@ -3,6 +3,7 @@ import classNames from 'classnames/bind'
 import Image from 'next/image'
 
 import { UiMyProfileProps } from '@/libs/my-profile/type-my-profile'
+import { ActiveOutlineBtn } from '@/libs/shared/click-btns/feature/click-btns'
 
 import styles from './ui-my-profile.module.scss'
 
@@ -13,6 +14,7 @@ export default function UiMyProfile({
   phone,
   address,
   description,
+  onClickEditButton,
 }: UiMyProfileProps) {
   return (
     <div className={cx('container')}>
@@ -37,6 +39,13 @@ export default function UiMyProfile({
       </div>
       <div className={cx('descriptionSection')}>
         <p>{description}</p>
+      </div>
+      <div className={cx('editButton')}>
+        <ActiveOutlineBtn
+          text="편집하기"
+          size="large"
+          onClick={() => onClickEditButton()}
+        />
       </div>
     </div>
   )

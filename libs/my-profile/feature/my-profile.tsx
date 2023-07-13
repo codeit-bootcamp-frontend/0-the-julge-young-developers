@@ -1,3 +1,5 @@
+'use client'
+
 import { MyProfileProps } from '@/libs/my-profile/type-my-profile'
 import UiMyProfile from '@/libs/my-profile/ui/ui-my-profile/ui-my-profile'
 

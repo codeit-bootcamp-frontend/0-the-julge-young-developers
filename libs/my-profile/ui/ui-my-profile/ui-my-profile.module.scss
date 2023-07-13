@@ -1,6 +1,7 @@
 @use '@/styles/utils';
 
 .container {
+  position: relative;
   width: 665px;
   padding: 32px;
   border-radius: 12px;
@@ -45,5 +46,53 @@
 .descriptionSection {
   .description {
     @include utils.font-style('body1');
+  }
+}
+
+.editButton {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  width: 169px;
+}
+
+@include utils.tablet {
+  .container {
+    width: 100%;
+  }
+}
+
+@include utils.mobile {
+  .container {
+    padding: 20px;
+  }
+
+  .nameSection {
+    .nameTitle {
+      @include utils.font-style('body2Bold');
+    }
+
+    .name {
+      @include utils.font-style('h2');
+    }
+  }
+
+  .phoneAddressSection {
+    .phoneSection,
+    .addressSection {
+      @include utils.font-style('body2');
+    }
+  }
+
+  .descriptionSection {
+    .description {
+      @include utils.font-style('body2');
+    }
+  }
+
+  .editButton {
+    top: 20px;
+    right: 20px;
+    width: 108px;
   }
 }
