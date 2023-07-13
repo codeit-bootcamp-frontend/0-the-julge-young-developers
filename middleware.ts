@@ -10,7 +10,7 @@ export function middleware(req: NextRequest) {
   }
 
   // 로그인된 유저만 접근 O (내 가게, 내 프로필)
-  if (pathname.startsWith('/my-store') && !token) {
+  if (pathname.startsWith('/my-shop') && !token) {
     return NextResponse.redirect(new URL('/signin', req.url))
   }
   if (pathname.startsWith('/my-profile') && !token) {

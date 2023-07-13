@@ -5,3 +5,8 @@ export interface TypeButtonProps {
 }
 
 export type UserType = 'employee' | 'employer'
+
+export interface UserTypeProps {
+  userType: UserType
+  onClick: (type: UserType) => void
+}

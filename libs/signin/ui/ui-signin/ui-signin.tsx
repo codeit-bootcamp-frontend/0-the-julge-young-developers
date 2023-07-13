@@ -1,5 +1,7 @@
 'use client'
 
+import { MutableRefObject } from 'react'
+
 import classnames from 'classnames/bind'
 
 import { CommonActiveBtn } from '@/libs/shared/common-click-btn/feature/common-btn'
@@ -11,14 +13,12 @@ import styles from './ui-signin.module.scss'
 const cx = classnames.bind(styles)
 
 export default function UiSignIn({
-  onClickSignIn,
+  userInputRefs,
+  handleClickButton,
 }: {
-  onClickSignIn: () => null
+  userInputRefs: MutableRefObject<HTMLInputElement[]>
+  handleClickButton: () => void
 }) {
-  const handleClickButton = () => {
-    onClickSignIn()
-  }
-
   return (
     <div className={cx('wrapper')}>
       <UiCommonLayout
@@ -33,12 +33,16 @@ export default function UiSignIn({
             title="이메일"
             isValid={false}
             isRequired={true}
+            // eslint-disable-next-line no-return-assign, no-param-reassign
+            ref={(el: HTMLInputElement) => (userInputRefs.current[0] = el)}
           />
           <Input
             variant="input"
             title="비밀번호"
             isValid={false}
             isRequired={true}
+            // eslint-disable-next-line no-return-assign, no-param-reassign
+            ref={(el: HTMLInputElement) => (userInputRefs.current[1] = el)}
           />
           <CommonActiveBtn
             text="로그인 하기"

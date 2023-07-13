@@ -10,6 +10,7 @@ interface InputProps {
   title: string
   isRequired: boolean
   suffix?: string
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 interface Valid {
