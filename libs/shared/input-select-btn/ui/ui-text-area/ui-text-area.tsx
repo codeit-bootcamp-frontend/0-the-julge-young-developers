@@ -12,7 +12,7 @@ import styles from './ui-text-area.module.scss'
 const cx = classNames.bind(styles)
 
 export default forwardRef(function UiTextArea(
-  { title, valid, isValid, isRequired }: Valid & InputProps,
+  { title, defaultValue, valid, isValid, isRequired }: Valid & InputProps,
   ref: ForwardedRef<HTMLTextAreaElement>,
 ) {
   return (
@@ -23,6 +23,7 @@ export default forwardRef(function UiTextArea(
         placeholder="입력"
         required={isRequired}
         ref={ref}
+        defaultValue={defaultValue}
       />
       {isValid && <div className={cx('validText')}>{valid}</div>}
     </div>

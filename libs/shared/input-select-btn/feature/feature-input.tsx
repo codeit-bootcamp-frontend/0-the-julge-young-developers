@@ -37,6 +37,7 @@ export default forwardRef(function Input(
     return (
       <UiTextArea
         title={title}
+        defaultValue={defaultValue}
         valid={valid as string}
         isValid={isValid as boolean}
         isRequired={isRequired}

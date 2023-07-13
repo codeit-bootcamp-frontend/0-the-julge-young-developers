@@ -174,3 +174,9 @@ button {
   box-shadow: none;
   cursor: pointer;
 }
+
+input,
+textarea,
+button {
+  font-family: inherit;
+}
