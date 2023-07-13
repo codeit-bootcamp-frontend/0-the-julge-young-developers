@@ -8,9 +8,10 @@ const cx = classNames.bind(styles)
 
 export default forwardRef(function UiImageInput(
   {
-    handleDrop,
-    handleButtonClick,
-    handleInputChange,
+    onDropImgae,
+    onClickButton,
+    onChangeInput,
+
     title,
     selectedImage,
     children,
@@ -21,15 +22,11 @@ export default forwardRef(function UiImageInput(
     <div
       className={cx('wrap')}
       onDragOver={(e) => e.preventDefault()}
-      onDrop={handleDrop}
+      onDrop={onDropImgae}
     >
       <div className={cx('title')}>{title}</div>
       {selectedImage ? (
-        <button
-          type="button"
-          onClick={handleButtonClick}
-          className={cx('imgWrap')}
-        >
+        <button type="button" onClick={onClickButton} className={cx('imgWrap')}>
           <img
             src={selectedImage}
             alt="선택된 이미지"
@@ -42,7 +39,7 @@ export default forwardRef(function UiImageInput(
       <input
         type="file"
         accept="image/*"
-        onChange={handleInputChange}
+        onChange={onChangeInput}
         ref={ref}
         className={cx('input')}
       />

@@ -7,10 +7,10 @@ import UiImageInput from '@/libs/shared/input-select-btn/ui/ui-image-input/ui-im
 
 export default function ImageInput({
   title,
-  preSelectedImageUrl = undefined,
+  preselectedImageUrl = undefined,
 }: {
   title: string
-  preSelectedImageUrl?: string
+  preselectedImageUrl?: string
 }) {
   const [selectedImage, setSelectedImage] = useState<string>('')
   const fileInputRef = useRef<HTMLInputElement | null>(null)
@@ -30,22 +30,22 @@ export default function ImageInput({
     }
     // presignedURL 가져오는 uploadImage request로 변경
     // setSelectedImage('presignedURL')
-    // preSelectedImageUrl
+    // preselectedImageUrl
   }
 
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDropImage = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
     const file = e.dataTransfer.files[0]
     handleImage(file)
   }
 
-  const handleButtonClick = () => {
+  const handleClickButton = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click()
     }
   }
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     console.log(file)
     if (file) {
@@ -55,16 +55,16 @@ export default function ImageInput({
 
   return (
     <UiImageInput
-      handleDrop={handleDrop}
-      handleButtonClick={handleButtonClick}
-      handleInputChange={handleInputChange}
+      onDropImgae={handleDropImage}
+      onClickButton={handleClickButton}
+      onChangeInput={handleChangeInput}
       selectedImage={selectedImage}
       title={title}
       ref={fileInputRef}
     >
       <UiAddImageBtn
-        onClickAddImageButton={handleButtonClick}
-        preSelectedImageUrl={preSelectedImageUrl}
+        onClickAddImageButton={handleClickButton}
+        preselectedImageUrl={preselectedImageUrl}
       />
     </UiImageInput>
   )

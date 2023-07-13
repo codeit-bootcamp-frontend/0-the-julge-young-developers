@@ -8,23 +8,23 @@ const cx = classNames.bind(styles)
 
 export default function UiAddImageBtn({
   onClickAddImageButton,
-  preSelectedImageUrl,
+  preselectedImageUrl,
 }: {
   onClickAddImageButton: () => void
-  preSelectedImageUrl?: string
+  preselectedImageUrl?: string
 }) {
-  const buttonType = preSelectedImageUrl ? '변경' : '추가'
+  const buttonType = preselectedImageUrl ? '변경' : '추가'
   return (
     <button
       type="button"
       onClick={onClickAddImageButton}
       className={cx('addButton')}
     >
-      {preSelectedImageUrl && (
+      {preselectedImageUrl && (
         <img
           alt="예전에 선택한 이미지"
           className={cx('preSelectedImage')}
-          src={preSelectedImageUrl}
+          src={preselectedImageUrl}
         />
       )}
       <div className={cx('buttonContent')}>
@@ -33,9 +33,9 @@ export default function UiAddImageBtn({
           alt="이미지 추가하기 버튼 카메라 아이콘"
           width={32}
           height={32}
-          className={cx('camera', { preSelectedImageUrl })}
+          className={cx('camera', { preselectedImageUrl })}
         />
-        <div className={cx('addImageText', { preSelectedImageUrl })}>
+        <div className={cx('addImageText', { preselectedImageUrl })}>
           이미지 {buttonType}하기
         </div>
       </div>

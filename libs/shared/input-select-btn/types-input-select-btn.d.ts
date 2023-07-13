@@ -20,8 +20,8 @@ interface Valid {
 interface UiImageInputProps {
   title: string
   selectedImage: string
-  handleDrop: (e: React.DragEvent<HTMLDivElement>) => void
-  handleButtonClick: () => void
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onDropImgae: (e: React.DragEvent<HTMLDivElement>) => void
+  onClickButton: () => void
+  onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void
   children: React.ReactNode
 }

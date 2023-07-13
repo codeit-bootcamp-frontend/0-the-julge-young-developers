@@ -30,7 +30,7 @@
 }
 
 .camera {
-  &.preSelectedImageUrl {
+  &.preselectedImageUrl {
     filter: brightness(0%) invert(100%);
   }
 }
@@ -41,7 +41,7 @@
 
   line-height: 20px;
 
-  &.preSelectedImageUrl {
+  &.preselectedImageUrl {
     color: utils.$white;
   }
 }
