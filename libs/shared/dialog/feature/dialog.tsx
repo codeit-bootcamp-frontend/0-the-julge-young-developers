@@ -10,7 +10,7 @@ import UiConfirmDialog from '@/libs/shared/dialog/ui/ui-confirm-dialog/ui-confir
 /**
  * @param text 다이얼로그 본문 내용
  * @param onConfirm '확인' 버튼 이벤트 핸들러
- * @returns Confirm 다이얼로그 UI 리턴
+ * @returns Confirm 다이얼로그 리턴
  */
 function ConfirmDialog({ text, onConfirm }: ConfirmDialogProps) {
   return (
@@ -23,7 +23,7 @@ function ConfirmDialog({ text, onConfirm }: ConfirmDialogProps) {
  * @param text 다이얼로그 본문 내용
  * @param onCancel cancel 버튼 이벤트 핸들러
  * @param onAccept accept 버튼 이벤트 핸들러
- * @returns Action 다이얼로그 UI 리턴
+ * @returns Action 다이얼로그 리턴
  */
 function ActionDialog({ type, text, onCancel, onAccept }: ActionDialogProps) {
   return (
