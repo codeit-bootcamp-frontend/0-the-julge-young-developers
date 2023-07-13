@@ -1,3 +1,31 @@
+@use '@/styles/utils';
+
+.container {
+  max-width: 964px;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+
 .title {
   font-weight: 700;
+}
+
+.subtitle {
+  @include utils.font-style('body1Bold');
+
+  margin-bottom: 8px;
+  color: utils.$primary;
+}
+
+@include utils.tablet {
+  .container {
+    width: 100%;
+    padding: 60px 32px;
+  }
+}
+
+@include utils.mobile {
+  .container {
+    padding: 40px 12px;
+  }
 }

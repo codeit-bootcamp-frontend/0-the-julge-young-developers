@@ -18,11 +18,18 @@ export default function UiSimpleLayout({
   title,
   titleAlign = 'start',
   titleSize = 28,
+  subtitle,
+  subtitleSize = 16,
   gap = 0,
   children,
 }: UiSimpleLayoutProps) {
   return (
-    <>
+    <div className={cx('container')}>
+      {subtitle && (
+        <h2 className={cx('subtitle')} style={{ fontSize: subtitleSize }}>
+          {subtitle}
+        </h2>
+      )}
       <h1
         className={cx('title')}
         style={{
@@ -34,6 +41,6 @@ export default function UiSimpleLayout({
         {title}
       </h1>
       {children}
-    </>
+    </div>
   )
 }
