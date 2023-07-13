@@ -3,6 +3,14 @@ interface UiMyProfileProps {
   phone: string
   address: string
   description: string
+  onClickEditButton: () => void
 }
 
-export type { UiMyProfileProps }
+interface MyProfileProps {
+  name: string
+  phone: string
+  address: string
+  description: string
+}
+
+export type { UiMyProfileProps, MyProfileProps }
