@@ -4,12 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import { SelectProps } from '@/libs/shared/input-select-btn/types/type-select'
 
-export default function useSelect({
-  title,
-  isRequired,
-  options,
-  defaultValueIdx,
-}: SelectProps) {
+export default function useSelect({ options, defaultValueIdx }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [selectedOption, setSelectedOption] = useState(
     options[defaultValueIdx]?.value || '',
@@ -39,7 +34,6 @@ export default function useSelect({
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
-    // setSelectedOption('')
     setSearchedOption('')
   }
 
@@ -50,7 +44,7 @@ export default function useSelect({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value
-    // setSelectedOption(inputValue)
+    setSelectedOption(inputValue)
     setSearchedOption(inputValue)
     setIsOpen(true)
   }
@@ -60,7 +54,6 @@ export default function useSelect({
   )
 
   return {
-    title,
     isOpen,
     selectedOption,
     searchedOption,
@@ -68,7 +61,6 @@ export default function useSelect({
     onClickOptionSelect: handleOptionSelect,
     onChangeInput: handleInputChange,
     filteredOptions,
-    isRequired,
     dropdownRef,
   }
 }

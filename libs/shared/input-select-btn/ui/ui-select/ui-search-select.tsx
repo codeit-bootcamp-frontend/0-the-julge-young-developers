@@ -1,10 +1,9 @@
-import React, { ForwardedRef, forwardRef } from 'react'
+'use client'
 
 import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
-import { InputProps } from '@/libs/shared/input-select-btn/types/type-input'
 import {
   Options,
   UiSearchSelectProps,
@@ -14,32 +13,21 @@ import styles from './ui-search-select.module.scss'
 
 const cx = classNames.bind(styles)
 
-export default forwardRef(function UiSearchSelect(
-  {
-    title,
-    isRequired = false,
-    isOpen = false,
-    selectedOption,
-    dropdownRef,
-    toggleDropdown,
-    onClickOptionSelect,
-    onChangeInput,
-    options,
-  }: UiSearchSelectProps & Options & InputProps,
-  ref: ForwardedRef<HTMLInputElement>,
-) {
+export default function UiSearchSelect({
+  variant,
+  title,
+  isOpen = false,
+  dropdownRef,
+  toggleDropdown,
+  onClickOptionSelect,
+  options,
+  children,
+}: UiSearchSelectProps & Options) {
   return (
     <div className={cx('selectWrap')} ref={dropdownRef}>
       <div className={cx('title')}>{title}</div>
       <button type="button" className={cx('select')} onClick={toggleDropdown}>
-        <input
-          className={cx('inputBox')}
-          required={isRequired}
-          onChange={onChangeInput}
-          value={selectedOption}
-          placeholder="선택"
-          ref={ref}
-        />
+        {children}
         <Image
           src={isOpen ? '/images/dropdown-up.svg' : '/images/dropdown.svg'}
           className={cx('img')}
@@ -57,7 +45,7 @@ export default forwardRef(function UiSearchSelect(
                   <button
                     type="button"
                     onClick={() => onClickOptionSelect(option.value)}
-                    className={cx('optionButton')}
+                    className={cx('optionButton', { [variant]: variant })}
                   >
                     {option.value}
                   </button>
@@ -69,4 +57,4 @@ export default forwardRef(function UiSearchSelect(
       </div>
     </div>
   )
-})
+}
