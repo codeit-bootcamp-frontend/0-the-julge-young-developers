@@ -2,6 +2,7 @@ import { Options } from './type-select'
 
 export interface InputProps {
   title: string
+  defaultValue?: string
   isRequired: boolean
   suffix?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void

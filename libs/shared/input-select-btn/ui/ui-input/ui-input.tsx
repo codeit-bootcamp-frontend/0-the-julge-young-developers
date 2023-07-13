@@ -12,7 +12,7 @@ import styles from './ui-input.module.scss'
 const cx = classNames.bind(styles)
 
 export default forwardRef(function UiInput(
-  { title, valid, isValid, suffix, onChange }: Valid & InputProps,
+  { title, defaultValue, valid, isValid, suffix, onChange }: Valid & InputProps,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
   return (
@@ -25,6 +25,7 @@ export default forwardRef(function UiInput(
           type="text"
           placeholder="입력"
           ref={ref}
+          defaultValue={defaultValue}
         />
         {suffix && <span className={cx('suffix')}>{suffix}</span>}
       </div>
