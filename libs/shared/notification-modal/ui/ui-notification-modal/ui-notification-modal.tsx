@@ -2,12 +2,12 @@ import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
-import UiCommonLayout from '@/libs/shared/common-layout/ui/ui-common-layout/ui-common-layout'
 import { UiNotificationModalProps } from '@/libs/shared/notification-modal/type-notification-modal'
 import {
   UiAcceptedNotificationItem,
   UiRejectedNotificationItem,
 } from '@/libs/shared/notification-modal/ui/ui-notification-item/ui-notification-item'
+import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
 import styles from './ui-notification-modal.module.scss'
 
@@ -23,18 +23,18 @@ export default function UiNotificationModal({
 
   return (
     <div className={cx('modalContainer')}>
-      <UiCommonLayout
+      <button
+        className={cx('closeButton')}
+        type="button"
+        onClick={handleCloseModal}
+      >
+        <Image src="/images/close.svg" alt="닫기" width={24} height={24} />
+      </button>
+      <UiSimpleLayout
         title={`알림 ${itemList.length}개`}
         titleSize={20}
         gap={16}
       >
-        <button
-          className={cx('close')}
-          type="button"
-          onClick={handleCloseModal}
-        >
-          <Image src="/images/close.svg" alt="닫기" width={24} height={24} />
-        </button>
         <div className={cx('notificationList')}>
           {itemList.map((item) =>
             item.result === 'accepted' ? (
@@ -54,7 +54,7 @@ export default function UiNotificationModal({
             ),
           )}
         </div>
-      </UiCommonLayout>
+      </UiSimpleLayout>
     </div>
   )
 }
