@@ -11,9 +11,16 @@
   box-shadow: 0 2px 8px 0 rgb(120 116 134 / 25%);
 }
 
+.filterHeader {
+  @include utils.flexbox(row, space-between);
+  @include utils.font-style('h3');
+
+  margin-bottom: 24px;
+}
+
 .closeButton {
-  position: absolute;
-  right: 20px;
+  // position: absolute;
+  // right: 20px;
 }
 
 .filterContent {
