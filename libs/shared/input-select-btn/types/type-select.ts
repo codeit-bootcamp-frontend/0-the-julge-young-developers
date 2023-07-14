@@ -14,6 +14,7 @@ export interface SelectProps {
   isRequired?: boolean
   options: Option[]
   defaultValue: string
+  onClick?: (value: string) => void
 }
 
 export interface UiSearchSelectProps {
