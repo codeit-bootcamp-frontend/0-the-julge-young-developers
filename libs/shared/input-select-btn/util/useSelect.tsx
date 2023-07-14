@@ -4,7 +4,11 @@ import { useEffect, useRef, useState } from 'react'
 
 import { SelectProps } from '@/libs/shared/input-select-btn/types/type-select'
 
-export default function useSelect({ options, defaultValue }: SelectProps) {
+export default function useSelect({
+  options,
+  defaultValue,
+  onClick,
+}: SelectProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [selectedOption, setSelectedOption] = useState(defaultValue || '')
   const [searchedOption, setSearchedOption] = useState(defaultValue || '')
@@ -36,6 +40,15 @@ export default function useSelect({ options, defaultValue }: SelectProps) {
   const handleOptionSelect = (value: string) => {
     setSelectedOption(value)
     setIsOpen(false)
+    if (
+      onClick &&
+      (value === 'time' ||
+        value === 'pay' ||
+        value === 'hour' ||
+        value === 'shop')
+    ) {
+      onClick(value)
+    }
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
