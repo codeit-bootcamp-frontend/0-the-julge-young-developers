@@ -1,48 +1,58 @@
 @use '@/styles/utils';
 
+$card-size-large: 312px;
+$card-size-small: 171px;
+
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include utils.flexbox(column, flex-start, flex-start);
+
   max-width: 964px;
   gap: 32px;
 
-  .titleHeader {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-
-    .title {
-      width: 100%;
-      color: utils.$black;
-      font-size: 28px;
-      font-style: normal;
-      font-weight: 700;
-      letter-spacing: 0.56px;
-      line-height: normal;
-    }
-  }
-
-  .listWrapper {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    gap: 31px 14px;
+  @include utils.mobile {
+    gap: 16px;
   }
 }
 
-@include utils.mobile {
-  .wrapper {
-    gap: 16px;
+.titleHeader {
+  @include utils.flexbox(row, space-between, flex-start);
 
-    .titleHeader {
-      .title {
-        font-size: 20px;
-      }
-    }
+  width: 100%;
 
-    .listWrapper {
-      gap: 16px 8px;
-    }
+  @include utils.mobile {
+    @include utils.flexbox(column, flex-start, flex-start);
+  }
+}
+
+.title {
+  color: utils.$black;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.56px;
+  line-height: normal;
+
+  @include utils.mobile {
+    font-size: 20px;
+  }
+}
+
+.listWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, $card-size-large);
+  margin: 0 auto;
+  gap: 31px 14px;
+
+  @include utils.tablet-card-wrap {
+    grid-template-columns: repeat(2, $card-size-large);
+  }
+
+  @include utils.mobile {
+    grid-template-columns: repeat(3, $card-size-small);
+    gap: 16px 8px;
+  }
+
+  @include utils.mobile-card-wrap {
+    grid-template-columns: repeat(2, $card-size-small);
   }
 }

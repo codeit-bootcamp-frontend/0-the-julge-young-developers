@@ -195,7 +195,8 @@
             flex: 1 0 0;
             flex-direction: column;
             justify-content: center;
-            line-height: 100%;
+            line-height: 16px;
+            word-break: keep-all;
           }
         }
 

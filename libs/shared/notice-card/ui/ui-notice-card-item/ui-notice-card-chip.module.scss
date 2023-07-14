@@ -29,10 +29,11 @@
 
   .chipText {
     color: utils.$white;
+    font-size: 12px;
     font-style: normal;
+    font-weight: 700;
     line-height: normal;
     text-align: center;
-    @include utils.font-style('body2Bold');
   }
 
   .imgContainer {
