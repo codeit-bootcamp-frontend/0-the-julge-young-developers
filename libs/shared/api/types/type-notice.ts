@@ -2,7 +2,7 @@
 import { Links } from './type-user'
 
 /* noticeRequest - getNotices */
-export interface NoticesProps {
+interface NoticesProps {
   offset?: number
   limit?: number
   address?: string[]
@@ -37,7 +37,7 @@ interface NoticesItem {
   links?: Links[]
 }
 
-export interface AllNoticesData {
+interface AllNoticesData {
   id: string
   hourlyPay: number
   startsAt: string
@@ -59,7 +59,7 @@ export interface AllNoticesData {
   }
 }
 
-export interface NoticesData {
+interface NoticesData {
   offset: number
   limit: number
   address: string[]
@@ -69,7 +69,7 @@ export interface NoticesData {
 
 /* noticeRequest - getShopNotices */
 
-export interface ShopNoticesProps {
+interface ShopNoticesProps {
   shopId: string
   offset?: number
   limit?: number
@@ -87,7 +87,7 @@ interface ShopNoticesItem {
   links?: Links[]
 }
 
-export interface ShopNoticesData {
+interface ShopNoticesData {
   offset: number
   limit: number
   items: ShopNoticesItem[]
@@ -96,7 +96,7 @@ export interface ShopNoticesData {
 
 /* noticeRequest - registerShopNotice */
 
-export interface RegisterdShopNoticeProps {
+interface RegisterdShopNoticeProps {
   shopId: string
   hourlyPay: number
   startsAt: string
@@ -104,7 +104,7 @@ export interface RegisterdShopNoticeProps {
   description: string
 }
 
-export interface RegisterdShopNoticeData {
+interface RegisterdShopNoticeData {
   item: {
     id: string
     hourlyPay: number
@@ -131,7 +131,7 @@ export interface RegisterdShopNoticeData {
 
 /* noticeRequest - getShopNotice */
 
-export interface ShopNoticeData {
+interface ShopNoticeData {
   item: {
     id: string
     hourlyPay: number
@@ -156,7 +156,7 @@ export interface ShopNoticeData {
   links?: Links[]
 }
 /* noticeRequest - updateShopNotice */
-export interface UpdatedShopNotice {
+interface UpdatedShopNotice {
   item: {
     id: string
     hourlyPay: number
@@ -179,4 +179,18 @@ export interface UpdatedShopNotice {
     }
   }
   links?: Links[]
+}
+
+export type {
+  NoticesProps,
+  NoticesItem,
+  NoticesData,
+  AllNoticesData,
+  ShopNoticesProps,
+  ShopNoticesItem,
+  ShopNoticesData,
+  RegisterdShopNoticeProps,
+  RegisterdShopNoticeData,
+  ShopNoticeData,
+  UpdatedShopNotice,
 }

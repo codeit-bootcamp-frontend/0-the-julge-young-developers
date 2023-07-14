@@ -43,10 +43,12 @@ interface UserAlertsListItem {
     links?: Links[]
   }
 }
-export interface UserAlertsListData {
+interface UserAlertsListData {
   offset: number
   limit: number
   items: UserAlertsListItem[]
 }
 
 /* alertsRequest - clearAlerts */
+
+export type { UserAlertsListItem, UserAlertsListData }

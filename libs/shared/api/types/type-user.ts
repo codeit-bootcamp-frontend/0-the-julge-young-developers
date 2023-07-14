@@ -1,6 +1,6 @@
 /* userRequest */
 
-export interface Links {
+interface Links {
   rel: string
   description: string
   method: string
@@ -10,7 +10,7 @@ export interface Links {
 }
 
 /* userRequest - signIn */
-export interface UserSignIn {
+interface UserSignIn {
   item: {
     token: string
     user: {
@@ -30,7 +30,7 @@ export interface UserSignIn {
 }
 
 /* userRequest - signUp */
-export interface UserSignUp {
+interface UserSignUp {
   item: {
     id: string
     email: string
@@ -53,7 +53,7 @@ interface UserShop {
 }
 
 /* userRequest - getUserInfo/updateUserInfo */
-export interface UserData {
+interface UserData {
   item: {
     id: string
     email: string
@@ -66,3 +66,5 @@ export interface UserData {
   }
   links?: Links[]
 }
+
+export type { Links, UserSignIn, UserSignUp, UserShop, UserData }

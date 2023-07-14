@@ -1,7 +1,7 @@
 import { Links } from './type-user'
 
 // shopRequest body data
-export interface ShopInfo {
+interface ShopInfo {
   name: string
   category:
     | '한식'
@@ -46,7 +46,7 @@ export interface ShopInfo {
 }
 
 // shopRequest Response data
-export interface ShopData {
+interface ShopData {
   item: {
     id: string
     name: string
@@ -71,3 +71,5 @@ export interface ShopData {
   }
   links: Links[]
 }
+
+export type { ShopInfo, ShopData }
