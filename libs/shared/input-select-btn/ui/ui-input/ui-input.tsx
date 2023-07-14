@@ -25,7 +25,7 @@ export default forwardRef(function UiInput(
 ) {
   return (
     <div className={cx('wrap')}>
-      <div className={cx('title')}>{title}</div>
+      {variant === 'input' && <div className={cx('title')}>{title}</div>}
       <div className={cx('inputWrap')}>
         <input
           onChange={onChange}
@@ -33,7 +33,7 @@ export default forwardRef(function UiInput(
             underline: variant === 'input-underline',
           })}
           type="text"
-          placeholder="입력"
+          placeholder={variant === 'input' ? '입력' : title}
           ref={ref}
           defaultValue={defaultValue}
         />
