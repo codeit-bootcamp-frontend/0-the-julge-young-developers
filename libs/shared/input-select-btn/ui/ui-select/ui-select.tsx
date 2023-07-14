@@ -24,7 +24,7 @@ export default function UiSearchSelect({
   return (
     <div className={cx('selectWrap')}>
       <div className={cx('topShellWrap')} ref={dropdownRef}>
-        <div className={cx('title')}>{title}</div>
+        {variant === 'search' && <div className={cx('title')}>{title}</div>}
         <button type="button" className={cx('select')} onClick={toggleDropdown}>
           {children}
         </button>
