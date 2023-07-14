@@ -30,6 +30,9 @@ import { getRequest, postRequest, putRequest } from '../common'
         // response 데이터 가공 
       }
     ```
+
+    @example 로딩 처리 예시 
+      - signIn JSDOC 참조 
  * 
  * @param shopId 가게 id (string)
  * @param noticeId 공고 id (string)
@@ -93,6 +96,9 @@ const getNoticeApplicationList = async (
         // response 데이터 가공 
       }
     ```
+
+    @example 로딩 처리 예시 
+      - signIn JSDOC 참조 
  * 
  * @param shopId 가게 id (string)
  * @param noticeId 공고 id (string)
@@ -145,6 +151,9 @@ const registerNoticeApplication = async (
         // response 데이터 가공 
       }
     ```
+
+    @example 로딩 처리 예시 
+      - signIn JSDOC 참조 
  * 
  * @param shopId 가게 id (string)
  * @param noticeId 공고 id (string)
@@ -200,6 +209,9 @@ const getNoticeApplicationResult = async (
         // response 데이터 가공 
       }
     ```
+
+    @example 로딩 처리 예시 
+      - signIn JSDOC 참조 
  * 
  * @param userId 유저 id (string)
  * @param offset? 조회 시작 기준 (number)

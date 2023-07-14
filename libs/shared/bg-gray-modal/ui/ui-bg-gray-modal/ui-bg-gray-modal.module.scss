@@ -28,7 +28,9 @@
 
 @include utils.mobile {
   .bgGray {
-    top: 102px;
+    inset: 0;
+
+    // top: 102px;
   }
 
   .close {
