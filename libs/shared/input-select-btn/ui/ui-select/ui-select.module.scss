@@ -2,8 +2,6 @@
 
 .selectWrap {
   @include utils.flexbox(column, flex-start, flex-start);
-
-  // gap: 8px;
 }
 
 .title {
