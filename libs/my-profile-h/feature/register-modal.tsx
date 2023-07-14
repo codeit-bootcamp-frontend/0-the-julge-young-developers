@@ -26,14 +26,14 @@ interface RegisterModalProps {
 export default function RegisterModal({
   onClickCloseModal,
 }: RegisterModalProps) {
-  const [activeBtn, setActiveBtn] = useState(false)
+  const [activeBtn, setActiveBtn] = useState<boolean>(false)
 
   const userInputRefs = useRef<HTMLInputElement[]>([])
 
-  const [name, setName] = useState(false)
-  const [phone, setPhone] = useState(false)
-  const [address, setAddress] = useState(false)
-  const [bio, setBio] = useState(false)
+  const [name, setName] = useState<boolean>(false)
+  const [phone, setPhone] = useState<boolean>(false)
+  const [address, setAddress] = useState<boolean>(false)
+  const [bio, setBio] = useState<boolean>(false)
 
   const handleChangeCheckInput =
     (setter: Dispatch<SetStateAction<boolean>>) =>
