@@ -21,6 +21,7 @@ export default forwardRef(function Input(
   if (variant === 'input') {
     return (
       <UiInput
+        variant={variant}
         onChange={onChange}
         title={title}
         defaultValue={defaultValue}
@@ -42,6 +43,22 @@ export default forwardRef(function Input(
         isValid={isValid as boolean}
         isRequired={isRequired}
         ref={ref as ForwardedRef<HTMLTextAreaElement>}
+      />
+    )
+  }
+
+  if (variant === 'input-underline') {
+    return (
+      <UiInput
+        variant={variant}
+        onChange={onChange}
+        title={title}
+        defaultValue={defaultValue}
+        valid={valid as string}
+        isValid={isValid as boolean}
+        isRequired={isRequired}
+        suffix={suffix}
+        ref={ref as ForwardedRef<HTMLInputElement>}
       />
     )
   }

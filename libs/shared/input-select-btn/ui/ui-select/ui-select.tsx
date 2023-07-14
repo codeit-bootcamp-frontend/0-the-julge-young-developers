@@ -9,7 +9,7 @@ import {
   UiSearchSelectProps,
 } from '@/libs/shared/input-select-btn/types/type-select'
 
-import styles from './ui-search-select.module.scss'
+import styles from './ui-select.module.scss'
 
 const cx = classNames.bind(styles)
 

@@ -2,7 +2,7 @@
 
 import { ForwardedRef, forwardRef } from 'react'
 
-import UiSearchSelect from '@/libs/shared/input-select-btn/ui/ui-select/ui-search-select'
+import UiSelect from '@/libs/shared/input-select-btn/ui/ui-select/ui-select'
 import useSelect from '@/libs/shared/input-select-btn/util/useSelect'
 
 import { SelectProps } from '../types/type-select'
@@ -24,7 +24,7 @@ export default forwardRef(function Select(
   } = useSelect(props)
 
   return (
-    <UiSearchSelect
+    <UiSelect
       variant={variant}
       title={title}
       isOpen={isOpen}
@@ -40,6 +40,6 @@ export default forwardRef(function Select(
         onChangeInput={onChangeInput}
         ref={ref}
       />
-    </UiSearchSelect>
+    </UiSelect>
   )
 })

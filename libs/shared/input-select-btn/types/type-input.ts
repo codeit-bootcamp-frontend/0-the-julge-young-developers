@@ -1,6 +1,7 @@
 import { Options } from './type-select'
 
 export interface InputProps {
+  variant: string
   title: string
   defaultValue?: string
   isRequired: boolean
@@ -23,7 +24,7 @@ export interface UiImageInputProps {
 }
 
 export type Variant = {
-  variant: 'input' | 'explain'
+  variant: 'input' | 'explain' | 'input-underline'
 }
 export type FeatureInputProps = Variant &
   InputProps &
