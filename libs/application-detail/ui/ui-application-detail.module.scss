@@ -8,3 +8,9 @@
 .buttonWrapper {
   width: 346px;
 }
+
+@include utils.mobile {
+  .buttonWrapper {
+    width: auto;
+  }
+}
