@@ -43,7 +43,7 @@ $card-size-small: 171px;
   margin: 0 auto;
   gap: 31px 14px;
 
-  @include utils.tablet-card-wrap {
+  @include utils.tablet {
     grid-template-columns: repeat(2, $card-size-large);
   }
 
