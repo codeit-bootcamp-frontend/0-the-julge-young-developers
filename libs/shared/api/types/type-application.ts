@@ -2,8 +2,40 @@
 import { Links } from './type-user'
 
 /* applicationsRequest - getNoticeApplicationList */
+interface NoticeUserApplicationItem {
+  item: {
+    id: string
+    status: 'pending' | 'accepted' | 'rejected'
+    createdAt: string
+    shop: {
+      item: {
+        id: string
+        name: string
+        category: string
+        address1: string
+        address2: string
+        description: string
+        imageUrl: string
+        originalHourlyPay: number
+      }
+      href: string
+    }
+    notice: {
+      item: {
+        id: string
+        hourlyPay: number
+        description: string
+        startsAt: string
+        workhour: number
+        closed: boolean
+      }
+      href: string
+    }
+  }
+  links?: Links[]
+}
 
-export interface NoticeApplicationListItem {
+interface NoticeApplicationListItem {
   item: {
     id: string
     status: 'pending' | 'accepted' | 'rejected'
@@ -48,10 +80,10 @@ export interface NoticeApplicationListItem {
   links?: Links[]
 }
 
-export interface NoticeApplicationList {
+interface NoticeApplicationList {
   offset: number
   limit: number
-  items: NoticeApplicationListItem[]
+  items: NoticeUserApplicationItem[]
   links?: Links[]
 }
 
@@ -59,41 +91,16 @@ export interface NoticeApplicationList {
 /* applicationsRequest - getNoticeApplicationResult */
 /* applicationsRequest - getNoticeUserApplication */
 
-interface NoticeUserApplicationItem {
-  item: {
-    id: string
-    status: 'pending' | 'accepted' | 'rejected'
-    createdAt: string
-    shop: {
-      item: {
-        id: string
-        name: string
-        category: string
-        address1: string
-        address2: string
-        description: string
-        imageUrl: string
-        originalHourlyPay: number
-      }
-      href: string
-    }
-    notice: {
-      item: {
-        id: string
-        hourlyPay: number
-        description: string
-        startsAt: string
-        workhour: number
-        closed: boolean
-      }
-      href: string
-    }
-  }
-  links?: Links[]
-}
-export interface NoticeUserApplicationData {
+interface NoticeUserApplicationData {
   offset: number
   limit: number
   items: NoticeUserApplicationItem[]
   links?: Links[]
+}
+
+export type {
+  NoticeUserApplicationItem,
+  NoticeApplicationListItem,
+  NoticeApplicationList,
+  NoticeUserApplicationData,
 }
