@@ -3,7 +3,7 @@
 .selectWrap {
   @include utils.flexbox(column, flex-start, flex-start);
 
-  gap: 8px;
+  // gap: 8px;
 }
 
 .title {
@@ -15,13 +15,11 @@
 .select {
   position: relative;
   width: 100%;
-  height: 58px;
 }
 
 .optionsWrap {
   position: relative;
   width: 100%;
-  height: 58px;
 }
 
 .options {
