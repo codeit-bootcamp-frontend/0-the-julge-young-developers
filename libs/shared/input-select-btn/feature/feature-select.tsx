@@ -35,6 +35,7 @@ export default forwardRef(function Select(
     >
       <UiSelectTopShell
         variant={variant}
+        isOpen={isOpen}
         isRequired={isRequired}
         selectedOption={selectedOption}
         onChangeInput={onChangeInput}

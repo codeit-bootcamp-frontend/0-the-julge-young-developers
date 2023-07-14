@@ -29,6 +29,7 @@ export interface UiSearchSelectProps {
 export interface UiSelectTopShellProps {
   variant: 'search' | 'filter'
   isRequired?: boolean
+  isOpen: boolean
   selectedOption: string
   onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
