@@ -2,8 +2,6 @@
 
 import classNames from 'classnames/bind'
 
-import Image from 'next/image'
-
 import {
   Options,
   UiSearchSelectProps,
@@ -28,13 +26,6 @@ export default function UiSearchSelect({
       <div className={cx('title')}>{title}</div>
       <button type="button" className={cx('select')} onClick={toggleDropdown}>
         {children}
-        <Image
-          src={isOpen ? '/images/dropdown-up.svg' : '/images/dropdown.svg'}
-          className={cx('img')}
-          alt="dropdown icon"
-          width={16}
-          height={16}
-        />
       </button>
       <div className={cx('optionsWrap')}>
         <div className={cx('options')}>
