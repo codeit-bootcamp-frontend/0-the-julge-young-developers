@@ -12,7 +12,15 @@ import styles from './ui-input.module.scss'
 const cx = classNames.bind(styles)
 
 export default forwardRef(function UiInput(
-  { title, defaultValue, valid, isValid, suffix, onChange }: Valid & InputProps,
+  {
+    variant,
+    title,
+    defaultValue,
+    valid,
+    isValid,
+    suffix,
+    onChange,
+  }: Valid & InputProps,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
   return (
@@ -21,7 +29,9 @@ export default forwardRef(function UiInput(
       <div className={cx('inputWrap')}>
         <input
           onChange={onChange}
-          className={cx('inputBox')}
+          className={cx('inputBox', {
+            underline: variant === 'input-underline',
+          })}
           type="text"
           placeholder="입력"
           ref={ref}

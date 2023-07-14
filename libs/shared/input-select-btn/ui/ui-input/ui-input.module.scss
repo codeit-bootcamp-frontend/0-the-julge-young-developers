@@ -40,6 +40,11 @@
   &::placeholder {
     color: utils.$gray-brt2; /* 색상 설정 */
   }
+
+  &.underline {
+    border: none;
+    border-bottom: 1px solid utils.$gray-brt4;
+  }
 }
 
 .validText {
