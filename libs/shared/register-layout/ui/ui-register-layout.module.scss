@@ -28,6 +28,6 @@
   width: 346px;
 
   @include utils.mobile {
-    width: 150px;
+    width: auto;
   }
 }
