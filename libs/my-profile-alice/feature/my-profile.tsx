@@ -1,7 +1,7 @@
 'use client'
 
-import { MyProfileProps } from '@/libs/my-profile/type-my-profile'
-import UiMyProfile from '@/libs/my-profile/ui/ui-my-profile/ui-my-profile'
+import { MyProfileProps } from '@/libs/my-profile-alice/type-my-profile'
+import UiMyProfile from '@/libs/my-profile-alice/ui/ui-my-profile/ui-my-profile'
 
 export default function MyProfile({
   name,
