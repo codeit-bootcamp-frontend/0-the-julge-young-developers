@@ -18,11 +18,6 @@
   margin-bottom: 24px;
 }
 
-.closeButton {
-  // position: absolute;
-  // right: 20px;
-}
-
 .filterContent {
   @include utils.flexbox(column, initial, initial);
 
