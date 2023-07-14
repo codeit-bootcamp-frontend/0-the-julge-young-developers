@@ -2,7 +2,7 @@ import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
-import { UiMyProfileProps } from '@/libs/my-profile-alice/type-my-profile'
+import { UiMyProfileProps } from '@/libs/my-profile-alice2/type-my-profile'
 import { ActiveOutlineBtn } from '@/libs/shared/click-btns/feature/click-btns'
 
 import styles from './ui-my-profile.module.scss'
