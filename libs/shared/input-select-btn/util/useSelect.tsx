@@ -40,13 +40,7 @@ export default function useSelect({
   const handleOptionSelect = (value: string) => {
     setSelectedOption(value)
     setIsOpen(false)
-    if (
-      onClick &&
-      (value === 'time' ||
-        value === 'pay' ||
-        value === 'hour' ||
-        value === 'shop')
-    ) {
+    if (onClick) {
       onClick(value)
     }
   }

@@ -14,7 +14,7 @@ export interface SelectProps {
   isRequired?: boolean
   options: Option[]
   defaultValue: string
-  onClick?: (value: 'time' | 'pay' | 'hour' | 'shop') => void
+  onClick?: (value: string) => void
 }
 
 export interface UiSearchSelectProps {
