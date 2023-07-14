@@ -12,7 +12,7 @@
   border-radius: 5px;
   color: utils.$black;
   line-height: 26px;
-  text-align: center;
+  text-align: left;
   @include utils.font-style('body2');
 
   &::placeholder {
