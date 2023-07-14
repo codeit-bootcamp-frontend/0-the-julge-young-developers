@@ -22,11 +22,13 @@ export default function UiSearchSelect({
   children,
 }: UiSearchSelectProps & Options) {
   return (
-    <div className={cx('selectWrap')} ref={dropdownRef}>
-      <div className={cx('title')}>{title}</div>
-      <button type="button" className={cx('select')} onClick={toggleDropdown}>
-        {children}
-      </button>
+    <div className={cx('selectWrap')}>
+      <div className={cx('topShellWrap')} ref={dropdownRef}>
+        <div className={cx('title')}>{title}</div>
+        <button type="button" className={cx('select')} onClick={toggleDropdown}>
+          {children}
+        </button>
+      </div>
       <div className={cx('optionsWrap')}>
         <div className={cx('options')}>
           {isOpen && (

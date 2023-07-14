@@ -1,7 +1,14 @@
 @use '@/styles/utils';
 
 .selectWrap {
+  width: 100%;
+}
+
+.topShellWrap {
   @include utils.flexbox(column, flex-start, flex-start);
+
+  width: 100%;
+  gap: 8px;
 }
 
 .title {
