@@ -42,8 +42,10 @@
   }
 
   &.underline {
+    padding: 16px 0;
     border: none;
     border-bottom: 1px solid utils.$gray-brt4;
+    border-radius: 0;
   }
 }
 
