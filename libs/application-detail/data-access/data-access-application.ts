@@ -1,11 +1,19 @@
-// import { getNoticeUserApplication } from '@/libs/shared/api/data-access/request/applicationsRequest'
-import { MOCK_APPLICATION_DATA } from './data-access-mock'
+import { MOCK_APPLICATION_DATA } from '@/libs/application-detail/data-access/data-access-mock'
 
-const getUserApplicationData = () =>
-  /**
- *   const res = await getNoticeUserApplication(
+const getUserApplicationData = () => MOCK_APPLICATION_DATA.items
+
+export { getUserApplicationData }
+
+/**
+ * 유저의 지원 목록 데이터 api 호출 함수
+ * 
+ * import { getNoticeUserApplication } from '@/libs/shared/api/data-access/request/applicationsRequest'
+ * const getUserApplicationData = async (offset: number, limit: number) => {
+  const res = await getNoticeUserApplication(
     // userId
     '04d92006-8a81-4a22-84cc-6e2c7d0260b9',
+    offset,
+    limit,
   )
 
   if (res instanceof Error) {
@@ -20,7 +28,6 @@ const getUserApplicationData = () =>
 
     return items
   }
+}
+}
  */
-  MOCK_APPLICATION_DATA.items
-
-export { getUserApplicationData }
