@@ -9,6 +9,7 @@ $total-width-mobile: 0;
 .tableWrapper {
   position: relative;
   width: 100%;
+  max-width: 964px;
   overflow: hidden;
   border: 1px solid utils.$gray-brt3;
   border-radius: 10px;
