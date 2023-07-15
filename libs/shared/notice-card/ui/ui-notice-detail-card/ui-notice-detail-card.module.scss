@@ -159,14 +159,20 @@
 
 @include utils.tablet {
   .detailCardWrapper {
-    flex-direction: column;
-    flex-shrink: 0;
-    width: 680px;
+    @include utils.flexbox(column, flex-start, flex-start);
+
+    width: 100%;
 
     .imgContainer {
-      --img-width: 632px;
-      --img-height: 360px;
-      --img-border-radius: 12px;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1.75/1;
+
+      .closedLayer {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1.75/1;
+      }
     }
 
     .card {
@@ -179,14 +185,7 @@
 
 @include utils.mobile {
   .detailCardWrapper {
-    width: 351px;
     padding: 20px;
-
-    .imgContainer {
-      --img-width: 311px;
-      --img-height: 178px;
-      --img-border-radius: 12px;
-    }
 
     .card {
       padding-top: 12px;

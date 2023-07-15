@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import classNames from 'classnames/bind'
 
+import { UiNoticeDetailCardProps } from '@/libs/shared/notice-card/type-notice-card'
 import UiNoticeCardChip from '@/libs/shared/notice-card/ui/ui-notice-card-item/ui-notice-card-chip'
 import { utilCalcChangeRate } from '@/libs/shared/notice-card/util/util-calc-change-rate'
 import { utilCalcPayDiff } from '@/libs/shared/notice-card/util/util-calc-pay-diff'
@@ -8,19 +9,6 @@ import { utilCalcPayDiff } from '@/libs/shared/notice-card/util/util-calc-pay-di
 import styles from './ui-notice-detail-card.module.scss'
 
 const cx = classNames.bind(styles)
-
-interface UiNoticeDetailCardProps {
-  name: string
-  imageUrl: string
-  duration: string
-  workhour: number
-  address: string
-  closed: boolean
-  description: string
-  hourlyPay: number
-  originalHourlyPay: number
-  children: React.ReactNode
-}
 
 export default function UiNoticeDetailCard({
   name,
@@ -88,7 +76,6 @@ export default function UiNoticeDetailCard({
           </div>
           <p className={cx('address', { closed })}>{address}</p>
         </div>
-
         <p className={cx('description')}>{description}</p>
         <div className={cx('btnWrapper')}>{children}</div>
       </div>

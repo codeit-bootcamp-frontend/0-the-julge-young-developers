@@ -1,9 +1,4 @@
-const CARD_CHIPS = {
-  Red: 'red',
-  Orange: 'orange',
-  Hide: 'hide',
-} as const
-export type CardChips = (typeof CARD_CHIPS)[keyof typeof CARD_CHIPS]
+import { CardChips } from '@/libs/shared/notice-card/type-notice-card'
 
 const utilCalcPayDiff = (
   currentPay: number,

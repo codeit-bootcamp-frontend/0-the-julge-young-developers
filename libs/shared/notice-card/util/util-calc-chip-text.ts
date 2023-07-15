@@ -1,4 +1,4 @@
-import { CardChips } from './util-calc-pay-diff'
+import { CardChips } from '@/libs/shared/notice-card/type-notice-card'
 
 const chipText = (chip: CardChips, rate: undefined | number) => {
   if (chip === 'red' || chip === 'orange') {

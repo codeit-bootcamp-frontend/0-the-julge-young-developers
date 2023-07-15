@@ -3,19 +3,12 @@ import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
+import { UiNoticeCardChipProps } from '@/libs/shared/notice-card/type-notice-card'
 import { chipText } from '@/libs/shared/notice-card/util/util-calc-chip-text'
-import { CardChips } from '@/libs/shared/notice-card/util/util-calc-pay-diff'
 
 import styles from './ui-notice-card-chip.module.scss'
 
 const cx = classNames.bind(styles)
-
-interface UiNoticeCardChipProps {
-  isCardItem?: boolean
-  isShowChip: CardChips
-  changeRate: undefined | number
-  closed: boolean
-}
 
 export default function UiNoticeCardChip({
   isCardItem,

@@ -3,25 +3,12 @@ import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
-import { CardChips } from '@/libs/shared/notice-card/util/util-calc-pay-diff'
+import { UiNoticeCardItemProps } from '@/libs/shared/notice-card/type-notice-card'
 
 import UiNoticeCardChip from './ui-notice-card-chip'
 import styles from './ui-notice-card-item.module.scss'
 
 const cx = classNames.bind(styles)
-
-interface UiNoticeCardItemProps {
-  name: string
-  duration: string
-  workhour: number
-  address: string
-  hourlyPay: number
-  imageUrl: string
-  closed: boolean
-  changeRate: undefined | number
-  isShowChip: CardChips
-  handleClickToDetail: () => void
-}
 
 export default function UiNoticeCardItem({
   name,
