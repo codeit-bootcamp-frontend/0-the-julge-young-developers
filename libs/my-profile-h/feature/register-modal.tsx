@@ -21,10 +21,18 @@ const cx = classNames.bind(styles)
 
 interface RegisterModalProps {
   onClickCloseModal: () => void
+  defaultName?: string
+  defaultPhone?: string
+  defaultAddress?: string
+  defaultBio?: string
 }
 
 export default function RegisterModal({
   onClickCloseModal,
+  defaultName,
+  defaultPhone,
+  defaultAddress,
+  defaultBio,
 }: RegisterModalProps) {
   const [activeBtn, setActiveBtn] = useState<boolean>(false)
 
@@ -92,7 +100,7 @@ export default function RegisterModal({
                 title="이름*"
                 isValid={false}
                 isRequired={false}
-                defaultValue=""
+                defaultValue={defaultName || ''}
                 // eslint-disable-next-line no-return-assign, no-param-reassign
                 ref={(el: HTMLInputElement) => (userInputRefs.current[0] = el)}
               />
@@ -104,7 +112,7 @@ export default function RegisterModal({
                 title="연락처*"
                 isValid={false}
                 isRequired={false}
-                defaultValue=""
+                defaultValue={defaultPhone || ''}
                 // eslint-disable-next-line no-return-assign, no-param-reassign
                 ref={(el: HTMLInputElement) => (userInputRefs.current[1] = el)}
               />
@@ -114,7 +122,7 @@ export default function RegisterModal({
                 variant="search"
                 title="선호지역*"
                 isRequired={false}
-                defaultValue=""
+                defaultValue={defaultAddress || ''}
                 options={OPTIONS}
                 onClick={() => setAddress(true)}
                 // eslint-disable-next-line no-return-assign, no-param-reassign
@@ -129,7 +137,7 @@ export default function RegisterModal({
               title="소개*"
               isValid={false}
               isRequired={false}
-              defaultValue=""
+              defaultValue={defaultBio || ''}
               // eslint-disable-next-line no-return-assign, no-param-reassign
               ref={(el: HTMLInputElement) => (userInputRefs.current[3] = el)}
             />
