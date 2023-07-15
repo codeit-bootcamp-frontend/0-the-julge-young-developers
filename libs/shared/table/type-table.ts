@@ -25,7 +25,7 @@ export interface ApplicationHistory {
   id: string
   status: Status
   name: string
-  hourlyPay: string
+  hourlyPay: number
   startsAt: string
   workhour: number
 }

@@ -15,7 +15,7 @@ function ApplicationHistoryTable({
     status: item.status,
     first: item.name,
     second: utilFormatDuration(item.startsAt, item.workhour),
-    third: item.hourlyPay,
+    third: `${item.hourlyPay.toLocaleString()}원`,
   }))
 
   return (
