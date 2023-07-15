@@ -120,12 +120,12 @@ export default function RegisterShopModalFunnelContent() {
     }
   }
   return (
-    <UiSimpleLayout title={FUNNEL_TITLE[funnel].title}>
+    <UiSimpleLayout title={FUNNEL_TITLE[funnel].text}>
       <div className={cx('inputWrap')}>
         {funnel === 'name' && (
           <Input
             variant="input-underline"
-            title={FUNNEL_TITLE[funnel].text}
+            title={FUNNEL_TITLE[funnel].title}
             isRequired={true}
             onChange={handleChange}
           />
@@ -133,7 +133,7 @@ export default function RegisterShopModalFunnelContent() {
         {funnel === 'address' && (
           <Input
             variant="input-underline"
-            title={FUNNEL_TITLE[funnel].text}
+            title={FUNNEL_TITLE[funnel].title}
             isRequired={true}
             onChange={handleChange}
           />
@@ -141,7 +141,7 @@ export default function RegisterShopModalFunnelContent() {
         {funnel === 'detailAddress' && (
           <Input
             variant="input-underline"
-            title={FUNNEL_TITLE[funnel].text}
+            title={FUNNEL_TITLE[funnel].title}
             isRequired={true}
             onChange={handleChange}
           />
@@ -149,7 +149,7 @@ export default function RegisterShopModalFunnelContent() {
         {funnel === 'defaultHourlyWage' && (
           <Input
             variant="input-underline"
-            title={FUNNEL_TITLE[funnel].text}
+            title={FUNNEL_TITLE[funnel].title}
             isRequired={true}
             onChange={handleChange}
           />
@@ -163,7 +163,7 @@ export default function RegisterShopModalFunnelContent() {
         )}
         {funnel === 'image' && (
           <ImageInput
-            title={FUNNEL_TITLE[funnel].text}
+            title={FUNNEL_TITLE[funnel].title}
             preselectedImageUrl=""
             selectedImage={selectedImage}
             setSelectedImage={setSelectedImage}
@@ -173,7 +173,7 @@ export default function RegisterShopModalFunnelContent() {
         {funnel === 'description' && (
           <Input
             variant="explain-underline"
-            title={FUNNEL_TITLE[funnel].text}
+            title={FUNNEL_TITLE[funnel].title}
             isRequired={false}
           />
         )}

@@ -28,6 +28,7 @@ export interface UiSearchSelectProps {
 }
 
 export interface UiSelectTopShellProps {
+  title?: 'string'
   variant: 'search' | 'filter'
   isRequired?: boolean
   isOpen: boolean
