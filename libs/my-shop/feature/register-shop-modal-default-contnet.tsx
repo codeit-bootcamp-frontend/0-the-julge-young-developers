@@ -2,7 +2,7 @@
 
 import classNames from 'classnames/bind'
 
-import useRegisterShopState from '@/libs/my-shop-eva/utill/useRegisterShopState'
+import useRegisterShopState from '@/libs/my-shop/utill/useRegisterShopState'
 import {
   ActiveBtn,
   InactiveBtn,
@@ -13,7 +13,7 @@ import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import Select from '@/libs/shared/input-select-btn/feature/feature-select'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
-import styles from './feature-register-shop-modal-default-content.module.scss'
+import styles from './register-shop-modal-default-content.module.scss'
 
 const cx = classNames.bind(styles)
 

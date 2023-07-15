@@ -1,15 +1,10 @@
 'use client'
 
-// import classNames from 'classnames/bind'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
 
-import RegisterShopModalDefaultContent from './feature-register-shop-modal-default-contnet'
-import RegisterShopModalFunnelContent from './feature-register-shop-modal-funnel-content'
-
-// import styles from './feature-register-shop-modal-funnel-content.module.scss'
-
-// const cx = classNames.bind(styles)
+import RegisterShopModalDefaultContent from './register-shop-modal-default-contnet'
+import RegisterShopModalFunnelContent from './register-shop-modal-funnel-content'
 
 /**
  * @param onCloseModal X 버튼으로 모달 끄는 setter
