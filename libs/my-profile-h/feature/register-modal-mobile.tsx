@@ -129,7 +129,7 @@ export default function RegisterModalMobile({
         .querySelector('input')
         ?.removeEventListener('keypress', handleKeypressBlur)
     }
-  }, [])
+  }, [funnel])
 
   return (
     <ModalPortalWrapper id="funnel-portal">
