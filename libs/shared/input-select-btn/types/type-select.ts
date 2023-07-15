@@ -13,7 +13,7 @@ export interface SelectProps {
   title?: string
   isRequired?: boolean
   options: Option[]
-  defaultValue: string
+  defaultValue?: string
   onClick?: (value: string) => void
 }
 

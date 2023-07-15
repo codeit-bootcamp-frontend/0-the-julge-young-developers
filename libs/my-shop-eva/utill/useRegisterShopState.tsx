@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-export default function useRegisterShopState() {
+export default function useRegisterShopState(variant = 'default') {
   const [shopName, setShopName] = useState<string>('')
   const [category, setCategory] = useState<string>('')
   const [address, setAddress] = useState<string>('')
@@ -14,6 +14,7 @@ export default function useRegisterShopState() {
   const [isAllFilled, setIsAllFilled] = useState<boolean>(false)
 
   useEffect(() => {
+    if (variant === 'funnel') return
     if (
       shopName &&
       category &&
@@ -27,7 +28,6 @@ export default function useRegisterShopState() {
     } else {
       setIsAllFilled(false)
     }
-    console.log(selectedImage, preselectedImageRef.current)
   }, [
     address,
     category,
@@ -37,6 +37,7 @@ export default function useRegisterShopState() {
     shopName,
     preselectedImageRef,
     selectedImage,
+    variant,
   ])
 
   return {
@@ -56,5 +57,6 @@ export default function useRegisterShopState() {
     description,
     setDescription,
     isAllFilled,
+    setIsAllFilled,
   }
 }
