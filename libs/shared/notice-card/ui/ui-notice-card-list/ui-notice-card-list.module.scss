@@ -37,6 +37,12 @@ $card-size-small: 171px;
   }
 }
 
+.filterElementWrapper {
+  @include utils.flexbox($justify: flex-end);
+
+  gap: 10px;
+}
+
 .listWrapper {
   display: grid;
   grid-template-columns: repeat(3, $card-size-large);
