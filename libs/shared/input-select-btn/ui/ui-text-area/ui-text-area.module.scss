@@ -26,6 +26,13 @@
   &::placeholder {
     color: utils.$gray-brt2; /* 색상 설정 */
   }
+
+  &.underline {
+    height: 50vh;
+    padding: 16px 0;
+    border: none;
+    border-bottom: 1px solid utils.$gray-brt4;
+  }
 }
 
 .validText {

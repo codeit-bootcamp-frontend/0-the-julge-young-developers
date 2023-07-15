@@ -13,6 +13,7 @@ const cx = classNames.bind(styles)
 
 export default forwardRef(function UiTextArea(
   {
+    variant,
     title,
     defaultValue,
     valid,
@@ -20,17 +21,19 @@ export default forwardRef(function UiTextArea(
     isRequired,
     onChange,
   }: Valid &
-    Omit<InputProps, 'variant' | 'onChange'> & {
+    Omit<InputProps, 'onChange'> & {
       onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
     },
   ref: ForwardedRef<HTMLTextAreaElement>,
 ) {
   return (
     <div className={cx('wrap')}>
-      <div className={cx('title')}>{title}</div>
+      {variant === 'explain' && <div className={cx('title')}>{title}</div>}
       <textarea
-        className={cx('textArea')}
-        placeholder="입력"
+        className={cx('textArea', {
+          underline: variant === 'explain-underline',
+        })}
+        placeholder={variant === 'explain' ? '입력' : title}
         required={isRequired}
         ref={ref}
         defaultValue={defaultValue}

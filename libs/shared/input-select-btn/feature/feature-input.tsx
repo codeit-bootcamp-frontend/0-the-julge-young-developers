@@ -29,7 +29,7 @@ export default forwardRef(function Input(
   }: FeatureInputProps,
   ref: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>,
 ) {
-  if (variant === 'input') {
+  if (variant === 'input' || variant === 'input-underline') {
     return (
       <UiInput
         variant={variant}
@@ -44,10 +44,10 @@ export default forwardRef(function Input(
       />
     )
   }
-
-  if (variant === 'explain') {
+  if (variant === 'explain' || variant === 'explain-underline') {
     return (
       <UiTextArea
+        variant={variant}
         title={title}
         defaultValue={defaultValue}
         valid={valid as string}
@@ -55,22 +55,6 @@ export default forwardRef(function Input(
         isRequired={isRequired}
         onChange={onChange as (e: ChangeEvent<HTMLTextAreaElement>) => void}
         ref={ref as ForwardedRef<HTMLTextAreaElement>}
-      />
-    )
-  }
-
-  if (variant === 'input-underline') {
-    return (
-      <UiInput
-        variant={variant}
-        onChange={onChange as (e: ChangeEvent<HTMLInputElement>) => void}
-        title={title}
-        defaultValue={defaultValue}
-        valid={valid as string}
-        isValid={isValid as boolean}
-        isRequired={isRequired}
-        suffix={suffix}
-        ref={ref as ForwardedRef<HTMLInputElement>}
       />
     )
   }
