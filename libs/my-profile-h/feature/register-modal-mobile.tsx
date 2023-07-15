@@ -1,6 +1,6 @@
 'use client'
 
-import { Dispatch, SetStateAction, useRef, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 
 import classNames from 'classnames/bind'
 
@@ -110,6 +110,26 @@ export default function RegisterModalMobile({
     // router.refresh()
     onClickCloseModal()
   }
+
+  useEffect(() => {
+    const handleKeypressBlur = (e: KeyboardEvent) => {
+      const key = e.key || e.keyCode
+      if (key === 'Enter' || key === 13) {
+        e.preventDefault()
+        document.querySelector('input')?.blur()
+      }
+    }
+
+    document
+      .querySelector('input')
+      ?.addEventListener('keypress', handleKeypressBlur)
+
+    return () => {
+      document
+        .querySelector('input')
+        ?.removeEventListener('keypress', handleKeypressBlur)
+    }
+  }, [])
 
   return (
     <ModalPortalWrapper id="funnel-portal">
