@@ -107,6 +107,7 @@ export default function RegisterModalMobile({
               title={FUNNEL_TEXT[funnel].text}
               isValid={false}
               isRequired={false}
+              defaultValue=""
               // eslint-disable-next-line no-return-assign, no-param-reassign
               ref={(el: HTMLInputElement) => (userInputRefs.current[0] = el)}
             />
@@ -118,6 +119,7 @@ export default function RegisterModalMobile({
               title={FUNNEL_TEXT[funnel].text}
               isValid={false}
               isRequired={false}
+              defaultValue=""
               // eslint-disable-next-line no-return-assign, no-param-reassign
               ref={(el: HTMLInputElement) => (userInputRefs.current[1] = el)}
             />
@@ -128,8 +130,8 @@ export default function RegisterModalMobile({
               title={FUNNEL_TEXT[funnel].text}
               isRequired={false}
               onClick={() => setAddress(true)}
-              defaultValue=""
               options={OPTIONS}
+              defaultValue=""
               // eslint-disable-next-line no-return-assign, no-param-reassign
               ref={(el: HTMLInputElement) => (userInputRefs.current[2] = el)}
             />
@@ -141,6 +143,7 @@ export default function RegisterModalMobile({
               title={FUNNEL_TEXT[funnel].text}
               isValid={false}
               isRequired={false}
+              defaultValue=""
               // eslint-disable-next-line no-return-assign, no-param-reassign
               ref={(el: HTMLInputElement) => (userInputRefs.current[3] = el)}
             />

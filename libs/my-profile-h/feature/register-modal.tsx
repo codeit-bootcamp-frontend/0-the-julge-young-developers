@@ -92,6 +92,7 @@ export default function RegisterModal({
                 title="이름*"
                 isValid={false}
                 isRequired={false}
+                defaultValue=""
                 // eslint-disable-next-line no-return-assign, no-param-reassign
                 ref={(el: HTMLInputElement) => (userInputRefs.current[0] = el)}
               />
@@ -103,6 +104,7 @@ export default function RegisterModal({
                 title="연락처*"
                 isValid={false}
                 isRequired={false}
+                defaultValue=""
                 // eslint-disable-next-line no-return-assign, no-param-reassign
                 ref={(el: HTMLInputElement) => (userInputRefs.current[1] = el)}
               />
@@ -127,6 +129,7 @@ export default function RegisterModal({
               title="소개*"
               isValid={false}
               isRequired={false}
+              defaultValue=""
               // eslint-disable-next-line no-return-assign, no-param-reassign
               ref={(el: HTMLInputElement) => (userInputRefs.current[3] = el)}
             />
