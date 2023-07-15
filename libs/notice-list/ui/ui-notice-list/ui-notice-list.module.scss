@@ -1,0 +1,18 @@
+@use '@/styles/utils';
+
+.wrapper {
+  position: relative;
+  max-width: 964px;
+  height: 795px;
+  margin: 0 auto;
+}
+
+.noticeCardWrapper {
+  margin-bottom: 40px;
+}
+
+.filterWrapper {
+  position: absolute;
+  top: 38px;
+  right: 0;
+}
