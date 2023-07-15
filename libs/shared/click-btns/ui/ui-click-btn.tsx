@@ -1,5 +1,3 @@
-import React from 'react'
-
 import classNames from 'classnames/bind'
 
 import { BtnProps } from '@/libs/shared/click-btns/types/type-click-btn.'
@@ -10,15 +8,18 @@ const cx = classNames.bind(styles)
 
 function UiCommonClickBtn({
   text,
+  type = 'button',
   outline,
   size,
   status,
   confirm,
   onClick,
+  onSubmit,
 }: BtnProps) {
   return (
     <button
-      type="button"
+      // eslint-disable-next-line react/button-has-type
+      type={type}
       className={cx('button', {
         outline,
         confirm,
@@ -26,6 +27,7 @@ function UiCommonClickBtn({
         [status]: status,
       })}
       onClick={onClick}
+      onSubmit={onSubmit}
     >
       {text}
     </button>

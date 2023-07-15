@@ -14,7 +14,7 @@
   color: utils.$black;
   line-height: 26px;
   text-align: left;
-  @include utils.font-style('body2');
+  @include utils.font-style('body1');
 
   &::placeholder {
     color: utils.$gray-brt2;
