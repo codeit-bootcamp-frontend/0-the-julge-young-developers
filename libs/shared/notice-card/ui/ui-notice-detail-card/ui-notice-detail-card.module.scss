@@ -75,7 +75,8 @@
       }
 
       .payContainer {
-        display: flex;
+        @include utils.flexbox(row, initial);
+
         justify-content: space-between;
         width: 100%;
         gap: 8px;
@@ -96,7 +97,8 @@
     }
 
     .durationContainer {
-      display: flex;
+      @include utils.flexbox(row, initial);
+
       width: 100%;
       gap: 6px;
 
@@ -119,7 +121,8 @@
     }
 
     .addressContainer {
-      display: flex;
+      @include utils.flexbox(row, initial);
+
       width: 100%;
       gap: 6px;
 
