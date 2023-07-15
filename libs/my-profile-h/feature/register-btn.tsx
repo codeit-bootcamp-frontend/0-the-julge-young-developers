@@ -23,7 +23,6 @@ export default function RegisterBtn() {
   const handleClickChangeView = () => {
     if (isMobile && isTablet) {
       setOpenModal(true)
-
       setOpenView('mobile')
     } else {
       setOpenModal(true)

@@ -113,8 +113,12 @@ export default function RegisterModalMobile({
 
   return (
     <ModalPortalWrapper id="funnel-portal">
-      <div className={cx('wrapper')}>
-        <UiBgGrayModal onClickCloseModal={onClickCloseModal}>
+      <UiBgGrayModal onClickCloseModal={onClickCloseModal}>
+        <div
+          className={cx('simpleWrapper', {
+            unmounted,
+          })}
+        >
           <UiSimpleLayout title={FUNNEL_TEXT[funnel].text} gap={24}>
             {funnel === 'name' && (
               <div
@@ -189,53 +193,57 @@ export default function RegisterModalMobile({
               />
             )}
           </UiSimpleLayout>
-        </UiBgGrayModal>
-
-        <div className={cx('btnWrapper')}>
-          {name && funnel === 'name' && (
-            <ActiveBtn
-              text="다음"
-              size="large"
-              onClick={handleClickNext(setFunnel, 'phone', 0)}
-            />
-          )}
-          {!name && funnel === 'name' && (
-            <InactiveBtn text="다음" size="large" onClick={() => {}} />
-          )}
-
-          {phone && funnel === 'phone' && (
-            <ActiveBtn
-              text="다음"
-              size="large"
-              onClick={handleClickNext(setFunnel, 'address', 1)}
-            />
-          )}
-          {!phone && funnel === 'phone' && (
-            <InactiveBtn text="다음" size="large" onClick={() => {}} />
-          )}
-
-          {address && funnel === 'address' && (
-            <ActiveBtn
-              text="다음"
-              size="large"
-              onClick={handleClickNext(setFunnel, 'bio', 2)}
-            />
-          )}
-          {!address && funnel === 'address' && (
-            <InactiveBtn text="다음" size="large" onClick={() => {}} />
-          )}
-
-          {bio && funnel === 'bio' && (
-            <ActiveBtn
-              text="등록하기"
-              size="large"
-              onClick={handleClickRegister}
-            />
-          )}
-          {!bio && funnel === 'bio' && (
-            <InactiveBtn text="등록하기" size="large" onClick={() => {}} />
-          )}
         </div>
+      </UiBgGrayModal>
+
+      <div
+        className={cx('btnWrapper', {
+          unmounted,
+        })}
+      >
+        {name && funnel === 'name' && (
+          <ActiveBtn
+            text="다음"
+            size="large"
+            onClick={handleClickNext(setFunnel, 'phone', 0)}
+          />
+        )}
+        {!name && funnel === 'name' && (
+          <InactiveBtn text="다음" size="large" onClick={() => {}} />
+        )}
+
+        {phone && funnel === 'phone' && (
+          <ActiveBtn
+            text="다음"
+            size="large"
+            onClick={handleClickNext(setFunnel, 'address', 1)}
+          />
+        )}
+        {!phone && funnel === 'phone' && (
+          <InactiveBtn text="다음" size="large" onClick={() => {}} />
+        )}
+
+        {address && funnel === 'address' && (
+          <ActiveBtn
+            text="다음"
+            size="large"
+            onClick={handleClickNext(setFunnel, 'bio', 2)}
+          />
+        )}
+        {!address && funnel === 'address' && (
+          <InactiveBtn text="다음" size="large" onClick={() => {}} />
+        )}
+
+        {bio && funnel === 'bio' && (
+          <ActiveBtn
+            text="등록하기"
+            size="large"
+            onClick={handleClickRegister}
+          />
+        )}
+        {!bio && funnel === 'bio' && (
+          <InactiveBtn text="등록하기" size="large" onClick={() => {}} />
+        )}
       </div>
     </ModalPortalWrapper>
   )
