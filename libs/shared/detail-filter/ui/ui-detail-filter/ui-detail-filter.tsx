@@ -28,6 +28,7 @@ export default function UiDetailFilter({
   onClickCloseButton,
   startInputRef,
   priceInputRef,
+  isPriceValid,
 }: UiDetailFilterProps) {
   return (
     <div className={cx('filterContainer')}>
@@ -76,6 +77,8 @@ export default function UiDetailFilter({
               isRequired={true}
               suffix="원"
               ref={priceInputRef}
+              isValid={isPriceValid}
+              valid="숫자를 입력해주세요"
             />
             <span className={cx('sideText')}>이상부터</span>
           </div>
