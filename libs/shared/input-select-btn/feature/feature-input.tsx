@@ -5,15 +5,26 @@ import UiTextArea from '@/libs/shared/input-select-btn/ui/ui-text-area/ui-text-a
 
 import { FeatureInputProps } from '../types/type-input'
 
+/**
+ * @param variant ("input"| "input-underline"|"explain")
+ * @param title (string)
+ * @param isRequired (boolean)
+ * @param ref input 태그에 붙는 ref
+ * @param onChange input value가 변경되면 실행할 함수(option)
+ * @param defaultValue (string(option))
+ * @param valid (string(option))
+ * @param isValid (boolean(option))
+ * @param suffix (string(option))
+ */
 export default forwardRef(function Input(
   {
     onChange,
     variant = 'input',
     title,
+    isRequired,
     defaultValue,
     valid,
     isValid,
-    isRequired,
     suffix,
   }: FeatureInputProps,
   ref: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>,
