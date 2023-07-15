@@ -7,6 +7,7 @@ import {
   UiApplicationTable,
   UiRegisterApplication,
 } from '@/libs/application-detail/ui/ui-application-detail'
+import UiLoading from '@/libs/application-detail/ui/ui-loading'
 import { NoticeUserApplicationItem } from '@/libs/shared/api/types/type-application'
 
 export default function ApplicationDetail() {
@@ -39,7 +40,7 @@ export default function ApplicationDetail() {
     <div>
       {/* eslint-disable-next-line no-nested-ternary */}
       {loading ? (
-        <div> 로딩 중... </div>
+        <UiLoading />
       ) : applicationData.length === 0 ? (
         <UiRegisterApplication />
       ) : (
