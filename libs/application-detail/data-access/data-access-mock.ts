@@ -55,6 +55,7 @@ const MOCK_APPLICATION_DATA: { items: NoticeUserApplicationItem[] } = {
         notice: {
           href: '/api/0-1/the-julge/shops/be05aa78-7d4e-4f17-9b3a-babb41181caf/notices/f62dbe77-4ccf-403c-a94b-9d7e3e1bf970',
           item: {
+            id: '0983e840-a4c8-41ec-9071-076faa0ae38e',
             closed: true,
             description: '도와주세요',
             hourlyPay: 100000,

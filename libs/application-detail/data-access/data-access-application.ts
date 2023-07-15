@@ -1,8 +1,25 @@
 import { MOCK_APPLICATION_DATA } from '@/libs/application-detail/data-access/data-access-mock'
 
-const getUserApplicationData = () => MOCK_APPLICATION_DATA.items
+// userId: string,
+// offset: number,
+// limit: number,
+const getUserApplicationData = () => {
+  const { items } = MOCK_APPLICATION_DATA
 
-export { getUserApplicationData }
+  const applicationData = items.map((application) => ({
+    name: application.item.shop.item.name,
+    hourlyPay: application.item.notice.item.hourlyPay,
+    startsAt: application.item.notice.item.startsAt,
+    workhour: application.item.notice.item.workhour,
+    status: application.item.status,
+  }))
+
+  return applicationData
+}
+
+const MAX_APPLICATIONS_PER_PAGE = 5
+
+export { getUserApplicationData, MAX_APPLICATIONS_PER_PAGE }
 
 /**
  * 유저의 지원 목록 데이터 api 호출 함수
@@ -26,7 +43,15 @@ export { getUserApplicationData }
     // response 데이터 가공
     const { items } = res
 
-    return items
+    const applicationData = items.map((application) => ({
+      name: application.item.shop.item.name,
+      hourlyPay: application.item.notice.item.hourlyPay,
+      startsAt: application.item.notice.item.startsAt,
+      workhour: application.item.notice.item.workhour,
+      status: application.item.status,
+    }))
+
+    return applicationData;
   }
 }
 }
