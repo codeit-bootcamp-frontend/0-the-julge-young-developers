@@ -119,7 +119,11 @@ export default function RegisterModalMobile({
             unmounted,
           })}
         >
-          <UiSimpleLayout title={FUNNEL_TEXT[funnel].text} gap={24}>
+          <UiSimpleLayout
+            titleSize={24}
+            title={FUNNEL_TEXT[funnel].text}
+            gap={24}
+          >
             {funnel === 'name' && (
               <div
                 className={cx('inputWrapper', {
@@ -168,7 +172,6 @@ export default function RegisterModalMobile({
               >
                 <Select
                   variant="search"
-                  title={FUNNEL_TEXT[funnel].title}
                   isRequired={false}
                   onClick={() => setAddress(true)}
                   options={OPTIONS}
