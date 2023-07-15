@@ -10,18 +10,18 @@ interface Links {
 }
 
 /* userRequest - signIn */
-interface UserSignIn {
+interface UserSignInData {
   item: {
     token: string
     user: {
       href: string
       item: {
-        address: string
-        bio: string
+        address?: string
+        bio?: string
         email: string
         id: string
-        name: string
-        phone: string
+        name?: string
+        phone?: string
         type: 'employee' | 'employer'
       }
     }
@@ -40,6 +40,7 @@ interface UserSignUp {
 }
 
 interface UserShop {
+  href: string
   item: {
     id: string
     name: string
@@ -67,4 +68,4 @@ interface UserData {
   links?: Links[]
 }
 
-export type { Links, UserSignIn, UserSignUp, UserShop, UserData }
+export type { Links, UserSignInData, UserSignUp, UserShop, UserData }

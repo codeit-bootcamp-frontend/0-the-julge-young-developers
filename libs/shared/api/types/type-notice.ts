@@ -102,6 +102,7 @@ interface RegisterdShopNoticeProps {
   startsAt: string
   workhour: number
   description: string
+  token?: string
 }
 
 interface RegisterdShopNoticeData {

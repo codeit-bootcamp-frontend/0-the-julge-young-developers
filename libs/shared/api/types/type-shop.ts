@@ -43,6 +43,7 @@ interface ShopInfo {
   description: string
   imageUrl: string
   originalHourlyPay: number
+  token?: string
 }
 
 // shopRequest Response data

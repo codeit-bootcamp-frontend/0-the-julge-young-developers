@@ -2,14 +2,14 @@ import axios from 'axios'
 
 import {
   UserData,
-  UserSignIn,
+  UserSignInData,
   UserSignUp,
 } from '@/libs/shared/api/types/type-user'
 
 import { getRequest, postRequest, putRequest } from '../common'
 
 /**
- * 로그인 api
+ * 로그인 api (권한 필요 없음)
  * 
  * @example 사용 예시 
  *  ```
@@ -123,9 +123,9 @@ export default async function Home() {
 const signIn = async (
   email: string,
   password: string,
-): Promise<UserSignIn | string | Error> => {
+): Promise<UserSignInData | string | Error> => {
   try {
-    const response = await postRequest<UserSignIn>('/token', {
+    const response = await postRequest<UserSignInData>('/token', {
       email,
       password,
     })
@@ -140,7 +140,7 @@ const signIn = async (
 }
 
 /**
- * 회원가입 api
+ * 회원가입 api (권한 필요 없음)
  * 
  * @example 사용 예시 
  *  ```
@@ -195,7 +195,7 @@ const signUp = async (
 }
 
 /**
- * 유저 정보 조회 api
+ * 유저 정보 조회 api (권한 필요 없음)
  * 
  * @example 사용 예시 
  *  ```
@@ -237,15 +237,15 @@ const getUserInfo = async (uid: string): Promise<UserData | string | Error> => {
 /**
  * 유저 정보 수정 api (토큰 권한 필요)
  * 
- * @example 
+ * @example token은 서버에서만 담아서 보내면 됩니다. 
  *  ```
- *  const data = await updateUserInfo(
-        'd30c89b8-8f26-4506-a534-a46205338849',
-        'henry',
-        '010-0000-0000',
-        '서울시 종로구',
-        '자기 소개'
-      )
+ *  const data = await updateUserInfo('389f7bad-7f81-45d2-8f6e-d4e091b73721', {
+    name: 'henry',
+    phone: '01032313232',
+    address: '서울시 서대문구',
+    bio: '자기 소개입니다',
+    token,
+  })
     ```
 
       @example 에러 처리 예시 
@@ -276,19 +276,30 @@ const getUserInfo = async (uid: string): Promise<UserData | string | Error> => {
  * 
  */
 const updateUserInfo = async (
-  uid: string,
-  name: string,
-  phone: string,
-  address: string,
-  bio: string,
+  userId: string,
+  params: {
+    name: string
+    phone: string
+    address: string
+    bio: string
+    token?: string
+  },
 ): Promise<UserData | string | Error> => {
   try {
-    const response = await putRequest<UserData>(`/users/${uid}`, {
-      name,
-      phone,
-      address,
-      bio,
-    })
+    const response = await putRequest<UserData>(
+      `/users/${userId}`,
+      {
+        name: params.name,
+        phone: params.phone,
+        address: params.address,
+        bio: params.bio,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${params?.token}`,
+        },
+      },
+    )
 
     return response
   } catch (error) {

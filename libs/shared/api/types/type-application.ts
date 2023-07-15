@@ -40,7 +40,7 @@ interface NoticeApplicationListItem {
     id: string
     status: 'pending' | 'accepted' | 'rejected'
     createdAt: string
-    user: {
+    user?: {
       item: {
         id: string
         email: string
@@ -83,7 +83,7 @@ interface NoticeApplicationListItem {
 interface NoticeApplicationList {
   offset: number
   limit: number
-  items: NoticeUserApplicationItem[]
+  items: NoticeApplicationListItem[]
   links?: Links[]
 }
 
