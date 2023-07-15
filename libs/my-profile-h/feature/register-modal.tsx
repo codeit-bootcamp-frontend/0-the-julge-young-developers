@@ -45,7 +45,7 @@ export default function RegisterModal({
 
   const handleChangeCheckInput =
     (setter: Dispatch<SetStateAction<boolean>>) =>
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       if (e.currentTarget.value) {
         setter(true)
       } else {

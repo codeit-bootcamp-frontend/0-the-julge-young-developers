@@ -73,7 +73,7 @@ export default function RegisterModalMobile({
 
   const handleChangeCheckInput =
     (setter: Dispatch<SetStateAction<boolean>>) =>
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       if (e.currentTarget.value) {
         setter(true)
       } else {
@@ -226,12 +226,7 @@ export default function RegisterModalMobile({
           />
         )}
         {!bio && funnel === 'bio' && (
-          // <InactiveBtn text="등록하기" size="large" onClick={() => {}} />
-          <InactiveBtn
-            text="등록하기"
-            size="large"
-            onClick={handleClickRegister}
-          />
+          <InactiveBtn text="등록하기" size="large" onClick={() => {}} />
         )}
       </div>
     </ModalPortalWrapper>
