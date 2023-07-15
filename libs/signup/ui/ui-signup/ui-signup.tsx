@@ -43,9 +43,9 @@ export default function UiSignUp({
       >
         <form className={cx('form')}>
           <Input
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              utilCheck('email', e.currentTarget.value)
-            }
+            onChange={(
+              e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+            ) => utilCheck('email', e.currentTarget.value)}
             variant="input"
             title="이메일"
             valid="잘못된 이메일입니다."
@@ -55,9 +55,9 @@ export default function UiSignUp({
             ref={(el: HTMLInputElement) => (userInputRefs.current[0] = el)}
           />
           <Input
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              utilCheck('pw', e.currentTarget.value)
-            }
+            onChange={(
+              e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+            ) => utilCheck('pw', e.currentTarget.value)}
             variant="input"
             title="비밀번호"
             valid="비밀번호는 영문+숫자 조합해서 8자리 이상이어야 합니다."
@@ -67,9 +67,9 @@ export default function UiSignUp({
             ref={(el: HTMLInputElement) => (userInputRefs.current[1] = el)}
           />
           <Input
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              utilCheck('pwRepeat', e.currentTarget.value)
-            }
+            onChange={(
+              e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+            ) => utilCheck('pwRepeat', e.currentTarget.value)}
             variant="input"
             title="비밀번호 확인"
             valid="비밀번호가 일치하지 않습니다."
