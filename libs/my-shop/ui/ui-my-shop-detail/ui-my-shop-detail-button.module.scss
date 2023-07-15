@@ -1,0 +1,8 @@
+@use '@/styles/utils';
+
+.wrapper {
+  @include utils.flexbox(row, flex-start, flex-start);
+
+  width: 100%;
+  gap: 8px;
+}
