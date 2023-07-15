@@ -112,22 +112,45 @@ export default function RegisterModalMobile({
   }
 
   useEffect(() => {
-    const handleKeypressBlur = (e: KeyboardEvent) => {
+    const handleKeypressBlurMove = (e: KeyboardEvent) => {
       const key = e.key || e.keyCode
       if (key === 'Enter' || key === 13) {
         e.preventDefault()
         document.querySelector('input')?.blur()
+
+        if (funnel === 'name') {
+          setUnmounted(true)
+
+          setTimeout(() => {
+            setFunnel('phone')
+            setUnmounted(false)
+          }, 500)
+        } else if (funnel === 'phone') {
+          setUnmounted(true)
+
+          setTimeout(() => {
+            setFunnel('address')
+            setUnmounted(false)
+          }, 500)
+        } else if (funnel === 'address') {
+          setUnmounted(true)
+
+          setTimeout(() => {
+            setFunnel('bio')
+            setUnmounted(false)
+          }, 500)
+        }
       }
     }
 
     document
       .querySelector('input')
-      ?.addEventListener('keypress', handleKeypressBlur)
+      ?.addEventListener('keypress', handleKeypressBlurMove)
 
     return () => {
       document
         .querySelector('input')
-        ?.removeEventListener('keypress', handleKeypressBlur)
+        ?.removeEventListener('keypress', handleKeypressBlurMove)
     }
   }, [funnel])
 
