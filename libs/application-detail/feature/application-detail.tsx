@@ -17,7 +17,7 @@ import { useUserContext } from '@/libs/shared/providers/context/feature/user-pro
 import { UserApplicationItem } from '../type-application-detail'
 
 export default function ApplicationDetail() {
-  const [pageNumber, setPageNumber] = useState(1)
+  const [pageNum, setPageNum] = useState(1)
   const [applicationData, setApplicationData] = useState<
     UserApplicationItem[] | []
   >([] as unknown as UserApplicationItem[])
@@ -34,8 +34,8 @@ export default function ApplicationDetail() {
   }
 
   useEffect(() => {
-    loadApplicationData(userId, pageNumber, MAX_APPLICATIONS_PER_PAGE)
-  }, [pageNumber])
+    loadApplicationData(userId, pageNum, MAX_APPLICATIONS_PER_PAGE)
+  }, [pageNum])
 
   return (
     <div>
