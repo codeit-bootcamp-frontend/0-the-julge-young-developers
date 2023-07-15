@@ -4,15 +4,11 @@ import { ForwardedRef, forwardRef } from 'react'
 
 import classNames from 'classnames/bind'
 
+import { UiNoticeCardListProps } from '@/libs/shared/notice-card/type-notice-card'
+
 import styles from './ui-notice-card-list.module.scss'
 
 const cx = classNames.bind(styles)
-
-interface UiNoticeCardListProps {
-  title: string
-  filterElement?: React.ReactNode
-  children: React.ReactNode
-}
 
 export default forwardRef(function UiNoticeCardList(
   { title, filterElement, children }: UiNoticeCardListProps,
