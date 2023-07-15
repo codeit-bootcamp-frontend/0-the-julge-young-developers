@@ -1,3 +1,5 @@
+import { ForwardedRef, forwardRef } from 'react'
+
 import classNames from 'classnames/bind'
 
 import Image from 'next/image'
@@ -6,13 +8,16 @@ import styles from './ui-add-image-btn.module.scss'
 
 const cx = classNames.bind(styles)
 
-export default function UiAddImageBtn({
-  onClickAddImageButton,
-  preselectedImageUrl,
-}: {
-  onClickAddImageButton: () => void
-  preselectedImageUrl?: string
-}) {
+export default forwardRef(function UiAddImageBtn(
+  {
+    onClickAddImageButton,
+    preselectedImageUrl,
+  }: {
+    onClickAddImageButton: () => void
+    preselectedImageUrl?: string
+  },
+  ref: ForwardedRef<HTMLImageElement>,
+) {
   const buttonType = preselectedImageUrl ? '변경' : '추가'
   return (
     <button
@@ -21,10 +26,12 @@ export default function UiAddImageBtn({
       className={cx('addButton')}
     >
       {preselectedImageUrl && (
+        // eslint-disable-next-line @next/next/no-img-element
         <img
           alt="예전에 선택한 이미지"
           className={cx('preSelectedImage')}
           src={preselectedImageUrl}
+          ref={ref}
         />
       )}
       <div className={cx('buttonContent')}>
@@ -41,4 +48,4 @@ export default function UiAddImageBtn({
       </div>
     </button>
   )
-}
+})

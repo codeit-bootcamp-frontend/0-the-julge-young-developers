@@ -1,18 +1,24 @@
 'use client'
 
-import React, { useRef, useState } from 'react'
+import { ForwardedRef, forwardRef, useRef } from 'react'
 
 import UiAddImageBtn from '@/libs/shared/input-select-btn/ui/ui-image-input/ui-add-image-btn'
 import UiImageInput from '@/libs/shared/input-select-btn/ui/ui-image-input/ui-image-input'
 
-export default function ImageInput({
-  title,
-  preselectedImageUrl = undefined,
-}: {
-  title: string
-  preselectedImageUrl?: string
-}) {
-  const [selectedImage, setSelectedImage] = useState<string>('')
+export default forwardRef(function ImageInput(
+  {
+    title,
+    preselectedImageUrl = undefined,
+    selectedImage,
+    setSelectedImage,
+  }: {
+    title: string
+    preselectedImageUrl?: string
+    selectedImage: string
+    setSelectedImage: (selectedImage: string) => void
+  },
+  ref: ForwardedRef<HTMLImageElement>,
+) {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
 
   const handleImage = (file: File) => {
@@ -65,7 +71,8 @@ export default function ImageInput({
       <UiAddImageBtn
         onClickAddImageButton={handleClickButton}
         preselectedImageUrl={preselectedImageUrl}
+        ref={ref}
       />
     </UiImageInput>
   )
-}
+})

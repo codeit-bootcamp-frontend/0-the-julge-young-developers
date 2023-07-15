@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import classNames from 'classnames/bind'
 
@@ -23,10 +23,13 @@ export default function RegisterShopModalDefaultContent() {
   const [category, setCategory] = useState<string>('')
   const [address, setAddress] = useState<string>('')
   const [detailAddress, setDetailAddress] = useState<string>('')
+
   const [defaultHourlyWage, setDefaultHourlyWage] = useState<
     number | undefined
   >(undefined)
-  // const [shopImage, setShopImage] = useState<string>('')
+  const [selectedImage, setSelectedImage] = useState<string>('')
+  const preselectedImageRef = useRef<HTMLImageElement>(null)
+
   const [description, setDescription] = useState<string>('')
   const [isAllFilled, setIsAllFilled] = useState<boolean>(false)
 
@@ -36,6 +39,7 @@ export default function RegisterShopModalDefaultContent() {
       category &&
       address &&
       detailAddress &&
+      (selectedImage || preselectedImageRef.current) &&
       defaultHourlyWage &&
       description
     ) {
@@ -43,14 +47,7 @@ export default function RegisterShopModalDefaultContent() {
     } else {
       setIsAllFilled(false)
     }
-    console.log(
-      address,
-      category,
-      defaultHourlyWage,
-      description,
-      detailAddress,
-      shopName,
-    )
+    console.log(selectedImage, preselectedImageRef.current)
   }, [
     address,
     category,
@@ -58,6 +55,8 @@ export default function RegisterShopModalDefaultContent() {
     description,
     detailAddress,
     shopName,
+    preselectedImageRef,
+    selectedImage,
   ])
 
   return (
@@ -102,7 +101,13 @@ export default function RegisterShopModalDefaultContent() {
           />
         </div>
         <div className={cx('inputContainer')}>
-          <ImageInput title="가게 이미지" preselectedImageUrl="" />
+          <ImageInput
+            title="가게 이미지"
+            preselectedImageUrl=""
+            selectedImage={selectedImage}
+            setSelectedImage={setSelectedImage}
+            ref={preselectedImageRef}
+          />
         </div>
         <div className={cx('textAreaContainer')}>
           <Input
