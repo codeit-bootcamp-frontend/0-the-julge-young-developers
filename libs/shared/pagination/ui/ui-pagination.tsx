@@ -1,7 +1,7 @@
 import classnames from 'classnames/bind'
 
+import { UiPaginationProps } from '@/libs/shared/pagination/type-pagination'
 import UiPaginationArrow from '@/libs/shared/pagination/ui/ui-pagination-arrow'
-import { UiPaginationProps } from '@/libs/shared/table/type-table'
 
 import styles from './ui-pagination.module.scss'
 
