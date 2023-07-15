@@ -2,13 +2,45 @@
 import { Links } from './type-user'
 
 /* applicationsRequest - getNoticeApplicationList */
-
-export interface NoticeApplicationListItem {
+interface NoticeUserApplicationItem {
   item: {
     id: string
     status: 'pending' | 'accepted' | 'rejected'
     createdAt: string
-    user: {
+    shop: {
+      item: {
+        id: string
+        name: string
+        category: string
+        address1: string
+        address2: string
+        description: string
+        imageUrl: string
+        originalHourlyPay: number
+      }
+      href: string
+    }
+    notice: {
+      item: {
+        id: string
+        hourlyPay: number
+        description: string
+        startsAt: string
+        workhour: number
+        closed: boolean
+      }
+      href: string
+    }
+  }
+  links?: Links[]
+}
+
+interface NoticeApplicationListItem {
+  item: {
+    id: string
+    status: 'pending' | 'accepted' | 'rejected'
+    createdAt: string
+    user?: {
       item: {
         id: string
         email: string
@@ -48,7 +80,7 @@ export interface NoticeApplicationListItem {
   links?: Links[]
 }
 
-export interface NoticeApplicationList {
+interface NoticeApplicationList {
   offset: number
   limit: number
   items: NoticeApplicationListItem[]
@@ -59,41 +91,16 @@ export interface NoticeApplicationList {
 /* applicationsRequest - getNoticeApplicationResult */
 /* applicationsRequest - getNoticeUserApplication */
 
-interface NoticeUserApplicationItem {
-  item: {
-    id: string
-    status: 'pending' | 'accepted' | 'rejected'
-    createdAt: string
-    shop: {
-      item: {
-        id: string
-        name: string
-        category: string
-        address1: string
-        address2: string
-        description: string
-        imageUrl: string
-        originalHourlyPay: number
-      }
-      href: string
-    }
-    notice: {
-      item: {
-        id: string
-        hourlyPay: number
-        description: string
-        startsAt: string
-        workhour: number
-        closed: boolean
-      }
-      href: string
-    }
-  }
-  links?: Links[]
-}
-export interface NoticeUserApplicationData {
+interface NoticeUserApplicationData {
   offset: number
   limit: number
   items: NoticeUserApplicationItem[]
   links?: Links[]
+}
+
+export type {
+  NoticeUserApplicationItem,
+  NoticeApplicationListItem,
+  NoticeApplicationList,
+  NoticeUserApplicationData,
 }

@@ -16,6 +16,7 @@ import { getRequest, postRequest, putRequest } from '../common'
     description: '가게 설명~~~~~~~',
     imageUrl: 'https:~~~',
     originalHourlyPay: 10000,
+    token?: {서버에서 쏠 경우 토큰 작성}
   })
     ```
   @example 에러 처리 예시 
@@ -80,7 +81,11 @@ const registerShop = async (
   shopInfo: ShopInfo,
 ): Promise<ShopData | string | Error> => {
   try {
-    const response = await postRequest<ShopData>('/shops', shopInfo)
+    const response = await postRequest<ShopData>('/shops', shopInfo, {
+      headers: {
+        Authorization: `Bearer ${shopInfo.token}`,
+      },
+    })
 
     return response
   } catch (error) {
@@ -148,6 +153,7 @@ const getShopInfo = async (
       description: '가게 설명~~~~~~~',
       imageUrl: 'https:~~~',
       originalHourlyPay: 10000,
+      token?: {서버에서 쏠 경우 토큰 삽입}
     })
     ```
  * @example 에러 처리 예시 
@@ -179,7 +185,11 @@ const updateShopInfo = async (
   shopInfo: ShopInfo,
 ): Promise<ShopData | string | Error> => {
   try {
-    const response = await putRequest<ShopData>(`/shops/${shopId}`, shopInfo)
+    const response = await putRequest<ShopData>(`/shops/${shopId}`, shopInfo, {
+      headers: {
+        Authorization: `Bearer ${shopInfo.token}`,
+      },
+    })
 
     return response
   } catch (error) {

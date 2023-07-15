@@ -8,11 +8,9 @@ import { getRequest, putRequest } from '../common'
  * 
  * @example 사용 예시
  *  ```
- *  const data = await getUserAlertsList(
-        '04d92006-8a81-4a22-84cc-6e2c7d0260b9',
-        1,
-        4,
-      )
+ *  const data = await getUserAlertsList('389f7bad-7f81-45d2-8f6e-d4e091b73721', {
+    token,
+  })
     ```
 
     @example 에러 처리 예시 
@@ -39,17 +37,20 @@ import { getRequest, putRequest } from '../common'
  */
 const getUserAlertsList = async (
   userId: string,
-  offset?: number,
-  limit?: number,
+  params?: {
+    offset?: number
+    limit?: number
+    token?: string
+  },
 ): Promise<UserAlertsListData | string | Error> => {
   try {
     let query = ''
 
-    if (offset) {
-      query += `&offset=${offset}`
+    if (params?.offset) {
+      query += `&offset=${params?.offset}`
     }
-    if (limit) {
-      query += `&limit=${limit}`
+    if (params?.limit) {
+      query += `&limit=${params?.limit}`
     }
 
     if (query.length) {
@@ -58,6 +59,11 @@ const getUserAlertsList = async (
 
     const response = await getRequest<UserAlertsListData>(
       `/users/${userId}/alerts?${query}`,
+      {
+        headers: {
+          Authorization: `Bearer ${params?.token}`,
+        },
+      },
     )
     return response
   } catch (error) {
@@ -102,11 +108,19 @@ const getUserAlertsList = async (
 const clearAlerts = async (
   userId: string,
   alertId: string,
+  params?: {
+    token?: string
+  },
 ): Promise<UserAlertsListData | string | Error> => {
   try {
     const response = await putRequest<UserAlertsListData>(
       `/users/${userId}/alerts/${alertId}`,
       {},
+      {
+        headers: {
+          Authorization: `Bearer ${params?.token}`,
+        },
+      },
     )
     return response
   } catch (error) {

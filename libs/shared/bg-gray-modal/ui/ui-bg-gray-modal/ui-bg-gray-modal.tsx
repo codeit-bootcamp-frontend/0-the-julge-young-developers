@@ -18,18 +18,15 @@ const cx = classNames.bind(styles)
 export default function UiBgGrayModal({
   closeButtonSize = 32,
   children,
+  onClickCloseModal,
 }: UiBgGrayModalProps) {
-  const handleCloseModal = () => {
-    console.log('close')
-  }
-
   return (
     <div className={cx('bgGray')}>
       <div className={cx('modalContent')}>
         <button
           className={cx('close')}
           type="button"
-          onClick={handleCloseModal}
+          onClick={onClickCloseModal}
         >
           <Image
             src="/images/close.svg"

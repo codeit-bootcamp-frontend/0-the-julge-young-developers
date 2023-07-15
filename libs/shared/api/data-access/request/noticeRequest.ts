@@ -113,8 +113,7 @@ const getNotices = async ({
  * @example 사용 예시 
  *  ```
  *  const data = await getShopNotices({
-        shopId: '4490151c-5217-4157-b072-9c37b05bed47',
-        offset: 1,
+        shopId: '4490151c-5217-4157-b072-9c37b05bed47'
       })
     ```
 
@@ -176,12 +175,13 @@ const getShopNotices = async ({
  * @example 사용 예시
  *  ```
  *  const data = await registerShopNotice({
-        shopId: '4490151c-5217-4157-b072-9c37b05bed47',
-        hourlyPay: 10000,
-        startsAt: '2023-09-14T18:00:00.000Z',
-        workhour: 4,
-        description: '테스트',
-      })
+    shopId: 'be05aa78-7d4e-4f17-9b3a-babb41181caf',
+    hourlyPay: 10000,
+    startsAt: '2023-09-14T18:00:00.000Z',
+    workhour: 4,
+    description: '테스트',
+    token,
+  })
     ```
 
      @example 에러 처리 예시 
@@ -217,6 +217,7 @@ const registerShopNotice = async ({
   startsAt,
   workhour,
   description,
+  token,
 }: RegisterdShopNoticeProps): Promise<
   RegisterdShopNoticeData | string | Error
 > => {
@@ -228,6 +229,11 @@ const registerShopNotice = async ({
         startsAt,
         workhour,
         description,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
     )
 
@@ -295,13 +301,16 @@ const getShopNotice = async (
  * @example 사용 예시
  *  ```
  *  const data = await updateShopNotice(
-        '4490151c-5217-4157-b072-9c37b05bed47',
-        'f3937135-2fd5-45a8-9432-dadb68fe1a8b',
-        10000,
-        '2023-09-14T18:00:00.000Z',
-        4,
-        '테스트',
-      )
+    'be05aa78-7d4e-4f17-9b3a-babb41181caf',
+    '77b5bfeb-6889-4cf2-be4a-769537819cf4',
+    {
+      hourlyPay: 10000,
+      startsAt: '2023-09-14T18:00:00.000Z',
+      workhour: 4,
+      description: '테스트',
+      token,
+    },
+  )
     ```
 
     @example 에러 처리 예시 
@@ -335,19 +344,27 @@ const getShopNotice = async (
 const updateShopNotice = async (
   shopId: string,
   noticeId: string,
-  hourlyPay: number,
-  startsAt: string,
-  workhour: number,
-  description: string,
+  params: {
+    hourlyPay: number
+    startsAt: string
+    workhour: number
+    description: string
+    token?: string
+  },
 ): Promise<UpdatedShopNotice | string | Error> => {
   try {
     const response = await putRequest<UpdatedShopNotice>(
       `/shops/${shopId}/notices/${noticeId}`,
       {
-        hourlyPay,
-        startsAt,
-        workhour,
-        description,
+        hourlyPay: params.hourlyPay,
+        startsAt: params.startsAt,
+        workhour: params.workhour,
+        description: params.description,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${params?.token}`,
+        },
       },
     )
     return response

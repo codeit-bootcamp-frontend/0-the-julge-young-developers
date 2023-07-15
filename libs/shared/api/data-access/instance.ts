@@ -19,7 +19,7 @@ export const instance: CustomAxiosInterface = axios.create({
     'Content-Type': 'application/json',
     Accept: '*/*',
   },
-  timeout: 10000,
+  timeout: 30000,
 })
 
 /* request interceptors */

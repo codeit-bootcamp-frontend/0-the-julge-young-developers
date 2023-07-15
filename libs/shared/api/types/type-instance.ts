@@ -13,7 +13,7 @@ type CustomAxiosResponse<T = any> = {
   refreshToken?: string
 }
 
-export interface CustomAxiosInterface extends AxiosInstance {
+interface CustomAxiosInterface extends AxiosInstance {
   interceptors: {
     request: AxiosInterceptorManager<InternalAxiosRequestConfig>
     response: AxiosInterceptorManager<AxiosResponse<CustomAxiosResponse>>
@@ -39,8 +39,10 @@ export interface CustomAxiosInterface extends AxiosInstance {
 }
 
 /* common */
-export interface CommonResponse<T> {
+interface CommonResponse<T> {
   data: T
   status: number
   statusText: string
 }
+
+export type { CustomAxiosInterface, CommonResponse }

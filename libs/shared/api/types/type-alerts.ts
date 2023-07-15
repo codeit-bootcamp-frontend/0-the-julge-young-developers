@@ -7,7 +7,7 @@ interface UserAlertsListItem {
   item: {
     id: string
     createdAt: string
-    result: 'accepted' | 'rejected'
+    result: 'accepted' | 'rejected' | 'canceled'
     read: boolean
     application: {
       item: {
@@ -43,10 +43,12 @@ interface UserAlertsListItem {
     links?: Links[]
   }
 }
-export interface UserAlertsListData {
+interface UserAlertsListData {
   offset: number
   limit: number
   items: UserAlertsListItem[]
 }
 
 /* alertsRequest - clearAlerts */
+
+export type { UserAlertsListItem, UserAlertsListData }

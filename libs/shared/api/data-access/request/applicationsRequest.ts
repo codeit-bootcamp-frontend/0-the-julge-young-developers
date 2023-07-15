@@ -102,6 +102,7 @@ const getNoticeApplicationList = async (
  * 
  * @param shopId 가게 id (string)
  * @param noticeId 공고 id (string)
+ * @param params? 토큰 필요시 { token }
  *
  * @returns
  *   - 성공(201) : items, links
@@ -112,11 +113,19 @@ const getNoticeApplicationList = async (
 const registerNoticeApplication = async (
   shopId: string,
   noticeId: string,
+  params?: {
+    token?: string
+  },
 ): Promise<NoticeApplicationListItem | string | Error> => {
   try {
     const response = await postRequest<NoticeApplicationListItem>(
       `/shops/${shopId}/notices/${noticeId}/applications`,
       {},
+      {
+        headers: {
+          Authorization: `Bearer ${params?.token}`,
+        },
+      },
     )
 
     return response
@@ -129,16 +138,19 @@ const registerNoticeApplication = async (
 }
 
 /**
- *  가게의 특정 공고 지원 승인 또는 거절 (TODO) api
- * 
+ *  가게의 특정 공고 지원 승인 또는 거절 api
+ * 추가 : 공고지원자는 지원을 취소할 수 있습니다. "cancled"
  * @example 사용 예시
  *  ```
- *  const data = await getNoticeApplicationResult(
-        '4490151c-5217-4157-b072-9c37b05bed47',
-        'f3937135-2fd5-45a8-9432-dadb68fe1a8b',
-        'b0058646-c28a-46df-840a-6be603652dfb',
-        'accepted',
-      )
+ *  const data = await updateNoticeApplicationResult(
+    'be05aa78-7d4e-4f17-9b3a-babb41181caf',
+    '77b5bfeb-6889-4cf2-be4a-769537819cf4',
+    '044da900-b2d2-4f31-8518-d62dece30ce3',
+    'canceled',
+    {
+      token,
+    },
+  )
     ```
 
     @example 에러 처리 예시 
@@ -158,7 +170,8 @@ const registerNoticeApplication = async (
  * @param shopId 가게 id (string)
  * @param noticeId 공고 id (string)
  * @param applicationId 지원 id (string)
- * @param status 지원 상태 ("accepted" | "rejected")
+ * @param status 지원 상태 ("accepted" | "rejected" | "canceled")
+ * @param params? 토큰 필요 시 { token }
  *
  * @returns
  *   - 성공(201) : items, links
@@ -167,17 +180,25 @@ const registerNoticeApplication = async (
  *   - 실패(403) : "가게의 소유자만 접근할 수 있습니다"
  *   - 실패(404) : "존재하지 않는 가게입니다 | 존재하지 않는 공고입니다 | 존재하지 않는 지원 정보입니다"
  */
-const getNoticeApplicationResult = async (
+const updateNoticeApplicationResult = async (
   shopId: string,
   noticeId: string,
   applicationId: string,
-  status: 'accepted' | 'rejected',
+  status: 'accepted' | 'rejected' | 'canceled',
+  params?: {
+    token?: string
+  },
 ): Promise<NoticeApplicationListItem | string | Error> => {
   try {
     const response = await putRequest<NoticeApplicationListItem>(
       `/shops/${shopId}/notices/${noticeId}/applications/${applicationId}`,
       {
         status,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${params?.token}`,
+        },
       },
     )
     return response
@@ -194,9 +215,21 @@ const getNoticeApplicationResult = async (
  * 
  * @example 사용 예시
  *  ```
+ * // 클라이언트 
  *  const data = await getNoticeUserApplication(
-        '04d92006-8a81-4a22-84cc-6e2c7d0260b9',
+        '6895a8e4-408d-46f5-a16a-792fb706c7e8', {
+          // 쿼리 파라미터 작성 
+        }
       )
+
+      // 서버 
+
+      const data = await getNoticeUserApplication(
+    '6895a8e4-408d-46f5-a16a-792fb706c7e8',
+    {
+      token,
+    },
+  )
     ```
 
     @example 에러 처리 예시 
@@ -214,8 +247,10 @@ const getNoticeApplicationResult = async (
       - signIn JSDOC 참조 
  * 
  * @param userId 유저 id (string)
+ * @param params? 쿼리 파라미터 ( { offset?, limit?, token? } )
  * @param offset? 조회 시작 기준 (number)
  * @param limit? 조회 개수 (number)
+ * @param token? 조회 개수 (number)
  *
  * @returns
  *   - 성공(201) : items, links
@@ -224,17 +259,20 @@ const getNoticeApplicationResult = async (
  */
 const getNoticeUserApplication = async (
   userId: string,
-  offset?: number,
-  limit?: number,
+  params?: {
+    offset?: number
+    limit?: number
+    token?: string
+  },
 ): Promise<NoticeUserApplicationData | string | Error> => {
   try {
     let query = ''
 
-    if (offset) {
-      query += `&offset=${offset}`
+    if (params?.offset) {
+      query += `&offset=${params?.offset}`
     }
-    if (limit) {
-      query += `&limit=${limit}`
+    if (params?.limit) {
+      query += `&limit=${params?.limit}`
     }
 
     if (query.length) {
@@ -243,6 +281,11 @@ const getNoticeUserApplication = async (
 
     const response = await getRequest<NoticeUserApplicationData>(
       `/users/${userId}/applications?${query}`,
+      {
+        headers: {
+          Authorization: `Bearer ${params?.token}`,
+        },
+      },
     )
     return response
   } catch (error) {
@@ -256,6 +299,6 @@ const getNoticeUserApplication = async (
 export {
   getNoticeApplicationList,
   registerNoticeApplication,
-  getNoticeApplicationResult,
+  updateNoticeApplicationResult,
   getNoticeUserApplication,
 }
