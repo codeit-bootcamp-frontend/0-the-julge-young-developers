@@ -18,7 +18,7 @@ export default forwardRef(function UiNoticeCardList(
     <div className={cx('wrapper')}>
       <div className={cx('titleHeader')}>
         <h2 className={cx('title')}>{title}</h2>
-        {filterElement}
+        <div className={cx('filterElementWrapper')}>{filterElement}</div>
       </div>
       <div className={cx('listWrapper')} ref={ref}>
         {children}

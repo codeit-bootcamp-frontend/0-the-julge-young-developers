@@ -14,14 +14,15 @@ interface UiDetailFilterProps {
   onClickCloseButton: () => void
   startInputRef: RefObject<HTMLInputElement>
   priceInputRef: RefObject<HTMLInputElement>
+  isPriceValid: boolean
 }
 
 interface DetailFilterProps {
   onClickCloseButton: (isShow: boolean) => void
   onClickApplyButton: (
-    selectedLocations: Set<string>,
+    selectedLocations: string[],
     start: string | undefined,
-    price: string | undefined,
+    price: number | undefined,
   ) => void
 }
 
