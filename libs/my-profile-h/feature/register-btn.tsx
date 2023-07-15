@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { ActiveBtn } from '@/libs/shared/click-btns/feature/click-btns'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
@@ -24,21 +24,12 @@ export default function RegisterBtn() {
     if (isMobile && isTablet) {
       setOpenModal(true)
 
-      setTimeout(() => {
-        setOpenView('mobile')
-      }, 0)
+      setOpenView('mobile')
     } else {
       setOpenModal(true)
-      setTimeout(() => {
-        setOpenView('tablet/desktop')
-      }, 0)
+      setOpenView('tablet/desktop')
     }
   }
-
-  useEffect(() => {
-    console.log(openModal)
-    console.log(isMobile && openView === 'mobile')
-  }, [openModal, isMobile, openView])
 
   return (
     <div>
@@ -51,11 +42,8 @@ export default function RegisterBtn() {
       {openModal && !isMobile && openView === 'tablet/desktop' && (
         <RegisterModal onClickCloseModal={handleClickCloseModal} />
       )}
-      {openModal && (
-        <RegisterModalMobile
-          funneled={isMobile && openView === 'mobile'}
-          onClickCloseModal={handleClickCloseModal}
-        />
+      {openModal && isMobile && openView === 'mobile' && (
+        <RegisterModalMobile onClickCloseModal={handleClickCloseModal} />
       )}
     </div>
   )

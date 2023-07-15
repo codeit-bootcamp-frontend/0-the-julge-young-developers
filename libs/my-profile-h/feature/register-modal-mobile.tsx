@@ -113,121 +113,129 @@ export default function RegisterModalMobile({
 
   return (
     <ModalPortalWrapper id="funnel-portal">
-      <UiBgGrayModal onClickCloseModal={onClickCloseModal}>
-        <UiSimpleLayout title={FUNNEL_TEXT[funnel].text} gap={24}>
-          {funnel === 'name' && (
-            <div
-              className={cx('inputWrapper', {
-                unmounted,
-              })}
-            >
+      <div className={cx('wrapper')}>
+        <UiBgGrayModal onClickCloseModal={onClickCloseModal}>
+          <UiSimpleLayout title={FUNNEL_TEXT[funnel].text} gap={24}>
+            {funnel === 'name' && (
+              <div
+                className={cx('inputWrapper', {
+                  unmounted,
+                })}
+              >
+                <Input
+                  onChange={handleChangeCheckInput(setName)}
+                  variant="input-underline"
+                  title={FUNNEL_TEXT[funnel].title}
+                  isValid={false}
+                  isRequired={false}
+                  defaultValue={defaultName || ''}
+                  // eslint-disable-next-line no-return-assign, no-param-reassign
+                  ref={(el: HTMLInputElement) =>
+                    (userInputRefs.current[0] = el)
+                  }
+                />
+              </div>
+            )}
+            {funnel === 'phone' && (
+              <div
+                className={cx('inputWrapper', {
+                  unmounted,
+                })}
+              >
+                <Input
+                  onChange={handleChangeCheckInput(setPhone)}
+                  variant="input-underline"
+                  title={FUNNEL_TEXT[funnel].title}
+                  isValid={false}
+                  isRequired={false}
+                  defaultValue={defaultPhone || ''}
+                  // eslint-disable-next-line no-return-assign, no-param-reassign
+                  ref={(el: HTMLInputElement) =>
+                    (userInputRefs.current[1] = el)
+                  }
+                />
+              </div>
+            )}
+            {funnel === 'address' && (
+              <div
+                className={cx('inputWrapper', {
+                  unmounted,
+                })}
+              >
+                <Select
+                  variant="search"
+                  title={FUNNEL_TEXT[funnel].title}
+                  isRequired={false}
+                  onClick={() => setAddress(true)}
+                  options={OPTIONS}
+                  defaultValue={defaultAddress || ''}
+                  // eslint-disable-next-line no-return-assign, no-param-reassign
+                  ref={(el: HTMLInputElement) =>
+                    (userInputRefs.current[2] = el)
+                  }
+                />
+              </div>
+            )}
+            {funnel === 'bio' && (
               <Input
-                onChange={handleChangeCheckInput(setName)}
-                variant="input-underline"
+                variant="explain"
+                onChange={handleChangeCheckInput(setBio)}
                 title={FUNNEL_TEXT[funnel].title}
                 isValid={false}
                 isRequired={false}
-                defaultValue={defaultName || ''}
+                defaultValue={defaultBio || ''}
                 // eslint-disable-next-line no-return-assign, no-param-reassign
-                ref={(el: HTMLInputElement) => (userInputRefs.current[0] = el)}
+                ref={(el: HTMLInputElement) => (userInputRefs.current[3] = el)}
               />
-            </div>
-          )}
-          {funnel === 'phone' && (
-            <div
-              className={cx('inputWrapper', {
-                unmounted,
-              })}
-            >
-              <Input
-                onChange={handleChangeCheckInput(setPhone)}
-                variant="input-underline"
-                title={FUNNEL_TEXT[funnel].title}
-                isValid={false}
-                isRequired={false}
-                defaultValue={defaultPhone || ''}
-                // eslint-disable-next-line no-return-assign, no-param-reassign
-                ref={(el: HTMLInputElement) => (userInputRefs.current[1] = el)}
-              />
-            </div>
-          )}
-          {funnel === 'address' && (
-            <div
-              className={cx('inputWrapper', {
-                unmounted,
-              })}
-            >
-              <Select
-                variant="search"
-                title={FUNNEL_TEXT[funnel].title}
-                isRequired={false}
-                onClick={() => setAddress(true)}
-                options={OPTIONS}
-                defaultValue={defaultAddress || ''}
-                // eslint-disable-next-line no-return-assign, no-param-reassign
-                ref={(el: HTMLInputElement) => (userInputRefs.current[2] = el)}
-              />
-            </div>
-          )}
-          {funnel === 'bio' && (
-            <Input
-              variant="explain"
-              onChange={handleChangeCheckInput(setBio)}
-              title={FUNNEL_TEXT[funnel].title}
-              isValid={false}
-              isRequired={false}
-              defaultValue={defaultBio || ''}
-              // eslint-disable-next-line no-return-assign, no-param-reassign
-              ref={(el: HTMLInputElement) => (userInputRefs.current[3] = el)}
+            )}
+          </UiSimpleLayout>
+        </UiBgGrayModal>
+
+        <div className={cx('btnWrapper')}>
+          {name && funnel === 'name' && (
+            <ActiveBtn
+              text="다음"
+              size="large"
+              onClick={handleClickNext(setFunnel, 'phone', 0)}
             />
           )}
-        </UiSimpleLayout>
-      </UiBgGrayModal>
+          {!name && funnel === 'name' && (
+            <InactiveBtn text="다음" size="large" onClick={() => {}} />
+          )}
 
-      <div className={cx('btnWrapper')}>
-        {name && funnel === 'name' && (
-          <ActiveBtn
-            text="다음"
-            size="large"
-            onClick={handleClickNext(setFunnel, 'phone', 0)}
-          />
-        )}
-        {!name && funnel === 'name' && (
-          <InactiveBtn text="다음" size="large" onClick={() => {}} />
-        )}
+          {phone && funnel === 'phone' && (
+            <ActiveBtn
+              text="다음"
+              size="large"
+              onClick={handleClickNext(setFunnel, 'address', 1)}
+            />
+          )}
+          {!phone && funnel === 'phone' && (
+            <InactiveBtn text="다음" size="large" onClick={() => {}} />
+          )}
 
-        {phone && funnel === 'phone' && (
-          <ActiveBtn
-            text="다음"
-            size="large"
-            onClick={handleClickNext(setFunnel, 'address', 1)}
-          />
-        )}
-        {!phone && funnel === 'phone' && (
-          <InactiveBtn text="다음" size="large" onClick={() => {}} />
-        )}
+          {address && funnel === 'address' && (
+            <ActiveBtn
+              text="다음"
+              size="large"
+              onClick={handleClickNext(setFunnel, 'bio', 2)}
+            />
+          )}
+          {!address && funnel === 'address' && (
+            <InactiveBtn text="다음" size="large" onClick={() => {}} />
+          )}
 
-        {address && funnel === 'address' && (
-          <ActiveBtn
-            text="다음"
-            size="large"
-            onClick={handleClickNext(setFunnel, 'bio', 2)}
-          />
-        )}
-        {!address && funnel === 'address' && (
-          <InactiveBtn text="다음" size="large" onClick={() => {}} />
-        )}
-
-        {bio && funnel === 'bio' && (
-          <ActiveBtn
-            text="등록하기"
-            size="large"
-            onClick={handleClickRegister}
-          />
-        )}
-        {!bio && funnel === 'bio' && (
-          <InactiveBtn text="등록하기" size="large" onClick={() => {}} />
-        )}
+          {bio && funnel === 'bio' && (
+            <ActiveBtn
+              text="등록하기"
+              size="large"
+              onClick={handleClickRegister}
+            />
+          )}
+          {!bio && funnel === 'bio' && (
+            <InactiveBtn text="등록하기" size="large" onClick={() => {}} />
+          )}
+        </div>
       </div>
     </ModalPortalWrapper>
   )
