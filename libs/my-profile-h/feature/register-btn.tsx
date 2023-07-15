@@ -1,17 +1,12 @@
 'use client'
 
-import { useState } from 'react'
-
-import classNames from 'classnames/bind'
+import { useEffect, useState } from 'react'
 
 import { ActiveBtn } from '@/libs/shared/click-btns/feature/click-btns'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
 
-import styles from './register-btn.module.scss'
 import RegisterModal from './register-modal'
 import RegisterModalMobile from './register-modal-mobile'
-
-const cx = classNames.bind(styles)
 
 export default function RegisterBtn() {
   const isMobile = useMediaQuery('(max-width: 768px)')
@@ -28,12 +23,22 @@ export default function RegisterBtn() {
   const handleClickChangeView = () => {
     if (isMobile && isTablet) {
       setOpenModal(true)
-      setOpenView('mobile')
+
+      setTimeout(() => {
+        setOpenView('mobile')
+      }, 0)
     } else {
       setOpenModal(true)
-      setOpenView('tablet/desktop')
+      setTimeout(() => {
+        setOpenView('tablet/desktop')
+      }, 0)
     }
   }
+
+  useEffect(() => {
+    console.log(openModal)
+    console.log(isMobile && openView === 'mobile')
+  }, [openModal, isMobile, openView])
 
   return (
     <div>
@@ -44,19 +49,13 @@ export default function RegisterBtn() {
       />
 
       {openModal && !isMobile && openView === 'tablet/desktop' && (
-        <div className={cx('modalWrapper')}>
-          <RegisterModal onClickCloseModal={handleClickCloseModal} />
-        </div>
+        <RegisterModal onClickCloseModal={handleClickCloseModal} />
       )}
-      {openModal && isMobile && openView === 'mobile' && (
-        <div
-          className={cx('modalWrapper', {
-            opened: openModal,
-            closed: !openModal,
-          })}
-        >
-          <RegisterModalMobile onClickCloseModal={handleClickCloseModal} />
-        </div>
+      {openModal && (
+        <RegisterModalMobile
+          funneled={isMobile && openView === 'mobile'}
+          onClickCloseModal={handleClickCloseModal}
+        />
       )}
     </div>
   )
