@@ -1,40 +1,41 @@
 'use client'
 
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react'
 
-import { getUserApplicationData } from '@/libs/application-detail/data-access/data-access-application'
+import {
+  MAX_APPLICATIONS_PER_PAGE,
+  getUserApplicationData,
+} from '@/libs/application-detail/data-access/data-access-application'
 import {
   UiApplicationTable,
   UiRegisterApplication,
 } from '@/libs/application-detail/ui/ui-application-detail'
 import UiLoading from '@/libs/application-detail/ui/ui-loading'
-import { NoticeUserApplicationItem } from '@/libs/shared/api/types/type-application'
+import { useUserContext } from '@/libs/shared/providers/context/feature/user-provider'
+
+import { UserApplicationItem } from '../type-application-detail'
 
 export default function ApplicationDetail() {
-  // const [pageNumber, setPageNumber] = useState(1)
+  const [pageNumber, setPageNumber] = useState(1)
   const [applicationData, setApplicationData] = useState<
-    NoticeUserApplicationItem[] | []
-  >([] as unknown as NoticeUserApplicationItem[])
+    UserApplicationItem[] | []
+  >([] as unknown as UserApplicationItem[])
   const [loading, setLoading] = useState(true)
+  const { userId } = useUserContext()
 
-  // param: offset=pageNumber, limit=5
-  const loadApplicationData = () => {
+  const loadApplicationData = (id: string, offset: number, limit: number) => {
+    setLoading(true)
     const data = getUserApplicationData()
-    if (data instanceof Error) {
-      // 알 수 없는 에러 처리
-      console.log(data)
-    } else if (typeof data === 'string') {
-      // 에러 메시지에 맞게 처리
-      console.log(data)
-    } else {
-      setLoading(false)
-      setApplicationData(data)
-    }
+    setLoading(false)
+
+    console.log(data)
+    setApplicationData(data)
   }
 
   useEffect(() => {
-    loadApplicationData()
-  }, []) // [pageNumber]
+    loadApplicationData(userId, pageNumber, MAX_APPLICATIONS_PER_PAGE)
+  }, [pageNumber])
 
   return (
     <div>
