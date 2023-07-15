@@ -107,12 +107,12 @@ export default function RegisterModalMobile({
   return (
     <ModalPortalWrapper id="funnel-portal">
       <UiBgGrayModal>
-        <UiSimpleLayout title={FUNNEL_TEXT[funnel].title} gap={24}>
+        <UiSimpleLayout title={FUNNEL_TEXT[funnel].text} gap={24}>
           {funnel === 'name' && (
             <Input
               onChange={handleChangeCheckInput(setName)}
               variant="input-underline"
-              title={FUNNEL_TEXT[funnel].text}
+              title={FUNNEL_TEXT[funnel].title}
               isValid={false}
               isRequired={false}
               defaultValue={defaultName || ''}
@@ -124,7 +124,7 @@ export default function RegisterModalMobile({
             <Input
               onChange={handleChangeCheckInput(setPhone)}
               variant="input-underline"
-              title={FUNNEL_TEXT[funnel].text}
+              title={FUNNEL_TEXT[funnel].title}
               isValid={false}
               isRequired={false}
               defaultValue={defaultPhone || ''}
@@ -135,7 +135,7 @@ export default function RegisterModalMobile({
           {funnel === 'address' && (
             <Select
               variant="search"
-              title={FUNNEL_TEXT[funnel].text}
+              title={FUNNEL_TEXT[funnel].title}
               isRequired={false}
               onClick={() => setAddress(true)}
               options={OPTIONS}
@@ -148,7 +148,7 @@ export default function RegisterModalMobile({
             <Input
               variant="explain"
               onChange={handleChangeCheckInput(setBio)}
-              title={FUNNEL_TEXT[funnel].text}
+              title={FUNNEL_TEXT[funnel].title}
               isValid={false}
               isRequired={false}
               defaultValue={defaultBio || ''}
