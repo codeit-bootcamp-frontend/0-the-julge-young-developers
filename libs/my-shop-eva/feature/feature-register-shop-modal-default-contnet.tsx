@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import classNames from 'classnames/bind'
 
@@ -23,7 +23,9 @@ export default function RegisterShopModalDefaultContent() {
   const [category, setCategory] = useState<string>('')
   const [address, setAddress] = useState<string>('')
   const [detailAddress, setDetailAddress] = useState<string>('')
-  const [defaultHourlyWage, setDefaultHourlyWage] = useState<number>()
+  const [defaultHourlyWage, setDefaultHourlyWage] = useState<
+    number | undefined
+  >(undefined)
   // const [shopImage, setShopImage] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const [isAllFilled, setIsAllFilled] = useState<boolean>(false)
@@ -38,9 +40,17 @@ export default function RegisterShopModalDefaultContent() {
       description
     ) {
       setIsAllFilled(true)
-      return
+    } else {
+      setIsAllFilled(false)
     }
-    setIsAllFilled(false)
+    console.log(
+      address,
+      category,
+      defaultHourlyWage,
+      description,
+      detailAddress,
+      shopName,
+    )
   }, [
     address,
     category,
@@ -50,36 +60,6 @@ export default function RegisterShopModalDefaultContent() {
     shopName,
   ])
 
-  const handleChangeShopName = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log('setShopName')
-    setShopName(e.target.value)
-  }
-
-  const handleClickCategory = (value: string) => {
-    setCategory(value)
-    console.log('category')
-  }
-  const handleChangeAddress = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log('setAddress')
-
-    setAddress(e.target.value)
-  }
-
-  const handleChangeDetailAddress = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log('setDetailAddress')
-    setDetailAddress(e.target.value)
-  }
-
-  const handleChangeDefaultHourlyWage = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log('setDefaultHourlyWage')
-    setDefaultHourlyWage(Number(e.target.value))
-  }
-
-  const handleChangeDescription = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log('setDescription')
-    setDescription(e.target.value)
-  }
-
   return (
     <UiSimpleLayout title="가게 정보">
       <div className={cx('contentWrap')}>
@@ -88,14 +68,14 @@ export default function RegisterShopModalDefaultContent() {
             variant="input"
             title="가게 이름*"
             isRequired={true}
-            onChange={handleChangeShopName}
+            onChange={(e) => setShopName(e.target.value)}
           />
           <Select
             title="분류*"
             variant="search"
             options={options}
             defaultValue={options[0].value}
-            onClick={handleClickCategory}
+            onClick={(value) => setCategory(value)}
           />
         </div>
         <div className={cx('inputContainer')}>
@@ -103,14 +83,14 @@ export default function RegisterShopModalDefaultContent() {
             variant="input"
             title="주소*"
             isRequired={true}
-            onChange={handleChangeAddress}
+            onChange={(e) => setAddress(e.target.value)}
           />
 
           <Input
             variant="input"
             title="상세 주소*"
             isRequired={true}
-            onChange={handleChangeDetailAddress}
+            onChange={(e) => setDetailAddress(e.target.value)}
           />
         </div>
         <div className={cx('inputContainer')}>
@@ -118,7 +98,7 @@ export default function RegisterShopModalDefaultContent() {
             variant="input"
             title="기본 시급*"
             isRequired={true}
-            onChange={handleChangeDefaultHourlyWage}
+            onChange={(e) => setDefaultHourlyWage(Number(e.target.value))}
           />
         </div>
         <div className={cx('inputContainer')}>
@@ -129,7 +109,7 @@ export default function RegisterShopModalDefaultContent() {
             variant="explain"
             title="가게 설명*"
             isRequired={true}
-            onChange={handleChangeDescription}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
       </div>

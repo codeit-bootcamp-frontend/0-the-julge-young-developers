@@ -1,4 +1,4 @@
-import React, { ForwardedRef, forwardRef } from 'react'
+import React, { ChangeEvent, ForwardedRef, forwardRef } from 'react'
 
 import classNames from 'classnames/bind'
 
@@ -18,7 +18,11 @@ export default forwardRef(function UiTextArea(
     valid,
     isValid,
     isRequired,
-  }: Valid & Omit<InputProps, 'variant'>,
+    onChange,
+  }: Valid &
+    Omit<InputProps, 'variant' | 'onChange'> & {
+      onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
+    },
   ref: ForwardedRef<HTMLTextAreaElement>,
 ) {
   return (
@@ -30,6 +34,7 @@ export default forwardRef(function UiTextArea(
         required={isRequired}
         ref={ref}
         defaultValue={defaultValue}
+        onChange={onChange as (e: ChangeEvent<HTMLTextAreaElement>) => void}
       />
       {isValid && <div className={cx('validText')}>{valid}</div>}
     </div>

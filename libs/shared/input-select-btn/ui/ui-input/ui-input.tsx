@@ -1,4 +1,4 @@
-import React, { ForwardedRef, forwardRef } from 'react'
+import React, { ChangeEvent, ForwardedRef, forwardRef } from 'react'
 
 import classNames from 'classnames/bind'
 
@@ -20,7 +20,10 @@ export default forwardRef(function UiInput(
     isValid,
     suffix,
     onChange,
-  }: Valid & InputProps,
+  }: Valid &
+    Omit<InputProps, 'onChange'> & {
+      onChange: (e: ChangeEvent<HTMLInputElement>) => void
+    },
   ref: ForwardedRef<HTMLInputElement>,
 ) {
   return (

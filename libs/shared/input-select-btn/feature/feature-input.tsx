@@ -1,4 +1,4 @@
-import React, { ForwardedRef, forwardRef } from 'react'
+import React, { ChangeEvent, ForwardedRef, forwardRef } from 'react'
 
 import UiInput from '@/libs/shared/input-select-btn/ui/ui-input/ui-input'
 import UiTextArea from '@/libs/shared/input-select-btn/ui/ui-text-area/ui-text-area'
@@ -33,7 +33,7 @@ export default forwardRef(function Input(
     return (
       <UiInput
         variant={variant}
-        onChange={onChange}
+        onChange={onChange as (e: ChangeEvent<HTMLInputElement>) => void}
         title={title}
         defaultValue={defaultValue}
         valid={valid as string}
@@ -53,6 +53,7 @@ export default forwardRef(function Input(
         valid={valid as string}
         isValid={isValid as boolean}
         isRequired={isRequired}
+        onChange={onChange as (e: ChangeEvent<HTMLTextAreaElement>) => void}
         ref={ref as ForwardedRef<HTMLTextAreaElement>}
       />
     )
@@ -62,7 +63,7 @@ export default forwardRef(function Input(
     return (
       <UiInput
         variant={variant}
-        onChange={onChange}
+        onChange={onChange as (e: ChangeEvent<HTMLInputElement>) => void}
         title={title}
         defaultValue={defaultValue}
         valid={valid as string}
