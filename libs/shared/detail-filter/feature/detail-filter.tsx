@@ -17,6 +17,8 @@ export default function DetailFilter({
   const [selectedLocations, setSelectedLocations] = useState<Set<string>>(
     new Set(),
   )
+
+  const [isNumber, setIsNumber] = useState<boolean>(false)
   const startInputRef = useRef<HTMLInputElement>(null)
   const priceInputRef = useRef<HTMLInputElement>(null)
 
@@ -31,11 +33,19 @@ export default function DetailFilter({
   }
 
   const handleClickApplyButton = () => {
-    /* api 요청 */
+    if (priceInputRef.current?.value) {
+      if (!Number(priceInputRef.current?.value)) {
+        setIsNumber(true)
+        return
+      }
+      setIsNumber(false)
+    }
+    const locationsArray = Array.from(selectedLocations)
+    const numberPrice = Number(priceInputRef.current?.value)
     onClickApplyButton(
-      selectedLocations,
+      locationsArray,
       startInputRef.current?.value,
-      priceInputRef.current?.value,
+      numberPrice,
     )
     console.log('선택 위치:', selectedLocations)
     console.log('시작일:', startInputRef.current?.value)
@@ -62,6 +72,7 @@ export default function DetailFilter({
       onClickCloseButton={() => onClickCloseButton(false)}
       startInputRef={startInputRef}
       priceInputRef={priceInputRef}
+      isPriceValid={isNumber}
     />
   )
 }
