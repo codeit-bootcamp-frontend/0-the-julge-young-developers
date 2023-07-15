@@ -8,6 +8,14 @@ import useSelect from '@/libs/shared/input-select-btn/util/useSelect'
 import { SelectProps } from '../types/type-select'
 import UiSelectTopShell from '../ui/ui-select/ui-select-top-shell'
 
+/**
+ * @params   variant: 'search' | 'filter'
+ * @params  title?: string
+ * @params  isRequired?: boolean
+ * @params  options: Option[]
+ * @params  defaultValue: string
+ * @params  onClick?: (value: string) => void
+ */
 export default forwardRef(function Select(
   props: SelectProps,
   ref: ForwardedRef<HTMLInputElement>,

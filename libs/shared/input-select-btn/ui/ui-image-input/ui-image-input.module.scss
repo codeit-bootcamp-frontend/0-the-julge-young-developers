@@ -16,6 +16,14 @@
   width: 483px;
   height: 276px;
   border-radius: 12px;
+
+  @include utils.tablet {
+    width: 100%;
+  }
+
+  @include utils.mobile {
+    height: 50vh;
+  }
 }
 
 .buttonContent {

@@ -9,6 +9,14 @@
   border: 1px solid utils.$gray-brt3;
   border-radius: 12px;
   background-color: utils.$gray-brt5;
+
+  @include utils.tablet {
+    width: 100%;
+  }
+
+  @include utils.mobile {
+    height: 50vh;
+  }
 }
 
 .preSelectedImage {

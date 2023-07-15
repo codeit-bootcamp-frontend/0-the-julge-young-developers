@@ -6,7 +6,9 @@ export interface InputProps {
   defaultValue?: string
   isRequired: boolean
   suffix?: string
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void
 }
 
 export interface Valid {
@@ -24,7 +26,7 @@ export interface UiImageInputProps {
 }
 
 export type Variant = {
-  variant: 'input' | 'explain' | 'input-underline'
+  variant: 'input' | 'explain' | 'input-underline' | 'explain-underline'
 }
 export type FeatureInputProps = Variant &
   InputProps &
