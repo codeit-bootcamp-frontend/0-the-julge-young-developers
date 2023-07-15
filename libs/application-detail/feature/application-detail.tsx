@@ -14,22 +14,33 @@ export default function ApplicationDetail() {
   const [applicationData, setApplicationData] = useState<
     NoticeUserApplicationItem[] | []
   >([] as unknown as NoticeUserApplicationItem[])
+  const [loading, setLoading] = useState(true)
 
+  // param: offset=pageNumber, limit=5
   const loadApplicationData = () => {
-    const result: NoticeUserApplicationItem[] = getUserApplicationData() // await getUserApplicationData()
-
-    setApplicationData(result)
+    const data = getUserApplicationData()
+    if (data instanceof Error) {
+      // 알 수 없는 에러 처리
+      console.log(data)
+    } else if (typeof data === 'string') {
+      // 에러 메시지에 맞게 처리
+      console.log(data)
+    } else {
+      setLoading(false)
+      setApplicationData(data)
+    }
   }
 
   useEffect(() => {
-    // 페이지네이션 진행
-    // offset=pageNumber, limit=5
     loadApplicationData()
   }, []) // [pageNumber]
 
   return (
     <div>
-      {applicationData.length === 0 ? (
+      {/* eslint-disable-next-line no-nested-ternary */}
+      {loading ? (
+        <div> 로딩 중... </div>
+      ) : applicationData.length === 0 ? (
         <UiRegisterApplication />
       ) : (
         <UiApplicationTable />
