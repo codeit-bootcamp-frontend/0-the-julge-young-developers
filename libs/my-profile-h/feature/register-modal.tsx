@@ -90,7 +90,7 @@ export default function RegisterModal({
 
   return (
     <ModalPortalWrapper id="funnel-portal">
-      <UiBgGrayModal>
+      <UiBgGrayModal onClickCloseModal={onClickCloseModal}>
         <UiSimpleLayout title="내 프로필" gap={24}>
           <div className={cx('inputTopWrapper')}>
             <div className={cx('inputTopItem')}>

@@ -106,7 +106,7 @@ export default function RegisterModalMobile({
 
   return (
     <ModalPortalWrapper id="funnel-portal">
-      <UiBgGrayModal>
+      <UiBgGrayModal onClickCloseModal={onClickCloseModal}>
         <UiSimpleLayout title={FUNNEL_TEXT[funnel].text} gap={24}>
           {funnel === 'name' && (
             <Input
