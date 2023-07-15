@@ -1,0 +1,10 @@
+@use '@/styles/utils';
+
+.filterButton {
+  width: 79px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: utils.$red-brt2;
+  color: utils.$white;
+  @include utils.font-style('body2Bold');
+}
