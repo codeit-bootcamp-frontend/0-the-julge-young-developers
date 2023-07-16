@@ -2,9 +2,9 @@ import React from 'react'
 
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
-import UnregisteredMyJobPosting from './unregistered-my-job-posting'
+import UnregisteredMyNotice from './unregistered-notice'
 
-export default function MyJobPostingList() {
+export default function MyNoticeList() {
   return (
     <div>
       <UiSimpleLayout
@@ -13,7 +13,7 @@ export default function MyJobPostingList() {
         titleSize={28}
         gap={24}
       >
-        <UnregisteredMyJobPosting />
+        <UnregisteredMyNotice />
       </UiSimpleLayout>
     </div>
   )

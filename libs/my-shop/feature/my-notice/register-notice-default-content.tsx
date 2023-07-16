@@ -3,7 +3,7 @@ import React from 'react'
 import classNames from 'classnames/bind'
 
 import styles from '@/libs/my-profile-h/feature/register-modal.module.scss'
-import useRegisterJobPostingState from '@/libs/my-shop/utill/useRegisterJobPostingState'
+import useRegisterNoticeState from '@/libs/my-shop/utill/useRegisterNoticeState'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
 import {
   ActiveBtn,
@@ -14,7 +14,7 @@ import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-s
 
 const cx = classNames.bind(styles)
 
-export default function RegisterJobPostingDefaultContent({
+export default function RegisterNoticeDefaultContent({
   showModal,
   onClickToggelModal,
 }: {
@@ -32,7 +32,7 @@ export default function RegisterJobPostingDefaultContent({
     setDescription,
     isAllFilled,
     // setIsAllFilled,
-  } = useRegisterJobPostingState()
+  } = useRegisterNoticeState()
   return (
     <div className={cx('modalWrapper', { showModal })}>
       <UiBgGrayModal onClickCloseModal={onClickToggelModal}>

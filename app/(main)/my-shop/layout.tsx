@@ -8,7 +8,7 @@ export default function MyShopLayout({
   return (
     <div>
       {children}
-      <div id="funnel-portal-posting" />
+      <div id="funnel-portal-notice" />
       <div id="funnel-portal" />
     </div>
   )

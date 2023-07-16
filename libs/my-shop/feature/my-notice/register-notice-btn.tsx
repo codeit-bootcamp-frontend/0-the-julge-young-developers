@@ -5,9 +5,9 @@ import { useState } from 'react'
 import { ActiveBtn } from '@/libs/shared/click-btns/feature/click-btns'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
 
-import RegisterJobPostingModal from './register-job-posting-modal'
+import RegisterNoticeModal from './register-notice-modal'
 
-export default function RegisterJopPostingBtn() {
+export default function RegisterNoticeBtn() {
   const [openModal, setOpenModal] = useState<boolean>(false)
   const isMobile = useMediaQuery('(max-width: 768px)')
   const handleClickToggleModal = () => {
@@ -24,7 +24,7 @@ export default function RegisterJopPostingBtn() {
       />
 
       {openModal && (
-        <RegisterJobPostingModal
+        <RegisterNoticeModal
           openModal={openModal}
           onClickToggelModal={handleClickToggleModal}
         />

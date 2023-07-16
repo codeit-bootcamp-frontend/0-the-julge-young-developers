@@ -1,4 +1,4 @@
-export const FUNNEL_POSTING_TITLE = {
+export const FUNNEL_NOTICE_TITLE = {
   hourlyWage: {
     title: '시급',
     text: '시급을 입력해주세요',

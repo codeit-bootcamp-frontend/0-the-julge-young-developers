@@ -4,9 +4,9 @@ import { ChangeEvent, MouseEvent, useState } from 'react'
 
 import classNames from 'classnames/bind'
 
-import { FUNNEL_POSTING_TITLE } from '@/libs/my-shop/data-access/my-job-posting-data'
+import { FUNNEL_NOTICE_TITLE } from '@/libs/my-shop/data-access/my-notice-data'
 import styles from '@/libs/my-shop/feature/my-shop/register-shop-modal-funnel-content.module.scss'
-import useRegisterJobPostingState from '@/libs/my-shop/utill/useRegisterJobPostingState'
+import useRegisterJobPostingState from '@/libs/my-shop/utill/useRegisterNoticeState'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
 import {
   ActiveBtn,
@@ -117,7 +117,7 @@ export default function RegisterJobPostingFunnelContent({
       <div className={cx('wrapper', { unmounted, backUnmounted })}>
         <UiSimpleLayout
           titleSize={24}
-          title={FUNNEL_POSTING_TITLE[funnel].text}
+          title={FUNNEL_NOTICE_TITLE[funnel].text}
           gap={24}
         >
           <form onSubmit={handleClickButton}>
@@ -125,7 +125,7 @@ export default function RegisterJobPostingFunnelContent({
               {funnel === 'hourlyWage' && (
                 <Input
                   variant="input-underline"
-                  title={FUNNEL_POSTING_TITLE[funnel].title}
+                  title={FUNNEL_NOTICE_TITLE[funnel].title}
                   isRequired={true}
                   onChange={handleChange}
                   defaultValue={hourlyWage}
@@ -134,7 +134,7 @@ export default function RegisterJobPostingFunnelContent({
               {funnel === 'startsAt' && (
                 <Input
                   variant="input-underline"
-                  title={FUNNEL_POSTING_TITLE[funnel].title}
+                  title={FUNNEL_NOTICE_TITLE[funnel].title}
                   isRequired={true}
                   onChange={handleChange}
                   defaultValue={startsAt}
@@ -143,7 +143,7 @@ export default function RegisterJobPostingFunnelContent({
               {funnel === 'workhour' && (
                 <Input
                   variant="input-underline"
-                  title={FUNNEL_POSTING_TITLE[funnel].title}
+                  title={FUNNEL_NOTICE_TITLE[funnel].title}
                   isRequired={true}
                   onChange={handleChange}
                   defaultValue={workhour}
@@ -152,7 +152,7 @@ export default function RegisterJobPostingFunnelContent({
               {funnel === 'description' && (
                 <Input
                   variant="explain-underline"
-                  title={FUNNEL_POSTING_TITLE[funnel].title}
+                  title={FUNNEL_NOTICE_TITLE[funnel].title}
                   isRequired={false}
                   onChange={handleChange}
                   defaultValue={description}

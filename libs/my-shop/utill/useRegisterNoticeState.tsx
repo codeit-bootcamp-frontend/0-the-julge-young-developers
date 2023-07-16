@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export default function useRegisterJobPostingState(variant = 'default') {
+export default function useRegisterNoticeState(variant = 'default') {
   const [hourlyWage, setHourlyWage] = useState<string>('')
   const [startsAt, setStartsAt] = useState<string>('')
   const [workhour, setWorkhour] = useState<string>('')
