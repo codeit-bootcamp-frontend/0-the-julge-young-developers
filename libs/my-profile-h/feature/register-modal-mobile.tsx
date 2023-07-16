@@ -73,6 +73,18 @@ export default function RegisterModalMobile({
 
   const [unmounted, setUnmounted] = useState<boolean>(false)
 
+  const handleClickBackModal = () => {
+    if (funnel === 'name') {
+      onClickCloseModal()
+    } else if (funnel === 'phone') {
+      setFunnel('name')
+    } else if (funnel === 'address') {
+      setFunnel('phone')
+    } else if (funnel === 'bio') {
+      setFunnel('address')
+    }
+  }
+
   const handleChangeCheckInput =
     (setter: Dispatch<SetStateAction<boolean>>) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -163,7 +175,11 @@ export default function RegisterModalMobile({
           showModal,
         })}
       >
-        <UiBgGrayModal onClickCloseModal={onClickCloseModal}>
+        <UiBgGrayModal
+          unmounted={unmounted}
+          onClickBackModal={handleClickBackModal}
+          onClickCloseModal={onClickCloseModal}
+        >
           <div
             className={cx('simpleWrapper', {
               unmounted,
