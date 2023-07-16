@@ -2,6 +2,9 @@
 
 .wrapper {
   height: 100vh;
+  padding-top: 70px;
+  padding-right: 24px;
+  padding-left: 24px;
 
   &.unmounted {
     transform: translateX(-120%);
@@ -12,6 +15,10 @@
     transform: translateX(120%);
     transition: transform 0.5s ease;
   }
+}
+
+.form {
+  margin-top: 24px;
 }
 
 .inputWrap {

@@ -29,14 +29,20 @@ export default function RegisterShopModalFunnelContent({
   onClickToggelModal: () => void
 }) {
   const {
+    shopName,
     setShopName,
+    category,
     setCategory,
+    address,
     setAddress,
+    detailAddress,
     setDetailAddress,
+    defaultHourlyWage,
     setDefaultHourlyWage,
     selectedImage,
     setSelectedImage,
     preselectedImageRef,
+    description,
     setDescription,
     isAllFilled,
     setIsAllFilled,
@@ -123,16 +129,34 @@ export default function RegisterShopModalFunnelContent({
       // close modal
     } else if (funnel === 'category') {
       setFunnel('name')
+      if (shopName) {
+        setIsAllFilled(true)
+      }
     } else if (funnel === 'address') {
       setFunnel('category')
+      if (category) {
+        setIsAllFilled(true)
+      }
     } else if (funnel === 'detailAddress') {
       setFunnel('address')
+      if (address) {
+        setIsAllFilled(true)
+      }
     } else if (funnel === 'defaultHourlyWage') {
       setFunnel('detailAddress')
+      if (detailAddress) {
+        setIsAllFilled(true)
+      }
     } else if (funnel === 'image') {
       setFunnel('defaultHourlyWage')
+      if (defaultHourlyWage) {
+        setIsAllFilled(true)
+      }
     } else if (funnel === 'description') {
       setFunnel('image')
+      if (selectedImage) {
+        setIsAllFilled(true)
+      }
     }
 
     setTimeout(() => {
@@ -146,7 +170,11 @@ export default function RegisterShopModalFunnelContent({
       onClickCloseModal={onClickToggelModal}
     >
       <div className={cx('wrapper', { unmounted, backUnmounted })}>
-        <UiSimpleLayout titleSize={24} title={FUNNEL_TITLE[funnel].text}>
+        <UiSimpleLayout
+          titleSize={24}
+          title={FUNNEL_TITLE[funnel].text}
+          gap={24}
+        >
           <form onSubmit={handleClickButton}>
             <div className={cx('inputWrap', { unmounted, backUnmounted })}>
               {funnel === 'name' && (
@@ -155,6 +183,7 @@ export default function RegisterShopModalFunnelContent({
                   title={FUNNEL_TITLE[funnel].title}
                   isRequired={true}
                   onChange={handleChange}
+                  defaultValue={shopName}
                 />
               )}
               {funnel === 'address' && (
@@ -163,6 +192,7 @@ export default function RegisterShopModalFunnelContent({
                   title={FUNNEL_TITLE[funnel].title}
                   isRequired={true}
                   onChange={handleChange}
+                  defaultValue={address}
                 />
               )}
               {funnel === 'detailAddress' && (
@@ -171,6 +201,7 @@ export default function RegisterShopModalFunnelContent({
                   title={FUNNEL_TITLE[funnel].title}
                   isRequired={true}
                   onChange={handleChange}
+                  defaultValue={detailAddress}
                 />
               )}
               {funnel === 'defaultHourlyWage' && (
@@ -179,6 +210,7 @@ export default function RegisterShopModalFunnelContent({
                   title={FUNNEL_TITLE[funnel].title}
                   isRequired={true}
                   onChange={handleChange}
+                  defaultValue={String(defaultHourlyWage)}
                 />
               )}
               {funnel === 'category' && (
@@ -186,6 +218,7 @@ export default function RegisterShopModalFunnelContent({
                   variant="search"
                   onClick={handleClick}
                   options={CATECPRY_DATA}
+                  defaultValue={category}
                 />
               )}
               {funnel === 'image' && (
@@ -203,6 +236,7 @@ export default function RegisterShopModalFunnelContent({
                   title={FUNNEL_TITLE[funnel].title}
                   isRequired={false}
                   onChange={handleChange}
+                  defaultValue={description}
                 />
               )}
             </div>
