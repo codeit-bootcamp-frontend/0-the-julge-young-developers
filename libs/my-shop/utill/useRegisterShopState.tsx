@@ -7,7 +7,7 @@ export default function useRegisterShopState(variant = 'default') {
   const [detailAddress, setDetailAddress] = useState<string>('')
   const [defaultHourlyWage, setDefaultHourlyWage] = useState<
     number | undefined
-  >(undefined)
+  >()
   const [selectedImage, setSelectedImage] = useState<string>('')
   const preselectedImageRef = useRef<HTMLImageElement>(null)
   const [description, setDescription] = useState<string>('')

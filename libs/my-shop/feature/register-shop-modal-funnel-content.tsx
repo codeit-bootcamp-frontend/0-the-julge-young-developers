@@ -114,6 +114,7 @@ export default function RegisterShopModalFunnelContent({
       setFunnel('description')
     } else if (funnel === 'description') {
       // api
+      onClickToggelModal()
     }
 
     setTimeout(() => {
@@ -126,7 +127,7 @@ export default function RegisterShopModalFunnelContent({
     setBackUnmounted(true)
 
     if (funnel === 'name') {
-      // close modal
+      onClickToggelModal()
     } else if (funnel === 'category') {
       setFunnel('name')
       if (shopName) {
@@ -210,7 +211,9 @@ export default function RegisterShopModalFunnelContent({
                   title={FUNNEL_TITLE[funnel].title}
                   isRequired={true}
                   onChange={handleChange}
-                  defaultValue={String(defaultHourlyWage)}
+                  defaultValue={
+                    defaultHourlyWage ? String(defaultHourlyWage) : ''
+                  }
                 />
               )}
               {funnel === 'category' && (
