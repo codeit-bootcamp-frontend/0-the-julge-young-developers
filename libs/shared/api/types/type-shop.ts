@@ -1,3 +1,5 @@
+import { Shop } from '@/libs/my-shop/type-my-shop'
+
 import { Links } from './type-user'
 
 // shopRequest body data
@@ -48,28 +50,7 @@ interface ShopInfo {
 
 // shopRequest Response data
 interface ShopData {
-  item: {
-    id: string
-    name: string
-    category: string
-    address1: string
-    address2: string
-    description: string
-    imageUrl: string
-    originalHourlyPay: number
-    user: {
-      item: {
-        id: string
-        email: string
-        type: string
-        name?: string // optional
-        phone?: string // optional
-        address?: string // optional
-        bio?: string // optional
-      }
-      href: string
-    }
-  }
+  item: Shop
   links: Links[]
 }
 

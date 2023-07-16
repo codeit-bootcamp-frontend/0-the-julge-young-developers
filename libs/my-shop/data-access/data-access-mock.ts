@@ -1,5 +1,7 @@
 import { Shop } from '../type-my-shop'
 
+export const shopId = '4490151c-5217-4157-b072-9c37b05bed47'
+
 export const MOCK_SHOP: Shop = {
   id: '4490151c-5217-4157-b072-9c37b05bed47',
   name: '진주회관',
@@ -10,6 +12,18 @@ export const MOCK_SHOP: Shop = {
   imageUrl:
     'https://bootcamp-project-api.s3.ap-northeast-2.amazonaws.com/0-1/the-julge/1bdb43c8-ff08-4a46-81b0-7f91efced98c-jinju4.png',
   originalHourlyPay: 10000,
+  user: {
+    item: {
+      id: '',
+      email: '',
+      type: '',
+      name: undefined,
+      phone: undefined,
+      address: undefined,
+      bio: undefined,
+    },
+    href: '',
+  },
 }
 
 // user: {
