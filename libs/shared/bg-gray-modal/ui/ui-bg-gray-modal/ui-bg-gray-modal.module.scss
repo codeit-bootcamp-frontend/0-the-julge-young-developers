@@ -20,6 +20,11 @@
   right: 0;
 }
 
+.back {
+  position: absolute;
+  opacity: 0;
+}
+
 @include utils.tablet {
   .close {
     right: 32px;
@@ -29,13 +34,26 @@
 @include utils.mobile {
   .bgGray {
     inset: 0;
-
-    // top: 102px;
     background-color: utils.$white;
   }
 
   .close {
+    display: none;
+
+    // top: 40px;
+    // right: 12px;
+
+    // opacity: 0;
+  }
+
+  .back {
     top: 40px;
-    right: 12px;
+    left: 12px;
+    opacity: 1;
+
+    &.unmounted {
+      transform: translateX(-200%);
+      transition: transform 0.5s ease;
+    }
   }
 }

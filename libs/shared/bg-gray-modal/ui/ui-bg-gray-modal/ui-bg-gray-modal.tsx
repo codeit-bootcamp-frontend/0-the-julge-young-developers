@@ -18,11 +18,27 @@ const cx = classNames.bind(styles)
 export default function UiBgGrayModal({
   closeButtonSize = 32,
   children,
+  onClickBackModal,
   onClickCloseModal,
+  unmounted,
 }: UiBgGrayModalProps) {
   return (
     <div className={cx('bgGray')}>
       <div className={cx('modalContent')}>
+        <button
+          className={cx('back', {
+            unmounted,
+          })}
+          type="button"
+          onClick={onClickBackModal}
+        >
+          <Image
+            src="/images/arrow-left.svg"
+            width={closeButtonSize}
+            height={closeButtonSize}
+            alt="뒤로 가기"
+          />
+        </button>
         <button
           className={cx('close')}
           type="button"
