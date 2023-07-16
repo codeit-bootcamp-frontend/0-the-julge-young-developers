@@ -15,7 +15,7 @@ export default function NoticeCardItem({
   filterElement,
 }: {
   data: AllNoticesData[]
-  filterElement: React.ReactNode
+  filterElement?: React.ReactNode
 }) {
   const router = useRouter()
 

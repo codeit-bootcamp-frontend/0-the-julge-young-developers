@@ -1,16 +1,16 @@
 @use '@/styles/utils';
 
-.img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.container {
+  @include utils.flexbox(column, flex-start, flex-start);
+
+  gap: 24px;
 }
 
 .detailCardWrapper {
   display: flex;
   justify-content: space-between;
-  width: 949px;
+  width: 100%;
+  max-width: 949px;
   padding: 24px;
   border: 1px solid utils.$gray-brt4;
   border-radius: 12px;
@@ -26,6 +26,13 @@
     height: var(--img-height);
     overflow: hidden;
     border-radius: var(--img-border-radius);
+
+    .img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
     .closedLayer {
       display: flex;
@@ -75,7 +82,8 @@
       }
 
       .payContainer {
-        display: flex;
+        @include utils.flexbox(row, initial);
+
         justify-content: space-between;
         width: 100%;
         gap: 8px;
@@ -96,7 +104,8 @@
     }
 
     .durationContainer {
-      display: flex;
+      @include utils.flexbox(row, initial);
+
       width: 100%;
       gap: 6px;
 
@@ -119,7 +128,8 @@
     }
 
     .addressContainer {
-      display: flex;
+      @include utils.flexbox(row, initial);
+
       width: 100%;
       gap: 6px;
 
@@ -152,8 +162,26 @@
     }
 
     .btnWrapper {
+      width: 100%;
       margin-top: 4px;
     }
+  }
+}
+
+.noticeDescription {
+  @include utils.flexbox(column, flex-start, flex-start);
+
+  gap: 12px;
+  padding: 32px;
+  border-radius: 12px;
+  background-color: utils.$gray-brt5;
+
+  .noticeTitle {
+    @include utils.font-style('body1Bold');
+  }
+
+  .noticeContent {
+    @include utils.font-style('body1');
   }
 }
 
@@ -176,6 +204,8 @@
     }
 
     .card {
+      width: 100%;
+
       .btnWrapper {
         margin-top: 8px;
       }
@@ -184,6 +214,10 @@
 }
 
 @include utils.mobile {
+  .container {
+    gap: 12px;
+  }
+
   .detailCardWrapper {
     padding: 20px;
 
@@ -210,10 +244,6 @@
         .imgContainer.icon {
           width: 16px;
           height: 16px;
-
-          .img {
-            object-fit: fill;
-          }
         }
 
         .duration {
@@ -231,10 +261,6 @@
         .imgContainer.icon {
           width: 16px;
           height: 16px;
-
-          .img {
-            object-fit: fill;
-          }
         }
 
         .address {
@@ -261,6 +287,16 @@
       .btnWrapper {
         margin-top: 12px;
       }
+    }
+  }
+
+  .noticeDescription {
+    .noticeTitle {
+      @include utils.font-style('body2Bold');
+    }
+
+    .noticeContent {
+      @include utils.font-style('body2');
     }
   }
 }
