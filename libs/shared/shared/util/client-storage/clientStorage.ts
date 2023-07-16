@@ -2,9 +2,9 @@ const checkSSR = () => typeof window === 'undefined'
 
 /**
  *
- * @description 인스턴스 생성은 CSR 내에서 수행해야 합니다. (context를 통해 사용해야 합니다.)
+ * @description 인스턴스 생성은 CSR 내에서 수행해야 합니다. (context를 통해 사용하면 됩니다.)
  *
- * @example 사용 예시 (예시 일뿐, context를 사용해야 합니다.)
+ * @example 기본 사용 예시 (예시 일뿐, key 통일성을 위해 context를 사용해야 합니다.)
  * ```
  * const ls = new ClientStorage<string>(
       'recent-application', // key name

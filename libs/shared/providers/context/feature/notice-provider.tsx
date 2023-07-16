@@ -47,7 +47,7 @@ function NewRecentNoticesProvider({ children }: { children: ReactNode }) {
 
 /**
  * 
- * @example 
+ * @example 사용 예시 
  * 
  * ```
  * const recentNotices = useNewRecentNoticesContext()
