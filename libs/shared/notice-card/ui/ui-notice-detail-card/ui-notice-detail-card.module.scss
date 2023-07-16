@@ -9,7 +9,8 @@
 .detailCardWrapper {
   display: flex;
   justify-content: space-between;
-  width: 949px;
+  width: 100%;
+  max-width: 949px;
   padding: 24px;
   border: 1px solid utils.$gray-brt4;
   border-radius: 12px;
