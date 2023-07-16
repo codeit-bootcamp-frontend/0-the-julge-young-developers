@@ -1,18 +1,20 @@
 'use client'
 
 /* eslint-disable no-unused-vars */
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from 'react'
 
 import {
   MAX_APPLICATIONS_PER_PAGE,
   getUserApplicationData,
 } from '@/libs/application-detail/data-access/data-access-application'
-import {
-  UiApplicationTable,
-  UiRegisterApplication,
-} from '@/libs/application-detail/ui/ui-application-detail'
+import { UiRegisterApplication } from '@/libs/application-detail/ui/ui-application-detail'
 import UiLoading from '@/libs/application-detail/ui/ui-loading'
+import Pagination from '@/libs/shared/pagination/feature/pagination'
 import { useUserContext } from '@/libs/shared/providers/context/feature/user-provider'
+import { MOCK_APPLICATION_HISTORY_DATA } from '@/libs/shared/table/data-access/data-access-mock'
+import { ApplicationHistoryTable } from '@/libs/shared/table/feature/tables'
 
 import { UserApplicationItem } from '../type-application-detail'
 
@@ -35,7 +37,7 @@ export default function ApplicationDetail() {
 
   useEffect(() => {
     loadApplicationData(userId, pageNum, MAX_APPLICATIONS_PER_PAGE)
-  }, [pageNum])
+  }, [pageNum, userId])
 
   return (
     <div>
@@ -45,7 +47,9 @@ export default function ApplicationDetail() {
       ) : applicationData.length === 0 ? (
         <UiRegisterApplication />
       ) : (
-        <UiApplicationTable />
+        <ApplicationHistoryTable data={MOCK_APPLICATION_HISTORY_DATA}>
+          <Pagination pageNum={pageNum} setPageNum={setPageNum} />
+        </ApplicationHistoryTable>
       )}
     </div>
   )
