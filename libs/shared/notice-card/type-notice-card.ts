@@ -19,7 +19,8 @@ export interface UiNoticeDetailCardProps {
   workhour: number
   address: string
   closed: boolean
-  description: string
+  shopDescription: string
+  noticeDescription: string
   hourlyPay: number
   originalHourlyPay: number
   children: React.ReactNode

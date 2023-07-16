@@ -7,6 +7,12 @@
   object-fit: cover;
 }
 
+.container {
+  @include utils.flexbox(column, flex-start, flex-start);
+
+  gap: 24px;
+}
+
 .detailCardWrapper {
   display: flex;
   justify-content: space-between;
@@ -190,6 +196,10 @@
 }
 
 @include utils.mobile {
+  .container {
+    gap: 12px;
+  }
+
   .detailCardWrapper {
     padding: 20px;
 

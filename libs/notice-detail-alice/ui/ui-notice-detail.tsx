@@ -34,11 +34,8 @@ export default function UiNoticeDetail() {
   useEffect(() => {
     if (isMobile) {
       setResponsiveSize(mobileSize)
-      // setIsMobileSize(true)
     } else {
       setResponsiveSize(tabletPcSize)
-
-      // setIsMobileSize(false)
     }
   }, [isMobile])
 
@@ -46,8 +43,8 @@ export default function UiNoticeDetail() {
     <div>
       <UiSimpleLayout
         title={MOCK_NOTICE_DETAIL_DATA.name}
-        titleSize={responsiveSize.titleSize}
         subtitle={MOCK_NOTICE_DETAIL_DATA.category}
+        titleSize={responsiveSize.titleSize}
         subtitleSize={responsiveSize.subtitleSize}
         gap={responsiveSize.gap}
       >
@@ -58,7 +55,8 @@ export default function UiNoticeDetail() {
           workhour={MOCK_NOTICE_DETAIL_DATA.workhour}
           address={MOCK_NOTICE_DETAIL_DATA.address}
           closed={MOCK_NOTICE_DETAIL_DATA.closed}
-          description={MOCK_NOTICE_DETAIL_DATA.description}
+          shopDescription={MOCK_NOTICE_DETAIL_DATA.shopDescription}
+          noticeDescription={MOCK_NOTICE_DETAIL_DATA.noticeDescription}
           hourlyPay={MOCK_NOTICE_DETAIL_DATA.hourlyPay}
           originalHourlyPay={MOCK_NOTICE_DETAIL_DATA.originalHourlyPay}
         >
