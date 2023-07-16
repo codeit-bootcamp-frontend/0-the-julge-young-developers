@@ -4,7 +4,7 @@ import {
   RecentNoticeItem,
   RecentNoticeList,
 } from '@/libs/shared/providers/context/types/type-recent-notice'
-import useLocalStorage from '@/libs/shared/shared/util/client-storage/useLocalStorage'
+import useLocalStorage from '@/libs/shared/shared/util/client-storage/use-localstorage'
 
 const STORAGE_KEY = 'RECENT_NOTICES'
 

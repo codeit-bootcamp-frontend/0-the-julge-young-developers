@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import ClientStorage from './clientStorage'
+import ClientStorage from './client-storage'
 
 /**
  * @description 기존 로컬 스토리지에 예외처리를 추가한 훅입니다.
