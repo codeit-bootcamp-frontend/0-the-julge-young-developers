@@ -1,14 +1,15 @@
 @use '@/styles/utils';
 @use 'sass:list';
 
-$col-widths-pc: (228px, 300px, 200px, 236px);
-$col-widths-mobile: (189px, 270px, 180px, 162px);
+$col-widths-pc: (226px, 300px, 200px, 236px);
+$col-widths-mobile: (186px, 270px, 180px, 165px);
 $total-width-pc: 0;
 $total-width-mobile: 0;
 
 .tableWrapper {
   position: relative;
   width: 100%;
+  max-width: 964px;
   overflow: hidden;
   border: 1px solid utils.$gray-brt3;
   border-radius: 10px;
