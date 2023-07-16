@@ -5,6 +5,18 @@ const CARD_CHIPS = {
 } as const
 export type CardChips = (typeof CARD_CHIPS)[keyof typeof CARD_CHIPS]
 
+const SHOP_CATEGORY = {
+  Korean: '한식',
+  Chinese: '중식',
+  Japanese: '일식',
+  Western: '양식',
+  SnackBar: '분식',
+  Cafe: '카페',
+  Convenience: '편의점',
+  Other: '기타',
+} as const
+export type ShopCategory = (typeof SHOP_CATEGORY)[keyof typeof SHOP_CATEGORY]
+
 export interface UiNoticeCardChipProps {
   isCardItem?: boolean
   isShowChip: CardChips
@@ -43,4 +55,24 @@ export interface UiNoticeCardListProps {
   title: string
   filterElement?: React.ReactNode
   children: React.ReactNode
+}
+
+export interface UiNoticeDetailCardLayoutProps {
+  name: string
+  category: ShopCategory
+  children: React.ReactNode
+}
+
+export interface NoticeDetail {
+  name: string
+  category: ShopCategory
+  duration: string
+  workhour: number
+  address: string
+  shopDescription: string
+  noticeDescription: string
+  hourlyPay: number
+  originalHourlyPay: number
+  imageUrl: string
+  closed: boolean
 }

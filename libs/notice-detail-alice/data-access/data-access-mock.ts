@@ -1,6 +1,8 @@
-const MOCK_NOTICE_DETAIL_DATA = {
+import { NoticeDetail } from '@/libs/shared/notice-card/type-notice-card'
+
+const MOCK_NOTICE_DETAIL_DATA: NoticeDetail = {
   name: '성경만두0',
-  category: '식당',
+  category: '한식',
   duration: '2023-01-03 15:00~18:00', // startsAt + workhour를 활용해서 이 형식으로 변환해야 한다.
   workhour: 3,
   address: '서울시 종로구', // address1에 나와 있는 것들
