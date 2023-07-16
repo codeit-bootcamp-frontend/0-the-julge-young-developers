@@ -10,7 +10,11 @@ import UiNoticeList from '../ui/ui-notice-list/ui-notice-list'
 
 export type SortType = '마감임박순' | '시급많은순' | '시간적은순' | '가나다순'
 
-export default function NoticeList() {
+export default function NoticeList({
+  keyword,
+}: {
+  keyword: string | undefined
+}) {
   const [data, setData] = useState<AllNoticesData[]>([])
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
@@ -40,7 +44,7 @@ export default function NoticeList() {
         break
     }
 
-    const response = await getNotices({ limit: 6, sort: sortStr })
+    const response = await getNotices({ limit: 6, sort: sortStr, keyword })
     if (response instanceof Error) {
       // 알 수 없는 에러 처리
     } else if (typeof response === 'string') {
@@ -63,6 +67,7 @@ export default function NoticeList() {
       address: selectedLocations,
       startsAtGte: start,
       hourlyPayGte: price,
+      keyword,
     })
     if (response instanceof Error) {
       // 알 수 없는 에러 처리
@@ -78,7 +83,7 @@ export default function NoticeList() {
 
   useEffect(() => {
     const getDatas = async () => {
-      const response = await getNotices({ limit: 6 })
+      const response = await getNotices({ limit: 6, keyword })
       if (response instanceof Error) {
         // 알 수 없는 에러 처리
       } else if (typeof response === 'string') {
@@ -92,7 +97,7 @@ export default function NoticeList() {
     }
     getDatas()
     return undefined
-  }, [])
+  }, [keyword])
   return (
     <UiNoticeList
       data={data}
