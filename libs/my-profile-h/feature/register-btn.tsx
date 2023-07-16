@@ -15,6 +15,12 @@ export default function RegisterBtn() {
     'not-found' | 'tablet/desktop' | 'mobile'
   >('not-found')
   const [openModal, setOpenModal] = useState<boolean>(false)
+  const [showModal, setShowModal] = useState<boolean>(false)
+
+  const [defaultName, setDefaultName] = useState<string>('')
+  const [defaultPhone, setDefaultPhone] = useState<string>('')
+  const [defaultAddress, setDefaultAddress] = useState<string>('')
+  // const [defaultBio, setDefaultBio] = useState<string>('')
 
   const handleClickCloseModal = () => {
     setOpenModal(false)
@@ -23,12 +29,16 @@ export default function RegisterBtn() {
   const handleClickChangeView = () => {
     if (isMobile && isTablet) {
       setOpenModal(true)
-
       setOpenView('mobile')
     } else {
       setOpenModal(true)
       setOpenView('tablet/desktop')
     }
+
+    // 모달이 열린 상태와 정말로 보여주는 상태를 구분해야 애니메이션이 가능하다.
+    setTimeout(() => {
+      setShowModal(true)
+    }, 500)
   }
 
   return (
@@ -40,10 +50,24 @@ export default function RegisterBtn() {
       />
 
       {openModal && !isMobile && openView === 'tablet/desktop' && (
-        <RegisterModal onClickCloseModal={handleClickCloseModal} />
+        <RegisterModal
+          showModal={showModal}
+          onClickCloseModal={handleClickCloseModal}
+        />
       )}
       {openModal && isMobile && openView === 'mobile' && (
-        <RegisterModalMobile onClickCloseModal={handleClickCloseModal} />
+        <RegisterModalMobile
+          defaultName={defaultName}
+          defaultPhone={defaultPhone}
+          defaultAddress={defaultAddress}
+          // defaultBio={defaultBio}
+          setDefaultName={setDefaultName}
+          setDefaultPhone={setDefaultPhone}
+          setDefaultAddress={setDefaultAddress}
+          // setDefaultBio={setDefaultBio}
+          showModal={showModal}
+          onClickCloseModal={handleClickCloseModal}
+        />
       )}
     </div>
   )

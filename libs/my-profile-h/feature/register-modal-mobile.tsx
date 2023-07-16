@@ -1,6 +1,6 @@
 'use client'
 
-import { Dispatch, SetStateAction, useRef, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 
 import classNames from 'classnames/bind'
 
@@ -37,19 +37,28 @@ interface IfunnelSubmitData {
 }
 
 interface RegisterModalMobileProps {
+  showModal: boolean
   onClickCloseModal: () => void
   defaultName?: string
   defaultPhone?: string
   defaultAddress?: string
   defaultBio?: string
+  setDefaultName: Dispatch<SetStateAction<string>>
+  setDefaultPhone: Dispatch<SetStateAction<string>>
+  setDefaultAddress: Dispatch<SetStateAction<string>>
+  // setDefaultBio: Dispatch<SetStateAction<string>>
 }
 
 export default function RegisterModalMobile({
+  showModal,
   onClickCloseModal,
   defaultName,
   defaultPhone,
   defaultAddress,
   defaultBio,
+  setDefaultName,
+  setDefaultPhone,
+  setDefaultAddress,
 }: RegisterModalMobileProps) {
   const [funnel, setFunnel] = useState<'name' | 'phone' | 'address' | 'bio'>(
     'name',
@@ -70,6 +79,33 @@ export default function RegisterModalMobile({
   const [bio, setBio] = useState<boolean>(false)
 
   const [unmounted, setUnmounted] = useState<boolean>(false)
+
+  const handleClickBackModal = () => {
+    if (funnel === 'name') {
+      setFunnelSubmitData({
+        name: '',
+        phone: '',
+        address: '',
+        bio: '',
+      })
+      setDefaultName('')
+      setDefaultPhone('')
+      setDefaultAddress('')
+      onClickCloseModal()
+    } else if (funnel === 'phone') {
+      // set funnelSubmitData.name
+      setDefaultName(funnelSubmitData.name)
+      setFunnel('name')
+    } else if (funnel === 'address') {
+      // set funnelSubmitData.phone
+      setDefaultPhone(funnelSubmitData.phone)
+      setFunnel('phone')
+    } else if (funnel === 'bio') {
+      // set funnelSubmitData.address
+      setDefaultAddress(funnelSubmitData.address)
+      setFunnel('address')
+    }
+  }
 
   const handleChangeCheckInput =
     (setter: Dispatch<SetStateAction<boolean>>) =>
@@ -111,87 +147,162 @@ export default function RegisterModalMobile({
     onClickCloseModal()
   }
 
+  useEffect(() => {
+    const handleKeypressBlurMove = (e: KeyboardEvent) => {
+      const key = e.key || e.keyCode
+      if (key === 'Enter' || key === 13) {
+        e.preventDefault()
+        document.querySelector('input')?.blur()
+
+        if (funnel === 'name') {
+          setUnmounted(true)
+
+          funnelSubmitData[funnel] = userInputRefs.current[0].value
+          setFunnelSubmitData(funnelSubmitData)
+
+          setTimeout(() => {
+            setFunnel('phone')
+            setUnmounted(false)
+          }, 500)
+        } else if (funnel === 'phone') {
+          setUnmounted(true)
+
+          funnelSubmitData[funnel] = userInputRefs.current[1].value
+          setFunnelSubmitData(funnelSubmitData)
+
+          setTimeout(() => {
+            setFunnel('address')
+            setUnmounted(false)
+          }, 500)
+        } else if (funnel === 'address') {
+          setUnmounted(true)
+
+          funnelSubmitData[funnel] = userInputRefs.current[2].value
+          setFunnelSubmitData(funnelSubmitData)
+
+          setTimeout(() => {
+            setFunnel('bio')
+            setUnmounted(false)
+          }, 500)
+        }
+      }
+    }
+
+    document
+      .querySelector('input')
+      ?.addEventListener('keypress', handleKeypressBlurMove)
+
+    return () => {
+      document
+        .querySelector('input')
+        ?.removeEventListener('keypress', handleKeypressBlurMove)
+    }
+  }, [funnel])
+
   return (
     <ModalPortalWrapper id="funnel-portal">
-      <div className={cx('wrapper')}>
-        <UiBgGrayModal onClickCloseModal={onClickCloseModal}>
-          <UiSimpleLayout title={FUNNEL_TEXT[funnel].text} gap={24}>
-            {funnel === 'name' && (
-              <div
-                className={cx('inputWrapper', {
-                  unmounted,
-                })}
-              >
+      <div
+        className={cx('modalWrapper', {
+          showModal,
+        })}
+      >
+        <UiBgGrayModal
+          unmounted={unmounted}
+          onClickBackModal={handleClickBackModal}
+          onClickCloseModal={onClickCloseModal}
+        >
+          <div
+            className={cx('simpleWrapper', {
+              unmounted,
+            })}
+          >
+            <UiSimpleLayout
+              titleSize={24}
+              title={FUNNEL_TEXT[funnel].text}
+              gap={24}
+            >
+              {funnel === 'name' && (
+                <div
+                  className={cx('inputWrapper', {
+                    unmounted,
+                  })}
+                >
+                  <Input
+                    onChange={handleChangeCheckInput(setName)}
+                    variant="input-underline"
+                    title={FUNNEL_TEXT[funnel].title}
+                    isValid={false}
+                    isRequired={false}
+                    defaultValue={defaultName || ''}
+                    // eslint-disable-next-line no-return-assign, no-param-reassign
+                    ref={(el: HTMLInputElement) =>
+                      (userInputRefs.current[0] = el)
+                    }
+                  />
+                </div>
+              )}
+              {funnel === 'phone' && (
+                <div
+                  className={cx('inputWrapper', {
+                    unmounted,
+                  })}
+                >
+                  <Input
+                    onChange={handleChangeCheckInput(setPhone)}
+                    variant="input-underline"
+                    title={FUNNEL_TEXT[funnel].title}
+                    isValid={false}
+                    isRequired={false}
+                    defaultValue={defaultPhone || ''}
+                    // eslint-disable-next-line no-return-assign, no-param-reassign
+                    ref={(el: HTMLInputElement) =>
+                      (userInputRefs.current[1] = el)
+                    }
+                  />
+                </div>
+              )}
+              {funnel === 'address' && (
+                <div
+                  className={cx('inputWrapper', {
+                    unmounted,
+                  })}
+                >
+                  <Select
+                    variant="search"
+                    isRequired={false}
+                    onClick={() => setAddress(true)}
+                    options={OPTIONS}
+                    defaultValue={defaultAddress || ''}
+                    // eslint-disable-next-line no-return-assign, no-param-reassign
+                    ref={(el: HTMLInputElement) =>
+                      (userInputRefs.current[2] = el)
+                    }
+                  />
+                </div>
+              )}
+              {funnel === 'bio' && (
                 <Input
-                  onChange={handleChangeCheckInput(setName)}
-                  variant="input-underline"
+                  variant="explain"
+                  onChange={handleChangeCheckInput(setBio)}
                   title={FUNNEL_TEXT[funnel].title}
                   isValid={false}
                   isRequired={false}
-                  defaultValue={defaultName || ''}
+                  defaultValue={defaultBio || ''}
                   // eslint-disable-next-line no-return-assign, no-param-reassign
                   ref={(el: HTMLInputElement) =>
-                    (userInputRefs.current[0] = el)
+                    (userInputRefs.current[3] = el)
                   }
                 />
-              </div>
-            )}
-            {funnel === 'phone' && (
-              <div
-                className={cx('inputWrapper', {
-                  unmounted,
-                })}
-              >
-                <Input
-                  onChange={handleChangeCheckInput(setPhone)}
-                  variant="input-underline"
-                  title={FUNNEL_TEXT[funnel].title}
-                  isValid={false}
-                  isRequired={false}
-                  defaultValue={defaultPhone || ''}
-                  // eslint-disable-next-line no-return-assign, no-param-reassign
-                  ref={(el: HTMLInputElement) =>
-                    (userInputRefs.current[1] = el)
-                  }
-                />
-              </div>
-            )}
-            {funnel === 'address' && (
-              <div
-                className={cx('inputWrapper', {
-                  unmounted,
-                })}
-              >
-                <Select
-                  variant="search"
-                  title={FUNNEL_TEXT[funnel].title}
-                  isRequired={false}
-                  onClick={() => setAddress(true)}
-                  options={OPTIONS}
-                  defaultValue={defaultAddress || ''}
-                  // eslint-disable-next-line no-return-assign, no-param-reassign
-                  ref={(el: HTMLInputElement) =>
-                    (userInputRefs.current[2] = el)
-                  }
-                />
-              </div>
-            )}
-            {funnel === 'bio' && (
-              <Input
-                variant="explain"
-                onChange={handleChangeCheckInput(setBio)}
-                title={FUNNEL_TEXT[funnel].title}
-                isValid={false}
-                isRequired={false}
-                defaultValue={defaultBio || ''}
-                // eslint-disable-next-line no-return-assign, no-param-reassign
-                ref={(el: HTMLInputElement) => (userInputRefs.current[3] = el)}
-              />
-            )}
-          </UiSimpleLayout>
+              )}
+            </UiSimpleLayout>
+          </div>
         </UiBgGrayModal>
 
-        <div className={cx('btnWrapper')}>
+        <div
+          className={cx('btnWrapper', {
+            unmounted,
+          })}
+        >
           {name && funnel === 'name' && (
             <ActiveBtn
               text="다음"

@@ -1,5 +1,14 @@
 @use '@/styles/utils';
 
+.modalWrapper {
+  opacity: 0;
+
+  &.showModal {
+    transition: opacity 0.5s ease;
+    opacity: 1;
+  }
+}
+
 .inputTopWrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
