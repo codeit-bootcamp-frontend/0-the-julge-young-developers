@@ -8,8 +8,6 @@ import UiFilterElement from '@/libs/shared/notice-card/ui/ui-filter-element/ui-f
 
 import UiNoticeList from '../ui/ui-notice-list/ui-notice-list'
 
-export type SortType = '마감임박순' | '시급많은순' | '시간적은순' | '가나다순'
-
 export default function NoticeList({
   keyword,
 }: {
