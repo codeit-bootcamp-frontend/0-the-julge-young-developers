@@ -20,6 +20,7 @@ import styles from './register-modal.module.scss'
 const cx = classNames.bind(styles)
 
 interface RegisterModalProps {
+  showModal?: boolean
   onClickCloseModal: () => void
   defaultName?: string
   defaultPhone?: string
@@ -28,6 +29,7 @@ interface RegisterModalProps {
 }
 
 export default function RegisterModal({
+  showModal,
   onClickCloseModal,
   defaultName,
   defaultPhone,
@@ -90,75 +92,87 @@ export default function RegisterModal({
 
   return (
     <ModalPortalWrapper id="funnel-portal">
-      <UiBgGrayModal onClickCloseModal={onClickCloseModal}>
-        <UiSimpleLayout title="내 프로필" gap={24}>
-          <div className={cx('inputTopWrapper')}>
-            <div className={cx('inputTopItem')}>
+      <div
+        className={cx('modalWrapper', {
+          showModal,
+        })}
+      >
+        <UiBgGrayModal onClickCloseModal={onClickCloseModal}>
+          <UiSimpleLayout title="내 프로필" gap={24}>
+            <div className={cx('inputTopWrapper')}>
+              <div className={cx('inputTopItem')}>
+                <Input
+                  onChange={handleChangeCheckInput(setName)}
+                  variant="input"
+                  title="이름*"
+                  isValid={false}
+                  isRequired={false}
+                  defaultValue={defaultName || ''}
+                  // eslint-disable-next-line no-return-assign, no-param-reassign
+                  ref={(el: HTMLInputElement) =>
+                    (userInputRefs.current[0] = el)
+                  }
+                />
+              </div>
+              <div className={cx('inputTopItem')}>
+                <Input
+                  onChange={handleChangeCheckInput(setPhone)}
+                  variant="input"
+                  title="연락처*"
+                  isValid={false}
+                  isRequired={false}
+                  defaultValue={defaultPhone || ''}
+                  // eslint-disable-next-line no-return-assign, no-param-reassign
+                  ref={(el: HTMLInputElement) =>
+                    (userInputRefs.current[1] = el)
+                  }
+                />
+              </div>
+              <div className={cx('inputTopItem')}>
+                <Select
+                  variant="search"
+                  title="선호지역*"
+                  isRequired={false}
+                  defaultValue={defaultAddress || ''}
+                  options={OPTIONS}
+                  onClick={() => setAddress(true)}
+                  // eslint-disable-next-line no-return-assign, no-param-reassign
+                  ref={(el: HTMLInputElement) =>
+                    (userInputRefs.current[2] = el)
+                  }
+                />
+              </div>
+            </div>
+            <div className={cx('inputBottomItem')}>
               <Input
-                onChange={handleChangeCheckInput(setName)}
-                variant="input"
-                title="이름*"
+                onChange={handleChangeCheckInput(setBio)}
+                variant="explain"
+                title="소개*"
                 isValid={false}
                 isRequired={false}
-                defaultValue={defaultName || ''}
+                defaultValue={defaultBio || ''}
                 // eslint-disable-next-line no-return-assign, no-param-reassign
-                ref={(el: HTMLInputElement) => (userInputRefs.current[0] = el)}
+                ref={(el: HTMLInputElement) => (userInputRefs.current[3] = el)}
               />
             </div>
-            <div className={cx('inputTopItem')}>
-              <Input
-                onChange={handleChangeCheckInput(setPhone)}
-                variant="input"
-                title="연락처*"
-                isValid={false}
-                isRequired={false}
-                defaultValue={defaultPhone || ''}
-                // eslint-disable-next-line no-return-assign, no-param-reassign
-                ref={(el: HTMLInputElement) => (userInputRefs.current[1] = el)}
-              />
+            <div className={cx('btnWrapper')}>
+              {activeBtn ? (
+                <ActiveBtn
+                  text="등록하기"
+                  size="large"
+                  onClick={handleClickRegister}
+                />
+              ) : (
+                <InactiveBtn
+                  text="등록하기"
+                  size="large"
+                  onClick={handleClickRegister}
+                />
+              )}
             </div>
-            <div className={cx('inputTopItem')}>
-              <Select
-                variant="search"
-                title="선호지역*"
-                isRequired={false}
-                defaultValue={defaultAddress || ''}
-                options={OPTIONS}
-                onClick={() => setAddress(true)}
-                // eslint-disable-next-line no-return-assign, no-param-reassign
-                ref={(el: HTMLInputElement) => (userInputRefs.current[2] = el)}
-              />
-            </div>
-          </div>
-          <div className={cx('inputBottomItem')}>
-            <Input
-              onChange={handleChangeCheckInput(setBio)}
-              variant="explain"
-              title="소개*"
-              isValid={false}
-              isRequired={false}
-              defaultValue={defaultBio || ''}
-              // eslint-disable-next-line no-return-assign, no-param-reassign
-              ref={(el: HTMLInputElement) => (userInputRefs.current[3] = el)}
-            />
-          </div>
-          <div className={cx('btnWrapper')}>
-            {activeBtn ? (
-              <ActiveBtn
-                text="등록하기"
-                size="large"
-                onClick={handleClickRegister}
-              />
-            ) : (
-              <InactiveBtn
-                text="등록하기"
-                size="large"
-                onClick={handleClickRegister}
-              />
-            )}
-          </div>
-        </UiSimpleLayout>
-      </UiBgGrayModal>
+          </UiSimpleLayout>
+        </UiBgGrayModal>
+      </div>
     </ModalPortalWrapper>
   )
 }

@@ -50,7 +50,10 @@ export default function RegisterBtn() {
       />
 
       {openModal && !isMobile && openView === 'tablet/desktop' && (
-        <RegisterModal onClickCloseModal={handleClickCloseModal} />
+        <RegisterModal
+          showModal={showModal}
+          onClickCloseModal={handleClickCloseModal}
+        />
       )}
       {openModal && isMobile && openView === 'mobile' && (
         <RegisterModalMobile
