@@ -9,6 +9,7 @@ import {
   FUNNEL_TITLE,
 } from '@/libs/my-shop/data-access/my-shop-register-data'
 import useRegisterShopState from '@/libs/my-shop/utill/useRegisterShopState'
+import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
 import {
   ActiveBtn,
   InactiveBtn,
@@ -22,7 +23,11 @@ import styles from './register-shop-modal-funnel-content.module.scss'
 
 const cx = classNames.bind(styles)
 
-export default function RegisterShopModalFunnelContent() {
+export default function RegisterShopModalFunnelContent({
+  onClickToggelModal,
+}: {
+  onClickToggelModal: () => void
+}) {
   const {
     setShopName,
     setCategory,
@@ -47,6 +52,7 @@ export default function RegisterShopModalFunnelContent() {
     | 'description'
   >('name')
   const [unmounted, setUnmounted] = useState<boolean>(false)
+  const [backUnmounted, setBackUnmounted] = useState<boolean>(false)
 
   useEffect(() => {
     if (funnel === 'image' && (selectedImage || preselectedImageRef.current)) {
@@ -109,77 +115,107 @@ export default function RegisterShopModalFunnelContent() {
       setUnmounted(false)
     }, 500)
   }
+
+  const handleClickBackModal = () => {
+    setBackUnmounted(true)
+
+    if (funnel === 'name') {
+      // close modal
+    } else if (funnel === 'category') {
+      setFunnel('name')
+    } else if (funnel === 'address') {
+      setFunnel('category')
+    } else if (funnel === 'detailAddress') {
+      setFunnel('address')
+    } else if (funnel === 'defaultHourlyWage') {
+      setFunnel('detailAddress')
+    } else if (funnel === 'image') {
+      setFunnel('defaultHourlyWage')
+    } else if (funnel === 'description') {
+      setFunnel('image')
+    }
+
+    setTimeout(() => {
+      setBackUnmounted(false)
+    }, 500)
+  }
   return (
-    <div className={cx('wrapper', { unmounted })}>
-      <UiSimpleLayout titleSize={24} title={FUNNEL_TITLE[funnel].text}>
-        <form onSubmit={handleClickButton}>
-          <div className={cx('inputWrap', { unmounted })}>
-            {funnel === 'name' && (
-              <Input
-                variant="input-underline"
-                title={FUNNEL_TITLE[funnel].title}
-                isRequired={true}
-                onChange={handleChange}
-              />
-            )}
-            {funnel === 'address' && (
-              <Input
-                variant="input-underline"
-                title={FUNNEL_TITLE[funnel].title}
-                isRequired={true}
-                onChange={handleChange}
-              />
-            )}
-            {funnel === 'detailAddress' && (
-              <Input
-                variant="input-underline"
-                title={FUNNEL_TITLE[funnel].title}
-                isRequired={true}
-                onChange={handleChange}
-              />
-            )}
-            {funnel === 'defaultHourlyWage' && (
-              <Input
-                variant="input-underline"
-                title={FUNNEL_TITLE[funnel].title}
-                isRequired={true}
-                onChange={handleChange}
-              />
-            )}
-            {funnel === 'category' && (
-              <Select
-                variant="search"
-                onClick={handleClick}
-                options={CATECPRY_DATA}
-              />
-            )}
-            {funnel === 'image' && (
-              <ImageInput
-                title={FUNNEL_TITLE[funnel].title}
-                preselectedImageUrl=""
-                selectedImage={selectedImage}
-                setSelectedImage={setSelectedImage}
-                ref={preselectedImageRef}
-              />
-            )}
-            {funnel === 'description' && (
-              <Input
-                variant="explain-underline"
-                title={FUNNEL_TITLE[funnel].title}
-                isRequired={false}
-                onChange={handleChange}
-              />
-            )}
-          </div>
-          <div className={cx('button', { unmounted })}>
-            {isAllFilled ? (
-              <ActiveBtn text="다음" size="large" type="submit" />
-            ) : (
-              <InactiveBtn text="다음" size="large" />
-            )}
-          </div>
-        </form>
-      </UiSimpleLayout>
-    </div>
+    <UiBgGrayModal
+      unmounted={backUnmounted}
+      onClickBackModal={handleClickBackModal}
+      onClickCloseModal={onClickToggelModal}
+    >
+      <div className={cx('wrapper', { unmounted, backUnmounted })}>
+        <UiSimpleLayout titleSize={24} title={FUNNEL_TITLE[funnel].text}>
+          <form onSubmit={handleClickButton}>
+            <div className={cx('inputWrap', { unmounted, backUnmounted })}>
+              {funnel === 'name' && (
+                <Input
+                  variant="input-underline"
+                  title={FUNNEL_TITLE[funnel].title}
+                  isRequired={true}
+                  onChange={handleChange}
+                />
+              )}
+              {funnel === 'address' && (
+                <Input
+                  variant="input-underline"
+                  title={FUNNEL_TITLE[funnel].title}
+                  isRequired={true}
+                  onChange={handleChange}
+                />
+              )}
+              {funnel === 'detailAddress' && (
+                <Input
+                  variant="input-underline"
+                  title={FUNNEL_TITLE[funnel].title}
+                  isRequired={true}
+                  onChange={handleChange}
+                />
+              )}
+              {funnel === 'defaultHourlyWage' && (
+                <Input
+                  variant="input-underline"
+                  title={FUNNEL_TITLE[funnel].title}
+                  isRequired={true}
+                  onChange={handleChange}
+                />
+              )}
+              {funnel === 'category' && (
+                <Select
+                  variant="search"
+                  onClick={handleClick}
+                  options={CATECPRY_DATA}
+                />
+              )}
+              {funnel === 'image' && (
+                <ImageInput
+                  title={FUNNEL_TITLE[funnel].title}
+                  preselectedImageUrl=""
+                  selectedImage={selectedImage}
+                  setSelectedImage={setSelectedImage}
+                  ref={preselectedImageRef}
+                />
+              )}
+              {funnel === 'description' && (
+                <Input
+                  variant="explain-underline"
+                  title={FUNNEL_TITLE[funnel].title}
+                  isRequired={false}
+                  onChange={handleChange}
+                />
+              )}
+            </div>
+            <div className={cx('button', { unmounted, backUnmounted })}>
+              {isAllFilled ? (
+                <ActiveBtn text="다음" size="large" type="submit" />
+              ) : (
+                <InactiveBtn text="다음" size="large" />
+              )}
+            </div>
+          </form>
+        </UiSimpleLayout>
+      </div>
+    </UiBgGrayModal>
   )
 }
