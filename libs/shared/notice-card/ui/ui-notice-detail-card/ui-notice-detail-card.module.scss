@@ -179,7 +179,7 @@
     @include utils.font-style('body1Bold');
   }
 
-  .noticeCotent {
+  .noticeContent {
     @include utils.font-style('body1');
   }
 }
@@ -286,6 +286,16 @@
       .btnWrapper {
         margin-top: 12px;
       }
+    }
+  }
+
+  .noticeDescription {
+    .noticeTitle {
+      @include utils.font-style('body2Bold');
+    }
+
+    .noticeContent {
+      @include utils.font-style('body2');
     }
   }
 }
