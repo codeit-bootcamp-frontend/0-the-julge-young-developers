@@ -18,7 +18,7 @@ export default function UiPagination({
     <div className={cx('wrapper')}>
       <div className={cx('content')}>
         <button type="button">
-          <UiPaginationArrow direction="prev" disable={!prevAble} />
+          <UiPaginationArrow direction="prev" able={prevAble} />
         </button>
         <div className={cx('numbers')}>
           {shownPageNums.map((num) => (
@@ -33,7 +33,7 @@ export default function UiPagination({
           ))}
         </div>
         <button type="button">
-          <UiPaginationArrow direction="next" disable={!nextAble} />
+          <UiPaginationArrow direction="next" able={nextAble} />
         </button>
       </div>
     </div>
