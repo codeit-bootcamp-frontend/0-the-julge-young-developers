@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { getNotices } from '@/libs/shared/api/data-access/request/noticeRequest'
 import { AllNoticesData } from '@/libs/shared/api/types/type-notice'
 import UiFilterElement from '@/libs/shared/notice-card/ui/ui-filter-element/ui-filter-element'
+import Pagination from '@/libs/shared/pagination/feature/pagination'
 
 import UiNoticeList from '../ui/ui-notice-list/ui-notice-list'
 
@@ -13,6 +14,7 @@ export type SortType = '마감임박순' | '시급많은순' | '시간적은순'
 export default function NoticeList() {
   const [data, setData] = useState<AllNoticesData[]>([])
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const [pageNum, setPageNum] = useState(1)
 
   const handleClickModalOpen = () => {
     setIsModalOpen(true)
@@ -104,6 +106,9 @@ export default function NoticeList() {
           onClickModalOpen={handleClickModalOpen}
           onSelectSortData={handleSelectSortData}
         />
+      }
+      paginationElement={
+        <Pagination pageNum={pageNum} setPageNum={setPageNum} />
       }
     />
   )
