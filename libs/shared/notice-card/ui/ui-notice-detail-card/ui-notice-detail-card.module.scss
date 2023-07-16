@@ -167,6 +167,23 @@
   }
 }
 
+.noticeDescription {
+  @include utils.flexbox(column, flex-start, flex-start);
+
+  gap: 12px;
+  padding: 32px;
+  border-radius: 12px;
+  background-color: utils.$gray-brt5;
+
+  .noticeTitle {
+    @include utils.font-style('body1Bold');
+  }
+
+  .noticeCotent {
+    @include utils.font-style('body1');
+  }
+}
+
 @include utils.tablet {
   .detailCardWrapper {
     @include utils.flexbox(column, flex-start, flex-start);

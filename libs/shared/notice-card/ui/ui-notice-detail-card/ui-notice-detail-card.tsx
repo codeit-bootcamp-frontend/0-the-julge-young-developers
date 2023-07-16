@@ -85,8 +85,8 @@ export default function UiNoticeDetailCard({
         </div>
       </div>
       <div className={cx('noticeDescription')}>
-        <h3>공고 설명</h3>
-        <p>{noticeDescription}</p>
+        <h3 className={cx('noticeTitle')}>공고 설명</h3>
+        <p className={cx('noticeContent')}>{noticeDescription}</p>
       </div>
     </div>
   )
