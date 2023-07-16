@@ -148,6 +148,9 @@ export default function RegisterModalMobile({
         if (funnel === 'name') {
           setUnmounted(true)
 
+          funnelSubmitData[funnel] = userInputRefs.current[0].value
+          setFunnelSubmitData(funnelSubmitData)
+
           setTimeout(() => {
             setFunnel('phone')
             setUnmounted(false)
@@ -155,12 +158,18 @@ export default function RegisterModalMobile({
         } else if (funnel === 'phone') {
           setUnmounted(true)
 
+          funnelSubmitData[funnel] = userInputRefs.current[1].value
+          setFunnelSubmitData(funnelSubmitData)
+
           setTimeout(() => {
             setFunnel('address')
             setUnmounted(false)
           }, 500)
         } else if (funnel === 'address') {
           setUnmounted(true)
+
+          funnelSubmitData[funnel] = userInputRefs.current[2].value
+          setFunnelSubmitData(funnelSubmitData)
 
           setTimeout(() => {
             setFunnel('bio')
