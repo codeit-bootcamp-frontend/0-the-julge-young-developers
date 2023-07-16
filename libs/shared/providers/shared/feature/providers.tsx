@@ -1,5 +1,6 @@
 'use client'
 
+import { NewRecentNoticesProvider } from '@/libs/shared/providers/context/feature/notice-provider'
 import UserProvider from '@/libs/shared/providers/context/feature/user-provider'
 
 interface IProvidersProps {
@@ -7,7 +8,11 @@ interface IProvidersProps {
 }
 
 function Providers({ children }: IProvidersProps) {
-  return <UserProvider>{children}</UserProvider>
+  return (
+    <UserProvider>
+      <NewRecentNoticesProvider>{children}</NewRecentNoticesProvider>
+    </UserProvider>
+  )
 }
 
 export default Providers
