@@ -4,6 +4,7 @@ import ModalPortalWrapper from '@/libs/portal/feature/modalWrapper'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
 
 import RegisterJobPostingDefaultContent from './register-job-posting-default-content'
+import RegisterJobPostingFunnelContent from './register-job-posting-funnel-content'
 
 export default function RegisterJobPostingModal({
   openModal,
@@ -17,14 +18,14 @@ export default function RegisterJobPostingModal({
   return (
     <ModalPortalWrapper id="funnel-portal-posting">
       {isMobile ? (
-        <div>ㅎ</div>
+        <RegisterJobPostingFunnelContent
+          onClickToggelModal={onClickToggelModal}
+        />
       ) : (
-        <div>
-          <RegisterJobPostingDefaultContent
-            onClickToggelModal={onClickToggelModal}
-            showModal={openModal}
-          />
-        </div>
+        <RegisterJobPostingDefaultContent
+          onClickToggelModal={onClickToggelModal}
+          showModal={openModal}
+        />
       )}
     </ModalPortalWrapper>
   )
