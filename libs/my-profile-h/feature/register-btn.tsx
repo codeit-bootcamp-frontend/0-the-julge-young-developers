@@ -15,6 +15,7 @@ export default function RegisterBtn() {
     'not-found' | 'tablet/desktop' | 'mobile'
   >('not-found')
   const [openModal, setOpenModal] = useState<boolean>(false)
+  const [showModal, setShowModal] = useState<boolean>(false)
 
   const handleClickCloseModal = () => {
     setOpenModal(false)
@@ -28,6 +29,11 @@ export default function RegisterBtn() {
       setOpenModal(true)
       setOpenView('tablet/desktop')
     }
+
+    // 모달이 열린 상태와 정말로 보여주는 상태를 구분해야 애니메이션이 가능하다.
+    setTimeout(() => {
+      setShowModal(true)
+    }, 500)
   }
 
   return (
@@ -42,7 +48,10 @@ export default function RegisterBtn() {
         <RegisterModal onClickCloseModal={handleClickCloseModal} />
       )}
       {openModal && isMobile && openView === 'mobile' && (
-        <RegisterModalMobile onClickCloseModal={handleClickCloseModal} />
+        <RegisterModalMobile
+          showModal={showModal}
+          onClickCloseModal={handleClickCloseModal}
+        />
       )}
     </div>
   )

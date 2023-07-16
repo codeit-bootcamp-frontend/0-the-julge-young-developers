@@ -1,13 +1,22 @@
+.modalWrapper {
+  opacity: 0;
+
+  &.showModal {
+    transition: opacity 0.5s ease;
+    opacity: 1;
+  }
+}
+
 .simpleWrapper {
   &.unmounted {
-    transform: translateX(-120%);
+    transform: translateX(-110%);
     transition: transform 0.5s ease;
   }
 }
 
 .inputWrapper {
   &.unmounted {
-    transform: translateX(-120%);
+    transform: translateX(-110%);
     transition: transform 0.5s ease;
   }
 }
@@ -20,7 +29,7 @@
   padding-left: 12px;
 
   &.unmounted {
-    transform: translateX(-120%);
+    transform: translateX(-110%);
     transition: transform 0.5s ease;
   }
 }
