@@ -8,4 +8,9 @@ interface UiSimpleLayoutProps {
   children: React.ReactNode
 }
 
-export type { UiSimpleLayoutProps }
+interface UiSimpleLayoutResponsiveProps {
+  title: string
+  children: React.ReactNode
+}
+
+export type { UiSimpleLayoutProps, UiSimpleLayoutResponsiveProps }

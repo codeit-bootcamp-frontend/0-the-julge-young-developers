@@ -1,7 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
 import classNames from 'classnames/bind'
 
 import {
@@ -11,51 +9,19 @@ import {
 import { ActiveBtn } from '@/libs/shared/click-btns/feature/click-btns'
 import NoticeCardItem from '@/libs/shared/notice-card/feature/notice-card-item'
 import UiNoticeDetailCard from '@/libs/shared/notice-card/ui/ui-notice-detail-card/ui-notice-detail-card'
-import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
-import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
+import UiNoticeDetailCardLayout from '@/libs/shared/notice-card/ui/ui-notice-detail-card/ui-notice-detail-card-layout'
 
 import styles from './ui-notice-detail.module.scss'
-
-const tabletPcSize = {
-  titleSize: 28,
-  subtitleSize: 16,
-  gap: 24,
-}
-
-const mobileSize = {
-  titleSize: 20,
-  subtitleSize: 14,
-  gap: 16,
-}
 
 const cx = classNames.bind(styles)
 
 export default function UiNoticeDetail() {
-  const isMobile = useMediaQuery('(max-width: 768px)')
-
-  const [responsiveSize, setResponsiveSize] = useState<{
-    titleSize: number
-    subtitleSize: number
-    gap: number
-  }>(tabletPcSize)
-
-  useEffect(() => {
-    if (isMobile) {
-      setResponsiveSize(mobileSize)
-    } else {
-      setResponsiveSize(tabletPcSize)
-    }
-  }, [isMobile])
-
   return (
     <>
       <div>
-        <UiSimpleLayout
-          title={MOCK_NOTICE_DETAIL_DATA.name}
-          subtitle={MOCK_NOTICE_DETAIL_DATA.category}
-          titleSize={responsiveSize.titleSize}
-          subtitleSize={responsiveSize.subtitleSize}
-          gap={responsiveSize.gap}
+        <UiNoticeDetailCardLayout
+          name={MOCK_NOTICE_DETAIL_DATA.name}
+          category={MOCK_NOTICE_DETAIL_DATA.category}
         >
           <UiNoticeDetailCard
             name={MOCK_NOTICE_DETAIL_DATA.name}
@@ -77,7 +43,7 @@ export default function UiNoticeDetail() {
               }}
             />
           </UiNoticeDetailCard>
-        </UiSimpleLayout>
+        </UiNoticeDetailCardLayout>
       </div>
       <div className={cx('recentNotices')}>
         <NoticeCardItem data={MOCK_NOTICES_DATA} />

@@ -1,10 +1,10 @@
+import { utilFormatDuration } from '@/libs/shared/shared/util/utilFormatDuration'
 import {
   ApplicantListTableProps,
   ApplicationHistoryTableProps,
   TableData,
 } from '@/libs/shared/table/type-table'
 import UiTable from '@/libs/shared/table/ui/ui-table'
-import { utilFormatDuration } from '@/libs/shared/table/util/util-format-duration'
 
 function ApplicationHistoryTable({
   data,
