@@ -199,6 +199,20 @@ export default function RegisterModalMobile({
     }
   }, [funnel])
 
+  useEffect(() => {
+    const handlePopstateBackward = () => {
+      window.history.pushState(null, document.title, window.location.href)
+      onClickCloseModal()
+    }
+
+    window.history.pushState(null, document.title, window.location.href)
+    window.addEventListener('popstate', handlePopstateBackward)
+
+    return () => {
+      window.removeEventListener('popstate', handlePopstateBackward)
+    }
+  }, [])
+
   return (
     <ModalPortalWrapper id="funnel-portal">
       <div
