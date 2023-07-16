@@ -9,13 +9,16 @@ const cx = classnames.bind(styles)
 
 export default function UiPagination({
   pageNum,
+  setPageNum,
   shownPageNums,
+  prevAble,
+  nextAble,
 }: UiPaginationProps) {
   return (
     <div className={cx('wrapper')}>
       <div className={cx('content')}>
         <button type="button">
-          <UiPaginationArrow disable={true} />
+          <UiPaginationArrow direction="prev" disable={!prevAble} />
         </button>
         <div className={cx('numbers')}>
           {shownPageNums.map((num) => (
@@ -23,13 +26,14 @@ export default function UiPagination({
               className={cx('number', { isActive: pageNum === num })}
               type="button"
               key={num}
+              onClick={() => setPageNum(num)}
             >
               {num}
             </button>
           ))}
         </div>
         <button type="button">
-          <UiPaginationArrow direction="right" />
+          <UiPaginationArrow direction="next" disable={!nextAble} />
         </button>
       </div>
     </div>

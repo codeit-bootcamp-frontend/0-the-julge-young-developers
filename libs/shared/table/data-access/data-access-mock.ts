@@ -18,7 +18,7 @@ const MOCK_APPLICATION_HISTORY_DATA: ApplicationHistory[] = [
     workhour: 10,
   },
   {
-    id: '0983e840-a4c8-41ec-9071-076faa0ae38e',
+    id: '0983e840-a4c8-41ec-9071-076faa0ae38f',
     status: 'pending',
     name: '성경만두',
     hourlyPay: 33000,
@@ -26,7 +26,7 @@ const MOCK_APPLICATION_HISTORY_DATA: ApplicationHistory[] = [
     workhour: 10,
   },
   {
-    id: '0983e840-a4c8-41ec-9071-076faa0ae38e',
+    id: '0983e840-a4c8-41ec-9071-076faa0ae38g',
     status: 'pending',
     name: '성경만두',
     hourlyPay: 33000,
@@ -34,7 +34,7 @@ const MOCK_APPLICATION_HISTORY_DATA: ApplicationHistory[] = [
     workhour: 10,
   },
   {
-    id: '0983e840-a4c8-41ec-9071-076faa0ae38e',
+    id: '0983e840-a4c8-41ec-9071-076faa0ae38h',
     status: 'pending',
     name: '성경만두',
     hourlyPay: 33000,
@@ -42,7 +42,7 @@ const MOCK_APPLICATION_HISTORY_DATA: ApplicationHistory[] = [
     workhour: 10,
   },
   {
-    id: '0983e840-a4c8-41ec-9071-076faa0ae38e',
+    id: '0983e840-a4c8-41ec-9071-076faa0ae38i',
     status: 'pending',
     name: '성경만두',
     hourlyPay: 33000,
