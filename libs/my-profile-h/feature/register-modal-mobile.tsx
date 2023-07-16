@@ -82,6 +82,15 @@ export default function RegisterModalMobile({
 
   const handleClickBackModal = () => {
     if (funnel === 'name') {
+      setFunnelSubmitData({
+        name: '',
+        phone: '',
+        address: '',
+        bio: '',
+      })
+      setDefaultName('')
+      setDefaultPhone('')
+      setDefaultAddress('')
       onClickCloseModal()
     } else if (funnel === 'phone') {
       // set funnelSubmitData.name
