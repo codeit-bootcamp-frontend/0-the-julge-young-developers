@@ -1,10 +1,29 @@
 @use '@/styles/utils';
 
+.wrapper {
+  height: 100vh;
+
+  &.unmounted {
+    transform: translateX(-120%);
+    transition: transform 0.5s ease;
+  }
+}
+
 .inputWrap {
   padding: 24px 0;
+
+  &.unmounted {
+    transform: translateX(-120%);
+    transition: transform 0.5s ease;
+  }
 }
 
 .button {
   position: fixed;
   inset: auto 12px 40px;
+
+  &.unmounted {
+    transform: translateX(-120%);
+    transition: transform 0.5s ease;
+  }
 }
