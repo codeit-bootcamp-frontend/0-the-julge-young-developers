@@ -1,5 +1,3 @@
-'use client'
-
 import classNames from 'classnames/bind'
 
 import styles from '@/libs/notice-list/ui/ui-notice-list/ui-notice-list.module.scss'
