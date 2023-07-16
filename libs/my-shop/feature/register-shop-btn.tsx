@@ -17,7 +17,7 @@ export default function RegisterShopBtn() {
   return (
     <div>
       <ActiveBtn
-        text="내 프로필 등록하기"
+        text="내 가게 등록하기"
         size={isMobile ? 'mediumSmall' : 'large'}
         onClick={handleClickToggleModal}
       />
