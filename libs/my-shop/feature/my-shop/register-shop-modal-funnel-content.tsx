@@ -6,7 +6,7 @@ import classNames from 'classnames/bind'
 
 import {
   CATECPRY_DATA,
-  FUNNEL_TITLE,
+  FUNNEL_SHOP_TITLE,
 } from '@/libs/my-shop/data-access/my-shop-register-data'
 import useRegisterShopState from '@/libs/my-shop/utill/useRegisterShopState'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
@@ -173,7 +173,7 @@ export default function RegisterShopModalFunnelContent({
       <div className={cx('wrapper', { unmounted, backUnmounted })}>
         <UiSimpleLayout
           titleSize={24}
-          title={FUNNEL_TITLE[funnel].text}
+          title={FUNNEL_SHOP_TITLE[funnel].text}
           gap={24}
         >
           <form onSubmit={handleClickButton}>
@@ -181,7 +181,7 @@ export default function RegisterShopModalFunnelContent({
               {funnel === 'name' && (
                 <Input
                   variant="input-underline"
-                  title={FUNNEL_TITLE[funnel].title}
+                  title={FUNNEL_SHOP_TITLE[funnel].title}
                   isRequired={true}
                   onChange={handleChange}
                   defaultValue={shopName}
@@ -190,7 +190,7 @@ export default function RegisterShopModalFunnelContent({
               {funnel === 'address' && (
                 <Input
                   variant="input-underline"
-                  title={FUNNEL_TITLE[funnel].title}
+                  title={FUNNEL_SHOP_TITLE[funnel].title}
                   isRequired={true}
                   onChange={handleChange}
                   defaultValue={address}
@@ -199,7 +199,7 @@ export default function RegisterShopModalFunnelContent({
               {funnel === 'detailAddress' && (
                 <Input
                   variant="input-underline"
-                  title={FUNNEL_TITLE[funnel].title}
+                  title={FUNNEL_SHOP_TITLE[funnel].title}
                   isRequired={true}
                   onChange={handleChange}
                   defaultValue={detailAddress}
@@ -208,7 +208,7 @@ export default function RegisterShopModalFunnelContent({
               {funnel === 'defaultHourlyWage' && (
                 <Input
                   variant="input-underline"
-                  title={FUNNEL_TITLE[funnel].title}
+                  title={FUNNEL_SHOP_TITLE[funnel].title}
                   isRequired={true}
                   onChange={handleChange}
                   defaultValue={
@@ -226,7 +226,7 @@ export default function RegisterShopModalFunnelContent({
               )}
               {funnel === 'image' && (
                 <ImageInput
-                  title={FUNNEL_TITLE[funnel].title}
+                  title={FUNNEL_SHOP_TITLE[funnel].title}
                   preselectedImageUrl=""
                   selectedImage={selectedImage}
                   setSelectedImage={setSelectedImage}
@@ -236,7 +236,7 @@ export default function RegisterShopModalFunnelContent({
               {funnel === 'description' && (
                 <Input
                   variant="explain-underline"
-                  title={FUNNEL_TITLE[funnel].title}
+                  title={FUNNEL_SHOP_TITLE[funnel].title}
                   isRequired={false}
                   onChange={handleChange}
                   defaultValue={description}

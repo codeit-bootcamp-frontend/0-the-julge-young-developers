@@ -9,14 +9,14 @@ export const CATECPRY_DATA = [
   { value: '기타' },
 ]
 
-export const FUNNEL_TITLE = {
+export const FUNNEL_SHOP_TITLE = {
   name: {
     title: '가게 이름',
-    text: '가게 이름을 입력해주세요*',
+    text: '가게 이름을 입력해주세요',
   },
   category: {
     title: '분류',
-    text: '가게의 카테고리를 선택해주세요*',
+    text: '가게의 카테고리를 선택해주세요',
   },
   address: {
     title: '주소',
@@ -24,15 +24,15 @@ export const FUNNEL_TITLE = {
   },
   detailAddress: {
     title: '상세주소',
-    text: '상세 주소를 입력해주세요*',
+    text: '상세 주소를 입력해주세요',
   },
   defaultHourlyWage: {
     title: '기본 시급',
-    text: '기본 시급을 입력해주세요*',
+    text: '기본 시급을 입력해주세요',
   },
   image: {
     title: '가게 이미지',
-    text: '가게의 대표 이미지를 첨부해주세요*',
+    text: '가게의 대표 이미지를 첨부해주세요',
   },
   description: {
     title: '가게 설명',
