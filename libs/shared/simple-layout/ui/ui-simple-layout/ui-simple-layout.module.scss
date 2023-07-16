@@ -20,6 +20,7 @@
 @include utils.tablet {
   .container {
     width: 100%;
+    max-width: none;
     padding: 60px 32px;
   }
 }
