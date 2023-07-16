@@ -2,7 +2,7 @@ import React from 'react'
 
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
-import UnregisteredMyJobPosting from './unregistered-myJob-posting'
+import UnregisteredMyJobPosting from './unregistered-my-job-posting'
 
 export default function MyJobPostingList() {
   return (
