@@ -2,12 +2,11 @@
 
 import { useEffect, useState } from 'react'
 
+import { MOCK_NOTICE_DETAIL_DATA } from '@/libs/notice-detail-alice/data-access/data-access-mock'
 import { ActiveBtn } from '@/libs/shared/click-btns/feature/click-btns'
 import UiNoticeDetailCard from '@/libs/shared/notice-card/ui/ui-notice-detail-card/ui-notice-detail-card'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
-
-import { MOCK_NOTICE_DETAIL_DATA } from './data-access/data-access-mock'
 
 const tabletPcSize = {
   titleSize: 28,
