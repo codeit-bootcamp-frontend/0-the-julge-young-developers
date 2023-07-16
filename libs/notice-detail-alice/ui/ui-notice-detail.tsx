@@ -72,25 +72,3 @@ export default function UiNoticeDetail() {
     </div>
   )
 }
-
-//   <UiSimpleLayout title="도토리 식당" subtitle="식당" gap={24}>
-//   <UiNoticeDetailCard
-//     name={MOCK_NOTICE_DETAIL_DATA.name}
-//     imageUrl={MOCK_NOTICE_DETAIL_DATA.imageUrl}
-//     duration={MOCK_NOTICE_DETAIL_DATA.duration}
-//     workhour={MOCK_NOTICE_DETAIL_DATA.workhour}
-//     address={MOCK_NOTICE_DETAIL_DATA.address}
-//     closed={MOCK_NOTICE_DETAIL_DATA.closed}
-//     description={MOCK_NOTICE_DETAIL_DATA.description}
-//     hourlyPay={MOCK_NOTICE_DETAIL_DATA.hourlyPay}
-//     originalHourlyPay={MOCK_NOTICE_DETAIL_DATA.originalHourlyPay}
-//   >
-//     <ActiveBtn
-//       text="신청하기"
-//       size="large"
-//       onClick={() => {
-//         console.log('신청하기~!')
-//       }}
-//     />
-//   </UiNoticeDetailCard>
-// </UiSimpleLayout>

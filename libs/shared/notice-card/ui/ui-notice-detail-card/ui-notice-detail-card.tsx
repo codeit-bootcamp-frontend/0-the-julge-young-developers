@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import classNames from 'classnames/bind'
 
+import Image from 'next/image'
+
 import { UiNoticeDetailCardProps } from '@/libs/shared/notice-card/type-notice-card'
 import UiNoticeCardChip from '@/libs/shared/notice-card/ui/ui-notice-card-item/ui-notice-card-chip'
 import { utilCalcChangeRate } from '@/libs/shared/notice-card/util/util-calc-change-rate'
@@ -54,7 +56,8 @@ export default function UiNoticeDetailCard({
           </div>
           <div className={cx('durationContainer')}>
             <div className={cx('imgContainer', 'icon')}>
-              <img
+              <Image
+                fill={true}
                 className={cx('img')}
                 src={
                   closed ? '/images/clock-disabled.svg' : '/images/clock.svg'
@@ -68,7 +71,8 @@ export default function UiNoticeDetailCard({
           </div>
           <div className={cx('addressContainer')}>
             <div className={cx('imgContainer', 'icon')}>
-              <img
+              <Image
+                fill={true}
                 className={cx('img')}
                 src={
                   closed
