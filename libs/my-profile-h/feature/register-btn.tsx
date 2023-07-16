@@ -17,6 +17,11 @@ export default function RegisterBtn() {
   const [openModal, setOpenModal] = useState<boolean>(false)
   const [showModal, setShowModal] = useState<boolean>(false)
 
+  const [defaultName, setDefaultName] = useState<string>('')
+  const [defaultPhone, setDefaultPhone] = useState<string>('')
+  const [defaultAddress, setDefaultAddress] = useState<string>('')
+  // const [defaultBio, setDefaultBio] = useState<string>('')
+
   const handleClickCloseModal = () => {
     setOpenModal(false)
   }
@@ -49,6 +54,14 @@ export default function RegisterBtn() {
       )}
       {openModal && isMobile && openView === 'mobile' && (
         <RegisterModalMobile
+          defaultName={defaultName}
+          defaultPhone={defaultPhone}
+          defaultAddress={defaultAddress}
+          // defaultBio={defaultBio}
+          setDefaultName={setDefaultName}
+          setDefaultPhone={setDefaultPhone}
+          setDefaultAddress={setDefaultAddress}
+          // setDefaultBio={setDefaultBio}
           showModal={showModal}
           onClickCloseModal={handleClickCloseModal}
         />

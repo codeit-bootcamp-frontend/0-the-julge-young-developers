@@ -43,6 +43,10 @@ interface RegisterModalMobileProps {
   defaultPhone?: string
   defaultAddress?: string
   defaultBio?: string
+  setDefaultName: Dispatch<SetStateAction<string>>
+  setDefaultPhone: Dispatch<SetStateAction<string>>
+  setDefaultAddress: Dispatch<SetStateAction<string>>
+  // setDefaultBio: Dispatch<SetStateAction<string>>
 }
 
 export default function RegisterModalMobile({
@@ -52,6 +56,9 @@ export default function RegisterModalMobile({
   defaultPhone,
   defaultAddress,
   defaultBio,
+  setDefaultName,
+  setDefaultPhone,
+  setDefaultAddress,
 }: RegisterModalMobileProps) {
   const [funnel, setFunnel] = useState<'name' | 'phone' | 'address' | 'bio'>(
     'name',
@@ -77,10 +84,16 @@ export default function RegisterModalMobile({
     if (funnel === 'name') {
       onClickCloseModal()
     } else if (funnel === 'phone') {
+      // set funnelSubmitData.name
+      setDefaultName(funnelSubmitData.name)
       setFunnel('name')
     } else if (funnel === 'address') {
+      // set funnelSubmitData.phone
+      setDefaultPhone(funnelSubmitData.phone)
       setFunnel('phone')
     } else if (funnel === 'bio') {
+      // set funnelSubmitData.address
+      setDefaultAddress(funnelSubmitData.address)
       setFunnel('address')
     }
   }
