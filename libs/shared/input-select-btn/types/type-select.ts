@@ -13,7 +13,7 @@ export interface SelectProps {
   title?: string
   isRequired?: boolean
   options: Option[]
-  defaultValue: string
+  defaultValue?: string
   onClick?: (value: string) => void
 }
 
@@ -28,6 +28,7 @@ export interface UiSearchSelectProps {
 }
 
 export interface UiSelectTopShellProps {
+  title?: 'string'
   variant: 'search' | 'filter'
   isRequired?: boolean
   isOpen: boolean

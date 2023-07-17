@@ -19,4 +19,16 @@ export interface Shop {
   description: string
   imageUrl: string
   originalHourlyPay: number
+  user: {
+    item: {
+      id: string
+      email: string
+      type: string
+      name?: string // optional
+      phone?: string // optional
+      address?: string // optional
+      bio?: string // optional
+    }
+    href: string
+  }
 }
