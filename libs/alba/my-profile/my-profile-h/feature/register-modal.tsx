@@ -168,7 +168,8 @@ export default function RegisterModal({
               />
             </div>
             <div className={cx('btnWrapper')}>
-              {activeBtn ? (
+              {(defaultName && defaultPhone && defaultAddress && defaultBio) ||
+              activeBtn ? (
                 <ActiveBtn
                   text="등록하기"
                   size="large"

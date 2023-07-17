@@ -327,47 +327,47 @@ export default function RegisterModalMobile({
             unmounted,
           })}
         >
-          {name && funnel === 'name' && (
+          {(name || defaultName) && funnel === 'name' && (
             <ActiveBtn
               text="다음"
               size="large"
               onClick={handleClickNext(setFunnel, 'phone', 0)}
             />
           )}
-          {!name && funnel === 'name' && (
+          {!defaultName && !name && funnel === 'name' && (
             <InactiveBtn text="다음" size="large" onClick={() => {}} />
           )}
 
-          {phone && funnel === 'phone' && (
+          {(phone || defaultPhone) && funnel === 'phone' && (
             <ActiveBtn
               text="다음"
               size="large"
               onClick={handleClickNext(setFunnel, 'address', 1)}
             />
           )}
-          {!phone && funnel === 'phone' && (
+          {!defaultPhone && !phone && funnel === 'phone' && (
             <InactiveBtn text="다음" size="large" onClick={() => {}} />
           )}
 
-          {address && funnel === 'address' && (
+          {(address || defaultAddress) && funnel === 'address' && (
             <ActiveBtn
               text="다음"
               size="large"
               onClick={handleClickNext(setFunnel, 'bio', 2)}
             />
           )}
-          {!address && funnel === 'address' && (
+          {!defaultAddress && !address && funnel === 'address' && (
             <InactiveBtn text="다음" size="large" onClick={() => {}} />
           )}
 
-          {bio && funnel === 'bio' && (
+          {(bio || defaultBio) && funnel === 'bio' && (
             <ActiveBtn
               text="등록하기"
               size="large"
               onClick={handleClickRegister}
             />
           )}
-          {!bio && funnel === 'bio' && (
+          {!defaultBio && !bio && funnel === 'bio' && (
             <InactiveBtn text="등록하기" size="large" onClick={() => {}} />
           )}
         </div>
