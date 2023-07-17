@@ -1,5 +1,7 @@
 import { NoticeDetail } from '@/libs/shared/notice-card/type-notice-card'
 
+const NOTICE_ID = 'bea71379-e6f0-4785-a124-944368362f9c'
+
 const MOCK_NOTICE_DETAIL_DATA: NoticeDetail = {
   name: '성경만두0',
   category: '한식',
@@ -152,4 +154,4 @@ const MOCK_NOTICES_DATA = [
   },
 ]
 
-export { MOCK_NOTICE_DETAIL_DATA, MOCK_NOTICES_DATA }
+export { NOTICE_ID, MOCK_NOTICE_DETAIL_DATA, MOCK_NOTICES_DATA }
