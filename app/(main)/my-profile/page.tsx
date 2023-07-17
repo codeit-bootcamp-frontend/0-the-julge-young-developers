@@ -36,7 +36,12 @@ export default async function MyProfilePage() {
       bio: response.item.bio as string,
     }
 
-    if (Object.keys(userProfile).length) {
+    if (
+      userProfile.name &&
+      userProfile.phone &&
+      userProfile.address &&
+      userProfile.bio
+    ) {
       isRegistered = true
     }
   }
