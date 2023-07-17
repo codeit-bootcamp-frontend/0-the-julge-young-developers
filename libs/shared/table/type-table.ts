@@ -16,9 +16,9 @@ export type UserType = (typeof USER_TYPE)[keyof typeof USER_TYPE]
 export interface ApplicantList {
   id: string
   status: Status
-  name: string
-  description: string
-  phone: string
+  name?: string
+  description?: string
+  phone?: string
 }
 
 export interface ApplicationHistory {
@@ -43,9 +43,9 @@ export interface ApplicantListTableProps {
 export interface TableData {
   id: string
   status: Status
-  first: string
-  second: string
-  third: string
+  first?: string
+  second?: string
+  third?: string
 }
 
 export interface UiTableProps {
