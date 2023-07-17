@@ -10,16 +10,13 @@ import {
   ActiveOutlineConfirmBtn,
 } from '@/libs/shared/click-btns/feature/click-btns'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
+import { TableStatusButtonProps } from '@/libs/shared/table/type-table'
 
 export default function TableStatusButton({
   shopId,
   noticeId,
   applicationId,
-}: {
-  shopId: string
-  noticeId: string
-  applicationId: string
-}) {
+}: TableStatusButtonProps) {
   const isMobile = useMediaQuery('(max-width: 768px)')
   const [isMobileSize, setIsMobileSize] = useState<boolean>(false)
 
