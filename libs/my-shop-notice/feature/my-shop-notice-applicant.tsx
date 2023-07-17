@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 
 import { getNoticeApplicantsData } from '@/libs/my-shop-notice/data-access/data-access-notice'
+import { MyShopNoticeApplicantProps } from '@/libs/my-shop-notice/type-my-shop-notice'
 import Pagination from '@/libs/shared/pagination/feature/pagination'
 import UiSimpleLayoutResponsive from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout-responsive'
 import { ApplicantListTable } from '@/libs/shared/table/feature/tables'
@@ -11,10 +12,7 @@ import { ApplicantList } from '@/libs/shared/table/type-table'
 export default function MyShopNoticeApplicant({
   shopId,
   noticeId,
-}: {
-  shopId: string
-  noticeId: string
-}) {
+}: MyShopNoticeApplicantProps) {
   const [pageNum, setPageNum] = useState(1)
   const [data, setData] = useState<ApplicantList[]>()
 

@@ -1,15 +1,13 @@
 import { getNoticeDetailData } from '@/libs/my-shop-notice/data-access/data-access-notice'
 import MyShopNoticeEditButton from '@/libs/my-shop-notice/feature/my-shop-notice-edit-button'
+import { MyShopNoticeDetailProps } from '@/libs/my-shop-notice/type-my-shop-notice'
 import UiNoticeDetailCard from '@/libs/shared/notice-card/ui/ui-notice-detail-card/ui-notice-detail-card'
 import UiNoticeDetailCardLayout from '@/libs/shared/notice-card/ui/ui-notice-detail-card/ui-notice-detail-card-layout'
 
 export default async function MyShopNoticeDetail({
   shopId,
   noticeId,
-}: {
-  shopId: string
-  noticeId: string
-}) {
+}: MyShopNoticeDetailProps) {
   const data = await getNoticeDetailData(shopId, noticeId)
 
   const {
