@@ -12,6 +12,15 @@ import {
 } from '../../application-detail/ui/ui-application-detail'
 import UiLoading from '../../application-detail/ui/ui-loading'
 
+interface ApplicationHistory {
+  id: string
+  status: 'pending' | 'accepted' | 'rejected'
+  name: string
+  hourlyPay: number
+  startsAt: string
+  workhour: number
+}
+
 interface ApplicationDetailLayoutProps {
   serverActionApplicationList: (
     ofst: number,
@@ -20,15 +29,6 @@ interface ApplicationDetailLayoutProps {
     | { items: NoticeUserApplicationItem[]; offset: number; limit: number }
     | undefined
   >
-}
-
-interface ApplicationHistory {
-  id: string
-  status: 'pending' | 'accepted' | 'rejected'
-  name: string
-  hourlyPay: number
-  startsAt: string
-  workhour: number
 }
 
 export default function ApplicationDetailLayout({
@@ -43,7 +43,11 @@ export default function ApplicationDetailLayout({
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
-      const data = await serverActionApplicationList(pageNum - 1, 5)
+
+      const data = await serverActionApplicationList(
+        pageNum === 1 ? pageNum - 1 : pageNum - 1 + 5,
+        5,
+      )
       setLoading(false)
 
       if (data) {
