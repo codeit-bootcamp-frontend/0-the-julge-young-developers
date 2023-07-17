@@ -32,7 +32,7 @@ function ApplicantListTable({ data, children }: ApplicantListTableProps) {
     status: item.status,
     first: item.name,
     second: item.description,
-    third: utilFormatPhone(item.phone),
+    third: item.phone && utilFormatPhone(item.phone),
   }))
 
   return (
