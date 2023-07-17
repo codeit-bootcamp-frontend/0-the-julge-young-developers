@@ -16,7 +16,7 @@ export default function NoticeCardItem({
   data,
   filterElement,
 }: {
-  title: string
+  title?: string
   data: AllNoticesData[]
   filterElement?: React.ReactNode
 }) {

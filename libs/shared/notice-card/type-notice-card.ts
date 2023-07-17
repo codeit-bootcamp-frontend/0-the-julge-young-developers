@@ -52,7 +52,7 @@ export interface UiNoticeCardItemProps {
 }
 
 export interface UiNoticeCardListProps {
-  title: string
+  title?: string
   filterElement?: React.ReactNode
   children: React.ReactNode
 }

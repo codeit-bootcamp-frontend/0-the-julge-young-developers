@@ -39,7 +39,7 @@ export default async function NoticeCardList({
 
   return (
     <div>
-      <NoticeCardItem title="등록한 공고" data={data} />
+      <NoticeCardItem data={data} />
     </div>
   )
 }
