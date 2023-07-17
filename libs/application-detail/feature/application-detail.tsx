@@ -47,9 +47,12 @@ export default function ApplicationDetail() {
       ) : applicationData.length === 0 ? (
         <UiRegisterApplication />
       ) : (
-        <ApplicationHistoryTable data={MOCK_APPLICATION_HISTORY_DATA}>
-          <Pagination pageNum={pageNum} setPageNum={setPageNum} />
-        </ApplicationHistoryTable>
+        <ApplicationHistoryTable
+          data={MOCK_APPLICATION_HISTORY_DATA}
+          paginationElement={
+            <Pagination pageNum={pageNum} setPageNum={setPageNum} />
+          }
+        />
       )}
     </div>
   )
