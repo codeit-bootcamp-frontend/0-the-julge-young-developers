@@ -180,3 +180,9 @@ textarea,
 button {
   font-family: inherit;
 }
+
+#funnel-portal,
+#toast-portal {
+  position: relative;
+  z-index: 11;
+}
