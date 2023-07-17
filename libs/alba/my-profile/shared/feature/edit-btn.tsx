@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 
+import AlbaToast from '@/libs/alba/shared/toast/feature/alba-toast'
 import { ActiveOutlineBtn } from '@/libs/shared/click-btns/feature/click-btns'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
 
@@ -28,6 +29,8 @@ export default function EditBtn({ name, phone, address, bio }: EditBtnProps) {
   const [defaultPhone, setDefaultPhone] = useState<string>(phone)
   const [defaultAddress, setDefaultAddress] = useState<string>(address)
   const [defaultBio, setDefaultBio] = useState<string>(bio)
+
+  const [isShowToast, setIsShowToast] = useState<boolean>(false)
 
   const handleClickCloseModal = () => {
     setOpenModal(false)
@@ -67,6 +70,7 @@ export default function EditBtn({ name, phone, address, bio }: EditBtnProps) {
         <RegisterModal
           showModal={showModal}
           onClickCloseModal={handleClickCloseModal}
+          onClickOpenToast={() => setIsShowToast(true)}
           defaultName={defaultName}
           defaultPhone={defaultPhone}
           defaultAddress={defaultAddress}
@@ -85,7 +89,14 @@ export default function EditBtn({ name, phone, address, bio }: EditBtnProps) {
           // setDefaultBio={setDefaultBio}
           showModal={showModal}
           onClickCloseModal={handleClickCloseModal}
+          onClickOpenToast={() => setIsShowToast(true)}
         />
+      )}
+
+      {isShowToast && (
+        <AlbaToast onShow={() => setIsShowToast(false)}>
+          편집을 완료했어요
+        </AlbaToast>
       )}
     </div>
   )
