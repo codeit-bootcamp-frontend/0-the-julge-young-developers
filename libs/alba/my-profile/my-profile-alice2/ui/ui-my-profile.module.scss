@@ -1,7 +1,9 @@
 @use '@/styles/utils';
 
 .container {
-  position: relative;
+  position: absolute;
+  top: 60px;
+  right: 0;
   width: 665px;
   padding: 32px;
   border-radius: 12px;
@@ -58,12 +60,16 @@
 
 @include utils.tablet {
   .container {
+    position: relative;
+    top: 0;
     width: 100%;
   }
 }
 
 @include utils.mobile {
   .container {
+    position: relative;
+    top: 0;
     padding: 20px;
   }
 
