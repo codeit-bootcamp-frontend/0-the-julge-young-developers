@@ -59,13 +59,13 @@ export interface UiNoticeCardListProps {
 
 export interface UiNoticeDetailCardLayoutProps {
   name: string
-  category: ShopCategory
+  category: string
   children: React.ReactNode
 }
 
 export interface NoticeDetail {
   name: string
-  category: ShopCategory
+  category: string
   duration: string
   workhour: number
   address: string
