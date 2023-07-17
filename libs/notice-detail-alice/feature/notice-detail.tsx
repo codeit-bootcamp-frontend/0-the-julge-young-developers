@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { SetStateAction, useEffect, useState } from 'react'
 
 import { getCookie } from 'cookies-next'
 
@@ -12,12 +12,9 @@ import {
   NOTICE_ID,
 } from '@/libs/notice-detail-alice/data-access/data-access-mock'
 import {
-  getMatchingApplication,
-  getMatchingNotice,
-} from '@/libs/notice-detail-alice/util/getMatchData'
-import { getNoticeUserApplication } from '@/libs/shared/api/data-access/request/applicationsRequest'
-import { getNotices } from '@/libs/shared/api/data-access/request/noticeRequest'
-import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
+  loadApplicationInfo,
+  loadNoticeInfo,
+} from '@/libs/notice-detail-alice/data-access/notice-application-data'
 import { NoticeUserApplicationItem } from '@/libs/shared/api/types/type-application'
 import {
   AllNoticesData,
@@ -32,7 +29,7 @@ import ApplicationButton from '../ui/ui-application-button'
 import UiRecentNotices from '../ui/ui-recent-notices'
 
 export default function NoticeDetail() {
-  // query param으로 notice_id 가져오기
+  // 미완성) query param으로 notice_id 가져오기
   const noticeId = NOTICE_ID as string
 
   const router = useRouter()
@@ -51,71 +48,23 @@ export default function NoticeDetail() {
     router.push('/signin')
   }
 
-  const loadUserInfo = async () => {
-    if (uid) {
-      const resUserInfo = await getUserInfo(uid.toString())
-
-      if (resUserInfo instanceof Error) {
-        console.log(resUserInfo)
-      } else if (typeof resUserInfo === 'string') {
-        console.log(resUserInfo)
-      } else {
-        console.log(resUserInfo)
-        const { item: user } = resUserInfo
-
-        // 유저가 사장님인 경우 사장님 공고 상세 페이지로 리다이렉트
-        if (user.type === 'employer') {
-          router.push(`/my-shop/${noticeId}`)
-        }
-
-        const resUserApplications = await getNoticeUserApplication(user.id)
-        if (resUserApplications instanceof Error) {
-          console.log(resUserApplications)
-        } else if (typeof resUserApplications === 'string') {
-          console.log(resUserApplications)
-        } else {
-          console.log(resUserApplications)
-          const { items: userApplications } = resUserApplications
-
-          const matchingApplication = getMatchingApplication(
-            noticeId,
-            userApplications,
-          )
-
-          // 유저가 지원한 공고인 경우 해당 데이터 저장
-          if (matchingApplication) {
-            setApplicationData(matchingApplication)
-          }
-        }
-      }
-    }
-  }
-
-  const loadNoticeInfo = async () => {
-    const resTotalNotices = await getNotices({ offset: 0, limit: 100 })
-
-    if (resTotalNotices instanceof Error) {
-      console.log()
-    } else if (typeof resTotalNotices === 'string') {
-      console.log(resTotalNotices)
-    } else {
-      const { items: totalNotices } = resTotalNotices
-
-      // 해당 공고의 상세 데이터 가져오기
-      const notice = getMatchingNotice(noticeId, totalNotices)
-
-      if (notice instanceof Error) {
-        console.log(notice)
-      } else {
-        setNoticeData(notice)
-      }
-    }
-  }
-
   const loadData = async () => {
     setLoading(true)
-    await loadUserInfo()
-    await loadNoticeInfo()
+    const applicationInfo = await loadApplicationInfo(noticeId, uid?.toString())
+
+    if (applicationInfo instanceof Error) {
+      console.log('사장님 유저')
+    }
+
+    const noticeInfo = await loadNoticeInfo(noticeId)
+
+    if (noticeInfo instanceof Error) {
+      console.log(noticeInfo)
+    }
+    setApplicationData(
+      applicationInfo as SetStateAction<NoticeUserApplicationItem>,
+    )
+    setNoticeData(noticeInfo as SetStateAction<NoticesItem>)
 
     const data = window.localStorage.getItem('RECENT_NOTICES')
     if (data) {
