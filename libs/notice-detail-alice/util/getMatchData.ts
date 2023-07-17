@@ -2,6 +2,8 @@
 import { NoticeUserApplicationItem } from '@/libs/shared/api/types/type-application'
 import { NoticesItem } from '@/libs/shared/api/types/type-notice'
 
+import { ERROR_INVALID_NOTICE_MESSAGE } from '../data-access/errors'
+
 function getMatchingApplication(
   noticeId: string,
   applications: NoticeUserApplicationItem[],
@@ -25,7 +27,7 @@ function getMatchingNotice(
     }
   }
 
-  return new Error('해당 공고는 존재하지 않습니다.')
+  return new Error(ERROR_INVALID_NOTICE_MESSAGE)
 }
 
 export { getMatchingApplication, getMatchingNotice }
