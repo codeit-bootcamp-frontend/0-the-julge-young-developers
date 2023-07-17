@@ -65,3 +65,9 @@ export interface UiTableStatusCellProps {
   userType: UserType
   status: Status
 }
+
+export interface TableStatusButtonProps {
+  shopId: string
+  noticeId: string
+  applicationId: string
+}
