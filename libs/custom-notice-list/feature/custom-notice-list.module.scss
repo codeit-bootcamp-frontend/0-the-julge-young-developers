@@ -1,0 +1,31 @@
+@use '@/styles/utils';
+
+.customListWrapper {
+  width: 100%;
+  background-color: #ffebe7;
+}
+
+.headerSliderWrapper {
+  margin: 0 auto;
+}
+
+.sliderWrapper {
+  width: 964px;
+  height: 349px;
+}
+
+.noticeCardWrapper {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  overflow: auto;
+  gap: 14px;
+
+  @include utils.mobile {
+    gap: 4px;
+  }
+}
