@@ -2,7 +2,7 @@ import React from 'react'
 
 import classNames from 'classnames/bind'
 
-import styles from '@/libs/my-profile-h/feature/register-modal.module.scss'
+import styles from '@/libs/alba/my-profile/my-profile-h/feature/register-modal.module.scss'
 import useRegisterNoticeState from '@/libs/my-shop/utill/useRegisterNoticeState'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
 import {
