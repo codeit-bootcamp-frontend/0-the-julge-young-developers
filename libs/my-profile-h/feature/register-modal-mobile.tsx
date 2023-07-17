@@ -3,9 +3,13 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 
 import classNames from 'classnames/bind'
+import { getCookie } from 'cookies-next'
+
+import { useRouter } from 'next/navigation'
 
 import { OPTIONS } from '@/libs/my-profile-h/data-access/select-options'
 import ModalPortalWrapper from '@/libs/portal/feature/modalWrapper'
+import { updateUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
 import {
   ActiveBtn,
@@ -60,6 +64,7 @@ export default function RegisterModalMobile({
   setDefaultPhone,
   setDefaultAddress,
 }: RegisterModalMobileProps) {
+  const router = useRouter()
   const [funnel, setFunnel] = useState<'name' | 'phone' | 'address' | 'bio'>(
     'name',
   )
@@ -139,11 +144,16 @@ export default function RegisterModalMobile({
 
   const handleClickRegister = async () => {
     funnelSubmitData.bio = userInputRefs.current[3].value
-    // console.log(funnelSubmitData)
+    const userId = getCookie('uid') as string
 
-    // api post call
-    // await updateUserInfo(userId, funnelSubmitData.name, funnelSubmitData.phone, funnelSubmitData.address, funnelSubmitData.bio)
-    // router.refresh()
+    await updateUserInfo(userId, {
+      name: funnelSubmitData.name,
+      phone: funnelSubmitData.phone,
+      address: funnelSubmitData.address,
+      bio: funnelSubmitData.bio,
+    })
+
+    router.refresh()
     onClickCloseModal()
   }
 
