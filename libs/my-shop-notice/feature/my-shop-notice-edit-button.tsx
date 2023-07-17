@@ -5,18 +5,14 @@
 /* eslint-disable no-unused-vars */
 import { useState } from 'react'
 
+import { MyShopNoticeEditButtonProps } from '@/libs/my-shop-notice/type-my-shop-notice'
 import { ActiveOutlineBtn } from '@/libs/shared/click-btns/feature/click-btns'
-import { NoticeDetail } from '@/libs/shared/notice-card/type-notice-card'
 
 export default function MyShopNoticeEditButton({
   shopId,
   noticeId,
   data,
-}: {
-  shopId: string
-  noticeId: string
-  data: NoticeDetail
-}) {
+}: MyShopNoticeEditButtonProps) {
   const [shownEditModal, setShownEditModal] = useState(false)
   const handleClickButton = () => {
     setShownEditModal(true)
