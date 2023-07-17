@@ -1,4 +1,4 @@
-import { MOCK_APPLICATION_DATA } from '@/libs/application-detail/data-access/data-access-mock'
+import { MOCK_APPLICATION_DATA } from '@/libs/alba/application-history/application-detail/data-access/data-access-mock'
 
 // userId: string,
 // offset: number,

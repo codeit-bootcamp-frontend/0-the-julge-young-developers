@@ -8,9 +8,9 @@ import { useEffect, useState } from 'react'
 import {
   MAX_APPLICATIONS_PER_PAGE,
   getUserApplicationData,
-} from '@/libs/application-detail/data-access/data-access-application'
-import { UiRegisterApplication } from '@/libs/application-detail/ui/ui-application-detail'
-import UiLoading from '@/libs/application-detail/ui/ui-loading'
+} from '@/libs/alba/application-history/application-detail/data-access/data-access-application'
+import { UiRegisterApplication } from '@/libs/alba/application-history/application-detail/ui/ui-application-detail'
+import UiLoading from '@/libs/alba/application-history/application-detail/ui/ui-loading'
 import Pagination from '@/libs/shared/pagination/feature/pagination'
 import { useUserContext } from '@/libs/shared/providers/context/feature/user-provider'
 import { MOCK_APPLICATION_HISTORY_DATA } from '@/libs/shared/table/data-access/data-access-mock'
