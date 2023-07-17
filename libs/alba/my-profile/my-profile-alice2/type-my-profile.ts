@@ -3,7 +3,6 @@ interface UiMyProfileProps {
   phone: string
   address: string
   bio: string
-  onClickEditButton: () => void
 }
 
 interface MyProfileProps {
