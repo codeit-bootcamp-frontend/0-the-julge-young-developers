@@ -1,10 +1,22 @@
 import React from 'react'
 
+import { getShopNotices } from '@/libs/shared/api/data-access/request/noticeRequest'
+import { ShopNoticesData } from '@/libs/shared/api/types/type-notice'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
-import UnregisteredMyNotice from './unregistered-notice'
+import NoticeCardList from './notice-card-list'
 
-export default function MyNoticeList() {
+// import UnregisteredMyNotice from './unregistered-notice'
+
+export default async function MyNoticeList({ shopId }: { shopId: string }) {
+  const noticeData = await getShopNotices({
+    shopId,
+    // offset: 0,
+    // limit: 10,
+  })
+  if (noticeData) {
+    console.log(noticeData)
+  }
   return (
     <div>
       <UiSimpleLayout
@@ -13,7 +25,11 @@ export default function MyNoticeList() {
         titleSize={28}
         gap={24}
       >
-        <UnregisteredMyNotice />
+        {/* <UnregisteredMyNotice /> */}
+        <NoticeCardList
+          shopId={shopId}
+          notices={noticeData as ShopNoticesData}
+        />
       </UiSimpleLayout>
     </div>
   )
