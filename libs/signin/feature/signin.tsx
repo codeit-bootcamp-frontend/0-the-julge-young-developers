@@ -23,8 +23,9 @@ export default function SignIn() {
     } else {
       // 데이터 가공 구간
       // setLoading(false) // "라우터 처리" ? false 처리 필요 없음 : false 처리 필요함
-      const { token } = res.item
+      const { token, user } = res.item
       setCookie('token', token)
+      setCookie('uid', user.item.id)
       router.push('/')
     }
   }
