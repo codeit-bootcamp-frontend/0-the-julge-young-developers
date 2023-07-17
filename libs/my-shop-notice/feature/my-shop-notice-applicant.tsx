@@ -26,9 +26,14 @@ export default function MyShopNoticeApplicant({
   if (!data) return <div>신청자 목록 테이블 로딩 중...</div>
   return (
     <UiSimpleLayoutResponsive title="신청자 목록">
-      <ApplicantListTable data={data}>
-        <Pagination pageNum={pageNum} setPageNum={setPageNum} />
-      </ApplicantListTable>
+      <ApplicantListTable
+        data={data}
+        shopId={shopId}
+        noticeId={noticeId}
+        paginationElement={
+          <Pagination pageNum={pageNum} setPageNum={setPageNum} />
+        }
+      />
     </UiSimpleLayoutResponsive>
   )
 }
