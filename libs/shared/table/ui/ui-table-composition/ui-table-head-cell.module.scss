@@ -1,0 +1,25 @@
+@use '@/styles/utils';
+@use 'sass:list';
+
+$col-widths-pc: (226px, 300px, 200px, 236px);
+$col-widths-mobile: (186px, 270px, 180px, 165px);
+
+.headCell {
+  padding-left: 12px;
+
+  @include utils.mobile {
+    padding-left: 8px;
+  }
+
+  @for $i from 1 through length($col-widths-pc) {
+    &:nth-child(#{$i}) {
+      width: list.nth($col-widths-pc, $i);
+    }
+
+    @include utils.mobile {
+      &:nth-child(#{$i}) {
+        width: list.nth($col-widths-mobile, $i);
+      }
+    }
+  }
+}

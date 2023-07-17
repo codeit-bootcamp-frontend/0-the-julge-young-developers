@@ -6,7 +6,7 @@ $col-widths-mobile: (186px, 270px, 180px, 165px);
 $total-width-pc: 0;
 $total-width-mobile: 0;
 
-.tableWrapper {
+.wrapper {
   position: relative;
   width: 100%;
   max-width: 964px;
@@ -16,7 +16,7 @@ $total-width-mobile: 0;
   background: utils.$white;
 }
 
-.tableContentWrapper {
+.contentWrapper {
   overflow-x: auto;
 
   &::-webkit-scrollbar {
@@ -45,40 +45,5 @@ $total-width-mobile: 0;
     position: sticky;
     z-index: 10;
     left: 0;
-  }
-}
-
-.headRow {
-  height: 50px;
-  border-bottom: 1px solid utils.$gray-brt3;
-  background-color: utils.$red-brt4;
-  line-height: 50px;
-  text-align: left;
-  @include utils.font-style;
-
-  @include utils.mobile {
-    height: 40px;
-    line-height: 40px;
-    @include utils.font-style(caption);
-  }
-}
-
-.headCell {
-  padding-left: 12px;
-
-  @include utils.mobile {
-    padding-left: 8px;
-  }
-
-  @for $i from 1 through length($col-widths-pc) {
-    &:nth-child(#{$i}) {
-      width: list.nth($col-widths-pc, $i);
-    }
-
-    @include utils.mobile {
-      &:nth-child(#{$i}) {
-        width: list.nth($col-widths-mobile, $i);
-      }
-    }
   }
 }

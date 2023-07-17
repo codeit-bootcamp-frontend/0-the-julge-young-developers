@@ -32,12 +32,14 @@ export interface ApplicationHistory {
 
 export interface ApplicationHistoryTableProps {
   data: ApplicationHistory[]
-  children: ReactNode
+  paginationElement: ReactNode
 }
 
 export interface ApplicantListTableProps {
   data: ApplicantList[]
-  children: ReactNode
+  shopId: string
+  noticeId: string
+  paginationElement: ReactNode
 }
 
 export interface TableData {
