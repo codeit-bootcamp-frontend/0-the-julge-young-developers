@@ -20,12 +20,12 @@ import { getNotices } from '@/libs/shared/api/data-access/request/noticeRequest'
 import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 import { NoticeUserApplicationItem } from '@/libs/shared/api/types/type-application'
 import { NoticesItem } from '@/libs/shared/api/types/type-notice'
-import { ActiveBtn } from '@/libs/shared/click-btns/feature/click-btns'
 import UiNoticeDetailCard from '@/libs/shared/notice-card/ui/ui-notice-detail-card/ui-notice-detail-card'
 import UiNoticeDetailCardLayout from '@/libs/shared/notice-card/ui/ui-notice-detail-card/ui-notice-detail-card-layout'
 import { utilFormatDuration } from '@/libs/shared/notice-card/util/util-format-duration'
 
 import Loading from '../ui/loading'
+import ApplicationButton from '../ui/ui-application-button'
 import UiRecentNotices from '../ui/ui-recent-notices'
 
 export default function NoticeDetail() {
@@ -146,13 +146,14 @@ export default function NoticeDetail() {
                 hourlyPay={noticeData.item.hourlyPay}
                 originalHourlyPay={noticeData.item.shop.item.originalHourlyPay}
               >
-                <ActiveBtn
-                  text="신청하기"
-                  size="large"
-                  onClick={() => {
-                    console.log('신청하기~!')
-                  }}
-                />
+                {/* eslint-disable-next-line no-nested-ternary */}
+                {noticeData.item.closed ? (
+                  <ApplicationButton type="disabled" />
+                ) : applicationData ? (
+                  <ApplicationButton type="cancel" />
+                ) : (
+                  <ApplicationButton type="application" />
+                )}
               </UiNoticeDetailCard>
             </UiNoticeDetailCardLayout>
           </div>
