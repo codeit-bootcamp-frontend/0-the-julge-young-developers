@@ -9,17 +9,5 @@ export default function MyProfile({
   address,
   bio,
 }: MyProfileProps) {
-  const handleClickEditButton = () => {
-    console.log('편집하기 페이지 이동')
-  }
-
-  return (
-    <UiMyProfile
-      name={name}
-      phone={phone}
-      address={address}
-      bio={bio}
-      onClickEditButton={handleClickEditButton}
-    />
-  )
+  return <UiMyProfile name={name} phone={phone} address={address} bio={bio} />
 }

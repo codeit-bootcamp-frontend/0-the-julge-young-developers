@@ -3,7 +3,7 @@ import classNames from 'classnames/bind'
 import Image from 'next/image'
 
 import { UiMyProfileProps } from '@/libs/alba/my-profile/my-profile-alice2/type-my-profile'
-import { ActiveOutlineBtn } from '@/libs/shared/click-btns/feature/click-btns'
+import EditBtn from '@/libs/alba/my-profile/shared/feature/edit-btn'
 
 import styles from './ui-my-profile.module.scss'
 
@@ -14,7 +14,6 @@ export default function UiMyProfile({
   phone,
   address,
   bio,
-  onClickEditButton,
 }: UiMyProfileProps) {
   return (
     <div className={cx('container')}>
@@ -41,11 +40,7 @@ export default function UiMyProfile({
         <p>{bio}</p>
       </div>
       <div className={cx('editButton')}>
-        <ActiveOutlineBtn
-          text="편집하기"
-          size="large"
-          onClick={() => onClickEditButton()}
-        />
+        <EditBtn />
       </div>
     </div>
   )
