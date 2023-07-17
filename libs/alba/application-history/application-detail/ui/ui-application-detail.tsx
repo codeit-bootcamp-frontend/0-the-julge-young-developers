@@ -1,7 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
 import classNames from 'classnames/bind'
 
 import { ActiveBtn } from '@/libs/shared/click-btns/feature/click-btns'
@@ -15,22 +13,13 @@ const cx = classNames.bind(styles)
 
 function UiRegisterApplication() {
   const isMobile = useMediaQuery('(max-width: 768px)')
-  const [isMobileSize, setIsMobileSize] = useState<boolean>(false)
-
-  useEffect(() => {
-    if (isMobile) {
-      setIsMobileSize(true)
-    } else {
-      setIsMobileSize(false)
-    }
-  }, [isMobile])
 
   return (
     <div className={cx('container')}>
       <UiSimpleLayout
+        titleSize={isMobile ? 20 : 28}
         title="신청 내역"
-        titleSize={isMobileSize ? 20 : 28}
-        gap={isMobileSize ? 16 : 32}
+        gap={isMobile ? 16 : 32}
       >
         <UiRegisterLayout
           text="아직 신청 내역이 없어요."
@@ -38,7 +27,7 @@ function UiRegisterApplication() {
             <div className={cx('buttonWrapper')}>
               <ActiveBtn
                 text="공고 보러가기"
-                size={isMobileSize ? 'mediumSmall' : 'large'}
+                size={isMobile ? 'mediumSmall' : 'large'}
                 onClick={() => console.log('공고 페이지 이동')}
               />
             </div>
@@ -49,26 +38,17 @@ function UiRegisterApplication() {
   )
 }
 
-function UiApplicationTable() {
+function UiApplicationTable({ children }: { children: React.ReactNode }) {
   const isMobile = useMediaQuery('(max-width: 768px)')
-  const [isMobileSize, setIsMobileSize] = useState<boolean>(false)
-
-  useEffect(() => {
-    if (isMobile) {
-      setIsMobileSize(true)
-    } else {
-      setIsMobileSize(false)
-    }
-  }, [isMobile])
 
   return (
     <div className={cx('container')}>
       <UiSimpleLayout
         title="신청 내역"
-        titleSize={isMobileSize ? 20 : 28}
-        gap={isMobileSize ? 16 : 32}
+        titleSize={isMobile ? 20 : 28}
+        gap={isMobile ? 16 : 32}
       >
-        <div>테이블 넣는 곳</div>
+        {children}
       </UiSimpleLayout>
     </div>
   )
