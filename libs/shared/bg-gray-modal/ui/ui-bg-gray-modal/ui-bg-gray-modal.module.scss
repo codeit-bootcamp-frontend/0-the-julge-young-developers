@@ -2,6 +2,7 @@
 
 .bgGray {
   position: fixed;
+  z-index: 11;
   inset: 0;
   width: 100%;
   overflow: auto;
@@ -10,6 +11,7 @@
 
 .modalContent {
   position: relative;
+  z-index: 11;
   max-width: 964px;
   margin: 0 auto;
 }

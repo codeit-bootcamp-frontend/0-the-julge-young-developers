@@ -1,5 +1,5 @@
 .modalWrapper {
-  z-index: 10;
+  z-index: 11;
   opacity: 0;
 
   &.showModal {
@@ -28,6 +28,7 @@
 
 .btnWrapper {
   position: absolute;
+  z-index: 12;
   bottom: 40px;
   width: 100%;
   padding-right: 36px;
