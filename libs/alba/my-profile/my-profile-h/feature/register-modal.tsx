@@ -7,7 +7,7 @@ import { getCookie } from 'cookies-next'
 
 import { useRouter } from 'next/navigation'
 
-import { OPTIONS } from '@/libs/my-profile-h/data-access/select-options'
+import { OPTIONS } from '@/libs/alba/my-profile/my-profile-h/data-access/select-options'
 import ModalPortalWrapper from '@/libs/portal/feature/modalWrapper'
 import { updateUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'

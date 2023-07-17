@@ -2,7 +2,7 @@ import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
-import { UiMyProfileProps } from '@/libs/my-profile-alice2/type-my-profile'
+import { UiMyProfileProps } from '@/libs/alba/my-profile/my-profile-alice2/type-my-profile'
 import { ActiveOutlineBtn } from '@/libs/shared/click-btns/feature/click-btns'
 
 import styles from './ui-my-profile.module.scss'
@@ -13,7 +13,7 @@ export default function UiMyProfile({
   name,
   phone,
   address,
-  description,
+  bio,
   onClickEditButton,
 }: UiMyProfileProps) {
   return (
@@ -38,7 +38,7 @@ export default function UiMyProfile({
         </div>
       </div>
       <div className={cx('descriptionSection')}>
-        <p>{description}</p>
+        <p>{bio}</p>
       </div>
       <div className={cx('editButton')}>
         <ActiveOutlineBtn
