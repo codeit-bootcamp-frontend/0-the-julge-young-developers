@@ -2,6 +2,8 @@
 
 import classNames from 'classnames/bind'
 
+import { useRouter } from 'next/navigation'
+
 import { ActiveBtn } from '@/libs/shared/click-btns/feature/click-btns'
 import UiRegisterLayout from '@/libs/shared/register-layout/ui/ui-register-layout'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
@@ -12,7 +14,12 @@ import styles from './ui-application-detail.module.scss'
 const cx = classNames.bind(styles)
 
 function UiRegisterApplication() {
+  const router = useRouter()
   const isMobile = useMediaQuery('(max-width: 768px)')
+
+  const handleClickMoveNoticeList = () => {
+    router.push('/')
+  }
 
   return (
     <div className={cx('container')}>
@@ -28,7 +35,7 @@ function UiRegisterApplication() {
               <ActiveBtn
                 text="공고 보러가기"
                 size={isMobile ? 'mediumSmall' : 'large'}
-                onClick={() => console.log('공고 페이지 이동')}
+                onClick={handleClickMoveNoticeList}
               />
             </div>
           }
