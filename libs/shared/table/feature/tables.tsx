@@ -5,6 +5,7 @@ import {
   TableData,
 } from '@/libs/shared/table/type-table'
 import UiTable from '@/libs/shared/table/ui/ui-table'
+import { utilFormatPhone } from '@/libs/shared/table/util/util-format-phone'
 
 function ApplicationHistoryTable({
   data,
@@ -31,7 +32,7 @@ function ApplicantListTable({ data, children }: ApplicantListTableProps) {
     status: item.status,
     first: item.name,
     second: item.description,
-    third: item.phone,
+    third: utilFormatPhone(item.phone),
   }))
 
   return (
