@@ -7,6 +7,7 @@ export default async function MyProfileLayout({
     <>
       {children}
       <div id="funnel-portal" />
+      <div id="toast-portal" />
     </>
   )
 }

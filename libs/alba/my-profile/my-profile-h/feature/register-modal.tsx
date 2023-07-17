@@ -26,6 +26,7 @@ const cx = classNames.bind(styles)
 interface RegisterModalProps {
   showModal?: boolean
   onClickCloseModal: () => void
+  onClickOpenToast: () => void
   defaultName?: string
   defaultPhone?: string
   defaultAddress?: string
@@ -35,6 +36,7 @@ interface RegisterModalProps {
 export default function RegisterModal({
   showModal,
   onClickCloseModal,
+  onClickOpenToast,
   defaultName,
   defaultPhone,
   defaultAddress,
@@ -91,6 +93,7 @@ export default function RegisterModal({
 
       router.refresh()
       onClickCloseModal()
+      onClickOpenToast()
     }
   }
 

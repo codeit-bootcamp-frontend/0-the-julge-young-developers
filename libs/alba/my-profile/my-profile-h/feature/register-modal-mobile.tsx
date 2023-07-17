@@ -43,6 +43,7 @@ interface IfunnelSubmitData {
 interface RegisterModalMobileProps {
   showModal: boolean
   onClickCloseModal: () => void
+  onClickOpenToast: () => void
   defaultName?: string
   defaultPhone?: string
   defaultAddress?: string
@@ -56,6 +57,7 @@ interface RegisterModalMobileProps {
 export default function RegisterModalMobile({
   showModal,
   onClickCloseModal,
+  onClickOpenToast,
   defaultName,
   defaultPhone,
   defaultAddress,
@@ -155,6 +157,7 @@ export default function RegisterModalMobile({
 
     router.refresh()
     onClickCloseModal()
+    onClickOpenToast()
   }
 
   useEffect(() => {
