@@ -15,6 +15,7 @@ export default forwardRef(function UiInput(
   {
     variant,
     title,
+    isPassowrd,
     defaultValue,
     valid,
     isValid,
@@ -35,7 +36,7 @@ export default forwardRef(function UiInput(
           className={cx('inputBox', {
             underline: variant === 'input-underline',
           })}
-          type="text"
+          type={isPassowrd ? 'password' : 'text'}
           placeholder={variant === 'input' ? '입력' : title}
           ref={ref}
           defaultValue={defaultValue}

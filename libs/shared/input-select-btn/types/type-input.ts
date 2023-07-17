@@ -3,6 +3,7 @@ import { Options } from './type-select'
 export interface InputProps {
   variant: string
   title: string
+  isPassowrd?: boolean
   defaultValue?: string
   isRequired: boolean
   suffix?: string
