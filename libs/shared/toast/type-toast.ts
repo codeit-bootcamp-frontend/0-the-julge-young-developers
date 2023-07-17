@@ -6,7 +6,7 @@ interface UiToastProps {
 }
 
 interface ToastProps {
-  onShow: (isShow: boolean) => void
+  onShow: () => void
   children: string
 }
 

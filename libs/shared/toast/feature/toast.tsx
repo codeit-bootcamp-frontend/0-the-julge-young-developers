@@ -15,7 +15,8 @@ export default function Toast({ onShow, children }: ToastProps) {
 
   useEffect(() => {
     const durationTimer = setTimeout(() => {
-      onShow(false)
+      // onShow()
+      onShow()
     }, 3000)
 
     const fadeOutTimer = setTimeout(() => {
