@@ -9,7 +9,7 @@ const utilFormatDuration = (startsAt: string, workhour: number) => {
 
   const newTime = `${endsHourFormatted}:${startsMinute}`
 
-  return `${startsDate} ${startsHour}:${startsMinute}~${newTime} (${workhour}시간)`
+  return `${startsDate} ${startsHour}:${startsMinute}~${newTime}`
 }
 
 export { utilFormatDuration }
