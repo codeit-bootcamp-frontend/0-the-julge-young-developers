@@ -23,8 +23,6 @@ export default function UiCustomNoticeList() {
   const sliderRef = useRef<HTMLDivElement | null>(null)
   const [datas, setDatas] = useState<NoticeCardItemProps[]>([])
 
-  // const CARD_WIDTH = 326
-
   const handleAutoplaySlider = useCallback(() => {
     if (sliderRef.current) {
       const sliderWrapper = sliderRef.current
