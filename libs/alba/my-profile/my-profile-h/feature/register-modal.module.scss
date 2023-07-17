@@ -1,6 +1,7 @@
 @use '@/styles/utils';
 
 .modalWrapper {
+  z-index: 10;
   opacity: 0;
 
   &.showModal {
