@@ -4,6 +4,7 @@ import Image from 'next/image'
 
 import { UiMyProfileProps } from '@/libs/alba/my-profile/my-profile-alice2/type-my-profile'
 import EditBtn from '@/libs/alba/my-profile/shared/feature/edit-btn'
+import { utilTrimePhone } from '@/libs/alba/my-profile/shared/util/util-trime-phone'
 
 import styles from './ui-my-profile.module.scss'
 
@@ -24,7 +25,7 @@ export default function UiMyProfile({
       <div className={cx('phoneAddressSection')}>
         <div className={cx('phoneSection')}>
           <Image src="/images/phone.svg" alt="연락처" width={20} height={20} />
-          <span>{phone}</span>
+          <span>{utilTrimePhone(phone)}</span>
         </div>
         <div className={cx('addressSection')}>
           <Image
@@ -40,7 +41,7 @@ export default function UiMyProfile({
         <p>{bio}</p>
       </div>
       <div className={cx('editButton')}>
-        <EditBtn />
+        <EditBtn name={name} phone={phone} address={address} bio={bio} />
       </div>
     </div>
   )
