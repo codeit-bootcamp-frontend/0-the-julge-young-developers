@@ -6,11 +6,6 @@ import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-s
 
 export default async function MyShop() {
   const myShopData = await getShopInfo(shopId)
-  if (typeof myShopData === 'string' || myShopData instanceof Error) {
-    console.error(myShopData)
-  } else {
-    console.log(myShopData.item)
-  }
 
   return (
     <UiSimpleLayout title="내 가게" titleAlign="start" titleSize={28} gap={24}>
