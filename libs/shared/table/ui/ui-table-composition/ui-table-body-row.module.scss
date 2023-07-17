@@ -1,0 +1,10 @@
+@use '@/styles/utils';
+
+.bodyRow {
+  border-bottom: 1px solid utils.$gray-brt3;
+  @include utils.font-style(body1);
+
+  @include utils.mobile {
+    @include utils.font-style(body2);
+  }
+}

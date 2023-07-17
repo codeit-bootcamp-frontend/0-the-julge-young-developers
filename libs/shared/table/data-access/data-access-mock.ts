@@ -3,11 +3,6 @@ import {
   ApplicationHistory,
 } from '@/libs/shared/table/type-table'
 
-const COL_NAMES = {
-  employer: ['신청자', '소개', '전화번호', '상태'],
-  employee: ['가게', '일자', '시급', '상태'],
-}
-
 const MOCK_APPLICATION_HISTORY_DATA: ApplicationHistory[] = [
   {
     id: '0983e840-a4c8-41ec-9071-076faa0ae38e',
@@ -78,4 +73,4 @@ const MOCK_APPLICANT_LIST_DATA: ApplicantList[] = [
   },
 ]
 
-export { COL_NAMES, MOCK_APPLICATION_HISTORY_DATA, MOCK_APPLICANT_LIST_DATA }
+export { MOCK_APPLICATION_HISTORY_DATA, MOCK_APPLICANT_LIST_DATA }
