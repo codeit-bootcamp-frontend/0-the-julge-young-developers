@@ -19,7 +19,10 @@ import { getNoticeUserApplication } from '@/libs/shared/api/data-access/request/
 import { getNotices } from '@/libs/shared/api/data-access/request/noticeRequest'
 import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 import { NoticeUserApplicationItem } from '@/libs/shared/api/types/type-application'
-import { NoticesItem } from '@/libs/shared/api/types/type-notice'
+import {
+  AllNoticesData,
+  NoticesItem,
+} from '@/libs/shared/api/types/type-notice'
 import UiNoticeDetailCard from '@/libs/shared/notice-card/ui/ui-notice-detail-card/ui-notice-detail-card'
 import UiNoticeDetailCardLayout from '@/libs/shared/notice-card/ui/ui-notice-detail-card/ui-notice-detail-card-layout'
 import { utilFormatDuration } from '@/libs/shared/notice-card/util/util-format-duration'
@@ -38,6 +41,9 @@ export default function NoticeDetail() {
   const [noticeData, setNoticeData] = useState(null as unknown as NoticesItem)
   const [applicationData, setApplicationData] = useState(
     null as unknown as NoticeUserApplicationItem,
+  )
+  const [recentNoticesData, setRecentNoticesData] = useState<AllNoticesData[]>(
+    null as unknown as AllNoticesData[],
   )
   const [loading, setLoading] = useState(true)
 
@@ -110,15 +116,21 @@ export default function NoticeDetail() {
     setLoading(true)
     await loadUserInfo()
     await loadNoticeInfo()
+
+    const data = window.localStorage.getItem('RECENT_NOTICES')
+    if (data) {
+      setRecentNoticesData(JSON.parse(data))
+    }
     setLoading(false)
   }
 
   useEffect(() => {
+    window.localStorage.setItem(
+      'RECENT_NOTICES',
+      JSON.stringify(MOCK_NOTICES_DATA),
+    ) // 테스트
     loadData()
   }, [])
-
-  console.log('noticeData:', noticeData)
-  console.log('applicationData:', applicationData)
 
   return (
     <div>
@@ -157,7 +169,7 @@ export default function NoticeDetail() {
               </UiNoticeDetailCard>
             </UiNoticeDetailCardLayout>
           </div>
-          <UiRecentNotices noticesList={MOCK_NOTICES_DATA} />
+          <UiRecentNotices noticesList={recentNoticesData} />
         </>
       )}
     </div>
