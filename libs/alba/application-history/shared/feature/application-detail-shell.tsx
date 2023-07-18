@@ -1,34 +1,56 @@
 import { cookies } from 'next/dist/client/components/headers'
 
 import { getNoticeUserApplication } from '@/libs/shared/api/data-access/request/applicationsRequest'
+import { ApplicationHistory } from '@/libs/shared/table/type-table'
 
 import ApplicationDetailLayout from './application-detail-layout'
 
 export const revalidate = 3600
-export default async function ApplicationDetailShell() {
+export default async function ApplicationDetailShell({
+  page,
+}: {
+  page: number
+}) {
   const cookieInstance = cookies()
   const userId = cookieInstance.get('uid')?.value as string
   const token = cookieInstance.get('token')?.value
 
-  async function serverAction(ofst: number, lmt: number) {
-    'use server'
+  const TABLES_ITEMS_PER_PAGE = Number(process.env.TABLE_ITEMS_PER_PAGE)
+  const offset = (page - 1) * TABLES_ITEMS_PER_PAGE
+  const limit = TABLES_ITEMS_PER_PAGE
+  const res = await getNoticeUserApplication(userId, {
+    token,
+    offset,
+    limit,
+  })
 
-    const response = await getNoticeUserApplication(userId, {
-      token,
-      offset: ofst,
-      limit: lmt,
-    })
+  let data
+  let totalItems
 
-    if (response instanceof Error) {
-      // console.log(response)
-    } else if (typeof response === 'string') {
-      // console.log(response)
-    } else {
-      const { items, offset, limit } = response
-      return { items, offset, limit }
-    }
+  if (res instanceof Error) {
+    // console.log(response)
+  } else if (typeof res === 'string') {
+    // console.log(response)
+  } else {
+    const applications = res.items
+
+    data = applications.map((application) => ({
+      id: application.item.id,
+      status: application.item.status,
+      name: application.item.shop.item.name,
+      hourlyPay: application.item.notice.item.hourlyPay,
+      startsAt: application.item.notice.item.startsAt,
+      workhour: application.item.notice.item.workhour,
+    }))
+    totalItems = res.count
   }
 
   // eslint-disable-next-line react/jsx-no-bind
-  return <ApplicationDetailLayout serverActionApplicationList={serverAction} />
+  return (
+    <ApplicationDetailLayout
+      data={data as ApplicationHistory[]}
+      totalItems={totalItems as number}
+      page={page}
+    />
+  )
 }
