@@ -52,10 +52,6 @@ export default function NoticeDetail() {
     setLoading(true)
     const applicationInfo = await loadApplicationInfo(noticeId, uid?.toString())
 
-    if (applicationInfo instanceof Error) {
-      console.log('사장님 유저')
-    }
-
     const noticeInfo = await loadNoticeInfo(noticeId)
 
     if (noticeInfo instanceof Error) {

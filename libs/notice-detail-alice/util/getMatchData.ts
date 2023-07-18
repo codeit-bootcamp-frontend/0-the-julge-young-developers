@@ -2,7 +2,7 @@
 import { NoticeUserApplicationItem } from '@/libs/shared/api/types/type-application'
 import { NoticesItem } from '@/libs/shared/api/types/type-notice'
 
-import { ERROR_INVALID_NOTICE_MESSAGE } from '../data-access/errors'
+import { ERROR_INVALID_NOTICE_MESSAGE } from '../data-access/error-message'
 
 function getMatchingApplication(
   noticeId: string,
