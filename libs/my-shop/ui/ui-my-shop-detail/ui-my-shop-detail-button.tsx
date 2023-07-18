@@ -55,7 +55,10 @@ export default function UiMyShopDetailButton({ shop }: { shop: Shop }) {
         />
       </div>
       {openShopModal && (
-        <RegisterShopModal onClickToggelModal={handleClickToggleShopModal} />
+        <RegisterShopModal
+          onClickToggelModal={handleClickToggleShopModal}
+          shop={shop}
+        />
       )}
       {openNoiceModal && (
         <RegisterNoticeModal

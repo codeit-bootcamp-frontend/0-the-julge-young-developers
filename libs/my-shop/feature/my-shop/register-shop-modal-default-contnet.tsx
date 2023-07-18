@@ -2,6 +2,7 @@
 
 import classNames from 'classnames/bind'
 
+import { Shop } from '@/libs/my-shop/type-my-shop'
 import useRegisterShopState from '@/libs/my-shop/utill/useRegisterShopState'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
 import {
@@ -19,22 +20,31 @@ import styles from './register-shop-modal-default-content.module.scss'
 const cx = classNames.bind(styles)
 
 export default function RegisterShopModalDefaultContent({
+  shop,
   onClickToggelModal,
 }: {
+  shop: Shop
+
   onClickToggelModal: () => void
 }) {
   const {
+    shopName,
     setShopName,
+    category,
     setCategory,
+    address,
     setAddress,
+    detailAddress,
     setDetailAddress,
+    defaultHourlyWage,
     setDefaultHourlyWage,
     selectedImage,
     setSelectedImage,
     preselectedImageRef,
+    description,
     setDescription,
     isAllFilled,
-  } = useRegisterShopState()
+  } = useRegisterShopState({ shop })
 
   return (
     <UiBgGrayModal onClickCloseModal={onClickToggelModal}>
@@ -46,12 +56,13 @@ export default function RegisterShopModalDefaultContent({
               title="가게 이름*"
               isRequired={true}
               onChange={(e) => setShopName(e.target.value)}
+              defaultValue={shopName}
             />
             <Select
               title="분류*"
               variant="search"
               options={options}
-              defaultValue={options[0].value}
+              defaultValue={category}
               onClick={(value) => setCategory(value)}
             />
           </div>
@@ -61,6 +72,7 @@ export default function RegisterShopModalDefaultContent({
               title="주소*"
               isRequired={true}
               onChange={(e) => setAddress(e.target.value)}
+              defaultValue={address}
             />
 
             <Input
@@ -68,6 +80,7 @@ export default function RegisterShopModalDefaultContent({
               title="상세 주소*"
               isRequired={true}
               onChange={(e) => setDetailAddress(e.target.value)}
+              defaultValue={detailAddress}
             />
           </div>
           <div className={cx('inputContainer')}>
@@ -76,12 +89,13 @@ export default function RegisterShopModalDefaultContent({
               title="기본 시급*"
               isRequired={true}
               onChange={(e) => setDefaultHourlyWage(Number(e.target.value))}
+              defaultValue={defaultHourlyWage ? String(defaultHourlyWage) : ''}
             />
           </div>
           <div className={cx('inputContainer')}>
             <ImageInput
               title="가게 이미지"
-              preselectedImageUrl=""
+              preselectedImageUrl={selectedImage}
               selectedImage={selectedImage}
               setSelectedImage={setSelectedImage}
               ref={preselectedImageRef}
@@ -93,6 +107,7 @@ export default function RegisterShopModalDefaultContent({
               title="가게 설명*"
               isRequired={true}
               onChange={(e) => setDescription(e.target.value)}
+              defaultValue={description}
             />
           </div>
         </div>

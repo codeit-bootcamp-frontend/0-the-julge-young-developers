@@ -1,5 +1,6 @@
 'use client'
 
+import { Shop } from '@/libs/my-shop/type-my-shop'
 import ModalPortalWrapper from '@/libs/portal/feature/modalWrapper'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
 
@@ -12,8 +13,10 @@ import RegisterShopModalFunnelContent from './register-shop-modal-funnel-content
  * @returns 회색 배경과 X 버튼이 담긴 full screen 모달
  */
 export default function RegisterShopModal({
+  shop,
   onClickToggelModal,
 }: {
+  shop: Shop
   onClickToggelModal: () => void
 }) {
   const isMobile = useMediaQuery('(max-width: 768px)')
@@ -22,10 +25,12 @@ export default function RegisterShopModal({
       {isMobile ? (
         <RegisterShopModalFunnelContent
           onClickToggelModal={onClickToggelModal}
+          shop={shop}
         />
       ) : (
         <RegisterShopModalDefaultContent
           onClickToggelModal={onClickToggelModal}
+          shop={shop}
         />
       )}
     </ModalPortalWrapper>

@@ -8,6 +8,7 @@ import {
   CATECPRY_DATA,
   FUNNEL_SHOP_TITLE,
 } from '@/libs/my-shop/data-access/my-shop-register-data'
+import { Shop } from '@/libs/my-shop/type-my-shop'
 import useRegisterShopState from '@/libs/my-shop/utill/useRegisterShopState'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
 import {
@@ -24,8 +25,10 @@ import styles from './register-shop-modal-funnel-content.module.scss'
 const cx = classNames.bind(styles)
 
 export default function RegisterShopModalFunnelContent({
+  shop,
   onClickToggelModal,
 }: {
+  shop?: Shop
   onClickToggelModal: () => void
 }) {
   const {
@@ -46,7 +49,7 @@ export default function RegisterShopModalFunnelContent({
     setDescription,
     isAllFilled,
     setIsAllFilled,
-  } = useRegisterShopState('funnel')
+  } = useRegisterShopState({ variant: 'funnel', shop })
 
   const [funnel, setFunnel] = useState<
     | 'name'
