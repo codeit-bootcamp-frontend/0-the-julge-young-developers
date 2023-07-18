@@ -14,6 +14,20 @@ import UiTableHeadCell from '@/libs/shared/table/ui/ui-table-composition/ui-tabl
 import UiTableHeadRow from '@/libs/shared/table/ui/ui-table-composition/ui-table-head-row'
 import { utilFormatPhone } from '@/libs/shared/table/util/util-format-phone'
 
+/**
+ * 
+ * @param data 테이블에 들어갈 신청 내역 데이터. 형태는 아래와 같습니다.
+ * 
+ * {
+  id: string
+  status: Status
+  name: string
+  hourlyPay: number
+  startsAt: string
+  workhour: number
+}
+ * @param paginationElement 페이지네이션 컴포넌트
+ */
 function ApplicationHistoryTable({
   data,
   paginationElement,
@@ -50,6 +64,19 @@ function ApplicationHistoryTable({
   )
 }
 
+/**
+ * 
+ * @param data 테이블에 들어갈 신청 목록 데이터. 형태는 아래와 같습니다.
+ * 
+ * {
+  id: string
+  status: Status
+  name?: string
+  description?: string
+  phone?: string
+}
+ * @param paginationElement 페이지네이션 컴포넌트
+ */
 function ApplicantListTable({
   data,
   shopId,
