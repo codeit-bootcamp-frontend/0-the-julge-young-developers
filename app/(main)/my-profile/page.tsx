@@ -6,7 +6,11 @@ import MyProfileShell from '@/libs/alba/my-profile/my-profile-h/feature/my-profi
 import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 
 export const revalidate = 3600
-export default async function MyProfilePage() {
+export default async function MyProfilePage({
+  searchParams,
+}: {
+  searchParams: { page: string }
+}) {
   const cookieInstance = cookies()
   const userId = cookieInstance.get('uid')?.value
 
@@ -46,10 +50,15 @@ export default async function MyProfilePage() {
     }
   }
 
+  const page =
+    Number.isNaN(Number(searchParams.page)) || Number(searchParams.page) < 1
+      ? 1
+      : Math.floor(Number(searchParams.page))
+
   return (
     <div>
       <MyProfileShell isRegistered={isRegistered} userProfile={userProfile} />
-      {isRegistered && <ApplicationDetailShell />}
+      {isRegistered && <ApplicationDetailShell page={page} />}
     </div>
   )
 }
