@@ -2,10 +2,12 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import NoticeDetailShell from '@/libs/alba/notice-detail/feature/notice-detail-shell'
+import RecentNoticeShell from '@/libs/alba/notice-detail/feature/recent-notice-shell'
 import { getMatchingApplication } from '@/libs/notice-detail-alice/util/getMatchData'
 import { getNoticeUserApplication } from '@/libs/shared/api/data-access/request/applicationsRequest'
 import { getShopNotice } from '@/libs/shared/api/data-access/request/noticeRequest'
 import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
+import { ShopNoticeData } from '@/libs/shared/api/types/type-notice'
 
 export default async function NoticeDetailPage({
   params,
@@ -96,23 +98,26 @@ export default async function NoticeDetailPage({
   }
 
   return (
-    <NoticeDetailShell
-      noticeId={params.noticeId}
-      shopId={params.shopId}
-      name={name as string}
-      category={category as string}
-      imageUrl={imageUrl as string}
-      startsAt={startsAt as string}
-      workhour={workhour as number}
-      address={address as string}
-      closed={closed as boolean}
-      shopDescription={shopDescription as string}
-      noticeDescription={noticeDescription as string}
-      hourlyPay={hourlyPay as number}
-      originalHourlyPay={originalHourlyPay as number}
-      userType={userType}
-      isProfile={isProfile}
-      isApplication={isApplication}
-    />
+    <div>
+      <NoticeDetailShell
+        noticeId={params.noticeId}
+        shopId={params.shopId}
+        name={name as string}
+        category={category as string}
+        imageUrl={imageUrl as string}
+        startsAt={startsAt as string}
+        workhour={workhour as number}
+        address={address as string}
+        closed={closed as boolean}
+        shopDescription={shopDescription as string}
+        noticeDescription={noticeDescription as string}
+        hourlyPay={hourlyPay as number}
+        originalHourlyPay={originalHourlyPay as number}
+        userType={userType}
+        isProfile={isProfile}
+        isApplication={isApplication}
+      />
+      <RecentNoticeShell noticeDetail={noticeDetail as ShopNoticeData} />
+    </div>
   )
 }
