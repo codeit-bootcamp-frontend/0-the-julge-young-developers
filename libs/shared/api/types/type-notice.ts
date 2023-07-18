@@ -3,10 +3,10 @@ import { Links } from './type-user'
 
 /* noticeRequest - getNotices */
 interface NoticesProps {
-  offset?: number
-  limit?: number
-  count?: number
-  hasNext?: boolean
+  offset: number
+  limit: number
+  count: number
+  hasNext: boolean
   address?: string[]
   keyword?: string
   startsAtGte?: string
@@ -75,8 +75,8 @@ interface NoticesData {
 
 interface ShopNoticesProps {
   shopId: string
-  offset?: number
-  limit?: number
+  offset: number
+  limit: number
   count: number
   hasNext: boolean
 }
