@@ -21,6 +21,7 @@ export default forwardRef(function Input(
     onChange,
     variant = 'input',
     title,
+    isPassowrd,
     isRequired,
     defaultValue,
     valid,
@@ -37,6 +38,7 @@ export default forwardRef(function Input(
         title={title}
         defaultValue={defaultValue}
         valid={valid as string}
+        isPassowrd={isPassowrd}
         isValid={isValid as boolean}
         isRequired={isRequired}
         suffix={suffix}

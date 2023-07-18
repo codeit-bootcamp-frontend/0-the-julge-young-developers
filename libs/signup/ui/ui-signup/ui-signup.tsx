@@ -59,6 +59,7 @@ export default function UiSignUp({
               e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
             ) => utilCheck('pw', e.currentTarget.value)}
             variant="input"
+            isPassowrd={true}
             title="비밀번호"
             valid="비밀번호는 영문+숫자 조합해서 8자리 이상이어야 합니다."
             isValid={!validPw}
@@ -71,6 +72,7 @@ export default function UiSignUp({
               e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
             ) => utilCheck('pwRepeat', e.currentTarget.value)}
             variant="input"
+            isPassowrd={true}
             title="비밀번호 확인"
             valid="비밀번호가 일치하지 않습니다."
             isValid={!validPwRepeat}

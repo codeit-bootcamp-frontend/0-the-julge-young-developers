@@ -37,6 +37,7 @@ export default function UiSignIn({
             ref={(el: HTMLInputElement) => (userInputRefs.current[0] = el)}
           />
           <Input
+            isPassowrd={true}
             variant="input"
             title="비밀번호"
             isValid={false}
