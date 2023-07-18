@@ -26,7 +26,7 @@ export default function PaginationServer({
     <UiPaginationServer
       page={page}
       shownPages={shownPages}
-      prevAble={paginationNum > 1}
+      prevAble={page > 1}
       nextAble={paginationNum < endPaginationNum}
     />
   )
