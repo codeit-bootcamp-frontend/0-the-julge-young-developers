@@ -5,7 +5,7 @@ import { Links } from './type-user'
 interface NoticeUserApplicationItem {
   item: {
     id: string
-    status: 'pending' | 'accepted' | 'rejected'
+    status: 'pending' | 'accepted' | 'rejected' | 'canceled'
     createdAt: string
     shop?: {
       item: {
