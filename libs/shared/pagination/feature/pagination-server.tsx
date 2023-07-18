@@ -12,7 +12,6 @@ export default function PaginationServer({
 }) {
   const paginationNum = Math.floor((page - 1) / PAGES_PER_PAGINATION) + 1
   const endPage = Math.floor((totalItems + 1) / TABLE_ITEMS_PER_PAGE)
-  const endPaginationNum = Math.floor((endPage - 1) / PAGES_PER_PAGINATION) + 1
 
   const shownStart =
     Math.floor((page - 1) / PAGES_PER_PAGINATION) * PAGES_PER_PAGINATION + 1
@@ -21,13 +20,12 @@ export default function PaginationServer({
     { length: shownEnd - shownStart + 1 },
     (_, i) => i + shownStart,
   )
-
   return (
     <UiPaginationServer
       page={page}
       shownPages={shownPages}
       prevAble={page > 1}
-      nextAble={paginationNum < endPaginationNum}
+      nextAble={page < endPage}
     />
   )
 }
