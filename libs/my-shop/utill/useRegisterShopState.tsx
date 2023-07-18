@@ -53,9 +53,8 @@ export default function useRegisterShopState({
     defaultHourlyWage,
     description,
     detailAddress,
-    shopName,
-    preselectedImageRef,
     selectedImage,
+    shopName,
     variant,
   ])
 

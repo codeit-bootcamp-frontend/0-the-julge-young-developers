@@ -7,14 +7,10 @@ import classNames from 'classnames/bind'
 import { useRouter } from 'next/navigation'
 
 import { ADDRESS_OPTIONS } from '@/libs/alba/my-profile/my-profile-h/data-access/select-options'
+import { sendRegisterShopRequest } from '@/libs/my-shop/data-access/data-access-send-register-shop-request'
 import { CATECPRY_DATA } from '@/libs/my-shop/data-access/my-shop-register-data'
 import { Shop } from '@/libs/my-shop/type-my-shop'
 import useRegisterShopState from '@/libs/my-shop/utill/useRegisterShopState'
-import {
-  registerShop,
-  updateShopInfo,
-} from '@/libs/shared/api/data-access/request/shopRequest'
-import { ShopInfo } from '@/libs/shared/api/types/type-shop'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
 import {
   ActiveBtn,
@@ -58,43 +54,19 @@ export default function RegisterShopModalDefaultContent({
     isAllFilled,
   } = useRegisterShopState({ shop })
 
-  const sendRequest = async () => {
-    if (shop) {
-      const response = await updateShopInfo(shop.id, {
-        name: shopName,
-        category: category as ShopInfo['category'],
-        address1: address as ShopInfo['address1'],
-        address2: detailAddress,
-        description,
-        imageUrl: selectedImage,
-        originalHourlyPay: defaultHourlyWage as number,
-      })
-      console.log(response)
-
-      if (typeof response !== 'string' && !(response instanceof Error)) {
-        return true
-      }
-      return false
-    }
-    const response = await registerShop({
-      name: shopName,
-      category: category as ShopInfo['category'],
-      address1: address as ShopInfo['address1'],
-      address2: detailAddress,
-      description,
-      imageUrl: selectedImage,
-      originalHourlyPay: defaultHourlyWage as number,
-    })
-    if (typeof response !== 'string' && !(response instanceof Error)) {
-      return true
-    }
-    return false
-  }
-
   const handleSubmit = async (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
     setISLoading(true)
-    const isSuccess = await sendRequest()
+    const isSuccess = await sendRegisterShopRequest(
+      shop,
+      shopName,
+      category,
+      address,
+      detailAddress,
+      defaultHourlyWage,
+      selectedImage,
+      description,
+    )
     console.log(isSuccess)
     if (isSuccess) {
       setISLoading(false)
