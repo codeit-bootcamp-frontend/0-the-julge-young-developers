@@ -77,19 +77,19 @@ export const getNoticeApplicantsData = async (
   shopId: string,
   noticeId: string,
   pageNum: number,
-): Promise<ApplicantList[]> => {
+): Promise<[ApplicantList[], number]> => {
   const offset = (pageNum - 1) * TABLES_ITEMS_PER_PAGE
   const limit = TABLES_ITEMS_PER_PAGE
   const res = await getNoticeApplicationList(shopId, noticeId, offset, limit)
   if (res instanceof Error) {
     // 알 수 없는 에러 처리
     // MOCK 데이터로 임시 에러 처리
-    return MOCK_APPLICANT_LIST_DATA
+    return [MOCK_APPLICANT_LIST_DATA, MOCK_APPLICANT_LIST_DATA.length]
   }
   if (typeof res === 'string') {
     // 에러 메시지에 맞게 처리
     // MOCK 데이터로 임시 에러 처리
-    return MOCK_APPLICANT_LIST_DATA
+    return [MOCK_APPLICANT_LIST_DATA, MOCK_APPLICANT_LIST_DATA.length]
   }
   // response 데이터 가공
   const applications = res.items
@@ -102,5 +102,5 @@ export const getNoticeApplicantsData = async (
     phone: application.item.user?.item.phone,
   }))
 
-  return noticeApplicants
+  return [noticeApplicants, res.count]
 }

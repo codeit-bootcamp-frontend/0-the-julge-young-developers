@@ -26,6 +26,7 @@ export default async function MyShopNoticeDetail({
     closed,
   } = data
 
+  // 해당 공고는 마감되었습니다 UI 추가?
   if (closed) redirect('/my-shop')
   return (
     <UiNoticeDetailCardLayout name={name} category={category}>

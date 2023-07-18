@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { getNotices } from '@/libs/shared/api/data-access/request/noticeRequest'
 import { AllNoticesData } from '@/libs/shared/api/types/type-notice'
 import UiFilterElement from '@/libs/shared/notice-card/ui/ui-filter-element/ui-filter-element'
-import Pagination from '@/libs/shared/pagination/feature/pagination'
+import PaginationPrev from '@/libs/shared/pagination/feature/pagination-prev'
 
 import UiNoticeList from '../ui/ui-notice-list/ui-notice-list'
 
@@ -111,7 +111,7 @@ export default function NoticeList({
         />
       }
       paginationElement={
-        <Pagination pageNum={pageNum} setPageNum={setPageNum} />
+        <PaginationPrev pageNum={pageNum} setPageNum={setPageNum} />
       }
     />
   )
