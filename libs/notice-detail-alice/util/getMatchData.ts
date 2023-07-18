@@ -7,14 +7,15 @@ import { ERROR_INVALID_NOTICE_MESSAGE } from '../data-access/error-message'
 function getMatchingApplication(
   noticeId: string,
   applications: NoticeUserApplicationItem[],
-): NoticeUserApplicationItem | null {
+): NoticeUserApplicationItem | undefined {
   for (const application of applications) {
-    if (application.item.notice.item.id === noticeId) {
+    if (
+      application.item.notice &&
+      application.item.notice.item.id === noticeId
+    ) {
       return application
     }
   }
-
-  return null
 }
 
 function getMatchingNotice(
