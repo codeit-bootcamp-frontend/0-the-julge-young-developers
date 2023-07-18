@@ -39,7 +39,7 @@ export default function UiPaginationServer({
             </Link>
           ))}
         </div>
-        <Link href={`${pathname}?page=${page - 1}`}>
+        <Link href={`${pathname}?page=${page + 1}`}>
           <UiPaginationArrow direction="next" able={nextAble} />
         </Link>
       </div>

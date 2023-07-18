@@ -72,14 +72,14 @@ export const getNoticeDetailData = async (
   return noticeDetail
 }
 
-const LIST_PER_PAGE = 5
+const TABLES_ITEMS_PER_PAGE = Number(process.env.TABLE_ITEMS_PER_PAGE)
 export const getNoticeApplicantsData = async (
   shopId: string,
   noticeId: string,
   pageNum: number,
 ): Promise<ApplicantList[]> => {
-  const offset = (pageNum - 1) * LIST_PER_PAGE
-  const limit = LIST_PER_PAGE
+  const offset = (pageNum - 1) * TABLES_ITEMS_PER_PAGE
+  const limit = TABLES_ITEMS_PER_PAGE
   const res = await getNoticeApplicationList(shopId, noticeId, offset, limit)
   if (res instanceof Error) {
     // 알 수 없는 에러 처리
