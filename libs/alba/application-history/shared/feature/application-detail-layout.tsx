@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 
 import { NoticeUserApplicationItem } from '@/libs/shared/api/types/type-application'
-import Pagination from '@/libs/shared/pagination/feature/pagination'
+import PaginationPrev from '@/libs/shared/pagination/feature/pagination-prev'
 import { ApplicationHistoryTable } from '@/libs/shared/table/feature/tables'
 
 import {
@@ -75,7 +75,7 @@ export default function ApplicationDetailLayout({
           <ApplicationHistoryTable
             data={applicationData}
             paginationElement={
-              <Pagination pageNum={pageNum} setPageNum={setPageNum} />
+              <PaginationPrev pageNum={pageNum} setPageNum={setPageNum} />
             }
           />
         </UiApplicationTable>

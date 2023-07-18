@@ -11,7 +11,7 @@ import {
 } from '@/libs/alba/application-history/application-detail/data-access/data-access-application'
 import { UiRegisterApplication } from '@/libs/alba/application-history/application-detail/ui/ui-application-detail'
 import UiLoading from '@/libs/alba/application-history/application-detail/ui/ui-loading'
-import Pagination from '@/libs/shared/pagination/feature/pagination'
+import PaginationPrev from '@/libs/shared/pagination/feature/pagination-prev'
 import { useUserContext } from '@/libs/shared/providers/context/feature/user-provider'
 import { MOCK_APPLICATION_HISTORY_DATA } from '@/libs/shared/table/data-access/data-access-mock'
 import { ApplicationHistoryTable } from '@/libs/shared/table/feature/tables'
@@ -50,7 +50,7 @@ export default function ApplicationDetail() {
         <ApplicationHistoryTable
           data={MOCK_APPLICATION_HISTORY_DATA}
           paginationElement={
-            <Pagination pageNum={pageNum} setPageNum={setPageNum} />
+            <PaginationPrev pageNum={pageNum} setPageNum={setPageNum} />
           }
         />
       )}

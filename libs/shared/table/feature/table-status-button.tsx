@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+import { useRouter } from 'next/navigation'
+
 import { updateNoticeApplicationResult } from '@/libs/shared/api/data-access/request/applicationsRequest'
 import {
   ActiveOutlineBtn,
@@ -12,13 +14,19 @@ import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
 import useOutsideClick from '@/libs/shared/shared/util/useOutsideClick'
 import { TableStatusButtonProps } from '@/libs/shared/table/type-table'
 
+import UiTableBodyStatusChip from '../ui/ui-table-composition/ui-table-body-status-chip'
+
 export default function TableStatusButton({
   shopId,
   noticeId,
   applicationId,
 }: TableStatusButtonProps) {
+  const router = useRouter()
   const isMobile = useMediaQuery('(max-width: 768px)')
   const [isMobileSize, setIsMobileSize] = useState<boolean>(false)
+
+  const [isRejectDone, setIsRejectDone] = useState(false)
+
   const [shownAcceptDialog, setShownAcceptDialog] = useState(false)
   const [shownRejectDialog, setShownRejectDialog] = useState(false)
 
@@ -28,23 +36,25 @@ export default function TableStatusButton({
   useOutsideClick(acceptDialogRef, () => setShownAcceptDialog(false))
 
   const handleClickAcceptApplication = async () => {
+    setShownAcceptDialog(false)
     await updateNoticeApplicationResult(
       shopId,
       noticeId,
       applicationId,
       'accepted',
     )
-    setShownRejectDialog(false)
+    router.push('/my-shop')
   }
 
   const handleClickRejectApplication = async () => {
+    setShownRejectDialog(false)
+    setIsRejectDone(true)
     await updateNoticeApplicationResult(
       shopId,
       noticeId,
       applicationId,
       'rejected',
     )
-    setShownRejectDialog(false)
   }
 
   useEffect(() => {
@@ -55,6 +65,7 @@ export default function TableStatusButton({
     }
   }, [isMobile])
 
+  if (isRejectDone) return <UiTableBodyStatusChip status="rejected" />
   return (
     <>
       <ActiveOutlineBtn
