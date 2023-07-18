@@ -11,11 +11,11 @@ import NoticeCardList from './notice-card-list'
 export default async function MyNoticeList({ shopId }: { shopId: string }) {
   const noticeData = await getShopNotices({
     shopId,
-    // offset: 0,
-    // limit: 10,
+    offset: 0,
+    limit: 10,
   })
   if (noticeData) {
-    console.log(noticeData)
+    console.log(shopId, noticeData)
   }
   return (
     <div>

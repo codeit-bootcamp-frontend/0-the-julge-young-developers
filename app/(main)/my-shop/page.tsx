@@ -24,9 +24,7 @@ export default async function MyShopPage() {
   return (
     <div>
       <MyShop shopId={shopId || ''} />
-      <MyNoticeList
-      // shopId={shopId || ''}
-      />
+      <MyNoticeList shopId={shopId || ''} />
     </div>
   )
 }

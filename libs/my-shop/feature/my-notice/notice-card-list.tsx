@@ -16,7 +16,6 @@ export default async function NoticeCardList({
   shopId: string
 }) {
   const myShopData = (await getShopInfo(shopId)) as ShopData
-
   const data: AllNoticesData[] = notices.items.map((item) => {
     const shop = myShopData?.item // myShopData가 존재하면 shop 변수에 할당
     return {
