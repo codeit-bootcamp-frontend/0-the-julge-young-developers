@@ -20,18 +20,11 @@ export default function UiBgGrayModal({
   children,
   onClickBackModal,
   onClickCloseModal,
-  unmounted,
 }: UiBgGrayModalProps) {
   return (
     <div className={cx('bgGray')}>
       <div className={cx('modalContent')}>
-        <button
-          className={cx('back', {
-            unmounted,
-          })}
-          type="button"
-          onClick={onClickBackModal}
-        >
+        <button className={cx('back')} type="button" onClick={onClickBackModal}>
           <Image
             src="/images/arrow-left.svg"
             width={closeButtonSize}

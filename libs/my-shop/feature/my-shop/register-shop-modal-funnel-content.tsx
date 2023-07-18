@@ -166,7 +166,6 @@ export default function RegisterShopModalFunnelContent({
   }
   return (
     <UiBgGrayModal
-      unmounted={backUnmounted}
       onClickBackModal={handleClickBackModal}
       onClickCloseModal={onClickToggelModal}
     >

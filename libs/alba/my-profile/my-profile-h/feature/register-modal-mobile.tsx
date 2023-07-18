@@ -86,6 +86,7 @@ export default function RegisterModalMobile({
   const [bio, setBio] = useState<boolean>(false)
 
   const [unmounted, setUnmounted] = useState<boolean>(false)
+  const [backmounted, setBackmounted] = useState<boolean>(false)
 
   const handleClickBackModal = () => {
     if (funnel === 'name') {
@@ -98,19 +99,36 @@ export default function RegisterModalMobile({
       setDefaultName('')
       setDefaultPhone('')
       setDefaultAddress('')
+
       onClickCloseModal()
     } else if (funnel === 'phone') {
+      setBackmounted(true)
       // set funnelSubmitData.name
       setDefaultName(funnelSubmitData.name)
-      setFunnel('name')
+
+      setTimeout(() => {
+        setFunnel('name')
+        setBackmounted(false)
+      }, 500)
     } else if (funnel === 'address') {
+      setBackmounted(true)
+
       // set funnelSubmitData.phone
       setDefaultPhone(funnelSubmitData.phone)
-      setFunnel('phone')
+
+      setTimeout(() => {
+        setFunnel('phone')
+        setBackmounted(false)
+      }, 500)
     } else if (funnel === 'bio') {
+      setBackmounted(true)
+
       // set funnelSubmitData.address
       setDefaultAddress(funnelSubmitData.address)
-      setFunnel('address')
+      setTimeout(() => {
+        setFunnel('address')
+        setBackmounted(false)
+      }, 500)
     }
   }
 
@@ -234,13 +252,13 @@ export default function RegisterModalMobile({
         })}
       >
         <UiBgGrayModal
-          unmounted={unmounted}
           onClickBackModal={handleClickBackModal}
           onClickCloseModal={onClickCloseModal}
         >
           <div
             className={cx('simpleWrapper', {
               unmounted,
+              backmounted,
             })}
           >
             <UiSimpleLayout
@@ -252,6 +270,7 @@ export default function RegisterModalMobile({
                 <div
                   className={cx('inputWrapper', {
                     unmounted,
+                    backmounted,
                   })}
                 >
                   <Input
@@ -272,6 +291,7 @@ export default function RegisterModalMobile({
                 <div
                   className={cx('inputWrapper', {
                     unmounted,
+                    backmounted,
                   })}
                 >
                   <Input
@@ -292,6 +312,7 @@ export default function RegisterModalMobile({
                 <div
                   className={cx('inputWrapper', {
                     unmounted,
+                    backmounted,
                   })}
                 >
                   <Select
@@ -328,6 +349,7 @@ export default function RegisterModalMobile({
         <div
           className={cx('btnWrapper', {
             unmounted,
+            backmounted,
           })}
         >
           {(name || defaultName) && funnel === 'name' && (
