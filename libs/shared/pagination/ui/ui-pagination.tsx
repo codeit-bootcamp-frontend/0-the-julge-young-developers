@@ -1,6 +1,10 @@
+'use client'
+
 import classnames from 'classnames/bind'
 
-import { UiPaginationProps } from '@/libs/shared/pagination/type-pagination'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
 import UiPaginationArrow from '@/libs/shared/pagination/ui/ui-pagination-arrow'
 
 import styles from './ui-pagination.module.scss'
@@ -8,33 +12,42 @@ import styles from './ui-pagination.module.scss'
 const cx = classnames.bind(styles)
 
 export default function UiPagination({
-  pageNum,
-  setPageNum,
-  shownPageNums,
+  page,
+  shownPages,
   prevAble,
   nextAble,
-}: UiPaginationProps) {
+}: {
+  page: number
+  shownPages: number[]
+  prevAble: boolean
+  nextAble: boolean
+}) {
+  const pathname = usePathname()
+
   return (
     <div className={cx('wrapper')}>
       <div className={cx('content')}>
-        <button type="button">
+        <Link
+          href={`${pathname}?page=${page - 1}`}
+          className={cx('arrow', { disabled: !prevAble })}
+        >
           <UiPaginationArrow direction="prev" able={prevAble} />
-        </button>
+        </Link>
         <div className={cx('numbers')}>
-          {shownPageNums.map((num) => (
-            <button
-              className={cx('number', { isActive: pageNum === num })}
-              type="button"
-              key={num}
-              onClick={() => setPageNum(num)}
-            >
-              {num}
-            </button>
+          {shownPages.map((num) => (
+            <Link key={num} href={`${pathname}?page=${num}`}>
+              <span className={cx('number', { isActive: page === num })}>
+                {num}
+              </span>
+            </Link>
           ))}
         </div>
-        <button type="button">
+        <Link
+          href={`${pathname}?page=${page + 1}`}
+          className={cx('arrow', { disabled: !nextAble })}
+        >
           <UiPaginationArrow direction="next" able={nextAble} />
-        </button>
+        </Link>
       </div>
     </div>
   )

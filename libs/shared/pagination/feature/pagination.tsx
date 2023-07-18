@@ -1,47 +1,31 @@
-'use client'
+import UiPagination from '../ui/ui-pagination'
 
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
-
-import UiPagination from '@/libs/shared/pagination/ui/ui-pagination'
+const PAGES_PER_PAGINATION = Number(process.env.PAGES_PER_PAGINATION)
+const TABLE_ITEMS_PER_PAGE = Number(process.env.TABLE_ITEMS_PER_PAGE)
 
 export default function Pagination({
-  pageNum,
-  setPageNum,
+  page,
+  totalItems,
 }: {
-  pageNum: number
-  setPageNum: Dispatch<SetStateAction<number>>
+  page: number
+  totalItems: number
 }) {
-  // 1) shownPageNums 계산을 위한 데이터 fetch
-  // case1: /my-shop/{공고Id}
-  // fetch에 필요: shopId, 공고Id
-  // How get? shopId - context / 공고Id - usePathName
-  // case2: /my-profile/{userId}
-  // fetch에 필요: userId, 토큰
-  // How get? userId - usePathName
+  const paginationNum = Math.floor((page - 1) / PAGES_PER_PAGINATION) + 1
+  const endPage = Math.floor((totalItems + 1) / TABLE_ITEMS_PER_PAGE)
 
-  const [shownPageNums, setShownPageNums] = useState<number[]>([])
-  const [paginationNum, setPaginationNum] = useState(1)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-  const [lastPagination, setLastPagination] = useState(true)
-
-  // 추후 삭제
-  useEffect(() => setShownPageNums([1, 2, 3, 4, 5, 6, 7]), [])
-
-  useEffect(() => {
-    if (pageNum % 7 === 1) {
-      setPaginationNum(pageNum / 7 + 1)
-    }
-
-    setShownPageNums([1, 2, 3, 4, 5, 6, 7])
-  }, [pageNum])
-
+  const shownStart =
+    Math.floor((page - 1) / PAGES_PER_PAGINATION) * PAGES_PER_PAGINATION + 1
+  const shownEnd = Math.min(endPage, paginationNum * PAGES_PER_PAGINATION)
+  const shownPages = Array.from(
+    { length: shownEnd - shownStart + 1 },
+    (_, i) => i + shownStart,
+  )
   return (
     <UiPagination
-      pageNum={pageNum}
-      setPageNum={setPageNum}
-      shownPageNums={shownPageNums}
-      prevAble={paginationNum > 1}
-      nextAble={!lastPagination}
+      page={page}
+      shownPages={shownPages}
+      prevAble={page > 1}
+      nextAble={page < endPage}
     />
   )
 }
