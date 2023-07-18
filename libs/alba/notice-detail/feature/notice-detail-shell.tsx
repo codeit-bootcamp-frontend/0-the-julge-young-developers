@@ -43,7 +43,6 @@ export default function NoticeDetailShell({
   isProfile,
   isApplication,
 }: NoticeDetailShellProps) {
-  console.log(closed, userType, isProfile, isApplication?.item.status)
   return (
     <div>
       <UiNoticeDetailCardLayout name={name} category={category as ShopCategory}>
