@@ -20,18 +20,15 @@ import styles from './ui-my-shop-detail-button.module.scss'
 const cx = classNames.bind(styles)
 export default function UiMyShopDetailButton({ shop }: { shop: Shop }) {
   const [openShopModal, setOpenShopModal] = useState<boolean>(false)
-  const [openNoiceModal, setOpenNoticeModal] = useState<boolean>(false)
+  const [openNoticeModal, setOpenNoticeModal] = useState<boolean>(false)
   const [showModal, setShowModal] = useState<boolean>(false)
+
   const handleClickToggleShopModal = () => {
     setOpenShopModal(!openShopModal)
-
-    setTimeout(() => {
-      setShowModal(!showModal)
-    }, 500)
   }
 
   const handleClickToggleNoticeModal = () => {
-    setOpenNoticeModal(!openNoiceModal)
+    setOpenNoticeModal(!openNoticeModal)
     if (showModal) {
       setShowModal(!showModal)
       return
@@ -60,7 +57,7 @@ export default function UiMyShopDetailButton({ shop }: { shop: Shop }) {
           shop={shop}
         />
       )}
-      {openNoiceModal && (
+      {openNoticeModal && (
         <RegisterNoticeModal
           onClickToggelModal={handleClickToggleNoticeModal}
           showModal={showModal}

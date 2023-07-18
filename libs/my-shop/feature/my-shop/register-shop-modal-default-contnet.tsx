@@ -1,15 +1,18 @@
 'use client'
 
-import { MouseEvent } from 'react'
+import { MouseEvent, useState } from 'react'
 
 import classNames from 'classnames/bind'
+
+import { useRouter } from 'next/navigation'
 
 import { ADDRESS_OPTIONS } from '@/libs/alba/my-profile/my-profile-h/data-access/select-options'
 import { CATECPRY_DATA } from '@/libs/my-shop/data-access/my-shop-register-data'
 import { Shop } from '@/libs/my-shop/type-my-shop'
 import useRegisterShopState from '@/libs/my-shop/utill/useRegisterShopState'
 import {
-  registerShop, // updateShopInfo,
+  registerShop,
+  updateShopInfo,
 } from '@/libs/shared/api/data-access/request/shopRequest'
 import { ShopInfo } from '@/libs/shared/api/types/type-shop'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
@@ -20,6 +23,7 @@ import {
 import ImageInput from '@/libs/shared/input-select-btn/feature/feature-image-input'
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import Select from '@/libs/shared/input-select-btn/feature/feature-select'
+import UiLoading from '@/libs/shared/loading/ui/ui-loading'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
 import styles from './register-shop-modal-default-content.module.scss'
@@ -30,10 +34,11 @@ export default function RegisterShopModalDefaultContent({
   shop,
   onClickToggelModal,
 }: {
-  shop: Shop
-
+  shop?: Shop
   onClickToggelModal: () => void
 }) {
+  const [isLoading, setISLoading] = useState(false)
+  const router = useRouter()
   const {
     shopName,
     setShopName,
@@ -53,14 +58,25 @@ export default function RegisterShopModalDefaultContent({
     isAllFilled,
   } = useRegisterShopState({ shop })
 
-  const handleSubmit = async (e: MouseEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
+  const sendRequest = async () => {
     if (shop) {
-      // updateShopInfo
-      return
+      const response = await updateShopInfo(shop.id, {
+        name: shopName,
+        category: category as ShopInfo['category'],
+        address1: address as ShopInfo['address1'],
+        address2: detailAddress,
+        description,
+        imageUrl: selectedImage,
+        originalHourlyPay: defaultHourlyWage as number,
+      })
+      console.log(response)
+
+      if (typeof response !== 'string' && !(response instanceof Error)) {
+        return true
+      }
+      return false
     }
-    await registerShop({
+    const response = await registerShop({
       name: shopName,
       category: category as ShopInfo['category'],
       address1: address as ShopInfo['address1'],
@@ -69,7 +85,36 @@ export default function RegisterShopModalDefaultContent({
       imageUrl: selectedImage,
       originalHourlyPay: defaultHourlyWage as number,
     })
+    if (typeof response !== 'string' && !(response instanceof Error)) {
+      return true
+    }
+    return false
   }
+
+  const handleSubmit = async (e: MouseEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setISLoading(true)
+    const isSuccess = await sendRequest()
+    console.log(isSuccess)
+    if (isSuccess) {
+      setISLoading(false)
+      onClickToggelModal()
+      router.refresh()
+    }
+  }
+
+  const renderSubmitButton = () => {
+    if (!isAllFilled) {
+      return <InactiveBtn text="완료하기" size="large" />
+    }
+
+    if (isLoading) {
+      return <UiLoading />
+    }
+
+    return <ActiveBtn text="완료하기" size="large" type="submit" />
+  }
+
   return (
     <UiBgGrayModal onClickCloseModal={onClickToggelModal}>
       <UiSimpleLayout title="가게 정보">
@@ -139,23 +184,7 @@ export default function RegisterShopModalDefaultContent({
               />
             </div>
           </div>
-          <div className={cx('button')}>
-            {isAllFilled ? (
-              <ActiveBtn
-                text="완료하기"
-                size="large"
-                onClick={() => console.log('모달 닫기')}
-                type="submit"
-              />
-            ) : (
-              <InactiveBtn
-                text="완료하기"
-                size="large"
-                onClick={() => console.log('아직 안채워짐')}
-                type="submit"
-              />
-            )}
-          </div>
+          <div className={cx('button')}>{renderSubmitButton()}</div>
         </form>
       </UiSimpleLayout>
     </UiBgGrayModal>

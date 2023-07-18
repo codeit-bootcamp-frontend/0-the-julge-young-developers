@@ -16,7 +16,7 @@ export default function RegisterShopModal({
   shop,
   onClickToggelModal,
 }: {
-  shop: Shop
+  shop?: Shop
   onClickToggelModal: () => void
 }) {
   const isMobile = useMediaQuery('(max-width: 768px)')
