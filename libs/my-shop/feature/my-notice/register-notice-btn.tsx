@@ -12,7 +12,6 @@ export default function RegisterNoticeBtn() {
   const [showModal, setShowModal] = useState<boolean>(false)
   const isMobile = useMediaQuery('(max-width: 768px)')
   const handleClickToggleModal = () => {
-    console.log('오잉', isMobile)
     setOpenModal(!openModal)
 
     setTimeout(() => {
