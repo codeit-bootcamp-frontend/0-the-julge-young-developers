@@ -7,7 +7,7 @@ interface NoticeUserApplicationItem {
     id: string
     status: 'pending' | 'accepted' | 'rejected'
     createdAt: string
-    shop: {
+    shop?: {
       item: {
         id: string
         name: string
@@ -20,7 +20,7 @@ interface NoticeUserApplicationItem {
       }
       href: string
     }
-    notice: {
+    notice?: {
       item: {
         id: string
         hourlyPay: number
