@@ -72,9 +72,12 @@ export default function ApplicationDetailLayout({
       {!loading && applicationData?.length === 0 && <UiRegisterApplication />}
       {!loading && applicationData?.length && (
         <UiApplicationTable>
-          <ApplicationHistoryTable data={applicationData}>
-            <Pagination pageNum={pageNum} setPageNum={setPageNum} />
-          </ApplicationHistoryTable>
+          <ApplicationHistoryTable
+            data={applicationData}
+            paginationElement={
+              <Pagination pageNum={pageNum} setPageNum={setPageNum} />
+            }
+          />
         </UiApplicationTable>
       )}
     </div>
