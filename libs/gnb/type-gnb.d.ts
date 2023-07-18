@@ -1,6 +1,7 @@
 interface GnbProps {
   isLogin: boolean
   hasNotification: boolean
+  searchbarElement: React.ReactNode
   handleClickMovePage: (pathname?: string) => void
   handleClickOpenModal: () => void
 }
