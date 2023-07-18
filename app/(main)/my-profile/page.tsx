@@ -5,8 +5,8 @@ import { redirect } from 'next/navigation'
 
 import ApplicationDetailShell from '@/libs/alba/application-history/shared/feature/application-detail-shell'
 import MyProfileShell from '@/libs/alba/my-profile/my-profile-h/feature/my-profile-shell'
-import AlbaDomainLoader from '@/libs/alba/shared/feature/alba-domain-loader'
 import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
+import CommonDomainLoader from '@/libs/shared/loading/feature/domain-loader'
 
 export const revalidate = 3600
 export default async function MyProfilePage({
@@ -64,7 +64,7 @@ export default async function MyProfilePage({
 
       <Suspense
         fallback={
-          <AlbaDomainLoader
+          <CommonDomainLoader
             title="신청 내역"
             text="테이블 정보를 불러오고 있어요"
           />

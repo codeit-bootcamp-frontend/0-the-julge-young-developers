@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 
-import AlbaClientLoader from '@/libs/alba/shared/feature/alba-client-loader'
 import { ActiveBtn } from '@/libs/shared/click-btns/feature/click-btns'
+import CommonClientLoader from '@/libs/shared/loading/feature/client-loader'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
 import AlbaToast from '@/libs/shared/toast/feature/toast-container'
 
@@ -84,7 +84,7 @@ export default function RegisterBtn() {
         </AlbaToast>
       )}
 
-      {openClientLoader && <AlbaClientLoader />}
+      {openClientLoader && <CommonClientLoader />}
     </div>
   )
 }
