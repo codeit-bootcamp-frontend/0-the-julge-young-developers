@@ -62,10 +62,6 @@ export default async function NoticeDetailPage({
     }
   }
 
-  // application_id :
-  // shop_id : be05aa78-7d4e-4f17-9b3a-babb41181caf
-  // notice_id: fef6de9c-78cc-47b5-808a-69c9ccf87927
-
   const noticeDetail = await getShopNotice(params.shopId, params.noticeId)
 
   let hourlyPay
