@@ -6,6 +6,9 @@ import {
 } from '@/libs/shared/dialog/type-dialog'
 import UiActionDialog from '@/libs/shared/dialog/ui/ui-action-dialog/ui-action-dialog'
 import UiConfirmDialog from '@/libs/shared/dialog/ui/ui-confirm-dialog/ui-confirm-dialog'
+import ToastPortalWrapper from '@/libs/shared/toast/feature/toast-portal-wrapper'
+
+import ModalLayout from './dialog-wrapper'
 
 /**
  * @param text 다이얼로그 본문 내용
@@ -14,7 +17,11 @@ import UiConfirmDialog from '@/libs/shared/dialog/ui/ui-confirm-dialog/ui-confir
  */
 function ConfirmDialog({ text, onConfirm }: ConfirmDialogProps) {
   return (
-    <UiConfirmDialog text={text} confirmText="확인" onConfirm={onConfirm} />
+    <ToastPortalWrapper id="btn-portal">
+      <ModalLayout>
+        <UiConfirmDialog text={text} confirmText="확인" onConfirm={onConfirm} />
+      </ModalLayout>
+    </ToastPortalWrapper>
   )
 }
 
@@ -27,13 +34,17 @@ function ConfirmDialog({ text, onConfirm }: ConfirmDialogProps) {
  */
 function ActionDialog({ type, text, onCancel, onAccept }: ActionDialogProps) {
   return (
-    <UiActionDialog
-      text={text}
-      cancelText="아니오"
-      acceptText={acceptTextOptions[type as ActionTypes]}
-      onCancel={onCancel}
-      onAccept={onAccept}
-    />
+    <ToastPortalWrapper id="btn-portal">
+      <ModalLayout>
+        <UiActionDialog
+          text={text}
+          cancelText="아니오"
+          acceptText={acceptTextOptions[type as ActionTypes]}
+          onCancel={onCancel}
+          onAccept={onAccept}
+        />
+      </ModalLayout>
+    </ToastPortalWrapper>
   )
 }
 

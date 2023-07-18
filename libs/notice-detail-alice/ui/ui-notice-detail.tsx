@@ -1,19 +1,14 @@
 'use client'
 
-import classNames from 'classnames/bind'
-
 import {
   MOCK_NOTICES_DATA,
   MOCK_NOTICE_DETAIL_DATA,
 } from '@/libs/notice-detail-alice/data-access/data-access-mock'
 import { ActiveBtn } from '@/libs/shared/click-btns/feature/click-btns'
-import NoticeCardItem from '@/libs/shared/notice-card/feature/notice-card-item'
 import UiNoticeDetailCard from '@/libs/shared/notice-card/ui/ui-notice-detail-card/ui-notice-detail-card'
 import UiNoticeDetailCardLayout from '@/libs/shared/notice-card/ui/ui-notice-detail-card/ui-notice-detail-card-layout'
 
-import styles from './ui-notice-detail.module.scss'
-
-const cx = classNames.bind(styles)
+import UiRecentNotices from './ui-recent-notices'
 
 export default function UiNoticeDetail() {
   return (
@@ -45,9 +40,7 @@ export default function UiNoticeDetail() {
           </UiNoticeDetailCard>
         </UiNoticeDetailCardLayout>
       </div>
-      <div className={cx('recentNotices')}>
-        <NoticeCardItem data={MOCK_NOTICES_DATA} />
-      </div>
+      <UiRecentNotices noticesList={MOCK_NOTICES_DATA} />
     </>
   )
 }

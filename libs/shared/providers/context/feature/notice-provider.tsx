@@ -1,27 +1,24 @@
 import { ReactNode, createContext, useContext, useMemo } from 'react'
 
-import {
-  RecentNoticeItem,
-  RecentNoticeList,
-} from '@/libs/shared/providers/context/types/type-recent-notice'
+import { AllNoticesData } from '@/libs/shared/api/types/type-notice'
 import useLocalStorage from '@/libs/shared/shared/util/client-storage/use-localstorage'
 
 const STORAGE_KEY = 'RECENT_NOTICES'
 
 interface NewRecentNoticesProps {
-  getRecentNoticeList: () => RecentNoticeList | null
-  setRecentNoticeItem: (notice: RecentNoticeItem) => void
+  getRecentNoticeList: () => AllNoticesData[] | null
+  setRecentNoticeList: (notices: AllNoticesData[]) => void
   removeRecentNoticeItem: () => void
 }
 
 const NewRecentNoticesContext = createContext<NewRecentNoticesProps>({
   getRecentNoticeList: () => null,
-  setRecentNoticeItem: () => {},
+  setRecentNoticeList: () => {},
   removeRecentNoticeItem: () => {},
 })
 
 function NewRecentNoticesProvider({ children }: { children: ReactNode }) {
-  const recentNoticesStorage = useLocalStorage<RecentNoticeList>(STORAGE_KEY)
+  const recentNoticesStorage = useLocalStorage<AllNoticesData[]>(STORAGE_KEY)
 
   const contextProps: NewRecentNoticesProps = useMemo(
     () => ({
@@ -31,7 +28,7 @@ function NewRecentNoticesProvider({ children }: { children: ReactNode }) {
         }
         return null
       },
-      setRecentNoticeItem: (notices: RecentNoticeItem) =>
+      setRecentNoticeList: (notices: AllNoticesData[]) =>
         recentNoticesStorage?.set(notices),
       removeRecentNoticeItem: () => recentNoticesStorage?.remove(),
     }),
@@ -57,7 +54,7 @@ function NewRecentNoticesProvider({ children }: { children: ReactNode }) {
 
     const data = recentNotices.getRecentNoticeList()
     console.log(data) // { item: { value: '데이터' } }
-  }, [])
+  }, [recentNotices])
  * ```
  * 
  * @returns 

@@ -60,7 +60,7 @@ export default function ApplicationDetailLayout({
           workhour: item.item.notice.item.workhour,
         }))
 
-        setApplicationData(trimmedData)
+        setApplicationData(trimmedData as ApplicationHistory[])
       }
     }
     fetchData()

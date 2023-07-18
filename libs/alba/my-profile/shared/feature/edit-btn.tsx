@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 
-import AlbaToast from '@/libs/alba/shared/toast/feature/alba-toast'
 import { ActiveOutlineBtn } from '@/libs/shared/click-btns/feature/click-btns'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
+import AlbaToast from '@/libs/shared/toast/feature/toast-container'
 
 import RegisterModal from '../../my-profile-h/feature/register-modal'
 import RegisterModalMobile from '../../my-profile-h/feature/register-modal-mobile'
