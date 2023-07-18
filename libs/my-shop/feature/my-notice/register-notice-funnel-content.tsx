@@ -110,7 +110,6 @@ export default function RegisterJobPostingFunnelContent({
   }
   return (
     <UiBgGrayModal
-      unmounted={backUnmounted}
       onClickBackModal={handleClickBackModal}
       onClickCloseModal={onClickToggelModal}
     >
