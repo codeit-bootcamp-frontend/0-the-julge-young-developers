@@ -8,5 +8,6 @@ export interface NoticeCardItemProps {
   originalHourlyPay: number
   imageUrl: string
   closed: boolean
+  shopId: string
   handleClickToDetail: () => void
 }
