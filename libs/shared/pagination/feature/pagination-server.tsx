@@ -11,7 +11,7 @@ export default function PaginationServer({
   totalItems: number
 }) {
   const paginationNum = Math.floor((page - 1) / PAGES_PER_PAGINATION) + 1
-  const endPage = Math.floor(totalItems / TABLE_ITEMS_PER_PAGE)
+  const endPage = Math.floor((totalItems + 1) / TABLE_ITEMS_PER_PAGE)
   const endPaginationNum = Math.floor((endPage - 1) / PAGES_PER_PAGINATION) + 1
 
   const shownStart =
