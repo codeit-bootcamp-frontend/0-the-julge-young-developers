@@ -45,7 +45,7 @@ export default function ApplicationDetailLayout({
       setLoading(true)
 
       const data = await serverActionApplicationList(
-        pageNum === 1 ? pageNum - 1 : pageNum - 1 + 5,
+        pageNum === 1 ? pageNum - 1 : (pageNum - 1) * 5,
         5,
       )
       setLoading(false)
