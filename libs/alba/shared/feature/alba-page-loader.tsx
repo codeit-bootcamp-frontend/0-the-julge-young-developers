@@ -4,7 +4,7 @@ import styles from './alba-loader.module.scss'
 
 const cx = classNames.bind(styles)
 
-export default function AlbaLoading() {
+export default function AlbaPageLoader() {
   return (
     <div className={cx('container')}>
       <div className={cx('ldsDefault')}>
