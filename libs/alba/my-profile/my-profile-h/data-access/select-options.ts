@@ -1,6 +1,6 @@
 import { Option } from '@/libs/shared/input-select-btn/types/type-select'
 
-const OPTIONS: Option[] = [
+const ADDRESS_OPTIONS: Option[] = [
   { value: '서울시 종로구' },
   { value: '서울시 중구' },
   { value: '서울시 용산구' },
@@ -28,4 +28,4 @@ const OPTIONS: Option[] = [
   { value: '서울시 강동구' },
 ]
 
-export { OPTIONS }
+export { ADDRESS_OPTIONS }

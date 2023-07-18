@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { Shop } from '@/libs/my-shop/type-my-shop'
+import { ShopInfo } from '@/libs/shared/api/types/type-shop'
 
 export default function useRegisterShopState({
   variant = 'default',
@@ -10,8 +11,12 @@ export default function useRegisterShopState({
   shop?: Shop
 }) {
   const [shopName, setShopName] = useState<string>(shop?.name || '')
-  const [category, setCategory] = useState<string>(shop?.category || '')
-  const [address, setAddress] = useState<string>(shop?.address1 || '')
+  const [category, setCategory] = useState<ShopInfo['category'] | string>(
+    shop?.category || '',
+  )
+  const [address, setAddress] = useState<ShopInfo['address1'] | string>(
+    shop?.address1 || '',
+  )
   const [detailAddress, setDetailAddress] = useState<string>(
     shop?.address2 || '',
   )
