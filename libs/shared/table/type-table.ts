@@ -16,9 +16,9 @@ export type UserType = (typeof USER_TYPE)[keyof typeof USER_TYPE]
 export interface ApplicantList {
   id: string
   status: Status
-  name: string
-  description: string
-  phone: string
+  name?: string
+  description?: string
+  phone?: string
 }
 
 export interface ApplicationHistory {
@@ -32,20 +32,22 @@ export interface ApplicationHistory {
 
 export interface ApplicationHistoryTableProps {
   data: ApplicationHistory[]
-  children: ReactNode
+  paginationElement: ReactNode
 }
 
 export interface ApplicantListTableProps {
   data: ApplicantList[]
-  children: ReactNode
+  shopId: string
+  noticeId: string
+  paginationElement: ReactNode
 }
 
 export interface TableData {
   id: string
   status: Status
-  first: string
-  second: string
-  third: string
+  first?: string
+  second?: string
+  third?: string
 }
 
 export interface UiTableProps {
@@ -62,4 +64,10 @@ export interface UiTableRowProps {
 export interface UiTableStatusCellProps {
   userType: UserType
   status: Status
+}
+
+export interface TableStatusButtonProps {
+  shopId: string
+  noticeId: string
+  applicationId: string
 }
