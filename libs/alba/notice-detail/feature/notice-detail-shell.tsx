@@ -9,7 +9,6 @@ import NoticeDetailBtn from './notice-detail-btn'
 interface NoticeDetailShellProps {
   noticeId: string
   shopId: string
-  applicationId: string
   name: string
   category: string
   imageUrl: string
@@ -29,7 +28,6 @@ interface NoticeDetailShellProps {
 export default function NoticeDetailShell({
   noticeId,
   shopId,
-  applicationId,
   name,
   category,
   imageUrl,
@@ -45,6 +43,7 @@ export default function NoticeDetailShell({
   isProfile,
   isApplication,
 }: NoticeDetailShellProps) {
+  console.log(closed, userType, isProfile, isApplication?.item.status)
   return (
     <div>
       <UiNoticeDetailCardLayout name={name} category={category as ShopCategory}>
@@ -63,7 +62,6 @@ export default function NoticeDetailShell({
           <NoticeDetailBtn
             noticeId={noticeId}
             shopId={shopId}
-            applicationId={applicationId}
             closed={closed}
             userType={userType}
             isProfile={isProfile}

@@ -20,17 +20,15 @@ import AlbaToast from '../../shared/toast/feature/alba-toast'
 interface NoticeDetailBtnProps {
   noticeId: string
   shopId: string
-  applicationId: string
   closed: boolean
-  userType: undefined | string
+  userType?: string
   isProfile: boolean
-  isApplication: NoticeUserApplicationItem | undefined
+  isApplication?: NoticeUserApplicationItem
 }
 
 export default function NoticeDetailBtn({
   noticeId,
   shopId,
-  applicationId,
   isProfile,
   closed,
   userType,
@@ -65,7 +63,7 @@ export default function NoticeDetailBtn({
     const res = await updateNoticeApplicationResult(
       shopId,
       noticeId,
-      applicationId,
+      isApplication?.item.id as string,
       'canceled',
     )
 
@@ -133,6 +131,15 @@ export default function NoticeDetailBtn({
         userType === 'employee' &&
         isApplication &&
         isApplication.item.status === 'rejected' && (
+          <ApplicationButton
+            type="application"
+            onClickOpenDialog={handleClickOpenDialog('possible')}
+          />
+        )}
+      {!closed &&
+        userType === 'employee' &&
+        isApplication &&
+        isApplication.item.status === 'canceled' && (
           <ApplicationButton
             type="application"
             onClickOpenDialog={handleClickOpenDialog('possible')}
