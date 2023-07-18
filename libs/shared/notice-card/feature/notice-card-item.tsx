@@ -1,5 +1,7 @@
 'use client'
 
+import { getCookie } from 'cookies-next'
+
 import { useRouter } from 'next/navigation'
 
 import { AllNoticesData } from '../../api/types/type-notice'
@@ -19,9 +21,19 @@ export default function NoticeCardItem({
 }) {
   const router = useRouter()
 
-  const handleClickToDetail = (isClosed: boolean) => {
+  const handleClickToDetail = (
+    isClosed: boolean,
+    shopId: string,
+    noticeId: string,
+  ) => {
     if (isClosed) return
-    router.push('/')
+    const userShopId = getCookie('shop_id') as string
+
+    if (userShopId === shopId) {
+      router.push(`/myshop/${noticeId}`)
+    } else {
+      router.push(`/${shopId}/${noticeId}`)
+    }
   }
 
   const itemDatas = data.map((item) => ({
@@ -34,7 +46,9 @@ export default function NoticeCardItem({
     originalHourlyPay: item.shop.item.originalHourlyPay,
     imageUrl: item.shop.item.imageUrl,
     closed: item.closed,
-    handleClickToDetail: () => handleClickToDetail(item.closed),
+    shopId: item.shop.item.id,
+    handleClickToDetail: () =>
+      handleClickToDetail(item.closed, item.shop.item.id, item.id),
   }))
 
   return (
@@ -57,7 +71,9 @@ export default function NoticeCardItem({
             notice.hourlyPay,
             notice.originalHourlyPay,
           )}
-          handleClickToDetail={() => handleClickToDetail(notice.closed)}
+          handleClickToDetail={() =>
+            handleClickToDetail(notice.closed, notice.shopId, notice.id)
+          }
         />
       ))}
     </UiNoticeCardList>
