@@ -30,7 +30,7 @@ export default function NoticeCardItem({
     const userShopId = getCookie('shop_id') as string
 
     if (userShopId === shopId) {
-      router.push(`/myshop/${noticeId}`)
+      router.push(`/my-shop/${noticeId}`)
     } else {
       router.push(`/${shopId}/${noticeId}`)
     }
