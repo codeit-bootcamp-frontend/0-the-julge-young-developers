@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 
-import AlbaClientLoader from '@/libs/alba/shared/feature/alba-client-loader'
 import { ActiveOutlineBtn } from '@/libs/shared/click-btns/feature/click-btns'
+import CommonClientLoader from '@/libs/shared/loading/feature/client-loader'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
 import AlbaToast from '@/libs/shared/toast/feature/toast-container'
 
@@ -102,7 +102,7 @@ export default function EditBtn({ name, phone, address, bio }: EditBtnProps) {
           편집을 완료했어요
         </AlbaToast>
       )}
-      {openClientLoader && <AlbaClientLoader />}
+      {openClientLoader && <CommonClientLoader />}
     </div>
   )
 }
