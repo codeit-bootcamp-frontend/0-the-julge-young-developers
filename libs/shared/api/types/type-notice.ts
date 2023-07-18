@@ -5,6 +5,8 @@ import { Links } from './type-user'
 interface NoticesProps {
   offset?: number
   limit?: number
+  count?: number
+  hasNext?: boolean
   address?: string[]
   keyword?: string
   startsAtGte?: string
@@ -62,6 +64,8 @@ interface AllNoticesData {
 interface NoticesData {
   offset: number
   limit: number
+  count: number
+  hasNext: boolean
   address: string[]
   keyword?: string
   items: NoticesItem[]
@@ -73,6 +77,8 @@ interface ShopNoticesProps {
   shopId: string
   offset?: number
   limit?: number
+  count: number
+  hasNext: boolean
 }
 
 interface ShopNoticesItem {
@@ -90,6 +96,8 @@ interface ShopNoticesItem {
 interface ShopNoticesData {
   offset: number
   limit: number
+  count: number
+  hasNext: boolean
   items: ShopNoticesItem[]
   links?: Links[]
 }

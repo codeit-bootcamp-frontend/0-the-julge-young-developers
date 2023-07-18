@@ -83,6 +83,8 @@ interface NoticeApplicationListItem {
 interface NoticeApplicationList {
   offset: number
   limit: number
+  count: number
+  hasNext: boolean
   items: NoticeApplicationListItem[]
   links?: Links[]
 }
@@ -94,6 +96,8 @@ interface NoticeApplicationList {
 interface NoticeUserApplicationData {
   offset: number
   limit: number
+  count: number
+  hasNext: boolean
   items: NoticeUserApplicationItem[]
   links?: Links[]
 }

@@ -46,6 +46,8 @@ interface UserAlertsListItem {
 interface UserAlertsListData {
   offset: number
   limit: number
+  count: number
+  hasNext: boolean
   items: UserAlertsListItem[]
 }
 
