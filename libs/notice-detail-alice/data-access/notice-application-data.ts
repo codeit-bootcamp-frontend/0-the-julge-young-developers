@@ -1,4 +1,3 @@
-import { ERROR_EMPLOYER_MESSAGE } from '@/libs/notice-detail-alice/data-access/errors'
 import {
   getMatchingApplication,
   getMatchingNotice,
@@ -17,10 +16,6 @@ const loadApplicationInfo = async (noticeId: string, uid?: string) => {
       console.log(resUserInfo)
     } else {
       const { item: user } = resUserInfo
-
-      if (user.type === 'employer') {
-        return new Error(ERROR_EMPLOYER_MESSAGE)
-      }
 
       const resUserApplications = await getNoticeUserApplication(user.id)
       if (resUserApplications instanceof Error) {
