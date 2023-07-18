@@ -25,6 +25,7 @@ const cx = classNames.bind(styles)
 
 interface RegisterModalProps {
   showModal?: boolean
+  setOpenClientLoader: Dispatch<SetStateAction<boolean>>
   onClickCloseModal: () => void
   onClickOpenToast: () => void
   defaultName?: string
@@ -35,6 +36,7 @@ interface RegisterModalProps {
 
 export default function RegisterModal({
   showModal,
+  setOpenClientLoader,
   onClickCloseModal,
   onClickOpenToast,
   defaultName,
@@ -84,12 +86,14 @@ export default function RegisterModal({
     if (flag) {
       const userId = getCookie('uid') as string
 
+      setOpenClientLoader(true)
       await updateUserInfo(userId, {
         name: inputValue[0] as string,
         phone: inputValue[1] as string,
         address: inputValue[2] as string,
         bio: inputValue[3] as string,
       })
+      setOpenClientLoader(false)
 
       router.refresh()
       onClickCloseModal()

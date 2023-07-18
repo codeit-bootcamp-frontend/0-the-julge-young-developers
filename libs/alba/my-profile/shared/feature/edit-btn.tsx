@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 
+import AlbaClientLoader from '@/libs/alba/shared/feature/alba-client-loader'
 import { ActiveOutlineBtn } from '@/libs/shared/click-btns/feature/click-btns'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
 import AlbaToast from '@/libs/shared/toast/feature/toast-container'
@@ -31,6 +32,7 @@ export default function EditBtn({ name, phone, address, bio }: EditBtnProps) {
   const [defaultBio, setDefaultBio] = useState<string>(bio)
 
   const [isShowToast, setIsShowToast] = useState<boolean>(false)
+  const [openClientLoader, setOpenClientLoader] = useState<boolean>(false)
 
   const handleClickCloseModal = () => {
     setOpenModal(false)
@@ -75,6 +77,7 @@ export default function EditBtn({ name, phone, address, bio }: EditBtnProps) {
           defaultPhone={defaultPhone}
           defaultAddress={defaultAddress}
           defaultBio={defaultBio}
+          setOpenClientLoader={setOpenClientLoader}
         />
       )}
       {openModal && isMobile && openView === 'mobile' && (
@@ -90,6 +93,7 @@ export default function EditBtn({ name, phone, address, bio }: EditBtnProps) {
           showModal={showModal}
           onClickCloseModal={handleClickCloseModal}
           onClickOpenToast={() => setIsShowToast(true)}
+          setOpenClientLoader={setOpenClientLoader}
         />
       )}
 
@@ -98,6 +102,7 @@ export default function EditBtn({ name, phone, address, bio }: EditBtnProps) {
           편집을 완료했어요
         </AlbaToast>
       )}
+      {openClientLoader && <AlbaClientLoader />}
     </div>
   )
 }

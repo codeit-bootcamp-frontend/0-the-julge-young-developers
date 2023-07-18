@@ -48,6 +48,7 @@ interface RegisterModalMobileProps {
   defaultPhone?: string
   defaultAddress?: string
   defaultBio?: string
+  setOpenClientLoader: Dispatch<SetStateAction<boolean>>
   setDefaultName: Dispatch<SetStateAction<string>>
   setDefaultPhone: Dispatch<SetStateAction<string>>
   setDefaultAddress: Dispatch<SetStateAction<string>>
@@ -65,6 +66,7 @@ export default function RegisterModalMobile({
   setDefaultName,
   setDefaultPhone,
   setDefaultAddress,
+  setOpenClientLoader,
 }: RegisterModalMobileProps) {
   const router = useRouter()
   const [funnel, setFunnel] = useState<'name' | 'phone' | 'address' | 'bio'>(
@@ -166,12 +168,14 @@ export default function RegisterModalMobile({
     funnelSubmitData.bio = userInputRefs.current[3].value
     const userId = getCookie('uid') as string
 
+    setOpenClientLoader(true)
     await updateUserInfo(userId, {
       name: funnelSubmitData.name,
       phone: funnelSubmitData.phone,
       address: funnelSubmitData.address,
       bio: funnelSubmitData.bio,
     })
+    setOpenClientLoader(false)
 
     router.refresh()
     onClickCloseModal()

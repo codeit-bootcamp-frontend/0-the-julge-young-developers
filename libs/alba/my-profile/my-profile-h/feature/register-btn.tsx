@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 
+import AlbaClientLoader from '@/libs/alba/shared/feature/alba-client-loader'
 import { ActiveBtn } from '@/libs/shared/click-btns/feature/click-btns'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
 import AlbaToast from '@/libs/shared/toast/feature/toast-container'
@@ -24,6 +25,7 @@ export default function RegisterBtn() {
   // const [defaultBio, setDefaultBio] = useState<string>('')
 
   const [isShowToast, setIsShowToast] = useState<boolean>(false)
+  const [openClientLoader, setOpenClientLoader] = useState<boolean>(false)
 
   const handleClickCloseModal = () => {
     setOpenModal(false)
@@ -56,6 +58,7 @@ export default function RegisterBtn() {
         <RegisterModal
           showModal={showModal}
           onClickCloseModal={handleClickCloseModal}
+          setOpenClientLoader={setOpenClientLoader}
           onClickOpenToast={() => setIsShowToast(true)}
         />
       )}
@@ -72,6 +75,7 @@ export default function RegisterBtn() {
           showModal={showModal}
           onClickCloseModal={handleClickCloseModal}
           onClickOpenToast={() => setIsShowToast(true)}
+          setOpenClientLoader={setOpenClientLoader}
         />
       )}
       {isShowToast && (
@@ -79,6 +83,8 @@ export default function RegisterBtn() {
           등록을 완료했어요
         </AlbaToast>
       )}
+
+      {openClientLoader && <AlbaClientLoader />}
     </div>
   )
 }
