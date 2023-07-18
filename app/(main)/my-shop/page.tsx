@@ -1,6 +1,5 @@
-import jwt_decode from 'jwt-decode'
-
 import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 import MyNoticeList from '@/libs/my-shop/feature/my-notice/my-notice-list'
 import MyShop from '@/libs/my-shop/feature/my-shop/my-shop'
@@ -8,16 +7,11 @@ import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 
 export default async function MyShopPage() {
   const cookieInstance = cookies()
-  const token = cookieInstance.get('token')?.value
+  const userId = cookieInstance.get('uid')?.value
 
-  let userId
-  if (token) {
-    const decodedToken: { userId: string; iat: number } = jwt_decode(token)
-    userId = decodedToken?.userId
-  }
   if (!userId) {
     // 에러처리
-    return null
+    redirect('/signin')
   }
   const userInfo = await getUserInfo(userId)
 
