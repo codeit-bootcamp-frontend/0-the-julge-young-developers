@@ -71,7 +71,7 @@ export default function NoticeCardItem({
             notice.hourlyPay,
             notice.originalHourlyPay,
           )}
-          handleClickToDetail={() =>
+          onClickToDetail={() =>
             handleClickToDetail(notice.closed, notice.shopId, notice.id)
           }
         />
