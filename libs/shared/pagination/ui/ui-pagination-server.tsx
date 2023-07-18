@@ -27,7 +27,10 @@ export default function UiPaginationServer({
   return (
     <div className={cx('wrapper')}>
       <div className={cx('content')}>
-        <Link href={`${pathname}?page=${page - 1}`}>
+        <Link
+          href={`${pathname}?page=${page - 1}`}
+          className={cx('arrow', { disabled: !prevAble })}
+        >
           <UiPaginationArrow direction="prev" able={prevAble} />
         </Link>
         <div className={cx('numbers')}>
@@ -39,7 +42,10 @@ export default function UiPaginationServer({
             </Link>
           ))}
         </div>
-        <Link href={`${pathname}?page=${page + 1}`}>
+        <Link
+          href={`${pathname}?page=${page + 1}`}
+          className={cx('arrow', { disabled: !nextAble })}
+        >
           <UiPaginationArrow direction="next" able={nextAble} />
         </Link>
       </div>

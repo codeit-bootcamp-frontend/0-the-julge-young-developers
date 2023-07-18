@@ -42,3 +42,10 @@
     height: 32px;
   }
 }
+
+.arrow {
+  &.disabled {
+    cursor: default;
+    pointer-events: none;
+  }
+}
