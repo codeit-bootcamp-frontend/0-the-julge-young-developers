@@ -8,6 +8,7 @@ export default async function NoticeDetailLayout({
       {children}
       <div id="btn-portal" />
       <div id="toast-portal" />
+      <div id="loader-portal" />
     </>
   )
 }
