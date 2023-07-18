@@ -19,8 +19,15 @@ $card-size-small: 171px;
 
   width: 100%;
 
+  @include utils.tablet {
+    padding: 0 32px;
+  }
+
   @include utils.mobile {
     @include utils.flexbox(column, flex-start, flex-start);
+
+    gap: 16px;
+    padding: 0 12px;
   }
 }
 
@@ -46,11 +53,12 @@ $card-size-small: 171px;
 .listWrapper {
   display: grid;
   grid-template-columns: repeat(3, $card-size-large);
-  margin: 0 auto;
   gap: 31px 14px;
 
   @include utils.tablet {
     grid-template-columns: repeat(2, $card-size-large);
+    margin: 0 auto;
+    padding: 0 32px;
   }
 
   @include utils.mobile {

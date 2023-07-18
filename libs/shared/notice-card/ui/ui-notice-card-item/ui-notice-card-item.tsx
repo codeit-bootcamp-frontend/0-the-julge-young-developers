@@ -20,13 +20,13 @@ export default function UiNoticeCardItem({
   closed,
   changeRate,
   isShowChip,
-  handleClickToDetail,
+  onClickToDetail,
 }: UiNoticeCardItemProps) {
   return (
     <div
       role="presentation"
       className={cx('cardWrapper', { closed })}
-      onClick={handleClickToDetail}
+      onClick={onClickToDetail}
     >
       <div className={cx('imgContainer', 'header')}>
         <img className={cx('img')} src={imageUrl} alt={name} />
