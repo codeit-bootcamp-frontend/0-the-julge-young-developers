@@ -77,8 +77,6 @@ interface ShopNoticesProps {
   shopId: string
   offset: number
   limit: number
-  count: number
-  hasNext: boolean
 }
 
 interface ShopNoticesItem {
