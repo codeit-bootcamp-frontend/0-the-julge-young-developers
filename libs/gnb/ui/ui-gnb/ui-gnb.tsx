@@ -3,15 +3,16 @@ import classNames from 'classnames/bind'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import UiButton from '@/libs/gnb/ui/ui-button/ui-button'
+
 import styles from './ui-gnb.module.scss'
-import UiButton from '../ui-button/ui-button'
-import UiSearchbar from '../ui-searchbar/ui-searchbar'
 
 const cx = classNames.bind(styles)
 
 export default function UiGnb({
   isLogin,
   hasNotification,
+  searchbarElement,
   handleClickMovePage,
   handleClickOpenModal,
 }: GnbProps) {
@@ -28,9 +29,7 @@ export default function UiGnb({
             className={cx('logo')}
           />
         </Link>
-        <div className={cx('searchbar')}>
-          <UiSearchbar />
-        </div>
+        <div className={cx('searchbar')}>{searchbarElement}</div>
 
         {isLogin ? (
           <div className={cx('buttons')}>
