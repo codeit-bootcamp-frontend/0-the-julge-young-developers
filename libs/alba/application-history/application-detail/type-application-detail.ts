@@ -3,7 +3,7 @@ interface UserApplicationItem {
   hourlyPay: number
   startsAt: string
   workhour: number
-  status: 'pending' | 'accepted' | 'rejected'
+  status: 'pending' | 'accepted' | 'rejected' | 'canceled'
 }
 
 export type { UserApplicationItem }
