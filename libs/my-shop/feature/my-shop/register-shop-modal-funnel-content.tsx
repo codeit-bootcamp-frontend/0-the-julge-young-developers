@@ -6,6 +6,7 @@ import classNames from 'classnames/bind'
 
 import { useRouter } from 'next/navigation'
 
+import { ADDRESS_OPTIONS } from '@/libs/alba/my-profile/my-profile-h/data-access/select-options'
 import { sendRegisterShopRequest } from '@/libs/my-shop/data-access/data-access-send-register-shop-request'
 import {
   CATECPRY_DATA,
@@ -88,8 +89,6 @@ export default function RegisterShopModalFunnelContent({
       setIsAllFilled(false)
     } else if (funnel === 'name') {
       setShopName(e.target.value)
-    } else if (funnel === 'address') {
-      setAddress(e.target.value)
     } else if (funnel === 'detailAddress') {
       setDetailAddress(e.target.value)
     } else if (funnel === 'defaultHourlyWage') {
@@ -105,8 +104,10 @@ export default function RegisterShopModalFunnelContent({
 
     if (funnel === 'category') {
       setCategory(value)
-      setIsAllFilled(true)
+    } else if (funnel === 'address') {
+      setAddress(value)
     }
+    setIsAllFilled(true)
   }
 
   const sendRequest = async () => {
@@ -258,12 +259,13 @@ export default function RegisterShopModalFunnelContent({
                 />
               )}
               {funnel === 'address' && (
-                <Input
-                  variant="input-underline"
+                <Select
+                  variant="search"
                   title={FUNNEL_SHOP_TITLE[funnel].title}
                   isRequired={true}
-                  onChange={handleChange}
+                  onClick={handleClick}
                   defaultValue={address}
+                  options={ADDRESS_OPTIONS}
                 />
               )}
               {funnel === 'detailAddress' && (
