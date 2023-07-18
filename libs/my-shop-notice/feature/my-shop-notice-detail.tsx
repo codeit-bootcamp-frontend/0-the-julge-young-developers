@@ -1,3 +1,5 @@
+import { redirect } from 'next/navigation'
+
 import { getNoticeDetailData } from '@/libs/my-shop-notice/data-access/data-access-notice'
 import MyShopNoticeEditButton from '@/libs/my-shop-notice/feature/my-shop-notice-edit-button'
 import { MyShopNoticeDetailProps } from '@/libs/my-shop-notice/type-my-shop-notice'
@@ -24,6 +26,7 @@ export default async function MyShopNoticeDetail({
     closed,
   } = data
 
+  if (closed) redirect('/my-shop')
   return (
     <UiNoticeDetailCardLayout name={name} category={category}>
       <UiNoticeDetailCard
