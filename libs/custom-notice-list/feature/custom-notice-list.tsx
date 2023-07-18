@@ -19,7 +19,7 @@ import styles from './custom-notice-list.module.scss'
 
 const cx = classNames.bind(styles)
 
-export default function UiCustomNoticeList() {
+export default function CustomNoticeList() {
   const router = useRouter()
   const sliderRef = useRef<HTMLDivElement>(null)
   const [customDatas, setCustomDatas] = useState<NoticeCardItemProps[]>([])
@@ -77,7 +77,7 @@ export default function UiCustomNoticeList() {
                 notice.hourlyPay,
                 notice.originalHourlyPay,
               )}
-              handleClickToDetail={() =>
+              onClickToDetail={() =>
                 handleClickToDetail(notice.closed, notice.shopId, notice.id)
               }
             />

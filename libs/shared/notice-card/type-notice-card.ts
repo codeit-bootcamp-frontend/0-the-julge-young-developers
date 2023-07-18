@@ -48,7 +48,7 @@ export interface UiNoticeCardItemProps {
   closed: boolean
   changeRate: undefined | number
   isShowChip: CardChips
-  handleClickToDetail: () => void
+  onClickToDetail: () => void
 }
 
 export interface UiNoticeCardListProps {
