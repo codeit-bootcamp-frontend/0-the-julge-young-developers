@@ -1,0 +1,34 @@
+/* stylelint-disable selector-class-pattern */
+@use '@/styles/utils';
+
+.wrapper {
+  position: relative;
+}
+
+.underline {
+  padding: 16px 0;
+  border: none;
+  border-bottom: 1px solid utils.$gray-brt4;
+  border-radius: 0;
+}
+
+.inputBox {
+  width: 100%;
+  height: 58px;
+  padding: 16px 20px;
+  border: 1px solid utils.$gray-brt3;
+  border-radius: 5px;
+  color: utils.$black;
+  line-height: 26px;
+  @include utils.font-style('body1');
+
+  &::placeholder {
+    color: utils.$gray-brt2; /* 색상 설정 */
+  }
+}
+
+.calenderWrapper {
+  @include utils.font-style('body1');
+
+  font-family: inherit;
+}
