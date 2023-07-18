@@ -2,7 +2,10 @@
 @use '@/styles/utils';
 
 .wrapper {
-  position: relative;
+  @include utils.flexbox(column, flex-start, flex-start);
+
+  gap: 8px;
+  width: 100%;
 }
 
 .underline {

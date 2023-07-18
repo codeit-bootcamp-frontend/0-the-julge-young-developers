@@ -8,14 +8,17 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 import styles from './feature-date-picker.module.scss'
+import './feature-date-picker.scss'
 
 const cx = classNames.bind(styles)
-export default function DatePice({
+export default function SelectDatePicker({
   onSelectDate,
   selectedDate,
+  title,
 }: {
   onSelectDate: Dispatch<SetStateAction<Date>>
   selectedDate: Date
+  title: string
 }) {
   const handleDateChange = (date: Date) => {
     onSelectDate(date)
@@ -23,6 +26,7 @@ export default function DatePice({
   }
   return (
     <div className={cx('wrapper')}>
+      {title}
       <DatePicker
         className={cx('inputBox')}
         selected={selectedDate}
