@@ -7,19 +7,15 @@ import {
 } from '@/libs/shared/click-btns/feature/click-btns'
 
 export default function ApplicationButton({
+  onClickOpenDialog,
   type,
 }: {
+  onClickOpenDialog?: () => void
   type: 'application' | 'cancel' | 'disabled'
 }) {
   if (type === 'application') {
     return (
-      <ActiveBtn
-        text="신청하기"
-        size="large"
-        onClick={() => {
-          console.log('신청하기~!')
-        }}
-      />
+      <ActiveBtn text="신청하기" size="large" onClick={onClickOpenDialog} />
     )
   }
 
@@ -28,18 +24,12 @@ export default function ApplicationButton({
       <ActiveOutlineBtn
         text="취소하기"
         size="large"
-        onClick={() => console.log('취소하기')}
+        onClick={onClickOpenDialog}
       />
     )
   }
 
   if (type === 'disabled') {
-    return (
-      <InactiveBtn
-        text="신청 불가"
-        size="large"
-        onClick={() => console.log('신청 불가')}
-      />
-    )
+    return <InactiveBtn text="신청 불가" size="large" onClick={() => {}} />
   }
 }
