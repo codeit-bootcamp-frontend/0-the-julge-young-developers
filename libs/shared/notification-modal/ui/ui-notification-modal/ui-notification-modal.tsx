@@ -7,7 +7,6 @@ import {
   UiAcceptedNotificationItem,
   UiRejectedNotificationItem,
 } from '@/libs/shared/notification-modal/ui/ui-notification-item/ui-notification-item'
-import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
 import styles from './ui-notification-modal.module.scss'
 
@@ -21,6 +20,7 @@ const cx = classNames.bind(styles)
 export default function UiNotificationModal({
   itemList,
   onClose,
+  onClickNotiItem,
 }: UiNotificationModalProps) {
   const handleCloseModal = () => {
     onClose(false)
@@ -35,31 +35,31 @@ export default function UiNotificationModal({
       >
         <Image src="/images/close.svg" alt="닫기" width={24} height={24} />
       </button>
-      <UiSimpleLayout
-        title={`알림 ${itemList.length}개`}
-        titleSize={20}
-        gap={16}
-      >
-        <div className={cx('notificationList')}>
-          {itemList.map((item) =>
-            item.result === 'accepted' ? (
-              <UiAcceptedNotificationItem
-                key={item.id}
-                name={item.name}
-                duration={item.duration}
-                createdAt={item.createdAt}
-              />
-            ) : (
-              <UiRejectedNotificationItem
-                key={item.id}
-                name={item.name}
-                duration={item.duration}
-                createdAt={item.createdAt}
-              />
-            ),
-          )}
-        </div>
-      </UiSimpleLayout>
+
+      <h1 className={cx('modalHeader')}>{`알림 ${itemList.length}개`}</h1>
+      <div className={cx('notificationList')}>
+        {itemList.map((item) =>
+          item.result === 'accepted' ? (
+            <UiAcceptedNotificationItem
+              key={item.id}
+              id={item.id}
+              name={item.storeName}
+              duration={item.duration}
+              createdAt={item.createdAt}
+              onClickNotiItem={onClickNotiItem}
+            />
+          ) : (
+            <UiRejectedNotificationItem
+              key={item.id}
+              id={item.id}
+              name={item.storeName}
+              duration={item.duration}
+              createdAt={item.createdAt}
+              onClickNotiItem={onClickNotiItem}
+            />
+          ),
+        )}
+      </div>
     </div>
   )
 }
