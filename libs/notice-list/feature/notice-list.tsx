@@ -5,9 +5,16 @@ import { useEffect, useState } from 'react'
 import { getNotices } from '@/libs/shared/api/data-access/request/noticeRequest'
 import { AllNoticesData } from '@/libs/shared/api/types/type-notice'
 import UiFilterElement from '@/libs/shared/notice-card/ui/ui-filter-element/ui-filter-element'
+// import Pagination from '@/libs/shared/pagination/feature/pagination'
 import PaginationPrev from '@/libs/shared/pagination/feature/pagination-prev'
 
 import UiNoticeList from '../ui/ui-notice-list/ui-notice-list'
+
+// interface FilterDatas {
+//   startDate: string
+//   price: number
+//   locations: string[]
+// }
 
 export default function NoticeList({
   keyword,
@@ -16,11 +23,38 @@ export default function NoticeList({
 }) {
   const [data, setData] = useState<AllNoticesData[]>([])
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  // const [sortData, setSortData] = useState<string>('마감임박순')
+  // const [filterData, setFilterData] = useState<FilterDatas>({} as FilterDatas)
   const [pageNum, setPageNum] = useState(1)
 
   const handleClickModalOpen = () => {
     setIsModalOpen(true)
   }
+
+  // const handleApplyFilterData = async ({
+  //   startDate,
+  //   price,
+  //   locations,
+  // }: FilterDatas) => {
+  //   setFilterData({ startDate, price, locations })
+  //   const response = await getNotices({
+  //     limit: 6,
+  //     address: locations,
+  //     startsAtGte: startDate,
+  //     hourlyPayGte: price,
+  //     keyword,
+  //   })
+  //   if (response instanceof Error) {
+  //     // 알 수 없는 에러 처리
+  //   } else if (typeof response === 'string') {
+  //     // 에러 메시지에 맞게 처리
+  //   } else {
+  //     const { items } = response
+  //     const itemArray = items.map((item) => item.item)
+  //     setData(itemArray)
+  //     console.log(filterData)
+  //   }
+  // }
 
   // 정렬 버튼에 연결될 이벤트 핸들러 함수
   const handleSelectSortData = async (sort: string) => {
@@ -75,7 +109,6 @@ export default function NoticeList({
       // 에러 메시지에 맞게 처리
     } else {
       const { items } = response
-      console.log(items) // API에 hourlyPayGte 파라미터 붙여 보낼 때 이상한 데이터가 response 돼서 질문했고, 확인 끝나면 삭제하겠습니다.
       const itemArray = items.map((item) => item.item)
       setData(itemArray)
     }
