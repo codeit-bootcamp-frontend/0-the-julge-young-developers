@@ -1,11 +1,38 @@
+import jwt_decode from 'jwt-decode'
+
+import { cookies } from 'next/headers'
+
 import MyNoticeList from '@/libs/my-shop/feature/my-notice/my-notice-list'
 import MyShop from '@/libs/my-shop/feature/my-shop/my-shop'
+import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 
-export default function MyShopPage() {
+export default async function MyShopPage() {
+  const cookieInstance = cookies()
+  const token = cookieInstance.get('token')?.value
+
+  let userId
+  if (token) {
+    const decodedToken: { userId: string; iat: number } = jwt_decode(token)
+    userId = decodedToken?.userId
+  }
+  if (!userId) {
+    // 에러처리
+    return null
+  }
+  const userInfo = await getUserInfo(userId)
+
+  if (typeof userInfo === 'string' || userInfo instanceof Error) {
+    // 에러 처리
+    return null
+  }
+  const shopId = userInfo.item.shop?.item.id
+
   return (
     <div>
-      <MyShop />
-      <MyNoticeList />
+      <MyShop shopId={shopId || ''} />
+      <MyNoticeList
+      // shopId={shopId || ''}
+      />
     </div>
   )
 }
