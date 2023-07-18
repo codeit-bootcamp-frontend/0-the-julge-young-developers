@@ -1,4 +1,3 @@
-import ToastPortalWrapper from '@/libs/alba/shared/toast/feature/toast-portal-wrapper'
 import { acceptTextOptions } from '@/libs/shared/dialog/data-access/data-access-dialog'
 import {
   ActionDialogProps,
@@ -7,6 +6,7 @@ import {
 } from '@/libs/shared/dialog/type-dialog'
 import UiActionDialog from '@/libs/shared/dialog/ui/ui-action-dialog/ui-action-dialog'
 import UiConfirmDialog from '@/libs/shared/dialog/ui/ui-confirm-dialog/ui-confirm-dialog'
+import ToastPortalWrapper from '@/libs/shared/toast/feature/toast-portal-wrapper'
 
 import ModalLayout from './dialog-wrapper'
 

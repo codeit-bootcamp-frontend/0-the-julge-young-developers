@@ -15,7 +15,7 @@ import {
   ConfirmDialog,
 } from '@/libs/shared/dialog/feature/dialog'
 
-import AlbaToast from '../../shared/toast/feature/alba-toast'
+import AlbaToast from '../../../shared/toast/feature/toast-container'
 
 interface NoticeDetailBtnProps {
   noticeId: string
