@@ -12,6 +12,11 @@
   padding-right: 24px;
   padding-left: 24px;
 
+  &.backmounted {
+    transform: translateX(110%);
+    transition: transform 0.5s ease;
+  }
+
   &.unmounted {
     transform: translateX(-110%);
     transition: transform 0.5s ease;
@@ -19,6 +24,11 @@
 }
 
 .inputWrapper {
+  &.backmounted {
+    transform: translateX(110%);
+    transition: transform 0.5s ease;
+  }
+
   &.unmounted {
     transform: translateX(-110%);
     transition: transform 0.5s ease;
@@ -32,6 +42,11 @@
   width: 100%;
   padding-right: 36px;
   padding-left: 36px;
+
+  &.backmounted {
+    transform: translateX(110%);
+    transition: transform 0.5s ease;
+  }
 
   &.unmounted {
     transform: translateX(-110%);
