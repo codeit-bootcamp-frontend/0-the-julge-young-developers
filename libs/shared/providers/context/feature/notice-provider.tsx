@@ -57,7 +57,7 @@ function NewRecentNoticesProvider({ children }: { children: ReactNode }) {
 
     const data = recentNotices.getRecentNoticeList()
     console.log(data) // { item: { value: '데이터' } }
-  }, [])
+  }, [recentNotices])
  * ```
  * 
  * @returns 
