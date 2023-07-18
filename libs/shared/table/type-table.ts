@@ -4,7 +4,6 @@ const STATUS = {
   Pending: 'pending',
   Accepted: 'accepted',
   Rejected: 'rejected',
-  Canceled: 'canceled',
 } as const
 export type Status = (typeof STATUS)[keyof typeof STATUS]
 

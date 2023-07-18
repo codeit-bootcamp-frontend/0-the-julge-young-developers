@@ -14,7 +14,7 @@ import UiLoading from '../../application-detail/ui/ui-loading'
 
 interface ApplicationHistory {
   id: string
-  status: 'pending' | 'accepted' | 'rejected' | 'canceled'
+  status: 'pending' | 'accepted' | 'rejected'
   name: string
   hourlyPay: number
   startsAt: string
@@ -60,7 +60,7 @@ export default function ApplicationDetailLayout({
           workhour: item.item.notice.item.workhour,
         }))
 
-        setApplicationData(trimmedData)
+        setApplicationData(trimmedData as ApplicationHistory[])
       }
     }
     fetchData()
