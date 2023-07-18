@@ -11,11 +11,11 @@ const cx = classNames.bind(styles)
 export default function UiRecentNotices({
   noticesList,
 }: {
-  noticesList: AllNoticesData[]
+  noticesList: AllNoticesData[] | null
 }) {
   return (
     <div className={cx('recentNotices')}>
-      <NoticeCardItem data={noticesList} />
+      {noticesList && <NoticeCardItem data={noticesList} />}
     </div>
   )
 }
