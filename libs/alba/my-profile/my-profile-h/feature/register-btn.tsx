@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 
+import AlbaToast from '@/libs/alba/shared/toast/feature/alba-toast'
 import { ActiveBtn } from '@/libs/shared/click-btns/feature/click-btns'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
 
@@ -21,6 +22,8 @@ export default function RegisterBtn() {
   const [defaultPhone, setDefaultPhone] = useState<string>('')
   const [defaultAddress, setDefaultAddress] = useState<string>('')
   // const [defaultBio, setDefaultBio] = useState<string>('')
+
+  const [isShowToast, setIsShowToast] = useState<boolean>(false)
 
   const handleClickCloseModal = () => {
     setOpenModal(false)
@@ -53,6 +56,7 @@ export default function RegisterBtn() {
         <RegisterModal
           showModal={showModal}
           onClickCloseModal={handleClickCloseModal}
+          onClickOpenToast={() => setIsShowToast(true)}
         />
       )}
       {openModal && isMobile && openView === 'mobile' && (
@@ -67,7 +71,13 @@ export default function RegisterBtn() {
           // setDefaultBio={setDefaultBio}
           showModal={showModal}
           onClickCloseModal={handleClickCloseModal}
+          onClickOpenToast={() => setIsShowToast(true)}
         />
+      )}
+      {isShowToast && (
+        <AlbaToast onShow={() => setIsShowToast(false)}>
+          등록을 완료했어요
+        </AlbaToast>
       )}
     </div>
   )

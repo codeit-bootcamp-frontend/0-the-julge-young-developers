@@ -1,6 +1,7 @@
 @use '@/styles/utils';
 
 .container {
+  position: relative;
   max-width: 964px;
   height: 100%;
   margin: 0 auto;

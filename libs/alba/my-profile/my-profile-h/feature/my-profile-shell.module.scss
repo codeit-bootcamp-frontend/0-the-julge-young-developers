@@ -1,0 +1,17 @@
+@use '@/styles/utils';
+
+.profileWrapper {
+  min-height: 376px;
+}
+
+@include utils.tablet {
+  .profileWrapper {
+    min-height: 434px;
+  }
+}
+
+@include utils.mobile {
+  .profileWrapper {
+    min-height: 316px;
+  }
+}

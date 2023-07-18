@@ -3,9 +3,13 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 
 import classNames from 'classnames/bind'
+import { getCookie } from 'cookies-next'
 
-import { OPTIONS } from '@/libs/my-profile-h/data-access/select-options'
+import { useRouter } from 'next/navigation'
+
+import { OPTIONS } from '@/libs/alba/my-profile/my-profile-h/data-access/select-options'
 import ModalPortalWrapper from '@/libs/portal/feature/modalWrapper'
+import { updateUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
 import {
   ActiveBtn,
@@ -39,6 +43,7 @@ interface IfunnelSubmitData {
 interface RegisterModalMobileProps {
   showModal: boolean
   onClickCloseModal: () => void
+  onClickOpenToast: () => void
   defaultName?: string
   defaultPhone?: string
   defaultAddress?: string
@@ -52,6 +57,7 @@ interface RegisterModalMobileProps {
 export default function RegisterModalMobile({
   showModal,
   onClickCloseModal,
+  onClickOpenToast,
   defaultName,
   defaultPhone,
   defaultAddress,
@@ -60,6 +66,7 @@ export default function RegisterModalMobile({
   setDefaultPhone,
   setDefaultAddress,
 }: RegisterModalMobileProps) {
+  const router = useRouter()
   const [funnel, setFunnel] = useState<'name' | 'phone' | 'address' | 'bio'>(
     'name',
   )
@@ -139,12 +146,18 @@ export default function RegisterModalMobile({
 
   const handleClickRegister = async () => {
     funnelSubmitData.bio = userInputRefs.current[3].value
-    // console.log(funnelSubmitData)
+    const userId = getCookie('uid') as string
 
-    // api post call
-    // await updateUserInfo(userId, funnelSubmitData.name, funnelSubmitData.phone, funnelSubmitData.address, funnelSubmitData.bio)
-    // router.refresh()
+    await updateUserInfo(userId, {
+      name: funnelSubmitData.name,
+      phone: funnelSubmitData.phone,
+      address: funnelSubmitData.address,
+      bio: funnelSubmitData.bio,
+    })
+
+    router.refresh()
     onClickCloseModal()
+    onClickOpenToast()
   }
 
   useEffect(() => {
@@ -317,47 +330,47 @@ export default function RegisterModalMobile({
             unmounted,
           })}
         >
-          {name && funnel === 'name' && (
+          {(name || defaultName) && funnel === 'name' && (
             <ActiveBtn
               text="다음"
               size="large"
               onClick={handleClickNext(setFunnel, 'phone', 0)}
             />
           )}
-          {!name && funnel === 'name' && (
+          {!defaultName && !name && funnel === 'name' && (
             <InactiveBtn text="다음" size="large" onClick={() => {}} />
           )}
 
-          {phone && funnel === 'phone' && (
+          {(phone || defaultPhone) && funnel === 'phone' && (
             <ActiveBtn
               text="다음"
               size="large"
               onClick={handleClickNext(setFunnel, 'address', 1)}
             />
           )}
-          {!phone && funnel === 'phone' && (
+          {!defaultPhone && !phone && funnel === 'phone' && (
             <InactiveBtn text="다음" size="large" onClick={() => {}} />
           )}
 
-          {address && funnel === 'address' && (
+          {(address || defaultAddress) && funnel === 'address' && (
             <ActiveBtn
               text="다음"
               size="large"
               onClick={handleClickNext(setFunnel, 'bio', 2)}
             />
           )}
-          {!address && funnel === 'address' && (
+          {!defaultAddress && !address && funnel === 'address' && (
             <InactiveBtn text="다음" size="large" onClick={() => {}} />
           )}
 
-          {bio && funnel === 'bio' && (
+          {(bio || defaultBio) && funnel === 'bio' && (
             <ActiveBtn
               text="등록하기"
               size="large"
               onClick={handleClickRegister}
             />
           )}
-          {!bio && funnel === 'bio' && (
+          {!defaultBio && !bio && funnel === 'bio' && (
             <InactiveBtn text="등록하기" size="large" onClick={() => {}} />
           )}
         </div>

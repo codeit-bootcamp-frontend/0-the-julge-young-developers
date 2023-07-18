@@ -3,9 +3,13 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 
 import classNames from 'classnames/bind'
+import { getCookie } from 'cookies-next'
 
-import { OPTIONS } from '@/libs/my-profile-h/data-access/select-options'
+import { useRouter } from 'next/navigation'
+
+import { OPTIONS } from '@/libs/alba/my-profile/my-profile-h/data-access/select-options'
 import ModalPortalWrapper from '@/libs/portal/feature/modalWrapper'
+import { updateUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
 import {
   ActiveBtn,
@@ -22,6 +26,7 @@ const cx = classNames.bind(styles)
 interface RegisterModalProps {
   showModal?: boolean
   onClickCloseModal: () => void
+  onClickOpenToast: () => void
   defaultName?: string
   defaultPhone?: string
   defaultAddress?: string
@@ -31,11 +36,13 @@ interface RegisterModalProps {
 export default function RegisterModal({
   showModal,
   onClickCloseModal,
+  onClickOpenToast,
   defaultName,
   defaultPhone,
   defaultAddress,
   defaultBio,
 }: RegisterModalProps) {
+  const router = useRouter()
   const [activeBtn, setActiveBtn] = useState<boolean>(false)
 
   const userInputRefs = useRef<HTMLInputElement[]>([])
@@ -75,10 +82,18 @@ export default function RegisterModal({
     })
 
     if (flag) {
-      // api post call
-      // await updateUserInfo(userId, name, phone, address, bio)
-      // router.refresh()
+      const userId = getCookie('uid') as string
+
+      await updateUserInfo(userId, {
+        name: inputValue[0] as string,
+        phone: inputValue[1] as string,
+        address: inputValue[2] as string,
+        bio: inputValue[3] as string,
+      })
+
+      router.refresh()
       onClickCloseModal()
+      onClickOpenToast()
     }
   }
 
@@ -156,18 +171,15 @@ export default function RegisterModal({
               />
             </div>
             <div className={cx('btnWrapper')}>
-              {activeBtn ? (
+              {(defaultName && defaultPhone && defaultAddress && defaultBio) ||
+              activeBtn ? (
                 <ActiveBtn
                   text="등록하기"
                   size="large"
                   onClick={handleClickRegister}
                 />
               ) : (
-                <InactiveBtn
-                  text="등록하기"
-                  size="large"
-                  onClick={handleClickRegister}
-                />
+                <InactiveBtn text="등록하기" size="large" onClick={() => {}} />
               )}
             </div>
           </UiSimpleLayout>

@@ -2,8 +2,9 @@ import classNames from 'classnames/bind'
 
 import Image from 'next/image'
 
-import { UiMyProfileProps } from '@/libs/my-profile-alice2/type-my-profile'
-import { ActiveOutlineBtn } from '@/libs/shared/click-btns/feature/click-btns'
+import { UiMyProfileProps } from '@/libs/alba/my-profile/my-profile-alice2/type-my-profile'
+import EditBtn from '@/libs/alba/my-profile/shared/feature/edit-btn'
+import { utilTrimePhone } from '@/libs/alba/my-profile/shared/util/util-trime-phone'
 
 import styles from './ui-my-profile.module.scss'
 
@@ -13,8 +14,7 @@ export default function UiMyProfile({
   name,
   phone,
   address,
-  description,
-  onClickEditButton,
+  bio,
 }: UiMyProfileProps) {
   return (
     <div className={cx('container')}>
@@ -25,7 +25,7 @@ export default function UiMyProfile({
       <div className={cx('phoneAddressSection')}>
         <div className={cx('phoneSection')}>
           <Image src="/images/phone.svg" alt="연락처" width={20} height={20} />
-          <span>{phone}</span>
+          <span>{utilTrimePhone(phone)}</span>
         </div>
         <div className={cx('addressSection')}>
           <Image
@@ -38,14 +38,10 @@ export default function UiMyProfile({
         </div>
       </div>
       <div className={cx('descriptionSection')}>
-        <p>{description}</p>
+        <p>{bio}</p>
       </div>
       <div className={cx('editButton')}>
-        <ActiveOutlineBtn
-          text="편집하기"
-          size="large"
-          onClick={() => onClickEditButton()}
-        />
+        <EditBtn name={name} phone={phone} address={address} bio={bio} />
       </div>
     </div>
   )

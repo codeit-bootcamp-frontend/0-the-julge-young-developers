@@ -26,14 +26,12 @@
 }
 
 .btnWrapper {
-  position: absolute;
+  position: fixed;
+  z-index: 11;
   bottom: 40px;
   width: 100%;
   padding-right: 36px;
   padding-left: 36px;
-
-  // padding-right: 12px;
-  // padding-left: 12px;
 
   &.unmounted {
     transform: translateX(-110%);
