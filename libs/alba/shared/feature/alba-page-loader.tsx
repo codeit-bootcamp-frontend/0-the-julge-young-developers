@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind'
 
-import styles from './alba-loader.module.scss'
+import styles from './alba-page-loader.module.scss'
 
 const cx = classNames.bind(styles)
 
