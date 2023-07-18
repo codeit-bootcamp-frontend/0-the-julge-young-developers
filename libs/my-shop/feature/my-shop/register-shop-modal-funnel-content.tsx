@@ -4,10 +4,15 @@ import { ChangeEvent, MouseEvent, useEffect, useState } from 'react'
 
 import classNames from 'classnames/bind'
 
+import { useRouter } from 'next/navigation'
+
+import { ADDRESS_OPTIONS } from '@/libs/alba/my-profile/my-profile-h/data-access/select-options'
+import { sendRegisterShopRequest } from '@/libs/my-shop/data-access/data-access-send-register-shop-request'
 import {
   CATECPRY_DATA,
   FUNNEL_SHOP_TITLE,
 } from '@/libs/my-shop/data-access/my-shop-register-data'
+import { Shop } from '@/libs/my-shop/type-my-shop'
 import useRegisterShopState from '@/libs/my-shop/utill/useRegisterShopState'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
 import {
@@ -17,6 +22,7 @@ import {
 import ImageInput from '@/libs/shared/input-select-btn/feature/feature-image-input'
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import Select from '@/libs/shared/input-select-btn/feature/feature-select'
+import UiLoading from '@/libs/shared/loading/ui/ui-loading'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
 import styles from './register-shop-modal-funnel-content.module.scss'
@@ -24,10 +30,14 @@ import styles from './register-shop-modal-funnel-content.module.scss'
 const cx = classNames.bind(styles)
 
 export default function RegisterShopModalFunnelContent({
+  shop,
   onClickToggelModal,
 }: {
+  shop?: Shop
   onClickToggelModal: () => void
 }) {
+  const [isLoading, setISLoading] = useState(false)
+  const router = useRouter()
   const {
     shopName,
     setShopName,
@@ -46,7 +56,7 @@ export default function RegisterShopModalFunnelContent({
     setDescription,
     isAllFilled,
     setIsAllFilled,
-  } = useRegisterShopState('funnel')
+  } = useRegisterShopState({ variant: 'funnel', shop })
 
   const [funnel, setFunnel] = useState<
     | 'name'
@@ -66,6 +76,12 @@ export default function RegisterShopModalFunnelContent({
     }
   }, [funnel, preselectedImageRef, selectedImage, setIsAllFilled])
 
+  useEffect(() => {
+    if (shop) {
+      setIsAllFilled(true)
+    }
+  }, [setIsAllFilled, shop])
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -73,8 +89,6 @@ export default function RegisterShopModalFunnelContent({
       setIsAllFilled(false)
     } else if (funnel === 'name') {
       setShopName(e.target.value)
-    } else if (funnel === 'address') {
-      setAddress(e.target.value)
     } else if (funnel === 'detailAddress') {
       setDetailAddress(e.target.value)
     } else if (funnel === 'defaultHourlyWage') {
@@ -90,35 +104,80 @@ export default function RegisterShopModalFunnelContent({
 
     if (funnel === 'category') {
       setCategory(value)
-      setIsAllFilled(true)
+    } else if (funnel === 'address') {
+      setAddress(value)
+    }
+    setIsAllFilled(true)
+  }
+
+  const sendRequest = async () => {
+    setISLoading(true)
+    const isSuccess = await sendRegisterShopRequest(
+      shop,
+      shopName,
+      category,
+      address,
+      detailAddress,
+      defaultHourlyWage,
+      selectedImage,
+      description,
+    )
+    console.log(isSuccess)
+    if (isSuccess) {
+      setISLoading(false)
+      onClickToggelModal()
+      router.refresh()
+    } else {
+      setISLoading(false)
+      // 실패의 경우 처리
     }
   }
 
-  const handleClickButton = (e: MouseEvent<HTMLFormElement>) => {
+  const handleClickSubmitButton = async (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!isAllFilled) return
 
-    setUnmounted(true)
+    if (funnel !== 'description') {
+      setUnmounted(true)
+    }
 
     if (funnel === 'name') {
+      if (!category) {
+        setIsAllFilled(false)
+      }
       setFunnel('category')
     } else if (funnel === 'category') {
+      if (!address) {
+        setIsAllFilled(false)
+      }
       setFunnel('address')
     } else if (funnel === 'address') {
+      if (!detailAddress) {
+        setIsAllFilled(false)
+      }
       setFunnel('detailAddress')
     } else if (funnel === 'detailAddress') {
+      if (!defaultHourlyWage) {
+        setIsAllFilled(false)
+      }
       setFunnel('defaultHourlyWage')
     } else if (funnel === 'defaultHourlyWage') {
+      if (!selectedImage) {
+        setIsAllFilled(false)
+      }
       setFunnel('image')
     } else if (funnel === 'image') {
+      if (!description) {
+        setIsAllFilled(false)
+      }
       setFunnel('description')
     } else if (funnel === 'description') {
-      // api
+      await sendRequest()
       onClickToggelModal()
+      return
     }
 
     setTimeout(() => {
-      setIsAllFilled(false)
       setUnmounted(false)
     }, 500)
   }
@@ -128,7 +187,9 @@ export default function RegisterShopModalFunnelContent({
 
     if (funnel === 'name') {
       onClickToggelModal()
-    } else if (funnel === 'category') {
+      return
+    }
+    if (funnel === 'category') {
       setFunnel('name')
       if (shopName) {
         setIsAllFilled(true)
@@ -164,6 +225,19 @@ export default function RegisterShopModalFunnelContent({
       setBackUnmounted(false)
     }, 500)
   }
+
+  const renderSubmitButton = () => {
+    if (!isAllFilled) {
+      return <InactiveBtn text="완료하기" size="large" />
+    }
+
+    if (isLoading) {
+      return <UiLoading />
+    }
+
+    return <ActiveBtn text="완료하기" size="large" type="submit" />
+  }
+
   return (
     <UiBgGrayModal
       onClickBackModal={handleClickBackModal}
@@ -175,7 +249,7 @@ export default function RegisterShopModalFunnelContent({
           title={FUNNEL_SHOP_TITLE[funnel].text}
           gap={24}
         >
-          <form onSubmit={handleClickButton}>
+          <form onSubmit={handleClickSubmitButton}>
             <div className={cx('inputWrap', { unmounted, backUnmounted })}>
               {funnel === 'name' && (
                 <Input
@@ -187,12 +261,13 @@ export default function RegisterShopModalFunnelContent({
                 />
               )}
               {funnel === 'address' && (
-                <Input
-                  variant="input-underline"
+                <Select
+                  variant="search"
                   title={FUNNEL_SHOP_TITLE[funnel].title}
                   isRequired={true}
-                  onChange={handleChange}
+                  onClick={handleClick}
                   defaultValue={address}
+                  options={ADDRESS_OPTIONS}
                 />
               )}
               {funnel === 'detailAddress' && (
@@ -243,11 +318,7 @@ export default function RegisterShopModalFunnelContent({
               )}
             </div>
             <div className={cx('button', { unmounted, backUnmounted })}>
-              {isAllFilled ? (
-                <ActiveBtn text="다음" size="large" type="submit" />
-              ) : (
-                <InactiveBtn text="다음" size="large" />
-              )}
+              {renderSubmitButton()}
             </div>
           </form>
         </UiSimpleLayout>

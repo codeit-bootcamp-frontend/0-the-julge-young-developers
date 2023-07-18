@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import { PresingedUrlResponse } from '@/libs/shared/api/types/type-image'
+
 import { postRequest } from '../common'
 
 /**
@@ -15,11 +17,11 @@ import { postRequest } from '../common'
  */
 const createPresignedURL = async (name: string): Promise<string | Error> => {
   try {
-    const response = await postRequest<string>('/images', {
+    const response = await postRequest<PresingedUrlResponse>('/images', {
       name,
     })
 
-    return response
+    return response.item.url
   } catch (error) {
     return error as Error
   }
@@ -52,7 +54,7 @@ const uploadImageToS3 = async (
  * 이미지 업로드 total api
  * 
  * @example 
- * const presignedUrl = await uploadImage (file)
+ * const presignedUrl = await uploadImage(file)
  * 
  * @example 에러처리
  *     if (response instanceof Error) {
@@ -67,8 +69,7 @@ const uploadImageToS3 = async (
  */
 const uploadImage = async (file: File): Promise<string | Error> => {
   const presignedURL = await createPresignedURL(file.name)
-
-  if (presignedURL instanceof Error) return presignedURL
+  if (presignedURL instanceof Error || !presignedURL) return presignedURL
   const uploadStatus = await uploadImageToS3(presignedURL, file)
 
   if (

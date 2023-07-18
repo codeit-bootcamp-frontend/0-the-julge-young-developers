@@ -7,7 +7,7 @@ import { getCookie } from 'cookies-next'
 
 import { useRouter } from 'next/navigation'
 
-import { OPTIONS } from '@/libs/alba/my-profile/my-profile-h/data-access/select-options'
+import { ADDRESS_OPTIONS } from '@/libs/alba/my-profile/my-profile-h/data-access/select-options'
 import ModalPortalWrapper from '@/libs/portal/feature/modalWrapper'
 import { updateUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
@@ -149,7 +149,7 @@ export default function RegisterModal({
                   title="선호지역*"
                   isRequired={false}
                   defaultValue={defaultAddress || ''}
-                  options={OPTIONS}
+                  options={ADDRESS_OPTIONS}
                   onClick={() => setAddress(true)}
                   // eslint-disable-next-line no-return-assign, no-param-reassign
                   ref={(el: HTMLInputElement) =>

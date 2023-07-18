@@ -9,10 +9,14 @@ import RegisterNoticeModal from './register-notice-modal'
 
 export default function RegisterNoticeBtn() {
   const [openModal, setOpenModal] = useState<boolean>(false)
+  const [showModal, setShowModal] = useState<boolean>(false)
   const isMobile = useMediaQuery('(max-width: 768px)')
   const handleClickToggleModal = () => {
-    console.log('오잉', isMobile)
     setOpenModal(!openModal)
+
+    setTimeout(() => {
+      setShowModal(!showModal)
+    }, 500)
   }
 
   return (
@@ -25,7 +29,7 @@ export default function RegisterNoticeBtn() {
 
       {openModal && (
         <RegisterNoticeModal
-          openModal={openModal}
+          showModal={showModal}
           onClickToggelModal={handleClickToggleModal}
         />
       )}

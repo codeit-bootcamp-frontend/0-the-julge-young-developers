@@ -2,8 +2,11 @@
 
 import { ForwardedRef, forwardRef, useRef } from 'react'
 
+import uploadImage from '@/libs/shared/api/data-access/request/imageRequest'
 import UiAddImageBtn from '@/libs/shared/input-select-btn/ui/ui-image-input/ui-add-image-btn'
 import UiImageInput from '@/libs/shared/input-select-btn/ui/ui-image-input/ui-image-input'
+
+import { removePresignedUrlQueryParams } from '../util/removepresignedUrlQueryParams'
 
 export default forwardRef(function ImageInput(
   {
@@ -21,22 +24,16 @@ export default forwardRef(function ImageInput(
 ) {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
 
-  const handleImage = (file: File) => {
-    // 수정 필요. css 적용 때문에 미리보이게 함
+  const handleImage = async (file: File) => {
     if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader()
-
-      reader.onload = () => {
-        if (reader.result) {
-          setSelectedImage(reader.result.toString())
-        }
+      const presignedUrl = await uploadImage(file)
+      if (presignedUrl instanceof Error) {
+        return
       }
-
-      reader.readAsDataURL(file)
+      const removedQureyPresignedUrl =
+        removePresignedUrlQueryParams(presignedUrl)
+      setSelectedImage(removedQureyPresignedUrl)
     }
-    // presignedURL 가져오는 uploadImage request로 변경
-    // setSelectedImage('presignedURL')
-    // preselectedImageUrl
   }
 
   const handleDropImage = (e: React.DragEvent<HTMLDivElement>) => {
@@ -53,7 +50,6 @@ export default forwardRef(function ImageInput(
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    console.log(file)
     if (file) {
       handleImage(file)
     }
