@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 export default function useRegisterNoticeState(variant = 'default') {
   const [hourlyWage, setHourlyWage] = useState<string>('')
-  const [startsAt, setStartsAt] = useState<string>('')
+  const [startsAt, setStartsAt] = useState<Date | undefined>()
   const [workhour, setWorkhour] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const [isAllFilled, setIsAllFilled] = useState<boolean>(false)

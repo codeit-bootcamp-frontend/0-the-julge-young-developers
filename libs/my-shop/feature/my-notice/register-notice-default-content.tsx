@@ -9,6 +9,7 @@ import {
   ActiveBtn,
   InactiveBtn,
 } from '@/libs/shared/click-btns/feature/click-btns'
+import SelectDatePicker from '@/libs/shared/input-select-btn/feature/feature-date-picker'
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
@@ -24,7 +25,7 @@ export default function RegisterNoticeDefaultContent({
   const {
     // hourlyWage,
     setHourlyWage,
-    // startsAt,
+    startsAt,
     setStartsAt,
     // workhour,
     setWorkhour,
@@ -48,12 +49,10 @@ export default function RegisterNoticeDefaultContent({
               />
             </div>
             <div className={cx('inputTopItem')}>
-              <Input
-                onChange={(e) => setStartsAt(e.target.value)}
-                variant="input"
+              <SelectDatePicker
                 title="시작 일시*"
-                isValid={false}
-                isRequired={false}
+                onSelectDate={setStartsAt}
+                selectedDate={startsAt}
               />
             </div>
             <div className={cx('inputTopItem')}>
