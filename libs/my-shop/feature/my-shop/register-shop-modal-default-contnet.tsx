@@ -72,6 +72,9 @@ export default function RegisterShopModalDefaultContent({
       setISLoading(false)
       onClickToggelModal()
       router.refresh()
+    } else {
+      setISLoading(false)
+      // 실패의 경우 처리
     }
   }
 
