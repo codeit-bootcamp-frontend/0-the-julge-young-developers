@@ -24,7 +24,7 @@ export default function DatePice({
   return (
     <div className={cx('wrapper')}>
       <DatePicker
-        className="inputBox"
+        className={cx('inputBox')}
         selected={selectedDate}
         onChange={handleDateChange}
         placeholderText="년/월/일"
@@ -34,6 +34,7 @@ export default function DatePice({
         showMonthDropdown={true}
         showYearDropdown={true}
         dropdownMode="select"
+        calendarClassName={cx('calenderWrapper')}
       />
     </div>
   )
