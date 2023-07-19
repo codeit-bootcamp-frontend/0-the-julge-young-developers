@@ -32,7 +32,7 @@ export default function ErrorPage({
           </button>
         </div>
         <Image
-          className={cx('image')}
+          className={cx('errorContentImage')}
           src="/images/error-hero.svg"
           alt="error-hero"
           width={600}
