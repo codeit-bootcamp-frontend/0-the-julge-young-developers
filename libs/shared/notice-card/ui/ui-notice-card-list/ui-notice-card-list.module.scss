@@ -20,7 +20,6 @@ $card-size-small: 171px;
   width: 100%;
 
   @include utils.tablet {
-    padding: 0 32px;
   }
 
   @include utils.mobile {

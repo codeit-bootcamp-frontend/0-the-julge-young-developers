@@ -122,7 +122,6 @@ export default function RegisterShopModalFunnelContent({
       selectedImage,
       description,
     )
-    console.log(isSuccess)
     if (isSuccess) {
       setISLoading(false)
       onClickToggelModal()

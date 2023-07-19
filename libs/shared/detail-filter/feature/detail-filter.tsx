@@ -47,9 +47,6 @@ export default function DetailFilter({
       startInputRef.current?.value,
       numberPrice,
     )
-    console.log('선택 위치:', selectedLocations)
-    console.log('시작일:', startInputRef.current?.value)
-    console.log('금액:', priceInputRef.current?.value)
     onClickCloseButton(false)
   }
 
