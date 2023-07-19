@@ -36,6 +36,7 @@ export default function TableStatusButton({
   const [openClientLoader, setOpenClientLoader] = useState(false)
   const [shownToast, setShownToast] = useState(false)
   const [isRejectDone, setIsRejectDone] = useState(false)
+  const [isAcceptDone, setIsAcceptDone] = useState(false)
 
   const handleClickAcceptApplication = async () => {
     setOpenClientLoader(true)
@@ -49,7 +50,8 @@ export default function TableStatusButton({
 
     setShownToast(true)
     setShownAcceptDialog(false)
-    router.push('/my-shop')
+    setIsAcceptDone(true)
+    setTimeout(() => router.push('/my-shop'), 3000)
   }
 
   const handleClickRejectApplication = async () => {
@@ -75,7 +77,30 @@ export default function TableStatusButton({
     }
   }, [isMobile])
 
-  if (isRejectDone) return <UiTableBodyStatusChip status="rejected" />
+  if (isRejectDone) {
+    return (
+      <>
+        <UiTableBodyStatusChip status="rejected" />
+        {shownToast && (
+          <ToastContainer onShow={() => setShownToast(false)}>
+            거절했어요
+          </ToastContainer>
+        )}
+      </>
+    )
+  }
+  if (isAcceptDone) {
+    return (
+      <>
+        <UiTableBodyStatusChip status="accepted" />
+        {shownToast && (
+          <ToastContainer onShow={() => setShownToast(false)}>
+            승인했어요. 내 가게 페이지로 돌아갑니다.
+          </ToastContainer>
+        )}
+      </>
+    )
+  }
   return (
     <>
       <ActiveOutlineBtn
@@ -109,11 +134,6 @@ export default function TableStatusButton({
         </div>
       )}
       {openClientLoader && <CommonClientLoader />}
-      {shownToast && (
-        <ToastContainer onShow={() => setShownToast(false)}>
-          {shownAcceptDialog ? '승인했어요' : '거절했어요'}
-        </ToastContainer>
-      )}
     </>
   )
 }
