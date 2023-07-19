@@ -3,7 +3,7 @@ interface GnbProps {
   hasNotification: boolean
   searchbarElement: React.ReactNode
   handleClickMovePage: (pathname?: string) => void
-  handleClickOpenModal: () => void
+  onCheckNotification: () => void
 }
 
 interface ButtonProps {

@@ -1,6 +1,7 @@
+import UiFooter from '@/libs/footer/ui/ui-footer/ui-footer'
 import Gnb from '@/libs/gnb/feature/gnb'
 
-export default async function NoticeDetailLayout({
+export default async function MainLayout({
   children,
 }: {
   children: React.ReactNode
@@ -9,8 +10,7 @@ export default async function NoticeDetailLayout({
     <>
       <Gnb />
       {children}
-      <div id="loader-portal" />
-      <div id="btn-portal" />
+      <UiFooter />
     </>
   )
 }

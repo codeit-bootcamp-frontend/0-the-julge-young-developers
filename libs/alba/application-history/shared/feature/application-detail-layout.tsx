@@ -34,7 +34,11 @@ export default function ApplicationDetailLayout({
           <ApplicationHistoryTable
             data={data}
             paginationElement={
-              <Pagination page={page} totalItems={totalItems} />
+              <Pagination
+                itemsPerPage={5}
+                page={page}
+                totalItems={totalItems}
+              />
             }
           />
         </UiApplicationTable>

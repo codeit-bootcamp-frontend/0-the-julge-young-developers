@@ -1,7 +1,6 @@
 import UiPagination from '../ui/ui-pagination'
 
-const PAGES_PER_PAGINATION = Number(process.env.PAGES_PER_PAGINATION)
-const TABLE_ITEMS_PER_PAGE = Number(process.env.TABLE_ITEMS_PER_PAGE)
+const PAGES_PER_PAGINATION = 7
 
 /**
  * 
@@ -16,12 +15,14 @@ const TABLE_ITEMS_PER_PAGE = Number(process.env.TABLE_ITEMS_PER_PAGE)
 export default function Pagination({
   page,
   totalItems,
+  itemsPerPage,
 }: {
   page: number
   totalItems: number
+  itemsPerPage: number
 }) {
   const paginationNum = Math.floor((page - 1) / PAGES_PER_PAGINATION) + 1
-  const endPage = Math.floor((totalItems - 1) / TABLE_ITEMS_PER_PAGE) + 1
+  const endPage = Math.floor((totalItems - 1) / itemsPerPage) + 1
 
   const shownStart =
     Math.floor((page - 1) / PAGES_PER_PAGINATION) * PAGES_PER_PAGINATION + 1
