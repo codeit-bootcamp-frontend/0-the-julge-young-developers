@@ -39,7 +39,7 @@ export default function CustomNoticeList() {
   const handleClickToDetail = useCallback(
     (isClosed: boolean, shopId: string, noticeId: string) => {
       if (isClosed) return
-      const userShopId = getCookie('shop_id') as string
+      const userShopId = getCookie('sid') as string
 
       if (userShopId === shopId) {
         router.push(`/myshop/${noticeId}`)
