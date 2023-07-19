@@ -1,29 +1,35 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { FilterDatas } from '@/libs/notice-list/type-notice-list'
 import { getNotices } from '@/libs/shared/api/data-access/request/noticeRequest'
 import { AllNoticesData } from '@/libs/shared/api/types/type-notice'
 import UiFilterElement from '@/libs/shared/notice-card/ui/ui-filter-element/ui-filter-element'
-import PaginationPrev from '@/libs/shared/pagination/feature/pagination-prev'
+import Pagination from '@/libs/shared/pagination/feature/pagination'
 
 import UiNoticeList from '../ui/ui-notice-list/ui-notice-list'
 
 export default function NoticeList({
   title = '공고목록',
   keyword,
+  page,
+  initTotalItems,
+  initData,
 }: {
   title?: string
   keyword?: string | undefined
+  page: number
+  initTotalItems: number
+  initData: AllNoticesData[]
 }) {
-  const [data, setData] = useState<AllNoticesData[]>([])
+  const [data, setData] = useState<AllNoticesData[]>(initData)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [sortData, setSortData] = useState<'time' | 'pay' | 'hour' | 'shop'>(
     'time',
   )
   const [filterData, setFilterData] = useState<FilterDatas>({} as FilterDatas)
-  const [pageNum, setPageNum] = useState(1)
+  const [totalItems, setTotalItems] = useState<number>(initTotalItems)
 
   const handleClickModalOpen = () => {
     setIsModalOpen(true)
@@ -37,8 +43,12 @@ export default function NoticeList({
   }: FilterDatas) => {
     setFilterData({ startDate, price, locations })
 
+    const TABLES_ITEMS_PER_PAGE = 6
+    const offset = (page - 1) * TABLES_ITEMS_PER_PAGE
+    const limit = TABLES_ITEMS_PER_PAGE
     const response = await getNotices({
-      limit: 6,
+      limit,
+      offset,
       address: locations,
       startsAtGte: startDate,
       hourlyPayGte: price,
@@ -50,10 +60,10 @@ export default function NoticeList({
     } else if (typeof response === 'string') {
       // 에러 메시지에 맞게 처리
     } else {
-      const { items } = response
+      const { items, count } = response
       const itemArray = items.map((item) => item.item)
+      setTotalItems(count)
       setData(itemArray)
-      console.log('filter 옵션 적용:', startDate, price, locations)
     }
   }
 
@@ -72,7 +82,6 @@ export default function NoticeList({
         break
       case '가나다순':
         sortStr = 'shop'
-        console.log(sortStr)
         break
       default:
         sortStr = 'time'
@@ -82,8 +91,12 @@ export default function NoticeList({
     setSortData(sortStr)
     const { price, locations } = filterData
 
+    const TABLES_ITEMS_PER_PAGE = 6
+    const offset = (page - 1) * TABLES_ITEMS_PER_PAGE
+    const limit = TABLES_ITEMS_PER_PAGE
     const response = await getNotices({
-      limit: 6,
+      limit,
+      offset,
       sort: sortStr,
       keyword,
       hourlyPayGte: price,
@@ -94,29 +107,13 @@ export default function NoticeList({
     } else if (typeof response === 'string') {
       // 에러 메시지에 맞게 처리
     } else {
-      const { items } = response
+      const { items, count } = response
       const itemArray = items.map((item) => item.item)
+      setTotalItems(count)
       setData(itemArray)
     }
   }
 
-  useEffect(() => {
-    const getDatas = async () => {
-      const response = await getNotices({ limit: 6, keyword })
-      if (response instanceof Error) {
-        // 알 수 없는 에러 처리
-      } else if (typeof response === 'string') {
-        // 에러 메시지에 맞게 처리
-      } else {
-        // response 데이터 가공
-        const { items } = response
-        const itemArray = items.map((item) => item.item)
-        setData(itemArray)
-      }
-    }
-    getDatas()
-    return undefined
-  }, [keyword])
   return (
     <div style={{ paddingBottom: '60px' }}>
       <UiNoticeList
@@ -132,7 +129,7 @@ export default function NoticeList({
           />
         }
         paginationElement={
-          <PaginationPrev pageNum={pageNum} setPageNum={setPageNum} />
+          <Pagination itemsPerPage={6} page={page} totalItems={totalItems} />
         }
       />
     </div>
