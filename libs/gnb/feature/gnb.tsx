@@ -12,12 +12,15 @@ import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 
 export default function Gnb() {
   const [hasNotification, setHasNotification] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState(false)
   const [userType, setUserType] = useState<
     'employee' | 'employer' | 'guest' | null
   >(null)
   const router = useRouter()
   const userId = getCookie('uid') as string
+
+  const handleCheckNotification = () => {
+    setHasNotification(true)
+  }
 
   const getUserType = async (uid: string) => {
     const userInfo = await getUserInfo(uid)
@@ -51,24 +54,13 @@ export default function Gnb() {
     router.push(`/${pathname}`)
   }
 
-  const handleClickOpenModal = () => {
-    setIsModalOpen(true)
-  }
-
-  useEffect(() => {
-    if (isModalOpen) {
-      // 일단 Modal이 열리면 Notification을 본 상태로 변경되기 때문에 false로 변경해 놓도록 했는데, 이후에 Noti 불러오는 API 함수 사용하면서 수정이 필요할 것 같습니다.
-      setHasNotification(false)
-    }
-  }, [isModalOpen])
-
   return (
     <UiGnb
       userType={userType}
       hasNotification={hasNotification}
       searchbarElement={<Searchbar />}
       handleClickMovePage={handleClickMovePage}
-      handleClickOpenModal={handleClickOpenModal}
+      onCheckNotification={handleCheckNotification}
     />
   )
 }
