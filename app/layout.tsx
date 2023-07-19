@@ -1,6 +1,7 @@
 import { META_ROOT } from '@/app/_meta'
 import '@/styles/global.scss'
 
+import Gnb from '@/libs/gnb/feature/gnb'
 import Providers from '@/libs/shared/providers/shared/feature/providers'
 
 import { spoqaHanSansNeo } from '@/public/fonts/localfonts'
@@ -15,7 +16,10 @@ export default function RootLayout({
   return (
     <html lang="ko" className={spoqaHanSansNeo.className}>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Gnb />
+          {children}
+        </Providers>
       </body>
     </html>
   )
