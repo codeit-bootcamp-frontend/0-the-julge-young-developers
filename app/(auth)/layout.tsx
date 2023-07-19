@@ -1,3 +1,5 @@
+import Gnb from '@/libs/gnb/feature/gnb'
+
 export default async function NoticeDetailLayout({
   children,
 }: {
@@ -5,6 +7,7 @@ export default async function NoticeDetailLayout({
 }) {
   return (
     <>
+      <Gnb />
       {children}
       <div id="loader-portal" />
     </>
