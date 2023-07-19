@@ -20,7 +20,6 @@ export default async function MyShopPage() {
     return null
   }
   const shopId = userInfo.item.shop?.item.id
-  console.log(shopId)
   return (
     <div>
       <MyShop shopId={shopId || ''} />
