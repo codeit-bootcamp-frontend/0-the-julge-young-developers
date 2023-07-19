@@ -76,4 +76,13 @@ export interface NoticeDetail {
   originalHourlyPay: number
   imageUrl: string
   closed: boolean
+  startsAt: string
+}
+
+export interface NoticeEditData {
+  workhour: number
+  description: string
+  hourlyPay: number
+  startsAt: string
+  noticeId: string
 }

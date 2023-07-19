@@ -24,7 +24,16 @@ export default async function MyShopNoticeDetail({
     shopDescription,
     noticeDescription,
     closed,
+    startsAt,
   } = data
+
+  const noticeData = {
+    workhour,
+    description: noticeDescription,
+    hourlyPay,
+    startsAt,
+    noticeId,
+  }
 
   // 해당 공고는 마감되었습니다 UI 추가?
   if (closed) redirect('/my-shop')
@@ -42,11 +51,7 @@ export default async function MyShopNoticeDetail({
         noticeDescription={noticeDescription}
         closed={closed}
       >
-        <MyShopNoticeEditButton
-          data={data}
-          shopId={shopId}
-          noticeId={noticeId}
-        />
+        <MyShopNoticeEditButton notice={noticeData} />
       </UiNoticeDetailCard>
     </UiNoticeDetailCardLayout>
   )

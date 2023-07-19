@@ -11,9 +11,7 @@ import { ActiveOutlineBtn } from '@/libs/shared/click-btns/feature/click-btns'
 import { MyShopNoticeEditButtonProps } from '../type-my-shop-notice'
 
 export default function MyShopNoticeEditButton({
-  shopId,
-  noticeId,
-  data,
+  notice,
 }: MyShopNoticeEditButtonProps) {
   const [shownEditModal, setShownEditModal] = useState(false)
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -42,6 +40,7 @@ export default function MyShopNoticeEditButton({
         <RegisterNoticeModal
           onClickToggelModal={handleClickButton}
           showModal={showModal}
+          notice={notice}
         />
       )}
     </>

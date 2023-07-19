@@ -1,7 +1,5 @@
 'use client'
 
-import { Dispatch, SetStateAction } from 'react'
-
 import classNames from 'classnames/bind'
 import ko from 'date-fns/locale/ko'
 import DatePicker from 'react-datepicker'
@@ -16,7 +14,7 @@ export default function SelectDatePicker({
   selectedDate,
   title,
 }: {
-  onSelectDate: Dispatch<SetStateAction<Date | undefined>>
+  onSelectDate: (value: Date) => void
   selectedDate: Date | undefined
   title: string
 }) {

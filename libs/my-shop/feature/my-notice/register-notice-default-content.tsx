@@ -17,6 +17,7 @@ import {
 import SelectDatePicker from '@/libs/shared/input-select-btn/feature/feature-date-picker'
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import UiLoading from '@/libs/shared/loading/ui/ui-loading'
+import { NoticeEditData } from '@/libs/shared/notice-card/type-notice-card'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
 import { sendNoticeRequest } from '../../data-access/data-access-send-notice-request'
@@ -26,9 +27,11 @@ const cx = classNames.bind(styles)
 export default function RegisterNoticeDefaultContent({
   showModal,
   onClickToggelModal,
+  notice,
 }: {
   showModal: boolean
   onClickToggelModal: () => void
+  notice: NoticeEditData
 }) {
   const [isLoading, setISLoading] = useState(false)
   const router = useRouter()
@@ -42,7 +45,7 @@ export default function RegisterNoticeDefaultContent({
     description,
     setDescription,
     isAllFilled,
-  } = useRegisterNoticeState()
+  } = useRegisterNoticeState({ notice })
 
   const handleSubmit = async (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -57,6 +60,7 @@ export default function RegisterNoticeDefaultContent({
       startsAt: startsAt.toISOString(),
       workhour: workhour as number,
       description,
+      noticeId: notice.noticeId,
     })
     console.log(isSuccess)
     if (isSuccess) {
@@ -94,6 +98,7 @@ export default function RegisterNoticeDefaultContent({
                   title="시급*"
                   isValid={false}
                   isRequired={false}
+                  defaultValue={String(hourlyWage) || ''}
                 />
               </div>
               <div className={cx('inputTopItem')}>
@@ -112,6 +117,7 @@ export default function RegisterNoticeDefaultContent({
                   isValid={false}
                   isRequired={false}
                   suffix="시간"
+                  defaultValue={workhour ? String(workhour) : ''}
                 />
               </div>
             </div>
@@ -122,6 +128,7 @@ export default function RegisterNoticeDefaultContent({
                 title="공고 설명*"
                 isValid={false}
                 isRequired={false}
+                defaultValue={description || ''}
               />
             </div>
             <div className={cx('btnWrapper')}>{renderSubmitButton()}</div>

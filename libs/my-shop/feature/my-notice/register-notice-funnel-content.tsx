@@ -18,6 +18,7 @@ import {
 import SelectDatePicker from '@/libs/shared/input-select-btn/feature/feature-date-picker'
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import UiLoading from '@/libs/shared/loading/ui/ui-loading'
+import { NoticeEditData } from '@/libs/shared/notice-card/type-notice-card'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
 import { sendNoticeRequest } from '../../data-access/data-access-send-notice-request'
@@ -26,8 +27,10 @@ const cx = classNames.bind(styles)
 
 export default function RegisterJobPostingFunnelContent({
   onClickToggelModal,
+  notice,
 }: {
   onClickToggelModal: () => void
+  notice: NoticeEditData
 }) {
   const [funnel, setFunnel] = useState<
     'hourlyWage' | 'startsAt' | 'workhour' | 'description'
@@ -47,13 +50,16 @@ export default function RegisterJobPostingFunnelContent({
     setDescription,
     isAllFilled,
     setIsAllFilled,
-  } = useRegisterJobPostingState('funnel')
+  } = useRegisterJobPostingState({ variant: 'funnel', notice })
 
+  useEffect(() => {
+    console.log(isAllFilled)
+  }, [isAllFilled])
   useEffect(() => {
     if (startsAt) {
       setIsAllFilled(true)
     }
-  }, [startsAt])
+  }, [startsAt, setIsAllFilled])
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -98,6 +104,7 @@ export default function RegisterJobPostingFunnelContent({
         startsAt: startsAt.toISOString(),
         workhour: workhour as number,
         description,
+        noticeId: notice.noticeId,
       })
       if (isSuccess) {
         setISLoading(false)
@@ -153,6 +160,15 @@ export default function RegisterJobPostingFunnelContent({
 
     return <ActiveBtn text="완료하기" size="large" type="submit" />
   }
+
+  const handleClickDatePicker = (value: Date) => {
+    console.log(startsAt)
+    if (startsAt) {
+      setIsAllFilled(true)
+    }
+    setStartsAt(value)
+  }
+
   return (
     <UiBgGrayModal
       onClickBackModal={handleClickBackModal}
@@ -178,7 +194,7 @@ export default function RegisterJobPostingFunnelContent({
               {funnel === 'startsAt' && (
                 <SelectDatePicker
                   title={FUNNEL_NOTICE_TITLE[funnel].title}
-                  onSelectDate={setStartsAt}
+                  onSelectDate={handleClickDatePicker}
                   selectedDate={startsAt}
                 />
               )}
