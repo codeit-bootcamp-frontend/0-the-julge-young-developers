@@ -32,9 +32,11 @@ const cx = classNames.bind(styles)
 export default function RegisterShopModalFunnelContent({
   shop,
   onClickToggelModal,
+  onClickShowToast,
 }: {
   shop?: Shop
   onClickToggelModal: () => void
+  onClickShowToast: () => void
 }) {
   const [isLoading, setISLoading] = useState(false)
   const router = useRouter()
@@ -125,6 +127,7 @@ export default function RegisterShopModalFunnelContent({
     if (isSuccess) {
       setISLoading(false)
       onClickToggelModal()
+      onClickShowToast()
       router.refresh()
     } else {
       setISLoading(false)

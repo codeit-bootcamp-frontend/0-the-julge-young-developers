@@ -28,10 +28,12 @@ export default function RegisterNoticeDefaultContent({
   showModal,
   onClickToggelModal,
   notice,
+  onClickShowToast,
 }: {
   showModal: boolean
   onClickToggelModal: () => void
-  notice: NoticeEditData
+  notice?: NoticeEditData
+  onClickShowToast: () => void
 }) {
   const [isLoading, setISLoading] = useState(false)
   const router = useRouter()
@@ -60,12 +62,13 @@ export default function RegisterNoticeDefaultContent({
       startsAt: startsAt.toISOString(),
       workhour: workhour as number,
       description,
-      noticeId: notice.noticeId,
+      noticeId: notice ? notice.noticeId : undefined,
     })
     console.log(isSuccess)
     if (isSuccess) {
       setISLoading(false)
       onClickToggelModal()
+      onClickShowToast()
       router.refresh()
     } else {
       setISLoading(false)

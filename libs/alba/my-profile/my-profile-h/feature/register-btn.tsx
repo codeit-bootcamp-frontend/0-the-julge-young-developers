@@ -23,7 +23,6 @@ export default function RegisterBtn() {
   const [defaultName, setDefaultName] = useState<string>('')
   const [defaultPhone, setDefaultPhone] = useState<string>('')
   const [defaultAddress, setDefaultAddress] = useState<string>('')
-  // const [defaultBio, setDefaultBio] = useState<string>('')
 
   const [isShowToast, setIsShowToast] = useState<boolean>(false)
   const [openClientLoader, setOpenClientLoader] = useState<boolean>(false)

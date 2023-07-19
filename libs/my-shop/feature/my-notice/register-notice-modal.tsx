@@ -11,10 +11,12 @@ export default function RegisterNoticeModal({
   showModal,
   onClickToggelModal,
   notice,
+  onClickShowToast,
 }: {
   showModal: boolean
   onClickToggelModal: () => void
-  notice: NoticeEditData
+  notice?: NoticeEditData
+  onClickShowToast: () => void
 }) {
   const isMobile = useMediaQuery('(max-width: 768px)')
 
@@ -24,12 +26,14 @@ export default function RegisterNoticeModal({
         <RegisterNoticeFunnelContent
           onClickToggelModal={onClickToggelModal}
           notice={notice}
+          onClickShowToast={onClickShowToast}
         />
       ) : (
         <RegisterNoticeDefaultContent
           onClickToggelModal={onClickToggelModal}
           showModal={showModal}
           notice={notice}
+          onClickShowToast={onClickShowToast}
         />
       )}
     </ModalPortalWrapper>

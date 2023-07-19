@@ -28,9 +28,11 @@ const cx = classNames.bind(styles)
 export default function RegisterJobPostingFunnelContent({
   onClickToggelModal,
   notice,
+  onClickShowToast,
 }: {
   onClickToggelModal: () => void
-  notice: NoticeEditData
+  notice?: NoticeEditData
+  onClickShowToast: () => void
 }) {
   const [funnel, setFunnel] = useState<
     'hourlyWage' | 'startsAt' | 'workhour' | 'description'
@@ -52,9 +54,7 @@ export default function RegisterJobPostingFunnelContent({
     setIsAllFilled,
   } = useRegisterJobPostingState({ variant: 'funnel', notice })
 
-  useEffect(() => {
-    console.log(isAllFilled)
-  }, [isAllFilled])
+  useEffect(() => {}, [isAllFilled])
   useEffect(() => {
     if (startsAt) {
       setIsAllFilled(true)
@@ -104,11 +104,12 @@ export default function RegisterJobPostingFunnelContent({
         startsAt: startsAt.toISOString(),
         workhour: workhour as number,
         description,
-        noticeId: notice.noticeId,
+        noticeId: notice ? notice.noticeId : undefined,
       })
       if (isSuccess) {
         setISLoading(false)
         onClickToggelModal()
+        onClickShowToast() // 토스트 띄우기
         router.refresh()
       } else {
         setISLoading(false)
@@ -162,7 +163,6 @@ export default function RegisterJobPostingFunnelContent({
   }
 
   const handleClickDatePicker = (value: Date) => {
-    console.log(startsAt)
     if (startsAt) {
       setIsAllFilled(true)
     }

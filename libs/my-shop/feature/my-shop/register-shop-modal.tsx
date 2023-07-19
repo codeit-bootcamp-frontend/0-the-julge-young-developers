@@ -15,9 +15,11 @@ import RegisterShopModalFunnelContent from './register-shop-modal-funnel-content
 export default function RegisterShopModal({
   shop,
   onClickToggelModal,
+  onClickShowToast,
 }: {
   shop?: Shop
   onClickToggelModal: () => void
+  onClickShowToast: () => void
 }) {
   const isMobile = useMediaQuery('(max-width: 768px)')
   return (
@@ -26,11 +28,13 @@ export default function RegisterShopModal({
         <RegisterShopModalFunnelContent
           onClickToggelModal={onClickToggelModal}
           shop={shop}
+          onClickShowToast={onClickShowToast}
         />
       ) : (
         <RegisterShopModalDefaultContent
           onClickToggelModal={onClickToggelModal}
           shop={shop}
+          onClickShowToast={onClickShowToast}
         />
       )}
     </ModalPortalWrapper>

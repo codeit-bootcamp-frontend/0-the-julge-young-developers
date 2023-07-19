@@ -7,6 +7,7 @@ import { useState } from 'react'
 
 import RegisterNoticeModal from '@/libs/my-shop/feature/my-notice/register-notice-modal'
 import { ActiveOutlineBtn } from '@/libs/shared/click-btns/feature/click-btns'
+import ToastContainer from '@/libs/shared/toast/feature/toast-container'
 
 import { MyShopNoticeEditButtonProps } from '../type-my-shop-notice'
 
@@ -15,7 +16,7 @@ export default function MyShopNoticeEditButton({
 }: MyShopNoticeEditButtonProps) {
   const [shownEditModal, setShownEditModal] = useState(false)
   const [showModal, setShowModal] = useState<boolean>(false)
-
+  const [showToast, setShowToast] = useState<boolean>(false)
   const handleClickButton = () => {
     setShownEditModal((prev) => !prev)
 
@@ -41,7 +42,13 @@ export default function MyShopNoticeEditButton({
           onClickToggelModal={handleClickButton}
           showModal={showModal}
           notice={notice}
+          onClickShowToast={() => setShowToast(true)}
         />
+      )}
+      {showToast && (
+        <ToastContainer onShow={() => setShowToast(false)}>
+          편집을 완료했어요
+        </ToastContainer>
       )}
     </>
   )
