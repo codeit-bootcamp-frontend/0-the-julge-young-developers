@@ -1,8 +1,3 @@
-/* eslint-disable no-unused-vars */
-
-/* eslint-disable lines-around-directive */
-
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
 import { ChangeEvent, MouseEvent, useEffect, useState } from 'react'
@@ -32,26 +27,18 @@ import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-s
 
 import styles from './register-shop-modal-funnel-content.module.scss'
 
-/* eslint-disable no-unused-vars */
-
-/* eslint-disable lines-around-directive */
-
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
-/* eslint-disable no-unused-vars */
-/* eslint-disable lines-around-directive */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 const cx = classNames.bind(styles)
 
 export default function RegisterShopModalFunnelContent({
   shop,
   onClickToggelModal,
   onClickShowToast,
+  onClickShowErrorDialog,
 }: {
   shop?: Shop
   onClickToggelModal: () => void
   onClickShowToast: () => void
+  onClickShowErrorDialog: (text: string) => void
 }) {
   const [isLoading, setISLoading] = useState(false)
   const router = useRouter()
@@ -146,8 +133,7 @@ export default function RegisterShopModalFunnelContent({
       router.refresh()
     } else {
       setISLoading(false)
-      // 실패의 경우 처리
-      // if
+      onClickShowErrorDialog(errorMessage)
     }
   }
 

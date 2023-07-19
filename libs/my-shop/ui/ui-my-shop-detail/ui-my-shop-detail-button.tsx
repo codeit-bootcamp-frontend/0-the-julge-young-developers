@@ -41,7 +41,7 @@ export default function UiMyShopDetailButton({ shop }: { shop: Shop }) {
       case '로그인이 필요합니다':
         router.push('/signin')
         break
-      case '공고를 게시할 권한이 없습니다':
+      case '공고를 게시할 권한이 없습니다' || '가게를 수정할 권한이 없습니다':
         router.push('/')
         break
       case '존재하지 않는 가게입니다':
