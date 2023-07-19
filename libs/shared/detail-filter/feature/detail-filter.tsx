@@ -42,14 +42,13 @@ export default function DetailFilter({
     }
     const locationsArray = Array.from(selectedLocations)
     const numberPrice = Number(priceInputRef.current?.value)
-    onClickApplyButton(
-      locationsArray,
-      startInputRef.current?.value,
-      numberPrice,
-    )
-    console.log('선택 위치:', selectedLocations)
-    console.log('시작일:', startInputRef.current?.value)
-    console.log('금액:', priceInputRef.current?.value)
+    if (startInputRef.current) {
+      onClickApplyButton({
+        startDate: startInputRef.current.value,
+        price: numberPrice,
+        locations: locationsArray,
+      })
+    }
     onClickCloseButton(false)
   }
 
