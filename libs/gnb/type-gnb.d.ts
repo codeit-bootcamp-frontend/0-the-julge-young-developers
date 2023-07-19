@@ -1,5 +1,5 @@
 interface GnbProps {
-  isLogin: boolean
+  userType: 'employee' | 'employer' | 'guest' | null
   hasNotification: boolean
   searchbarElement: React.ReactNode
   handleClickMovePage: (pathname?: string) => void

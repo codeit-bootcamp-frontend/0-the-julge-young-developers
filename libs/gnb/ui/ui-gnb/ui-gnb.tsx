@@ -10,7 +10,7 @@ import styles from './ui-gnb.module.scss'
 const cx = classNames.bind(styles)
 
 export default function UiGnb({
-  isLogin,
+  userType,
   hasNotification,
   searchbarElement,
   handleClickMovePage,
@@ -31,25 +31,39 @@ export default function UiGnb({
         </Link>
         <div className={cx('searchbar')}>{searchbarElement}</div>
 
-        {isLogin ? (
+        {userType === 'guest' && (
           <div className={cx('buttons')}>
-            <UiButton name="내 가게" handleClickButton={handleClickMovePage} />
+            <UiButton
+              name="로그인"
+              id="login"
+              handleClickButton={() => handleClickMovePage('signin')}
+            />
+            <UiButton
+              name="회원가입"
+              id="signup"
+              handleClickButton={() => handleClickMovePage('signup')}
+            />
+          </div>
+        )}
+        {userType === 'employee' && (
+          <div className={cx('buttons')}>
+            <UiButton
+              name="내 프로필"
+              handleClickButton={() => handleClickMovePage('my-profile')}
+            />
             <UiButton
               activeStatus={hasNotification ? 'active' : 'inactive'}
               handleClickButton={handleClickOpenModal}
             />
           </div>
-        ) : (
+        )}
+
+        {userType === 'employer' && (
           <div className={cx('buttons')}>
+            <UiButton name="내 가게" handleClickButton={handleClickMovePage} />
             <UiButton
-              name="로그인"
-              id="login"
-              handleClickButton={handleClickMovePage}
-            />
-            <UiButton
-              name="회원가입"
-              id="signup"
-              handleClickButton={handleClickMovePage}
+              activeStatus={hasNotification ? 'active' : 'inactive'}
+              handleClickButton={handleClickOpenModal}
             />
           </div>
         )}

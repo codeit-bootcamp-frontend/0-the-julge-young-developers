@@ -2,22 +2,50 @@
 
 import { useEffect, useState } from 'react'
 
+import { getCookie, setCookie } from 'cookies-next'
+
 import { useRouter } from 'next/navigation'
 
 import Searchbar from '@/libs/gnb/feature/searchbar'
 import UiGnb from '@/libs/gnb/ui/ui-gnb/ui-gnb'
+import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 
 export default function Gnb() {
-  const [isLogin, setIsLogin] = useState(false)
   const [hasNotification, setHasNotification] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
-
+  const [userType, setUserType] = useState<
+    'employee' | 'employer' | 'guest' | null
+  >(null)
   const router = useRouter()
-  const userSecStr = localStorage.getItem('userSecStr') // 쿠키에 있는지 검사하는 방식으로 변경 필요
+  const userId = getCookie('uid') as string
 
-  if (userSecStr) {
-    setIsLogin(true)
+  const getUserType = async (uid: string) => {
+    const userInfo = await getUserInfo(uid)
+    if (userInfo instanceof Error) {
+      // 알 수 없는 에러 처리
+    } else if (typeof userInfo === 'string') {
+      // 에러 메시지에 맞게 처리
+    } else {
+      // res 데이터 가공
+      setUserType(userInfo.item.type)
+      if (userInfo.item.type === 'employer' && userInfo.item.shop) {
+        setCookie('sid', userInfo.item.shop.item.id)
+      }
+    }
   }
+
+  useEffect(() => {
+    const fetchUserType = async () => {
+      if (!userId) {
+        setUserType('guest')
+      } else {
+        console.log(userId)
+        await getUserType(userId)
+      }
+    }
+
+    fetchUserType()
+  }, [userId])
 
   const handleClickMovePage = (pathname?: string) => {
     router.push(`/${pathname}`)
@@ -36,7 +64,7 @@ export default function Gnb() {
 
   return (
     <UiGnb
-      isLogin={isLogin}
+      userType={userType}
       hasNotification={hasNotification}
       searchbarElement={<Searchbar />}
       handleClickMovePage={handleClickMovePage}
