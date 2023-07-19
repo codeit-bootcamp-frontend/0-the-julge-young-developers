@@ -30,7 +30,12 @@ export default function UiNoticeList({
   return (
     <div className={cx('wrapper')}>
       <div className={cx('noticeCardWrapper')}>
-        <NoticeCardItem data={data} filterElement={filterElement} />
+        <NoticeCardItem
+          isHome={true}
+          title="공고 목록"
+          data={data}
+          filterElement={filterElement}
+        />
       </div>
       {paginationElement}
       {isModalOpen && (

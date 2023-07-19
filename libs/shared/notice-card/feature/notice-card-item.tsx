@@ -12,10 +12,12 @@ import { utilCalcPayDiff } from '../util/util-calc-pay-diff'
 import { utilFormatDuration } from '../util/util-format-duration'
 
 export default function NoticeCardItem({
+  isHome,
   title,
   data,
   filterElement,
 }: {
+  isHome?: boolean
   title?: string
   data: AllNoticesData[]
   filterElement?: React.ReactNode
@@ -55,6 +57,7 @@ export default function NoticeCardItem({
   return (
     <UiNoticeCardList
       // title prop은 변경 예정입니다.
+      isHome={isHome}
       title={title}
       filterElement={filterElement}
 

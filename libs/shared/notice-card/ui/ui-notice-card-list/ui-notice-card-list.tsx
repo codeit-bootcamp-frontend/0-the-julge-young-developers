@@ -11,13 +11,17 @@ import styles from './ui-notice-card-list.module.scss'
 const cx = classNames.bind(styles)
 
 export default forwardRef(function UiNoticeCardList(
-  { title, filterElement, children }: UiNoticeCardListProps,
+  { isHome, title, filterElement, children }: UiNoticeCardListProps,
   ref?: ForwardedRef<HTMLDivElement>,
 ) {
   return (
     <div className={cx('wrapper')}>
       {(title || filterElement) && (
-        <div className={cx('titleHeader')}>
+        <div
+          className={cx('titleHeader', {
+            isHome,
+          })}
+        >
           {title && <h2 className={cx('title')}>{title}</h2>}
           {filterElement && (
             <div className={cx('filterElementWrapper')}>{filterElement}</div>
