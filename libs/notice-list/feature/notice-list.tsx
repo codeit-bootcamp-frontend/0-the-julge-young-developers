@@ -11,9 +11,11 @@ import PaginationPrev from '@/libs/shared/pagination/feature/pagination-prev'
 import UiNoticeList from '../ui/ui-notice-list/ui-notice-list'
 
 export default function NoticeList({
+  title = '공고목록',
   keyword,
 }: {
-  keyword: string | undefined
+  title?: string
+  keyword?: string | undefined
 }) {
   const [data, setData] = useState<AllNoticesData[]>([])
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
@@ -125,6 +127,7 @@ export default function NoticeList({
   }, [keyword])
   return (
     <UiNoticeList
+      title={title}
       data={data}
       isModalOpen={isModalOpen}
       setModalOpen={setIsModalOpen}
