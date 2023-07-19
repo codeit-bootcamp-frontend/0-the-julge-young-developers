@@ -10,16 +10,19 @@ export default async function MyShopPage() {
   const userId = cookieInstance.get('uid')?.value
 
   if (!userId) {
-    // 에러처리
     redirect('/signin')
   }
-  const userInfo = await getUserInfo(userId)
 
-  if (typeof userInfo === 'string' || userInfo instanceof Error) {
-    // 에러 처리
-    return null
+  let shopId
+  const userInfo = await getUserInfo(userId)
+  if (userInfo instanceof Error) {
+    throw new Error()
+  } else if (typeof userInfo === 'string') {
+    throw new Error(userInfo)
+  } else {
+    shopId = userInfo.item.shop?.item.id
   }
-  const shopId = userInfo.item.shop?.item.id
+
   return (
     <div>
       <MyShop shopId={shopId || ''} />

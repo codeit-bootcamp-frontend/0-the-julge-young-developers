@@ -59,7 +59,7 @@ export default function RegisterShopModalDefaultContent({
   const handleSubmit = async (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
     setISLoading(true)
-    const isSuccess = await sendRegisterShopRequest(
+    const isError = await sendRegisterShopRequest(
       shop,
       shopName,
       category,
@@ -69,7 +69,7 @@ export default function RegisterShopModalDefaultContent({
       selectedImage,
       description,
     )
-    if (isSuccess) {
+    if (!isError) {
       setISLoading(false)
       onClickToggelModal()
       onClickShowToast()
