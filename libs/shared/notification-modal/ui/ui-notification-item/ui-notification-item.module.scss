@@ -1,14 +1,15 @@
 @use '@/styles/utils';
 
 .itemContainer {
-  @include utils.flexbox(column, initial, initial);
+  @include utils.flexbox(column, flex-start, flex-start);
 
   width: 328px;
   padding: 16px 12px;
   border: 1px solid #e5e4e7;
   border-radius: 5px;
-  gap: 4px;
   background-color: utils.$white;
+  text-align: start;
+  gap: 4px;
 }
 
 .status {

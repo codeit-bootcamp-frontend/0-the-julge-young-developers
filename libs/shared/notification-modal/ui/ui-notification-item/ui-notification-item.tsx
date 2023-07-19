@@ -8,40 +8,52 @@ import styles from './ui-notification-item.module.scss'
 const cx = classNames.bind(styles)
 
 function UiAcceptedNotificationItem({
+  id,
   name,
   duration,
   createdAt,
+  onClickNotiItem,
 }: UiNotificationItemProps) {
   const timeDiff = utilCalcTimeDiff(createdAt)
 
   return (
-    <div className={cx('itemContainer')}>
+    <button
+      type="button"
+      className={cx('itemContainer')}
+      onClick={() => onClickNotiItem(id)}
+    >
       <div className={cx('status', 'accepted')} />
       <p className={cx('result')}>
         {name}({duration}) 공고 지원이{' '}
         <span className={cx('acceptedEmphasis')}>승인</span>되었어요.
       </p>
       <p className={cx('timeDiff')}>{timeDiff}</p>
-    </div>
+    </button>
   )
 }
 
 function UiRejectedNotificationItem({
+  id,
   name,
   duration,
   createdAt,
+  onClickNotiItem,
 }: UiNotificationItemProps) {
   const timeDiff = utilCalcTimeDiff(createdAt)
 
   return (
-    <div className={cx('itemContainer')}>
+    <button
+      type="button"
+      className={cx('itemContainer')}
+      onClick={() => onClickNotiItem(id)}
+    >
       <div className={cx('status', 'rejected')} />
       <p className={cx('result')}>
         {name}({duration}) 공고 지원이{' '}
         <span className={cx('rejectedEmphasis')}>거절</span>되었어요.
       </p>
       <p className={cx('timeDiff')}>{timeDiff}</p>
-    </div>
+    </button>
   )
 }
 

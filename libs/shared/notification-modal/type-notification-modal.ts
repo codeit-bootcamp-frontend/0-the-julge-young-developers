@@ -1,12 +1,14 @@
 interface UiNotificationItemProps {
+  id: string
   name: string
   duration: string
   createdAt: string
+  onClickNotiItem: (alertId: string) => void
 }
 
 interface UiNotificationItem {
-  id: number
-  name: string
+  id: string
+  storeName: string
   duration: string
   startsAt: string
   workhour: number
@@ -17,6 +19,7 @@ interface UiNotificationItem {
 interface UiNotificationModalProps {
   itemList: UiNotificationItem[]
   onClose: (isOpen: boolean) => void
+  onClickNotiItem: (alertId: string) => void
 }
 
 export type {
