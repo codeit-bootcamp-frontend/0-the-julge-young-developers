@@ -29,8 +29,10 @@ export default async function MyProfilePage({
 
   if (response instanceof Error) {
     // console.error(response)
+    throw new Error()
   } else if (typeof response === 'string') {
     // console.error(response)
+    throw new Error(response)
   } else {
     if (response.item.type === 'employer') {
       redirect('/my-shop')
