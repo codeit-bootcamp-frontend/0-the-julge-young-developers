@@ -51,6 +51,7 @@ export default function MyNoticeList({ shopId }: { shopId: string }) {
       setCount(newCount)
 
       setOffset((prev) => prev + 3)
+      setInView(false)
     }
     return true
   }
@@ -72,7 +73,6 @@ export default function MyNoticeList({ shopId }: { shopId: string }) {
   }, [])
 
   useEffect(() => {
-    console.log(inView, offset, count)
     if (!isLoading) {
       fetchNotices()
     }

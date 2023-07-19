@@ -1,8 +1,11 @@
 'use client'
 
-import { ChangeEvent, MouseEvent, useState } from 'react'
+import { ChangeEvent, MouseEvent, useEffect, useState } from 'react'
 
 import classNames from 'classnames/bind'
+import { getCookie } from 'cookies-next'
+
+import { useRouter } from 'next/navigation'
 
 import { FUNNEL_NOTICE_TITLE } from '@/libs/my-shop/data-access/my-notice-data'
 import styles from '@/libs/my-shop/feature/my-shop/register-shop-modal-funnel-content.module.scss'
@@ -12,8 +15,12 @@ import {
   ActiveBtn,
   InactiveBtn,
 } from '@/libs/shared/click-btns/feature/click-btns'
+import SelectDatePicker from '@/libs/shared/input-select-btn/feature/feature-date-picker'
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
+import UiLoading from '@/libs/shared/loading/ui/ui-loading'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
+
+import { sendNoticeRequest } from '../../data-access/data-access-send-notice-request'
 
 const cx = classNames.bind(styles)
 
@@ -27,7 +34,8 @@ export default function RegisterJobPostingFunnelContent({
   >('hourlyWage')
   const [unmounted, setUnmounted] = useState<boolean>(false)
   const [backUnmounted, setBackUnmounted] = useState<boolean>(false)
-
+  const [isLoading, setISLoading] = useState(false)
+  const router = useRouter()
   const {
     hourlyWage,
     setHourlyWage,
@@ -41,6 +49,12 @@ export default function RegisterJobPostingFunnelContent({
     setIsAllFilled,
   } = useRegisterJobPostingState('funnel')
 
+  useEffect(() => {
+    if (startsAt) {
+      setIsAllFilled(true)
+    }
+  }, [startsAt])
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -48,18 +62,16 @@ export default function RegisterJobPostingFunnelContent({
       setIsAllFilled(false)
     }
     if (funnel === 'hourlyWage') {
-      setHourlyWage(e.target.value)
-    } else if (funnel === 'startsAt') {
-      setStartsAt(e.target.value)
+      setHourlyWage(Number(e.target.value))
     } else if (funnel === 'workhour') {
-      setWorkhour(e.target.value)
+      setWorkhour(Number(e.target.value))
     } else if (funnel === 'description') {
       setDescription(e.target.value)
     }
     setIsAllFilled(true)
   }
 
-  const handleClickButton = (e: MouseEvent<HTMLFormElement>) => {
+  const handleClickButton = async (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!isAllFilled) return
 
@@ -73,7 +85,28 @@ export default function RegisterJobPostingFunnelContent({
       setFunnel('description')
     } else if (funnel === 'description') {
       // api
-      onClickToggelModal()
+
+      e.preventDefault()
+      const sid = getCookie('sid')
+      if (!startsAt) {
+        return
+      }
+      setISLoading(true)
+      const isSuccess = await sendNoticeRequest({
+        shopId: `${sid}`,
+        hourlyPay: hourlyWage as number,
+        startsAt: startsAt.toISOString(),
+        workhour: workhour as number,
+        description,
+      })
+      if (isSuccess) {
+        setISLoading(false)
+        onClickToggelModal()
+        router.refresh()
+      } else {
+        setISLoading(false)
+        // 실패의 경우 처리
+      }
     }
 
     setTimeout(() => {
@@ -108,6 +141,18 @@ export default function RegisterJobPostingFunnelContent({
       setBackUnmounted(false)
     }, 500)
   }
+
+  const renderSubmitButton = () => {
+    if (!isAllFilled) {
+      return <InactiveBtn text="완료하기" size="large" />
+    }
+
+    if (isLoading) {
+      return <UiLoading />
+    }
+
+    return <ActiveBtn text="완료하기" size="large" type="submit" />
+  }
   return (
     <UiBgGrayModal
       onClickBackModal={handleClickBackModal}
@@ -127,16 +172,14 @@ export default function RegisterJobPostingFunnelContent({
                   title={FUNNEL_NOTICE_TITLE[funnel].title}
                   isRequired={true}
                   onChange={handleChange}
-                  defaultValue={hourlyWage}
+                  defaultValue={hourlyWage ? String(hourlyWage) : ''}
                 />
               )}
               {funnel === 'startsAt' && (
-                <Input
-                  variant="input-underline"
+                <SelectDatePicker
                   title={FUNNEL_NOTICE_TITLE[funnel].title}
-                  isRequired={true}
-                  onChange={handleChange}
-                  defaultValue={startsAt}
+                  onSelectDate={setStartsAt}
+                  selectedDate={startsAt}
                 />
               )}
               {funnel === 'workhour' && (
@@ -145,7 +188,7 @@ export default function RegisterJobPostingFunnelContent({
                   title={FUNNEL_NOTICE_TITLE[funnel].title}
                   isRequired={true}
                   onChange={handleChange}
-                  defaultValue={workhour}
+                  defaultValue={workhour ? String(workhour) : ''}
                 />
               )}
               {funnel === 'description' && (
@@ -159,11 +202,7 @@ export default function RegisterJobPostingFunnelContent({
               )}
             </div>
             <div className={cx('button', { unmounted, backUnmounted })}>
-              {isAllFilled ? (
-                <ActiveBtn text="다음" size="large" type="submit" />
-              ) : (
-                <InactiveBtn text="다음" size="large" />
-              )}
+              {renderSubmitButton()}
             </div>
           </form>
         </UiSimpleLayout>

@@ -8,7 +8,7 @@ export const FUNNEL_NOTICE_TITLE = {
     text: '업무 시작 일시를 입력해 주세요',
   },
   workhour: {
-    title: '주소',
+    title: '업무 시간',
     text: '업무 시간을 입력해 주세요',
   },
   description: {
