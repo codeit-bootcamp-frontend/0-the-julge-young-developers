@@ -52,6 +52,7 @@ export interface UiNoticeCardItemProps {
 }
 
 export interface UiNoticeCardListProps {
+  isHome?: boolean
   title?: string
   filterElement?: React.ReactNode
   children: React.ReactNode

@@ -20,6 +20,9 @@ $card-size-small: 171px;
   width: 100%;
 
   @include utils.tablet {
+    &.isHome {
+      padding: 0 32px;
+    }
   }
 
   @include utils.mobile {
@@ -57,7 +60,6 @@ $card-size-small: 171px;
   @include utils.tablet {
     grid-template-columns: repeat(2, $card-size-large);
     margin: 0 auto;
-    padding: 0 32px;
   }
 
   @include utils.mobile {
