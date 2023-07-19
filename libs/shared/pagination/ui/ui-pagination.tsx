@@ -3,7 +3,7 @@
 import classnames from 'classnames/bind'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 
 import UiPaginationArrow from '@/libs/shared/pagination/ui/ui-pagination-arrow'
 
@@ -23,12 +23,18 @@ export default function UiPagination({
   nextAble: boolean
 }) {
   const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const keyword = searchParams.get('keyword') as string
+
+  const url = keyword
+    ? `${pathname}?keyword=${keyword}&page=`
+    : `${pathname}?page=`
 
   return (
     <div className={cx('wrapper')}>
       <div className={cx('content')}>
         <Link
-          href={`${pathname}?page=${page - 1}`}
+          href={`${url}${page - 1}`}
           className={cx({ disabled: !prevAble })}
         >
           <UiPaginationArrow direction="prev" able={prevAble} />
@@ -37,7 +43,7 @@ export default function UiPagination({
           {shownPages.map((num) => (
             <Link
               key={num}
-              href={`${pathname}?page=${num}`}
+              href={`${url}${num}`}
               className={cx({ disabled: page === num })}
             >
               <span className={cx('number', { isActive: page === num })}>
@@ -47,7 +53,7 @@ export default function UiPagination({
           ))}
         </div>
         <Link
-          href={`${pathname}?page=${page + 1}`}
+          href={`${url}${page + 1}`}
           className={cx({ disabled: !nextAble })}
         >
           <UiPaginationArrow direction="next" able={nextAble} />
