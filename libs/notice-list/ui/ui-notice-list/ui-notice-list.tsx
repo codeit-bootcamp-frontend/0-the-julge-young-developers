@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind'
 
+import { FilterDatas } from '@/libs/notice-list/type-notice-list'
 import styles from '@/libs/notice-list/ui/ui-notice-list/ui-notice-list.module.scss'
 import { AllNoticesData } from '@/libs/shared/api/types/type-notice'
 import DetailFilter from '@/libs/shared/detail-filter/feature/detail-filter'
@@ -20,11 +21,11 @@ export default function UiNoticeList({
   paginationElement: React.ReactNode
   isModalOpen: boolean
   setModalOpen: (isModalOpen: boolean) => void
-  onClickGetFilteredData: (
-    selectedLocations: string[],
-    start: string | undefined,
-    price: number | undefined,
-  ) => void
+  onClickGetFilteredData: ({
+    startDate,
+    price,
+    locations,
+  }: FilterDatas) => Promise<void>
 }) {
   return (
     <div className={cx('wrapper')}>

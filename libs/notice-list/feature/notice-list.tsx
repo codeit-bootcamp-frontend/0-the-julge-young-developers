@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
+import { FilterDatas } from '@/libs/notice-list/type-notice-list'
 import { getNotices } from '@/libs/shared/api/data-access/request/noticeRequest'
 import { AllNoticesData } from '@/libs/shared/api/types/type-notice'
 import UiFilterElement from '@/libs/shared/notice-card/ui/ui-filter-element/ui-filter-element'
@@ -16,14 +17,54 @@ export default function NoticeList({
 }) {
   const [data, setData] = useState<AllNoticesData[]>([])
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const [sortData, setSortData] = useState<'time' | 'pay' | 'hour' | 'shop'>(
+    'time',
+  )
+  const [filterData, setFilterData] = useState<FilterDatas>({} as FilterDatas)
   const [pageNum, setPageNum] = useState(1)
 
   const handleClickModalOpen = () => {
     setIsModalOpen(true)
   }
 
+  // 검색 필터에 연결될 이벤트 핸들러 함수
+  const handleApplyFilterData = async ({
+    startDate,
+    price,
+    locations,
+  }: FilterDatas) => {
+    setFilterData({ startDate, price, locations })
+
+    const response = await getNotices({
+      limit: 6,
+      address: locations,
+      startsAtGte: startDate,
+      hourlyPayGte: price,
+      sort: sortData,
+      keyword,
+    })
+    if (response instanceof Error) {
+      // 알 수 없는 에러 처리
+    } else if (typeof response === 'string') {
+      // 에러 메시지에 맞게 처리
+    } else {
+      const { items } = response
+      const itemArray = items.map((item) => item.item)
+      setData(itemArray)
+      console.log('filter 옵션 적용:', startDate, price, locations)
+    }
+  }
+
+  // const handleClickApplyButton = (startDate, price, locations) => () => {
+  //   handleApplyFilterData({
+  //     startDate,
+  //     price,
+  //     locations
+  //   })
+  // }
+
   // 정렬 버튼에 연결될 이벤트 핸들러 함수
-  const handleSelectSortData = async (sort: string) => {
+  const handleApplySortData = async (sort: string) => {
     let sortStr: 'time' | 'pay' | 'hour' | 'shop'
     switch (sort) {
       case '마감임박순':
@@ -44,30 +85,15 @@ export default function NoticeList({
         break
     }
 
-    const response = await getNotices({ limit: 6, sort: sortStr, keyword })
-    if (response instanceof Error) {
-      // 알 수 없는 에러 처리
-    } else if (typeof response === 'string') {
-      // 에러 메시지에 맞게 처리
-    } else {
-      const { items } = response
-      const itemArray = items.map((item) => item.item)
-      setData(itemArray)
-    }
-  }
+    setSortData(sortStr)
+    const { price, locations } = filterData
 
-  // 검색 필터에 연결될 이벤트 핸들러 함수
-  const handleGetFilteredData = async (
-    selectedLocations: string[],
-    start: string | undefined,
-    price: number | undefined,
-  ) => {
     const response = await getNotices({
       limit: 6,
-      address: selectedLocations,
-      startsAtGte: start,
-      hourlyPayGte: price,
+      sort: sortStr,
       keyword,
+      hourlyPayGte: price,
+      address: locations,
     })
     if (response instanceof Error) {
       // 알 수 없는 에러 처리
@@ -75,7 +101,6 @@ export default function NoticeList({
       // 에러 메시지에 맞게 처리
     } else {
       const { items } = response
-      console.log(items) // API에 hourlyPayGte 파라미터 붙여 보낼 때 이상한 데이터가 response 돼서 질문했고, 확인 끝나면 삭제하겠습니다.
       const itemArray = items.map((item) => item.item)
       setData(itemArray)
     }
@@ -103,11 +128,11 @@ export default function NoticeList({
       data={data}
       isModalOpen={isModalOpen}
       setModalOpen={setIsModalOpen}
-      onClickGetFilteredData={handleGetFilteredData}
+      onClickGetFilteredData={handleApplyFilterData}
       filterElement={
         <UiFilterElement
           onClickModalOpen={handleClickModalOpen}
-          onSelectSortData={handleSelectSortData}
+          onSelectSortData={handleApplySortData}
         />
       }
       paginationElement={
