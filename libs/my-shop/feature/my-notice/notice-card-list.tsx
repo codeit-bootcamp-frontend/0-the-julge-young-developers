@@ -1,4 +1,6 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 
 import { getShopInfo } from '@/libs/shared/api/data-access/request/shopRequest'
 import {
@@ -8,18 +10,32 @@ import {
 import { ShopData } from '@/libs/shared/api/types/type-shop'
 import NoticeCardItem from '@/libs/shared/notice-card/feature/notice-card-item'
 
-export default async function NoticeCardList({
+export default function NoticeCardList({
   notices,
   shopId,
 }: {
   notices: ShopNoticesData
   shopId: string
 }) {
-  const myShopData = (await getShopInfo(shopId)) as ShopData
+  const [myShopData, setMyShopData] = useState<ShopData | null>(null)
+
+  useEffect(() => {
+    async function fetchShopData() {
+      const response = await getShopInfo(shopId)
+      if (response instanceof Error) {
+        // Handle error
+      } else {
+        setMyShopData(response as ShopData)
+      }
+    }
+
+    fetchShopData()
+  }, [shopId])
+
   const data: AllNoticesData[] = notices.items.map((item) => {
-    const shop = myShopData?.item // myShopData가 존재하면 shop 변수에 할당
+    const shop = myShopData?.item
     return {
-      ...item.item, // 기존의 item.item을 그대로 유지
+      ...item.item,
       shop: {
         item: {
           id: shop?.id ?? '',
@@ -31,7 +47,7 @@ export default async function NoticeCardList({
           imageUrl: shop?.imageUrl ?? '',
           originalHourlyPay: shop?.originalHourlyPay ?? 0,
         },
-        href: myShopData.links[0].href,
+        href: myShopData?.links[0].href ?? '',
       },
     }
   })
