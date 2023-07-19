@@ -42,7 +42,6 @@ export default function Gnb() {
       if (!userId) {
         setUserType('guest')
       } else {
-        console.log(userId)
         await getUserType(userId)
       }
     }

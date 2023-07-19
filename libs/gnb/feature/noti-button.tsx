@@ -42,7 +42,6 @@ export default function NotiButton({
       // 에러 메시지에 맞게 처리
     } else {
       const { items } = response
-      console.log(items)
 
       const notiItems = items
         .map((noticeItem) => {
@@ -87,7 +86,7 @@ export default function NotiButton({
     } else if (typeof response === 'string') {
       // 에러 메시지에 맞게 처리
     } else {
-      console.log(response)
+      // console.log(response)
     }
   }
 

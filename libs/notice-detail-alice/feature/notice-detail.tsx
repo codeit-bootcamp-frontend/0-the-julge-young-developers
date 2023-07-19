@@ -55,7 +55,7 @@ export default function NoticeDetail() {
     const noticeInfo = await loadNoticeInfo(noticeId)
 
     if (noticeInfo instanceof Error) {
-      console.log(noticeInfo)
+      throw noticeInfo
     }
     setApplicationData(
       applicationInfo as SetStateAction<NoticeUserApplicationItem>,
