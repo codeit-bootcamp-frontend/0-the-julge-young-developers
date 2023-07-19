@@ -68,6 +68,9 @@ const getUserAlertsList = async (
     return response
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      if (!error.response?.data.message) {
+        return error as Error
+      }
       return error.response?.data.message
     }
     return error as Error
@@ -125,6 +128,9 @@ const clearAlerts = async (
     return response
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      if (!error.response?.data.message) {
+        return error as Error
+      }
       return error.response?.data.message
     }
     return error as Error

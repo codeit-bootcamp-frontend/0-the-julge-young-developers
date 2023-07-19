@@ -28,9 +28,9 @@ export default async function ApplicationDetailShell({
   let totalItems
 
   if (res instanceof Error) {
-    // console.log(response)
+    throw new Error()
   } else if (typeof res === 'string') {
-    // console.log(response)
+    throw new Error(res)
   } else {
     const applications = res.items
 

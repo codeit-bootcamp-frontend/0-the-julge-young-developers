@@ -7,6 +7,7 @@ export default async function NoticeDetailLayout({
     <>
       {children}
       <div id="loader-portal" />
+      <div id="btn-portal" />
     </>
   )
 }

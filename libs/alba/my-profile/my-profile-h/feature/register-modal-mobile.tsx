@@ -52,6 +52,7 @@ interface RegisterModalMobileProps {
   setDefaultName: Dispatch<SetStateAction<string>>
   setDefaultPhone: Dispatch<SetStateAction<string>>
   setDefaultAddress: Dispatch<SetStateAction<string>>
+  handleClickShowErrorDialog: (text: string) => void
   // setDefaultBio: Dispatch<SetStateAction<string>>
 }
 
@@ -67,6 +68,7 @@ export default function RegisterModalMobile({
   setDefaultPhone,
   setDefaultAddress,
   setOpenClientLoader,
+  handleClickShowErrorDialog,
 }: RegisterModalMobileProps) {
   const router = useRouter()
   const [funnel, setFunnel] = useState<'name' | 'phone' | 'address' | 'bio'>(
@@ -169,7 +171,7 @@ export default function RegisterModalMobile({
     const userId = getCookie('uid') as string
 
     setOpenClientLoader(true)
-    await updateUserInfo(userId, {
+    const res = await updateUserInfo(userId, {
       name: funnelSubmitData.name,
       phone: funnelSubmitData.phone,
       address: funnelSubmitData.address,
@@ -177,9 +179,19 @@ export default function RegisterModalMobile({
     })
     setOpenClientLoader(false)
 
-    router.refresh()
+    if (res instanceof Error) {
+      // 알 수 없는 에러 처리
+      handleClickShowErrorDialog('알 수 없는 에러가 발생했습니다.')
+    } else if (typeof res === 'string') {
+      // 에러 메시지에 맞게 처리
+      handleClickShowErrorDialog(res)
+    } else {
+      // response 데이터 가공
+      router.refresh()
+      onClickOpenToast()
+    }
+
     onClickCloseModal()
-    onClickOpenToast()
   }
 
   useEffect(() => {

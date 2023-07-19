@@ -33,8 +33,10 @@ export default async function NoticeDetailPage({
     const userInfo = await getUserInfo(userId)
     if (userInfo instanceof Error) {
       // 알 수 없는 에러 처리
+      throw new Error()
     } else if (typeof userInfo === 'string') {
       // 에러 메시지에 맞게 처리
+      throw new Error(userInfo)
     } else {
       // res 데이터 가공
       if (userInfo.item.name) {
@@ -52,8 +54,10 @@ export default async function NoticeDetailPage({
 
     if (userNoticeApplication instanceof Error) {
       // 알 수 없는 에러 처리
+      throw new Error()
     } else if (typeof userNoticeApplication === 'string') {
       // 에러 메시지에 맞게 처리
+      throw new Error(userNoticeApplication)
     } else {
       // response 데이터 가공
 
@@ -80,8 +84,10 @@ export default async function NoticeDetailPage({
 
   if (noticeDetail instanceof Error) {
     // 알 수 없는 에러 처리
+    throw new Error()
   } else if (typeof noticeDetail === 'string') {
     // 에러 메시지에 맞게 처리
+    throw new Error(noticeDetail)
   } else {
     // response 데이터 가공
     hourlyPay = noticeDetail.item.hourlyPay

@@ -133,6 +133,9 @@ const signIn = async (
     return response
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      if (!error.response?.data.message) {
+        return error as Error
+      }
       return error.response?.data.message
     }
     return error as Error
@@ -188,6 +191,9 @@ const signUp = async (
     return response
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      if (!error.response?.data.message) {
+        return error as Error
+      }
       return error.response?.data.message
     }
     return error as Error
@@ -228,6 +234,9 @@ const getUserInfo = async (uid: string): Promise<UserData | string | Error> => {
     return response
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      if (!error.response?.data.message) {
+        return error as Error
+      }
       return error.response?.data.message
     }
     return error as Error
@@ -304,6 +313,9 @@ const updateUserInfo = async (
     return response
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      if (!error.response?.data.message) {
+        return error as Error
+      }
       return error.response?.data.message
     }
     return error as Error
