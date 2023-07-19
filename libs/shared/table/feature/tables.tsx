@@ -33,15 +33,13 @@ function ApplicationHistoryTable({
   data,
   paginationElement,
 }: ApplicationHistoryTableProps) {
-  const tableData: TableData[] = data
-    .map((item) => ({
-      id: item.id,
-      status: item.status,
-      first: item.name,
-      second: utilFormatDuration(item.startsAt, item.workhour),
-      third: `${item.hourlyPay.toLocaleString()}원`,
-    }))
-    .filter((item) => item.status !== 'canceled')
+  const tableData: TableData[] = data.map((item) => ({
+    id: item.id,
+    status: item.status,
+    first: item.name,
+    second: utilFormatDuration(item.startsAt, item.workhour),
+    third: `${item.hourlyPay.toLocaleString()}원`,
+  }))
 
   if (!(tableData.length > 0)) return <UiNoTableData userType="employee" />
   return (
@@ -88,15 +86,13 @@ function ApplicantListTable({
   paginationElement,
   page,
 }: ApplicantListTableProps) {
-  const tableData: TableData[] = data
-    .map((item) => ({
-      id: item.id,
-      status: item.status,
-      first: item.name,
-      second: item.description,
-      third: item.phone && utilFormatPhone(item.phone),
-    }))
-    .filter((item) => item.status !== 'canceled')
+  const tableData: TableData[] = data.map((item) => ({
+    id: item.id,
+    status: item.status,
+    first: item.name,
+    second: item.description,
+    third: item.phone && utilFormatPhone(item.phone),
+  }))
 
   if (!(tableData.length > 0)) {
     return <UiNoTableData userType="employer" checkPage={page !== 1} />

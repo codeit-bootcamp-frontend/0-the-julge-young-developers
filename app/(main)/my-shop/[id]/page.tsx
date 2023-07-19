@@ -1,8 +1,11 @@
+import { Suspense } from 'react'
+
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import { getShopIdData } from '@/libs/my-shop-notice/data-access/data-access-notice'
 import MyShopNoticeApplicant from '@/libs/my-shop-notice/feature/my-shop-notice-applicant'
+import CommonDomainLoader from '@/libs/shared/loading/feature/domain-loader'
 
 export default async function MyShopNoticeDetailPage({
   params,
@@ -23,6 +26,15 @@ export default async function MyShopNoticeDetailPage({
       : Math.floor(Number(searchParams.page))
 
   return (
-    <MyShopNoticeApplicant shopId={shopId} noticeId={params.id} page={page} />
+    <Suspense
+      fallback={
+        <CommonDomainLoader
+          title="신청 목록"
+          text="테이블 정보를 불러오고 있어요"
+        />
+      }
+    >
+      <MyShopNoticeApplicant shopId={shopId} noticeId={params.id} page={page} />
+    </Suspense>
   )
 }

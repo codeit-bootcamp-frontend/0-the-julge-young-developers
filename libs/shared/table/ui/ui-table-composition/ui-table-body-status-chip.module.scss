@@ -16,7 +16,8 @@
     color: utils.$blue-brt1;
   }
 
-  &.rejected {
+  &.rejected,
+  &.canceled {
     background-color: utils.$red-brt4;
     color: utils.$red-brt1;
   }
