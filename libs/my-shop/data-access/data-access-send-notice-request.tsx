@@ -11,7 +11,7 @@ export async function sendNoticeRequest({
   workhour,
   description,
   noticeId,
-}: RegisterdShopNoticeProps): Promise<boolean> {
+}: RegisterdShopNoticeProps): Promise<[boolean, string]> {
   if (noticeId) {
     const response = await updateShopNotice(shopId, noticeId, {
       hourlyPay,
@@ -19,10 +19,13 @@ export async function sendNoticeRequest({
       workhour,
       description,
     })
-    if (typeof response !== 'string' && !(response instanceof Error)) {
-      return true
+    if (response instanceof Error) {
+      throw response
+    } else if (typeof response == 'string') {
+      return [true, response]
+    } else {
+      return [false, '']
     }
-    return false
   }
   const response = await registerShopNotice({
     shopId,
@@ -31,10 +34,12 @@ export async function sendNoticeRequest({
     workhour,
     description,
   })
-  console.log(response)
 
-  if (typeof response !== 'string' && !(response instanceof Error)) {
-    return true
+  if (response instanceof Error) {
+    throw response
+  } else if (typeof response == 'string') {
+    return [true, response]
+  } else {
+    return [false, '']
   }
-  return false
 }
