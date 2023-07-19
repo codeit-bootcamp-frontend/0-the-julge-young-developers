@@ -64,7 +64,7 @@ export default function UiGnb({
             <div className={cx('buttons')}>
               <UiButton
                 name="내 가게"
-                handleClickButton={handleClickMovePage}
+                handleClickButton={() => handleClickMovePage('my-shop')}
               />
               <NotiButton
                 onCheckNotification={onCheckNotification}
