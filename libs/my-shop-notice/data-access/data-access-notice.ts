@@ -59,6 +59,7 @@ export const getNoticeDetailData = async (
     name,
     category,
     duration: utilFormatDuration(startsAt, workhour),
+    startsAt,
     workhour,
     address,
     shopDescription,

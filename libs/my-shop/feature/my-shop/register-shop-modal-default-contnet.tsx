@@ -29,9 +29,11 @@ const cx = classNames.bind(styles)
 export default function RegisterShopModalDefaultContent({
   shop,
   onClickToggelModal,
+  onClickShowToast,
 }: {
   shop?: Shop
   onClickToggelModal: () => void
+  onClickShowToast: () => void
 }) {
   const [isLoading, setISLoading] = useState(false)
   const router = useRouter()
@@ -57,7 +59,7 @@ export default function RegisterShopModalDefaultContent({
   const handleSubmit = async (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
     setISLoading(true)
-    const isSuccess = await sendRegisterShopRequest(
+    const isError = await sendRegisterShopRequest(
       shop,
       shopName,
       category,
@@ -67,9 +69,10 @@ export default function RegisterShopModalDefaultContent({
       selectedImage,
       description,
     )
-    if (isSuccess) {
+    if (!isError) {
       setISLoading(false)
       onClickToggelModal()
+      onClickShowToast()
       router.refresh()
     } else {
       setISLoading(false)

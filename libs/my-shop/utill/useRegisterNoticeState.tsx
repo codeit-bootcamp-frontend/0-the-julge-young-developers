@@ -1,10 +1,24 @@
 import { useEffect, useState } from 'react'
 
-export default function useRegisterNoticeState(variant = 'default') {
-  const [hourlyWage, setHourlyWage] = useState<number>()
-  const [startsAt, setStartsAt] = useState<Date | undefined>()
-  const [workhour, setWorkhour] = useState<number>()
-  const [description, setDescription] = useState<string>('')
+import { NoticeEditData } from '@/libs/shared/notice-card/type-notice-card'
+
+export default function useRegisterNoticeState({
+  variant = 'default',
+  notice,
+}: {
+  variant?: string
+  notice?: NoticeEditData
+}) {
+  const [hourlyWage, setHourlyWage] = useState<number | undefined>(
+    notice?.hourlyPay,
+  )
+  const [startsAt, setStartsAt] = useState<Date | undefined>(
+    notice ? new Date(notice.startsAt) : undefined,
+  )
+  const [workhour, setWorkhour] = useState<number | undefined>(notice?.workhour)
+  const [description, setDescription] = useState<string>(
+    notice ? notice.description : '',
+  )
   const [isAllFilled, setIsAllFilled] = useState<boolean>(false)
 
   useEffect(() => {

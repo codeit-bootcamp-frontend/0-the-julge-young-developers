@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import classNames from 'classnames/bind'
 
@@ -14,6 +14,7 @@ import {
   ActiveBtn,
   ActiveOutlineBtn,
 } from '@/libs/shared/click-btns/feature/click-btns'
+import ToastContainer from '@/libs/shared/toast/feature/toast-container'
 
 import styles from './ui-my-shop-detail-button.module.scss'
 
@@ -22,7 +23,12 @@ export default function UiMyShopDetailButton({ shop }: { shop: Shop }) {
   const [openShopModal, setOpenShopModal] = useState<boolean>(false)
   const [openNoticeModal, setOpenNoticeModal] = useState<boolean>(false)
   const [showModal, setShowModal] = useState<boolean>(false)
+  const [showEditToast, setShowEditToast] = useState<boolean>(false)
+  const [showRegisterToast, setShowRegisterToast] = useState<boolean>(false)
 
+  useEffect(() => {
+    console.log(showEditToast)
+  }, [showEditToast])
   const handleClickToggleShopModal = () => {
     setOpenShopModal(!openShopModal)
   }
@@ -55,14 +61,30 @@ export default function UiMyShopDetailButton({ shop }: { shop: Shop }) {
         <RegisterShopModal
           onClickToggelModal={handleClickToggleShopModal}
           shop={shop}
+          onClickShowToast={() =>
+            shop ? setShowEditToast(true) : setShowRegisterToast(true)
+          }
         />
       )}
       {openNoticeModal && (
         <RegisterNoticeModal
           onClickToggelModal={handleClickToggleNoticeModal}
           showModal={showModal}
+          onClickShowToast={() => setShowRegisterToast(true)}
         />
       )}
+      <div>
+        {showEditToast && (
+          <ToastContainer onShow={() => setShowEditToast(false)}>
+            편집을 완료했어요
+          </ToastContainer>
+        )}
+        {showRegisterToast && (
+          <ToastContainer onShow={() => setShowRegisterToast(false)}>
+            등록을 완료했어요
+          </ToastContainer>
+        )}
+      </div>
     </>
   )
 }

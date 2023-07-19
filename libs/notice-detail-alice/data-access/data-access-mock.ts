@@ -17,6 +17,7 @@ const MOCK_NOTICE_DETAIL_DATA: NoticeDetail = {
   imageUrl:
     'https://bootcamp-project-api.s3.ap-northeast-2.amazonaws.com/0-1/the-julge/1bdb43c8-ff08-4a46-81b0-7f91efced98c-jinju4.png',
   closed: true,
+  startsAt: '2023-01-03',
 }
 
 const MOCK_NOTICES_DATA = [

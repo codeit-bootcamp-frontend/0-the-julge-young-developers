@@ -14,7 +14,7 @@ export async function sendRegisterShopRequest(
   defaultHourlyWage: number | undefined,
   selectedImage: string,
   description: string,
-): Promise<boolean> {
+): Promise<[boolean, string]> {
   if (shop) {
     const response = await updateShopInfo(shop.id, {
       name: shopName,
@@ -25,12 +25,14 @@ export async function sendRegisterShopRequest(
       imageUrl: selectedImage,
       originalHourlyPay: defaultHourlyWage as number,
     })
-    console.log(response)
 
-    if (typeof response !== 'string' && !(response instanceof Error)) {
-      return true
+    if (response instanceof Error) {
+      throw response
+    } else if (typeof response === 'string') {
+      return [true, response]
+    } else {
+      return [false, '']
     }
-    return false
   }
 
   const response = await registerShop({
@@ -43,8 +45,11 @@ export async function sendRegisterShopRequest(
     originalHourlyPay: defaultHourlyWage as number,
   })
 
-  if (typeof response !== 'string' && !(response instanceof Error)) {
-    return true
+  if (response instanceof Error) {
+    throw response
+  } else if (typeof response === 'string') {
+    return [true, response]
+  } else {
+    return [false, '']
   }
-  return false
 }

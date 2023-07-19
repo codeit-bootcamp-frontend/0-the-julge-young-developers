@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { getShopNotices } from '@/libs/shared/api/data-access/request/noticeRequest'
 import { ShopNoticesData } from '@/libs/shared/api/types/type-notice'
@@ -78,6 +78,19 @@ export default function MyNoticeList({ shopId }: { shopId: string }) {
     }
   }, [inView])
 
+  if (!noticeData) {
+    return (
+      <UiSimpleLayout
+        title="등록한 공고"
+        titleAlign="start"
+        titleSize={28}
+        gap={24}
+      >
+        <UiLoading />
+      </UiSimpleLayout>
+    )
+  }
+
   return (
     <div>
       <UiSimpleLayout
@@ -86,14 +99,13 @@ export default function MyNoticeList({ shopId }: { shopId: string }) {
         titleSize={28}
         gap={24}
       >
-        {count !== 0 && noticeData ? (
+        {count === 0 ? (
+          <UnregisteredMyNotice />
+        ) : (
           <>
             <NoticeCardList shopId={shopId} notices={noticeData} />
-
             {isLoading && <UiLoading />}
           </>
-        ) : (
-          <UnregisteredMyNotice />
         )}
       </UiSimpleLayout>
       <div ref={lastItemRef} style={{ height: '1px' }} />

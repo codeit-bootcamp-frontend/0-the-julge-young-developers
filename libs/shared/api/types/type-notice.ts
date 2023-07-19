@@ -109,6 +109,7 @@ interface RegisterdShopNoticeProps {
   workhour: number
   description: string
   token?: string
+  noticeId?: string
 }
 
 interface RegisterdShopNoticeData {

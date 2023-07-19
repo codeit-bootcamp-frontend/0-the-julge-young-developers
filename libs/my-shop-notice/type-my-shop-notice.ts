@@ -1,4 +1,4 @@
-import { NoticeDetail } from '@/libs/shared/notice-card/type-notice-card'
+import { NoticeEditData } from '@/libs/shared/notice-card/type-notice-card'
 
 export interface MyShopNoticeDetailProps {
   shopId: string
@@ -11,7 +11,5 @@ export interface MyShopNoticeApplicantProps {
 }
 
 export interface MyShopNoticeEditButtonProps {
-  shopId: string
-  noticeId: string
-  data: NoticeDetail
+  notice: NoticeEditData
 }
