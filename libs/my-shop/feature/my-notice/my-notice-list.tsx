@@ -96,7 +96,7 @@ export default function MyNoticeList({ shopId }: { shopId: string }) {
           <UnregisteredMyNotice />
         )}
       </UiSimpleLayout>
-      <div ref={lastItemRef}> 왜 안돼 </div>
+      <div ref={lastItemRef} style={{ height: '1px' }} />
     </div>
   )
 }
