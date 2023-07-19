@@ -101,6 +101,9 @@ const getNotices = async ({
     return response
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      if (!error.response?.data.message) {
+        return error as Error
+      }
       return error.response?.data.message
     }
     return error as Error
@@ -163,6 +166,9 @@ const getShopNotices = async ({
     return response
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      if (!error.response?.data.message) {
+        return error as Error
+      }
       return error.response?.data.message
     }
     return error as Error
@@ -240,6 +246,9 @@ const registerShopNotice = async ({
     return response
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      if (!error.response?.data.message) {
+        return error as Error
+      }
       return error.response?.data.message
     }
     return error as Error
@@ -289,6 +298,9 @@ const getShopNotice = async (
     return response
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      if (!error.response?.data.message) {
+        return error as Error
+      }
       return error.response?.data.message
     }
     return error as Error
@@ -370,6 +382,9 @@ const updateShopNotice = async (
     return response
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      if (!error.response?.data.message) {
+        return error as Error
+      }
       return error.response?.data.message
     }
     return error as Error

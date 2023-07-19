@@ -90,6 +90,9 @@ const registerShop = async (
     return response
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      if (!error.response?.data.message) {
+        return error as Error
+      }
       return error.response?.data.message
     }
     return error as Error
@@ -134,6 +137,9 @@ const getShopInfo = async (
     return response
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      if (!error.response?.data.message) {
+        return error as Error
+      }
       return error.response?.data.message
     }
     return error as Error
@@ -194,6 +200,9 @@ const updateShopInfo = async (
     return response
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      if (!error.response?.data.message) {
+        return error as Error
+      }
       return error.response?.data.message
     }
     return error as Error
