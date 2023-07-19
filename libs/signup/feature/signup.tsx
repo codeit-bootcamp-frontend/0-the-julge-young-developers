@@ -5,6 +5,7 @@ import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { signUp } from '@/libs/shared/api/data-access/request/userRequest'
+import { ConfirmDialog } from '@/libs/shared/dialog/feature/dialog'
 import CommonClientLoader from '@/libs/shared/loading/feature/client-loader'
 import { UserType } from '@/libs/signup/type-signup'
 import UiSignUp from '@/libs/signup/ui/ui-signup/ui-signup'
@@ -13,6 +14,8 @@ import Checker from '@/libs/signup/util/checkerClass'
 export default function SignUp() {
   const router = useRouter()
   const [openClientLoader, setOpenClientLoader] = useState<boolean>(false)
+  const [openErrorDialog, setOpenErrorDialog] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
   const userInputRefs = useRef<HTMLInputElement[]>([])
   const [validEmail, setValidEmail] = useState<boolean>(true)
@@ -30,8 +33,12 @@ export default function SignUp() {
     setOpenClientLoader(false)
     if (res instanceof Error) {
       // 알 수 없는 에러 처리
+      setErrorMessage('알 수 없는 에러가 발생했습니다.')
+      setOpenErrorDialog(true)
     } else if (typeof res === 'string') {
       // 에러 메시지에 맞게 처리
+      setErrorMessage(res)
+      setOpenErrorDialog(true)
     } else {
       // response 데이터 가공
       router.push('/signin')
@@ -91,6 +98,13 @@ export default function SignUp() {
         handleClickSelectUserType={handleClickSelectUserType}
       />
       {openClientLoader && <CommonClientLoader />}
+
+      {openErrorDialog && (
+        <ConfirmDialog
+          text={errorMessage || '요청에 실패했습니다.'}
+          onConfirm={() => setOpenErrorDialog(false)}
+        />
+      )}
     </div>
   )
 }

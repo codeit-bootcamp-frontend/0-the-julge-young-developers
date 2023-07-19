@@ -7,12 +7,15 @@ import { setCookie } from 'cookies-next'
 import { useRouter } from 'next/navigation'
 
 import { signIn } from '@/libs/shared/api/data-access/request/userRequest'
+import { ConfirmDialog } from '@/libs/shared/dialog/feature/dialog'
 import CommonClientLoader from '@/libs/shared/loading/feature/client-loader'
 import UiSignIn from '@/libs/signin/ui/ui-signin/ui-signin'
 
 export default function SignIn() {
   const router = useRouter()
   const [openClientLoader, setOpenClientLoader] = useState<boolean>(false)
+  const [openErrorDialog, setOpenErrorDialog] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
   const handleClickSignIn = async (email: string, password: string) => {
     setOpenClientLoader(true)
@@ -20,11 +23,14 @@ export default function SignIn() {
     setOpenClientLoader(false)
     if (res instanceof Error) {
       // 알 수 없는 에러 처리
+      setErrorMessage('알 수 없는 에러가 발생했습니다.')
+      setOpenErrorDialog(true)
     } else if (typeof res === 'string') {
       // 에러 메시지에 맞게 처리
+      setErrorMessage(res)
+      setOpenErrorDialog(true)
     } else {
       // 데이터 가공 구간
-      // setLoading(false) // "라우터 처리" ? false 처리 필요 없음 : false 처리 필요함
       const { token, user } = res.item
       setCookie('token', token)
       setCookie('uid', user.item.id)
@@ -52,6 +58,13 @@ export default function SignIn() {
         handleClickButton={handleClickButton}
       />
       {openClientLoader && <CommonClientLoader />}
+
+      {openErrorDialog && (
+        <ConfirmDialog
+          text={errorMessage || '요청에 실패했습니다.'}
+          onConfirm={() => setOpenErrorDialog(false)}
+        />
+      )}
     </div>
   )
 }
