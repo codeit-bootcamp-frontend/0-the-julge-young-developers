@@ -10,7 +10,7 @@ export default function SearchNoticeList() {
 
   return (
     <div>
-      <NoticeList keyword={keyword} />
+      <NoticeList title={`${keyword}에 대한 공고목록`} keyword={keyword} />
     </div>
   )
 }
