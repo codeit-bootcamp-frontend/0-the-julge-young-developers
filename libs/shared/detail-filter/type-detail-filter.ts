@@ -1,5 +1,7 @@
 import { RefObject } from 'react'
 
+import { FilterDatas } from '@/libs/notice-list/type-notice-list'
+
 interface UiLocationContainerProps {
   locations: string[]
   onSelect: (location: string) => void
@@ -19,11 +21,11 @@ interface UiDetailFilterProps {
 
 interface DetailFilterProps {
   onClickCloseButton: (isShow: boolean) => void
-  onClickApplyButton: (
-    selectedLocations: string[],
-    start: string | undefined,
-    price: number | undefined,
-  ) => void
+  onClickApplyButton: ({
+    startDate,
+    price,
+    locations,
+  }: FilterDatas) => Promise<void>
 }
 
 export type { UiLocationContainerProps, UiDetailFilterProps, DetailFilterProps }
