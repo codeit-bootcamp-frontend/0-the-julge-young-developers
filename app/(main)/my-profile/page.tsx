@@ -1,12 +1,19 @@
+import { Suspense } from 'react'
+
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import ApplicationDetailShell from '@/libs/alba/application-history/shared/feature/application-detail-shell'
 import MyProfileShell from '@/libs/alba/my-profile/my-profile-h/feature/my-profile-shell'
 import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
+import CommonDomainLoader from '@/libs/shared/loading/feature/domain-loader'
 
 export const revalidate = 3600
-export default async function MyProfilePage() {
+export default async function MyProfilePage({
+  searchParams,
+}: {
+  searchParams: { page: string }
+}) {
   const cookieInstance = cookies()
   const userId = cookieInstance.get('uid')?.value
 
@@ -46,10 +53,25 @@ export default async function MyProfilePage() {
     }
   }
 
+  const page =
+    Number.isNaN(Number(searchParams.page)) || Number(searchParams.page) < 1
+      ? 1
+      : Math.floor(Number(searchParams.page))
+
   return (
     <div>
       <MyProfileShell isRegistered={isRegistered} userProfile={userProfile} />
-      {isRegistered && <ApplicationDetailShell />}
+
+      <Suspense
+        fallback={
+          <CommonDomainLoader
+            title="신청 내역"
+            text="테이블 정보를 불러오고 있어요"
+          />
+        }
+      >
+        {isRegistered && <ApplicationDetailShell page={page} />}
+      </Suspense>
     </div>
   )
 }
