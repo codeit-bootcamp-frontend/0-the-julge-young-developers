@@ -9,6 +9,7 @@ import NoticeCardItem from '@/libs/shared/notice-card/feature/notice-card-item'
 const cx = classNames.bind(styles)
 
 export default function UiNoticeList({
+  title,
   data,
   filterElement,
   paginationElement,
@@ -16,6 +17,7 @@ export default function UiNoticeList({
   setModalOpen,
   onClickGetFilteredData,
 }: {
+  title: string
   data: AllNoticesData[]
   filterElement: React.ReactNode
   paginationElement: React.ReactNode
@@ -32,7 +34,7 @@ export default function UiNoticeList({
       <div className={cx('noticeCardWrapper')}>
         <NoticeCardItem
           isHome={true}
-          title="공고 목록"
+          title={title}
           data={data}
           filterElement={filterElement}
         />
