@@ -1,39 +1,109 @@
 @use '@/styles/utils';
 
+@keyframes move {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(1.1rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .errorContainer {
-  position: relative;
-  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100vh;
+  background-color: utils.$red-brt4;
+}
 
-  .messageContainer {
-    display: flex;
-    position: absolute;
+.errorContent {
+  display: flex;
+  position: relative;
+  align-items: center;
+  gap: 30px;
+}
+
+.messageBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 380px;
+  gap: 15px;
+
+  .description {
+    font-size: 32px;
+    font-weight: 700;
+  }
+
+  .refreshButton {
+    padding: 15px;
+    border-radius: 7px;
+    background-color: utils.$red-brt2;
+    color: utils.$white;
+    font-size: 18px;
+  }
+}
+
+.oops {
+  position: absolute;
+  top: -170px;
+  left: 0;
+  animation: move 1s 0s infinite;
+}
+
+@include utils.tablet {
+  .errorContent {
     flex-direction: column;
+    gap: 50px;
+    margin-top: 150px;
+  }
+
+  .messageBox {
     align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+    order: 2;
 
-    .headerContainer {
-      display: block;
-      color: utils.$gray-brt1;
+    .description {
+      text-align: center;
     }
+  }
 
-    .buttonContainer {
-      display: block;
-      margin-top: 20px;
+  .errorhero {
+    top: -190px;
+    order: 1;
+  }
 
-      .button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px 16px;
-        border-radius: 20px;
-        background: utils.$gray-brt1;
-        color: utils.$white;
-        cursor: pointer;
-      }
+  .oops {
+    top: -220px;
+  }
+}
+
+@include utils.mobile {
+  .messageBox {
+    align-items: center;
+    order: 2;
+
+    .description {
+      font-size: 20px;
     }
+  }
+
+  .image {
+    width: 80%;
+    height: auto;
+  }
+
+  .oops {
+    top: -130px;
+    right: 40px;
+    left: unset;
+    width: 226px;
+    height: auto;
   }
 }
