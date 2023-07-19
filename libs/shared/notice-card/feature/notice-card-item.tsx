@@ -30,8 +30,10 @@ export default function NoticeCardItem({
     noticeId: string,
   ) => {
     if (isClosed) return
-    const userShopId = getCookie('shop_id') as string
+    const userShopId = getCookie('sid') as string
 
+    console.log(userShopId)
+    console.log(shopId)
     if (userShopId === shopId) {
       router.push(`/my-shop/${noticeId}`)
     } else {
