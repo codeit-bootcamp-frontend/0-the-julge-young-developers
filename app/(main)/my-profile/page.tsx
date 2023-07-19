@@ -28,10 +28,8 @@ export default async function MyProfilePage({
   const response = await getUserInfo(userId as string)
 
   if (response instanceof Error) {
-    // console.error(response)
-    throw new Error()
+    throw response
   } else if (typeof response === 'string') {
-    // console.error(response)
     throw new Error(response)
   } else {
     if (response.item.type === 'employer') {

@@ -33,7 +33,7 @@ export default async function NoticeDetailPage({
     const userInfo = await getUserInfo(userId)
     if (userInfo instanceof Error) {
       // 알 수 없는 에러 처리
-      throw new Error()
+      throw userInfo
     } else if (typeof userInfo === 'string') {
       // 에러 메시지에 맞게 처리
       throw new Error(userInfo)
@@ -54,7 +54,7 @@ export default async function NoticeDetailPage({
 
     if (userNoticeApplication instanceof Error) {
       // 알 수 없는 에러 처리
-      throw new Error()
+      throw userNoticeApplication
     } else if (typeof userNoticeApplication === 'string') {
       // 에러 메시지에 맞게 처리
       throw new Error(userNoticeApplication)
@@ -84,7 +84,7 @@ export default async function NoticeDetailPage({
 
   if (noticeDetail instanceof Error) {
     // 알 수 없는 에러 처리
-    throw new Error()
+    throw noticeDetail
   } else if (typeof noticeDetail === 'string') {
     // 에러 메시지에 맞게 처리
     throw new Error(noticeDetail)
