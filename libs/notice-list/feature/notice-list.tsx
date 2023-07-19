@@ -118,21 +118,23 @@ export default function NoticeList({
     return undefined
   }, [keyword])
   return (
-    <UiNoticeList
-      title={title}
-      data={data}
-      isModalOpen={isModalOpen}
-      setModalOpen={setIsModalOpen}
-      onClickGetFilteredData={handleApplyFilterData}
-      filterElement={
-        <UiFilterElement
-          onClickModalOpen={handleClickModalOpen}
-          onSelectSortData={handleApplySortData}
-        />
-      }
-      paginationElement={
-        <PaginationPrev pageNum={pageNum} setPageNum={setPageNum} />
-      }
-    />
+    <div style={{ paddingBottom: '60px' }}>
+      <UiNoticeList
+        title={title}
+        data={data}
+        isModalOpen={isModalOpen}
+        setModalOpen={setIsModalOpen}
+        onClickGetFilteredData={handleApplyFilterData}
+        filterElement={
+          <UiFilterElement
+            onClickModalOpen={handleClickModalOpen}
+            onSelectSortData={handleApplySortData}
+          />
+        }
+        paginationElement={
+          <PaginationPrev pageNum={pageNum} setPageNum={setPageNum} />
+        }
+      />
+    </div>
   )
 }
