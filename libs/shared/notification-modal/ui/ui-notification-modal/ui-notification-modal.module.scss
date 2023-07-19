@@ -1,6 +1,7 @@
 @use '@/styles/utils';
 
 .modalContainer {
+  z-index: 1000;
   width: 368px;
   padding: 24px 20px;
   border: 1px solid utils.$gray-brt3;
@@ -35,4 +36,10 @@
     top: 26px;
     right: 20px;
   }
+}
+
+.modalHeader {
+  @include utils.font-style('h3');
+
+  margin-bottom: 16px;
 }

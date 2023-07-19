@@ -14,6 +14,7 @@ import {
   ActionDialog,
   ConfirmDialog,
 } from '@/libs/shared/dialog/feature/dialog'
+import CommonClientLoader from '@/libs/shared/loading/feature/client-loader'
 
 import AlbaToast from '../../../shared/toast/feature/toast-container'
 
@@ -45,8 +46,12 @@ export default function NoticeDetailBtn({
   const [isShowCompleteToast, setIsShowCompleteToast] = useState<boolean>(false)
   const [isShowCancelToast, setIsShowCancelToast] = useState<boolean>(false)
 
+  const [openClientLoader, setOpenClientLoader] = useState<boolean>(false)
+
   const handleClickApplication = async () => {
+    setOpenClientLoader(true)
     const res = await registerNoticeApplication(shopId, noticeId)
+    setOpenClientLoader(false)
 
     if (res instanceof Error) {
       // 알 수 없는 에러 처리
@@ -60,12 +65,14 @@ export default function NoticeDetailBtn({
   }
 
   const handleClickCancelApplication = async () => {
+    setOpenClientLoader(true)
     const res = await updateNoticeApplicationResult(
       shopId,
       noticeId,
       isApplication?.item.id as string,
       'canceled',
     )
+    setOpenClientLoader(false)
 
     if (res instanceof Error) {
       // 알 수 없는 에러 처리
@@ -200,6 +207,8 @@ export default function NoticeDetailBtn({
           }}
         />
       )}
+
+      {openClientLoader && <CommonClientLoader />}
     </div>
   )
 }

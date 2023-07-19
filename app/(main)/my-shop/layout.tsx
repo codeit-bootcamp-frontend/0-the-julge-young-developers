@@ -10,6 +10,9 @@ export default function MyShopLayout({
       {children}
       <div id="funnel-portal-notice" />
       <div id="funnel-portal" />
+      <div id="btn-portal" />
+      <div id="loader-portal" />
+      <div id="toast-portal" />
     </div>
   )
 }

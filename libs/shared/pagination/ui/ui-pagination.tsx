@@ -29,13 +29,17 @@ export default function UiPagination({
       <div className={cx('content')}>
         <Link
           href={`${pathname}?page=${page - 1}`}
-          className={cx('arrow', { disabled: !prevAble })}
+          className={cx({ disabled: !prevAble })}
         >
           <UiPaginationArrow direction="prev" able={prevAble} />
         </Link>
         <div className={cx('numbers')}>
           {shownPages.map((num) => (
-            <Link key={num} href={`${pathname}?page=${num}`}>
+            <Link
+              key={num}
+              href={`${pathname}?page=${num}`}
+              className={cx({ disabled: page === num })}
+            >
               <span className={cx('number', { isActive: page === num })}>
                 {num}
               </span>
@@ -44,7 +48,7 @@ export default function UiPagination({
         </div>
         <Link
           href={`${pathname}?page=${page + 1}`}
-          className={cx('arrow', { disabled: !nextAble })}
+          className={cx({ disabled: !nextAble })}
         >
           <UiPaginationArrow direction="next" able={nextAble} />
         </Link>

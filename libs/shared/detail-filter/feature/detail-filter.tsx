@@ -42,6 +42,7 @@ export default function DetailFilter({
     }
     const locationsArray = Array.from(selectedLocations)
     const numberPrice = Number(priceInputRef.current?.value)
+
     if (startInputRef.current) {
       onClickApplyButton({
         startDate: startInputRef.current.value,
@@ -49,6 +50,7 @@ export default function DetailFilter({
         locations: locationsArray,
       })
     }
+
     onClickCloseButton(false)
   }
 

@@ -26,6 +26,7 @@ export default async function MyShopNoticeApplicant({
         shopId={shopId}
         noticeId={noticeId}
         paginationElement={<Pagination page={page} totalItems={totalItems} />}
+        page={page}
       />
     </UiSimpleLayoutResponsive>
   )

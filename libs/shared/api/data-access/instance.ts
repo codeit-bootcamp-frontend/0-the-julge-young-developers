@@ -11,10 +11,7 @@ import { CustomAxiosInterface } from '@/libs/shared/api/types/type-instance'
 import { logOnDev } from '../util/util-log'
 
 export const instance: CustomAxiosInterface = axios.create({
-  baseURL:
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : process.env.BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
     Accept: '*/*',

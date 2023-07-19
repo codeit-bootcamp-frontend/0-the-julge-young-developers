@@ -5,6 +5,7 @@ import {
   ApplicationHistoryTableProps,
   TableData,
 } from '@/libs/shared/table/type-table'
+import UiNoTableData from '@/libs/shared/table/ui/ui-no-table-data'
 import UiTableBody from '@/libs/shared/table/ui/ui-table-composition/ui-table-body'
 import UiTableBodyCell from '@/libs/shared/table/ui/ui-table-composition/ui-table-body-cell'
 import UiTableBodyRow from '@/libs/shared/table/ui/ui-table-composition/ui-table-body-row'
@@ -40,6 +41,7 @@ function ApplicationHistoryTable({
     third: `${item.hourlyPay.toLocaleString()}원`,
   }))
 
+  if (!(tableData.length > 0)) return <UiNoTableData userType="employee" />
   return (
     <UiTableContainer paginationElement={paginationElement}>
       <UiTableHeadRow>
@@ -82,6 +84,7 @@ function ApplicantListTable({
   shopId,
   noticeId,
   paginationElement,
+  page,
 }: ApplicantListTableProps) {
   const tableData: TableData[] = data.map((item) => ({
     id: item.id,
@@ -91,6 +94,9 @@ function ApplicantListTable({
     third: item.phone && utilFormatPhone(item.phone),
   }))
 
+  if (!(tableData.length > 0)) {
+    return <UiNoTableData userType="employer" checkPage={page !== 1} />
+  }
   return (
     <UiTableContainer paginationElement={paginationElement}>
       <UiTableHeadRow>

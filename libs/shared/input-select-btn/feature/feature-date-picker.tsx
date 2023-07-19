@@ -16,13 +16,12 @@ export default function SelectDatePicker({
   selectedDate,
   title,
 }: {
-  onSelectDate: Dispatch<SetStateAction<Date>>
-  selectedDate: Date
+  onSelectDate: Dispatch<SetStateAction<Date | undefined>>
+  selectedDate: Date | undefined
   title: string
 }) {
   const handleDateChange = (date: Date) => {
     onSelectDate(date)
-    console.log(date)
   }
   return (
     <div className={cx('wrapper')}>

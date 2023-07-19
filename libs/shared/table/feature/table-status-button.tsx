@@ -10,11 +10,12 @@ import {
   ActiveOutlineConfirmBtn,
 } from '@/libs/shared/click-btns/feature/click-btns'
 import { ActionDialog } from '@/libs/shared/dialog/feature/dialog'
+import CommonClientLoader from '@/libs/shared/loading/feature/client-loader'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
 import useOutsideClick from '@/libs/shared/shared/util/useOutsideClick'
 import { TableStatusButtonProps } from '@/libs/shared/table/type-table'
-
-import UiTableBodyStatusChip from '../ui/ui-table-composition/ui-table-body-status-chip'
+import UiTableBodyStatusChip from '@/libs/shared/table/ui/ui-table-composition/ui-table-body-status-chip'
+import ToastContainer from '@/libs/shared/toast/feature/toast-container'
 
 export default function TableStatusButton({
   shopId,
@@ -25,36 +26,47 @@ export default function TableStatusButton({
   const isMobile = useMediaQuery('(max-width: 768px)')
   const [isMobileSize, setIsMobileSize] = useState<boolean>(false)
 
-  const [isRejectDone, setIsRejectDone] = useState(false)
-
   const [shownAcceptDialog, setShownAcceptDialog] = useState(false)
   const [shownRejectDialog, setShownRejectDialog] = useState(false)
-
   const rejectDialogRef = useRef<HTMLDivElement | null>(null)
   const acceptDialogRef = useRef<HTMLDivElement | null>(null)
   useOutsideClick(rejectDialogRef, () => setShownRejectDialog(false))
   useOutsideClick(acceptDialogRef, () => setShownAcceptDialog(false))
 
+  const [openClientLoader, setOpenClientLoader] = useState(false)
+  const [shownToast, setShownToast] = useState(false)
+  const [isRejectDone, setIsRejectDone] = useState(false)
+  const [isAcceptDone, setIsAcceptDone] = useState(false)
+
   const handleClickAcceptApplication = async () => {
-    setShownAcceptDialog(false)
+    setOpenClientLoader(true)
     await updateNoticeApplicationResult(
       shopId,
       noticeId,
       applicationId,
       'accepted',
     )
-    router.push('/my-shop')
+    setOpenClientLoader(false)
+
+    setShownToast(true)
+    setShownAcceptDialog(false)
+    setIsAcceptDone(true)
+    setTimeout(() => router.push('/my-shop'), 3000)
   }
 
   const handleClickRejectApplication = async () => {
-    setShownRejectDialog(false)
-    setIsRejectDone(true)
+    setOpenClientLoader(true)
     await updateNoticeApplicationResult(
       shopId,
       noticeId,
       applicationId,
       'rejected',
     )
+    setOpenClientLoader(false)
+
+    setShownToast(true)
+    setShownRejectDialog(false)
+    setIsRejectDone(true)
   }
 
   useEffect(() => {
@@ -65,7 +77,30 @@ export default function TableStatusButton({
     }
   }, [isMobile])
 
-  if (isRejectDone) return <UiTableBodyStatusChip status="rejected" />
+  if (isRejectDone) {
+    return (
+      <>
+        <UiTableBodyStatusChip status="rejected" />
+        {shownToast && (
+          <ToastContainer onShow={() => setShownToast(false)}>
+            거절했어요
+          </ToastContainer>
+        )}
+      </>
+    )
+  }
+  if (isAcceptDone) {
+    return (
+      <>
+        <UiTableBodyStatusChip status="accepted" />
+        {shownToast && (
+          <ToastContainer onShow={() => setShownToast(false)}>
+            승인했어요. 내 가게 페이지로 돌아갑니다.
+          </ToastContainer>
+        )}
+      </>
+    )
+  }
   return (
     <>
       <ActiveOutlineBtn
@@ -98,6 +133,7 @@ export default function TableStatusButton({
           />
         </div>
       )}
+      {openClientLoader && <CommonClientLoader />}
     </>
   )
 }

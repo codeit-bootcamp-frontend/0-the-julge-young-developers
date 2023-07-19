@@ -7,15 +7,17 @@ import { setCookie } from 'cookies-next'
 import { useRouter } from 'next/navigation'
 
 import { signIn } from '@/libs/shared/api/data-access/request/userRequest'
+import CommonClientLoader from '@/libs/shared/loading/feature/client-loader'
 import UiSignIn from '@/libs/signin/ui/ui-signin/ui-signin'
 
 export default function SignIn() {
   const router = useRouter()
+  const [openClientLoader, setOpenClientLoader] = useState<boolean>(false)
 
-  const [loading, setLoading] = useState(false)
   const handleClickSignIn = async (email: string, password: string) => {
-    setLoading(true)
+    setOpenClientLoader(true)
     const res = await signIn(email, password)
+    setOpenClientLoader(false)
     if (res instanceof Error) {
       // 알 수 없는 에러 처리
     } else if (typeof res === 'string') {
@@ -45,13 +47,11 @@ export default function SignIn() {
 
   return (
     <div>
-      {loading && <div>페이지 이동 중...</div>}
-      {!loading && (
-        <UiSignIn
-          userInputRefs={userInputRefs}
-          handleClickButton={handleClickButton}
-        />
-      )}
+      <UiSignIn
+        userInputRefs={userInputRefs}
+        handleClickButton={handleClickButton}
+      />
+      {openClientLoader && <CommonClientLoader />}
     </div>
   )
 }

@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 
 import { useRouter } from 'next/navigation'
 
-import UiGnb from '../ui/ui-gnb/ui-gnb'
+import Searchbar from '@/libs/gnb/feature/searchbar'
+import UiGnb from '@/libs/gnb/ui/ui-gnb/ui-gnb'
 
 export default function Gnb() {
   const [isLogin, setIsLogin] = useState(false)
@@ -37,6 +38,7 @@ export default function Gnb() {
     <UiGnb
       isLogin={isLogin}
       hasNotification={hasNotification}
+      searchbarElement={<Searchbar />}
       handleClickMovePage={handleClickMovePage}
       handleClickOpenModal={handleClickOpenModal}
     />

@@ -21,7 +21,7 @@ export default function Pagination({
   totalItems: number
 }) {
   const paginationNum = Math.floor((page - 1) / PAGES_PER_PAGINATION) + 1
-  const endPage = Math.floor((totalItems + 1) / TABLE_ITEMS_PER_PAGE)
+  const endPage = Math.floor((totalItems - 1) / TABLE_ITEMS_PER_PAGE) + 1
 
   const shownStart =
     Math.floor((page - 1) / PAGES_PER_PAGINATION) * PAGES_PER_PAGINATION + 1
@@ -30,6 +30,7 @@ export default function Pagination({
     { length: shownEnd - shownStart + 1 },
     (_, i) => i + shownStart,
   )
+
   return (
     <UiPagination
       page={page}
