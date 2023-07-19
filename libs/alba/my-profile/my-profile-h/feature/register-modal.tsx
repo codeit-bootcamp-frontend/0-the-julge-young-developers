@@ -28,6 +28,7 @@ interface RegisterModalProps {
   setOpenClientLoader: Dispatch<SetStateAction<boolean>>
   onClickCloseModal: () => void
   onClickOpenToast: () => void
+  handleClickShowErrorDialog: (text: string) => void
   defaultName?: string
   defaultPhone?: string
   defaultAddress?: string
@@ -39,6 +40,7 @@ export default function RegisterModal({
   setOpenClientLoader,
   onClickCloseModal,
   onClickOpenToast,
+  handleClickShowErrorDialog,
   defaultName,
   defaultPhone,
   defaultAddress,
@@ -87,7 +89,7 @@ export default function RegisterModal({
       const userId = getCookie('uid') as string
 
       setOpenClientLoader(true)
-      await updateUserInfo(userId, {
+      const res = await updateUserInfo(userId, {
         name: inputValue[0] as string,
         phone: inputValue[1] as string,
         address: inputValue[2] as string,
@@ -95,9 +97,19 @@ export default function RegisterModal({
       })
       setOpenClientLoader(false)
 
-      router.refresh()
+      if (res instanceof Error) {
+        // 알 수 없는 에러 처리
+        handleClickShowErrorDialog('알 수 없는 에러가 발생했습니다.')
+      } else if (typeof res === 'string') {
+        // 에러 메시지에 맞게 처리
+        handleClickShowErrorDialog(res)
+      } else {
+        // response 데이터 가공
+        router.refresh()
+        onClickOpenToast()
+      }
+
       onClickCloseModal()
-      onClickOpenToast()
     }
   }
 
