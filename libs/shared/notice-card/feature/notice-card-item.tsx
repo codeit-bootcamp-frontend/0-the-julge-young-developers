@@ -56,12 +56,9 @@ export default function NoticeCardItem({
 
   return (
     <UiNoticeCardList
-      // title prop은 변경 예정입니다.
       isHome={isHome}
       title={title}
       filterElement={filterElement}
-
-      // ref={first}
     >
       {itemDatas.map((notice) => (
         <UiNoticeCardItem
