@@ -46,7 +46,6 @@ export default function RegisterNoticeDefaultContent({
 
   const handleSubmit = async (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('ㅋㅋ')
     const sid = getCookie('sid')
     if (!startsAt) {
       return

@@ -22,7 +22,6 @@ export default function SelectDatePicker({
 }) {
   const handleDateChange = (date: Date) => {
     onSelectDate(date)
-    console.log(date)
   }
   return (
     <div className={cx('wrapper')}>
