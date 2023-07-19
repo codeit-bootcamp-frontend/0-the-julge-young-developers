@@ -29,7 +29,11 @@ export default function UiNoticeCardItem({
       onClick={onClickToDetail}
     >
       <div className={cx('imgContainer', 'header')}>
-        <img className={cx('img')} src={imageUrl} alt={name} />
+        <img
+          className={cx('img')}
+          src={imageUrl || '/images/default-img.svg'}
+          alt={name}
+        />
         {closed && (
           <div className={cx('closedLayer')}>
             <span className={cx('closedText')}>마감 완료</span>

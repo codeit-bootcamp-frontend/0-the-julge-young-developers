@@ -21,6 +21,7 @@ export default function NoticeCardItem({
   filterElement?: React.ReactNode
 }) {
   const router = useRouter()
+  console.log(title)
 
   const handleClickToDetail = (
     isClosed: boolean,

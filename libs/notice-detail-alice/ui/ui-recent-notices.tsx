@@ -15,7 +15,9 @@ export default function UiRecentNotices({
 }) {
   return (
     <div className={cx('recentNotices')}>
-      {noticesList && <NoticeCardItem data={noticesList} />}
+      {noticesList && (
+        <NoticeCardItem title="최근에 본 공고" data={noticesList} />
+      )}
     </div>
   )
 }
