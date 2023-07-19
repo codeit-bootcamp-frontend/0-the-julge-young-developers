@@ -1,7 +1,10 @@
 @use '@/styles/utils';
 
 .modalContainer {
+  position: relative;
   z-index: 1000;
+  top: 12px;
+  right: 350px;
   width: 368px;
   padding: 24px 20px;
   border: 1px solid utils.$gray-brt3;
