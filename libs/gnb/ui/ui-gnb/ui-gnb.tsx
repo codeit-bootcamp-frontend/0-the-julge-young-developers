@@ -3,6 +3,7 @@ import classNames from 'classnames/bind'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import NotiButton from '@/libs/gnb/feature/noti-button'
 import UiButton from '@/libs/gnb/ui/ui-button/ui-button'
 
 import styles from './ui-gnb.module.scss'
@@ -14,7 +15,7 @@ export default function UiGnb({
   hasNotification,
   searchbarElement,
   handleClickMovePage,
-  handleClickOpenModal,
+  onCheckNotification,
 }: GnbProps) {
   return (
     <nav className={cx('gnb')}>
@@ -51,9 +52,9 @@ export default function UiGnb({
               name="내 프로필"
               handleClickButton={() => handleClickMovePage('my-profile')}
             />
-            <UiButton
+            <NotiButton
+              onCheckNotification={onCheckNotification}
               activeStatus={hasNotification ? 'active' : 'inactive'}
-              handleClickButton={handleClickOpenModal}
             />
           </div>
         )}
@@ -61,9 +62,9 @@ export default function UiGnb({
         {userType === 'employer' && (
           <div className={cx('buttons')}>
             <UiButton name="내 가게" handleClickButton={handleClickMovePage} />
-            <UiButton
+            <NotiButton
+              onCheckNotification={onCheckNotification}
               activeStatus={hasNotification ? 'active' : 'inactive'}
-              handleClickButton={handleClickOpenModal}
             />
           </div>
         )}
