@@ -57,14 +57,6 @@ export default function NoticeList({
     }
   }
 
-  // const handleClickApplyButton = (startDate, price, locations) => () => {
-  //   handleApplyFilterData({
-  //     startDate,
-  //     price,
-  //     locations
-  //   })
-  // }
-
   // 정렬 버튼에 연결될 이벤트 핸들러 함수
   const handleApplySortData = async (sort: string) => {
     let sortStr: 'time' | 'pay' | 'hour' | 'shop'
