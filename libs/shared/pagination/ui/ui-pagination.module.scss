@@ -43,9 +43,7 @@
   }
 }
 
-.arrow {
-  &.disabled {
-    cursor: default;
-    pointer-events: none;
-  }
+.disabled {
+  cursor: default;
+  pointer-events: none;
 }
