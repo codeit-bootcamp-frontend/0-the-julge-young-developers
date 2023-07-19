@@ -8,7 +8,7 @@ import {
 
 interface ApplicationHistory {
   id: string
-  status: 'pending' | 'accepted' | 'rejected'
+  status: 'pending' | 'accepted' | 'rejected' | 'canceled'
   name: string
   hourlyPay: number
   startsAt: string
