@@ -5,12 +5,14 @@ import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { signUp } from '@/libs/shared/api/data-access/request/userRequest'
+import CommonClientLoader from '@/libs/shared/loading/feature/client-loader'
 import { UserType } from '@/libs/signup/type-signup'
 import UiSignUp from '@/libs/signup/ui/ui-signup/ui-signup'
 import Checker from '@/libs/signup/util/checkerClass'
 
 export default function SignUp() {
   const router = useRouter()
+  const [openClientLoader, setOpenClientLoader] = useState<boolean>(false)
 
   const userInputRefs = useRef<HTMLInputElement[]>([])
   const [validEmail, setValidEmail] = useState<boolean>(true)
@@ -23,7 +25,9 @@ export default function SignUp() {
     email: string,
     password: string,
   ) => {
+    setOpenClientLoader(true)
     const res = await signUp(email, password, uType)
+    setOpenClientLoader(false)
     if (res instanceof Error) {
       // 알 수 없는 에러 처리
     } else if (typeof res === 'string') {
@@ -75,15 +79,18 @@ export default function SignUp() {
   }
 
   return (
-    <UiSignUp
-      userInputRefs={userInputRefs}
-      validEmail={validEmail}
-      validPw={validPw}
-      validPwRepeat={validPwRepeat}
-      userType={userType}
-      utilCheck={utilCheck}
-      handleClickButton={handleClickButton}
-      handleClickSelectUserType={handleClickSelectUserType}
-    />
+    <div>
+      <UiSignUp
+        userInputRefs={userInputRefs}
+        validEmail={validEmail}
+        validPw={validPw}
+        validPwRepeat={validPwRepeat}
+        userType={userType}
+        utilCheck={utilCheck}
+        handleClickButton={handleClickButton}
+        handleClickSelectUserType={handleClickSelectUserType}
+      />
+      {openClientLoader && <CommonClientLoader />}
+    </div>
   )
 }
