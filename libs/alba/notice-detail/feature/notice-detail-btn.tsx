@@ -47,6 +47,8 @@ export default function NoticeDetailBtn({
   const [isShowCancelToast, setIsShowCancelToast] = useState<boolean>(false)
 
   const [openClientLoader, setOpenClientLoader] = useState<boolean>(false)
+  const [openErrorDialog, setOpenErrorDialog] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
   const handleClickApplication = async () => {
     setOpenClientLoader(true)
@@ -55,8 +57,12 @@ export default function NoticeDetailBtn({
 
     if (res instanceof Error) {
       // 알 수 없는 에러 처리
+      setErrorMessage('알 수 없는 에러가 발생했습니다.')
+      setOpenErrorDialog(true)
     } else if (typeof res === 'string') {
       // 에러 메시지에 맞게 처리
+      setErrorMessage(res)
+      setOpenErrorDialog(true)
     } else {
       // response 데이터 가공
       setIsShowCompleteToast(true)
@@ -76,8 +82,12 @@ export default function NoticeDetailBtn({
 
     if (res instanceof Error) {
       // 알 수 없는 에러 처리
+      setErrorMessage('알 수 없는 에러가 발생했습니다.')
+      setOpenErrorDialog(true)
     } else if (typeof res === 'string') {
       // 에러 메시지에 맞게 처리
+      setErrorMessage(res)
+      setOpenErrorDialog(true)
     } else {
       // response 데이터 가공
       setIsShowActionDialog(false)
@@ -168,6 +178,13 @@ export default function NoticeDetailBtn({
         <AlbaToast onShow={() => setIsShowCancelToast(false)}>
           취소했어요
         </AlbaToast>
+      )}
+
+      {openErrorDialog && (
+        <ConfirmDialog
+          text={errorMessage || '요청에 실패했습니다.'}
+          onConfirm={() => setOpenErrorDialog(false)}
+        />
       )}
 
       {isShowConfirmDialogEmployer && (

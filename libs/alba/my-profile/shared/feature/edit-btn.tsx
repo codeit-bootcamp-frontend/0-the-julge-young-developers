@@ -3,6 +3,7 @@
 import { useState } from 'react'
 
 import { ActiveOutlineBtn } from '@/libs/shared/click-btns/feature/click-btns'
+import { ConfirmDialog } from '@/libs/shared/dialog/feature/dialog'
 import CommonClientLoader from '@/libs/shared/loading/feature/client-loader'
 import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
 import AlbaToast from '@/libs/shared/toast/feature/toast-container'
@@ -33,6 +34,14 @@ export default function EditBtn({ name, phone, address, bio }: EditBtnProps) {
 
   const [isShowToast, setIsShowToast] = useState<boolean>(false)
   const [openClientLoader, setOpenClientLoader] = useState<boolean>(false)
+
+  const [openErrorDialog, setOpenErrorDialog] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string>('')
+
+  const handleClickShowErrorDialog = (text: string) => {
+    setErrorMessage(text)
+    setOpenErrorDialog(true)
+  }
 
   const handleClickCloseModal = () => {
     setOpenModal(false)
@@ -70,6 +79,7 @@ export default function EditBtn({ name, phone, address, bio }: EditBtnProps) {
 
       {openModal && !isMobile && openView === 'tablet/desktop' && (
         <RegisterModal
+          handleClickShowErrorDialog={handleClickShowErrorDialog}
           showModal={showModal}
           onClickCloseModal={handleClickCloseModal}
           onClickOpenToast={() => setIsShowToast(true)}
@@ -82,6 +92,7 @@ export default function EditBtn({ name, phone, address, bio }: EditBtnProps) {
       )}
       {openModal && isMobile && openView === 'mobile' && (
         <RegisterModalMobile
+          handleClickShowErrorDialog={handleClickShowErrorDialog}
           defaultName={defaultName}
           defaultPhone={defaultPhone}
           defaultAddress={defaultAddress}
@@ -103,6 +114,13 @@ export default function EditBtn({ name, phone, address, bio }: EditBtnProps) {
         </AlbaToast>
       )}
       {openClientLoader && <CommonClientLoader />}
+
+      {openErrorDialog && (
+        <ConfirmDialog
+          text={errorMessage || '요청에 실패했습니다.'}
+          onConfirm={() => setOpenErrorDialog(false)}
+        />
+      )}
     </div>
   )
 }
