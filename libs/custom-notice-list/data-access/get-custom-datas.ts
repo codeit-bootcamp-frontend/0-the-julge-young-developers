@@ -7,10 +7,10 @@ import { getAllNotices } from './get-all-notices'
 const getUserAddress = async (userid: string) => {
   const res = await getUserInfo(userid)
   if (res instanceof Error) {
-    return ''
+    return res
   }
   if (typeof res === 'string') {
-    return ''
+    return new Error()
   }
   const { item } = res
   const { type } = item
@@ -33,17 +33,33 @@ const getCustomDatas = async (
     shopId: string,
     noticeId: string,
   ) => void,
+  handleClickShowErrorDialog: (text: string) => void,
+  handleStopLoader: () => void,
 ) => {
   const addressArr: string[] = []
   if (userId) {
     const address = await getUserAddress(userId)
+
+    if (address instanceof Error) {
+      handleStopLoader()
+      handleClickShowErrorDialog('알 수 없는 에러가 발생했습니다.')
+      return []
+    }
+    if (typeof address === 'string') {
+      handleStopLoader()
+      return []
+    }
     addressArr.push(address)
   }
   const response = await getNotices({ address: addressArr })
   if (response instanceof Error) {
+    handleStopLoader()
+    handleClickShowErrorDialog('알 수 없는 에러가 발생했습니다.')
     return []
   }
   if (typeof response === 'string') {
+    handleStopLoader()
+    handleClickShowErrorDialog(response)
     return []
   }
   let { items } = response
