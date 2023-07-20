@@ -14,7 +14,8 @@ interface UiDetailFilterProps {
   onClickInitButton: () => void
   onClickApplyButton: () => void
   onClickCloseButton: () => void
-  startInputRef: RefObject<HTMLInputElement>
+  onSelectStartDate: (selectDate: Date) => void
+  startDate: Date
   priceInputRef: RefObject<HTMLInputElement>
   isPriceValid: boolean
 }

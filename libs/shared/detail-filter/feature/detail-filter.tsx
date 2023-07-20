@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 
 import { DetailFilterProps } from '@/libs/shared/detail-filter/type-detail-filter'
 import UiDetailFilter from '@/libs/shared/detail-filter/ui/ui-detail-filter/ui-detail-filter'
+import { formatDate } from '@/libs/shared/detail-filter/utils/format-date'
 
 /**
  * @param onClickCloseButton 상세 필터 close 이벤트 핸들러 함수
@@ -18,15 +19,13 @@ export default function DetailFilter({
     new Set(),
   )
 
-  const [isNumber, setIsNumber] = useState<boolean>(false)
-  const startInputRef = useRef<HTMLInputElement>(null)
+  const [isNaN, setIsNaN] = useState<boolean>(false)
   const priceInputRef = useRef<HTMLInputElement>(null)
+  const [startDate, setStartDate] = useState<Date>(new Date())
 
   const handleClickInitButton = () => {
     setSelectedLocations(new Set<string>())
-    if (startInputRef.current) {
-      startInputRef.current.value = ''
-    }
+    setStartDate(new Date())
     if (priceInputRef.current) {
       priceInputRef.current.value = ''
     }
@@ -35,21 +34,19 @@ export default function DetailFilter({
   const handleClickApplyButton = () => {
     if (priceInputRef.current?.value) {
       if (!Number(priceInputRef.current?.value)) {
-        setIsNumber(true)
+        setIsNaN(true)
         return
       }
-      setIsNumber(false)
+      setIsNaN(false)
     }
     const locationsArray = Array.from(selectedLocations)
     const numberPrice = Number(priceInputRef.current?.value)
 
-    if (startInputRef.current) {
-      onClickApplyButton({
-        startDate: startInputRef.current.value,
-        price: numberPrice,
-        locations: locationsArray,
-      })
-    }
+    onClickApplyButton({
+      startDate: formatDate(startDate),
+      price: numberPrice,
+      locations: locationsArray,
+    })
 
     onClickCloseButton(false)
   }
@@ -72,9 +69,10 @@ export default function DetailFilter({
       onClickInitButton={handleClickInitButton}
       onClickApplyButton={handleClickApplyButton}
       onClickCloseButton={() => onClickCloseButton(false)}
-      startInputRef={startInputRef}
+      startDate={startDate}
+      onSelectStartDate={setStartDate}
       priceInputRef={priceInputRef}
-      isPriceValid={isNumber}
+      isPriceValid={isNaN}
     />
   )
 }
