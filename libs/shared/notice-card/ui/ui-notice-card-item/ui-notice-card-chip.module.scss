@@ -10,6 +10,7 @@
 .chipWrapper {
   display: flex;
   align-items: center;
+  max-width: 160px;
   height: 36px;
   padding: 12px;
   border-radius: 20px;
@@ -28,12 +29,20 @@
   }
 
   .chipText {
+    max-width: 104px;
     color: utils.$white;
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     text-align: center;
+
+    &.changeRateFlag {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 
   .imgContainer {
@@ -44,6 +53,8 @@
 
 @include utils.mobile {
   .chipWrapper {
+    max-width: 100%;
+
     &.isCardItem {
       width: 100%;
       height: 100%;
@@ -53,6 +64,7 @@
     }
 
     .chipText {
+      max-width: 100%;
       @include utils.font-style('caption');
     }
 
