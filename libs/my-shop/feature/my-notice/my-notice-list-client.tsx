@@ -11,7 +11,7 @@ import NoticeCardList from './notice-card-list'
 
 const INITIAL_CARDS = 6
 const CARDS_PER_LINE = 3
-export default function MyNoticeListAddedScrolling({
+export default function MyNoticeListClient({
   shopId,
   initialNoticeData,
 }: {

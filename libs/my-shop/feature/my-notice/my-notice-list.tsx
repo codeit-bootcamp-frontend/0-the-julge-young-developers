@@ -1,7 +1,6 @@
+import MyNoticeListClient from '@/libs/my-shop/feature/my-notice/my-notice-list-client'
+import UnregisteredMyNotice from '@/libs/my-shop/feature/my-notice/unregistered-notice'
 import { getShopNotices } from '@/libs/shared/api/data-access/request/noticeRequest'
-
-import MyNoticeListAddedScrolling from './my-notice-list-added-scrolling'
-import UnregisteredMyNotice from './unregistered-notice'
 
 const INITIAL_CARDS = 6
 export default async function MyNoticeList({ shopId }: { shopId: string }) {
@@ -18,7 +17,7 @@ export default async function MyNoticeList({ shopId }: { shopId: string }) {
   }
 
   return response.items.length > 0 ? (
-    <MyNoticeListAddedScrolling shopId={shopId} initialNoticeData={response} />
+    <MyNoticeListClient shopId={shopId} initialNoticeData={response} />
   ) : (
     <UnregisteredMyNotice />
   )
