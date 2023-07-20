@@ -36,6 +36,7 @@ export default function SelectDatePicker({
         showYearDropdown={true}
         dropdownMode="select"
         calendarClassName={cx('calenderWrapper')}
+        minDate={new Date()}
       />
     </div>
   )
