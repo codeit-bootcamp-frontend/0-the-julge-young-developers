@@ -40,7 +40,7 @@ export default function NoticeCardItem({
     if (userShopId === shopId) {
       router.push(`/my-shop/${noticeId}`)
     } else {
-      router.push(`/${shopId}/${noticeId}`)
+      router.push(`/detail/${shopId}/${noticeId}`)
     }
   }
 
