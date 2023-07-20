@@ -22,8 +22,10 @@ export default async function Home({
   const response = await getNotices({ limit, offset })
   if (response instanceof Error) {
     // 알 수 없는 에러 처리
+    throw new Error()
   } else if (typeof response === 'string') {
     // 에러 메시지에 맞게 처리
+    throw new Error(response)
   } else {
     // response 데이터 가공
     const { items, count } = response
