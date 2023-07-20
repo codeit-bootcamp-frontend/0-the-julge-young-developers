@@ -1,6 +1,5 @@
 'use client'
 
-// import { useSearchParams } from 'next/navigation'
 import NoticeList from '@/libs/notice-list/feature/notice-list'
 import { AllNoticesData } from '@/libs/shared/api/types/type-notice'
 
@@ -15,15 +14,15 @@ export default function SearchNoticeList({
   initTotalItems: number
   initData: AllNoticesData[]
 }) {
-  const ReferenceData = initData.map((item) => item)
+  const title = keyword ? `${keyword}에 대한 공고목록` : '전체 공고목록'
   return (
     <div>
       <NoticeList
-        title={`${keyword}에 대한 공고목록`}
+        title={title}
         keyword={keyword}
         page={page}
         initTotalItems={initTotalItems}
-        initData={ReferenceData}
+        initData={initData}
       />
     </div>
   )
