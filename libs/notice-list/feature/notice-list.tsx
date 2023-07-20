@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { FilterDatas } from '@/libs/notice-list/type-notice-list'
 import UiNoticeList from '@/libs/notice-list/ui/ui-notice-list/ui-notice-list'
@@ -127,6 +127,10 @@ export default function NoticeList({
       setData(itemArray)
     }
   }
+
+  useEffect(() => {
+    setData([...initData])
+  }, [initData])
 
   return (
     <div style={{ paddingBottom: '60px' }}>
