@@ -10,6 +10,7 @@ export default async function MainLayout({
     <>
       <GnbServer />
       {children}
+      <div id="btn-portal" />
       <UiFooter />
     </>
   )
