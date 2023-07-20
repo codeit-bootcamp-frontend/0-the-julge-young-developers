@@ -14,10 +14,10 @@ const cx = classnames.bind(styles)
 
 export default function UiSignIn({
   userInputRefs,
-  handleClickButton,
+  onSubmitButton,
 }: {
   userInputRefs: MutableRefObject<HTMLInputElement[]>
-  handleClickButton: () => void
+  onSubmitButton: (e: React.FormEvent<HTMLFormElement>) => void
 }) {
   return (
     <div className={cx('wrapper')}>
@@ -27,7 +27,7 @@ export default function UiSignIn({
         titleSize={28}
         gap={40}
       >
-        <form className={cx('form')}>
+        <form className={cx('form')} onSubmit={onSubmitButton}>
           <Input
             variant="input"
             title="이메일"
@@ -45,11 +45,7 @@ export default function UiSignIn({
             // eslint-disable-next-line no-return-assign, no-param-reassign
             ref={(el: HTMLInputElement) => (userInputRefs.current[1] = el)}
           />
-          <ActiveBtn
-            text="로그인 하기"
-            size="large"
-            onClick={handleClickButton}
-          />
+          <ActiveBtn text="로그인 하기" size="large" type="submit" />
         </form>
       </UiSimpleLayout>
     </div>

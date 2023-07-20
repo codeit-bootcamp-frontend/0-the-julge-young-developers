@@ -43,9 +43,9 @@ export default function NoticeList({
   }: FilterDatas) => {
     setFilterData({ startDate, price, locations })
 
-    const TABLES_ITEMS_PER_PAGE = 6
-    const offset = (page - 1) * TABLES_ITEMS_PER_PAGE
-    const limit = TABLES_ITEMS_PER_PAGE
+    const CARD_ITEMS_PER_PAGE = 6
+    const offset = (page - 1) * CARD_ITEMS_PER_PAGE
+    const limit = CARD_ITEMS_PER_PAGE
     const response = await getNotices({
       limit,
       offset,
@@ -129,7 +129,11 @@ export default function NoticeList({
           />
         }
         paginationElement={
-          <Pagination itemsPerPage={6} page={page} totalItems={totalItems} />
+          <Pagination
+            itemsPerPage={6}
+            page={page}
+            totalItems={totalItems || 1}
+          />
         }
       />
     </div>

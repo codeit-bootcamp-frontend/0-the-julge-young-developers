@@ -131,10 +131,30 @@
 
     .payContainer {
       display: flex;
+      position: relative;
+      align-items: center;
       justify-content: space-between;
       width: 100%;
 
+      .hoverPay {
+        display: none;
+        width: fit-content;
+        padding: 4px 6px;
+        border-radius: 5px;
+        background-color: utils.$gray-brt3;
+        color: #fff;
+        font-size: 12px;
+      }
+
+      &:hover > .hoverPay {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+      }
+
       .pay {
+        max-width: 120px;
         color: utils.$black;
         font-style: normal;
         letter-spacing: 0.48px;
@@ -145,6 +165,14 @@
 
         &.closed {
           color: utils.$gray-brt3;
+        }
+
+        &.hourlyPayFlag {
+          display: block;
+          position: relative;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
       }
     }
@@ -225,8 +253,20 @@
       .payContainer {
         @include utils.flexbox(column, flex-start, flex-start);
 
+        &:hover > .hoverPay {
+          display: none;
+        }
+
         .pay {
+          max-width: 100%;
           @include utils.font-style('h4Bold');
+
+          &.hourlyPayFlag {
+            display: block;
+            overflow: visible;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
         }
       }
     }

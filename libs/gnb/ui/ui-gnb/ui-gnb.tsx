@@ -18,7 +18,7 @@ export default function UiGnb({
   onCheckNotification,
 }: GnbProps) {
   return (
-    <div>
+    <div className={cx('gnbWrapper')}>
       <nav className={cx('gnb')}>
         <div className={cx('wrapper')}>
           <Link href="/" className={cx('logo')}>

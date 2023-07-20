@@ -16,6 +16,10 @@ export default function UiNoticeCardChip({
   changeRate,
   closed,
 }: UiNoticeCardChipProps) {
+  let changeRateFlag = false
+  if (changeRate && changeRate > 999) {
+    changeRateFlag = true
+  }
   return (
     <div
       className={cx('chipWrapper', {
@@ -25,7 +29,13 @@ export default function UiNoticeCardChip({
         isCardItem,
       })}
     >
-      <span className={cx('chipText')}>{chipText(isShowChip, changeRate)}</span>
+      <span
+        className={cx('chipText', {
+          changeRateFlag,
+        })}
+      >
+        {chipText(isShowChip, changeRate)}
+      </span>
       <div className={cx('imgContainer')}>
         <Image
           className={cx('img')}
