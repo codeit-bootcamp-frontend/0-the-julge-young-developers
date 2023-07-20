@@ -1,6 +1,10 @@
+import { META_HOME } from '@/app/_meta'
+
 import CustomNoticeList from '@/libs/custom-notice-list/feature/custom-notice-list'
 import NoticeList from '@/libs/notice-list/feature/notice-list'
 import { getNotices } from '@/libs/shared/api/data-access/request/noticeRequest'
+
+export const metadata = META_HOME
 
 export default async function Home({
   searchParams,

@@ -6,6 +6,10 @@ import MyNoticeList from '@/libs/my-shop/feature/my-notice/my-notice-list'
 import MyShop from '@/libs/my-shop/feature/my-shop/my-shop'
 import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 
+import { META_MY_SHOP } from '../../_meta'
+
+export const metadata = META_MY_SHOP
+
 export default async function MyShopPage() {
   const cookieInstance = cookies()
   const userId = cookieInstance.get('uid')?.value

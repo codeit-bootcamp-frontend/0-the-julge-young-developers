@@ -9,6 +9,10 @@ import MyProfileShell from '@/libs/alba/my-profile/my-profile-h/feature/my-profi
 import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 import CommonDomainLoader from '@/libs/shared/loading/feature/domain-loader'
 
+import { META_MY_PROFILE } from '../../_meta'
+
+export const metadata = META_MY_PROFILE
+
 export const revalidate = 3600
 export default async function MyProfilePage({
   searchParams,
