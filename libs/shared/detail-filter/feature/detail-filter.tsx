@@ -18,7 +18,7 @@ export default function DetailFilter({
     new Set(),
   )
 
-  const [isNumber, setIsNumber] = useState<boolean>(false)
+  const [isNaN, setIsNaN] = useState<boolean>(false)
   const startInputRef = useRef<HTMLInputElement>(null)
   const priceInputRef = useRef<HTMLInputElement>(null)
 
@@ -35,10 +35,10 @@ export default function DetailFilter({
   const handleClickApplyButton = () => {
     if (priceInputRef.current?.value) {
       if (!Number(priceInputRef.current?.value)) {
-        setIsNumber(true)
+        setIsNaN(true)
         return
       }
-      setIsNumber(false)
+      setIsNaN(false)
     }
     const locationsArray = Array.from(selectedLocations)
     const numberPrice = Number(priceInputRef.current?.value)
@@ -74,7 +74,7 @@ export default function DetailFilter({
       onClickCloseButton={() => onClickCloseButton(false)}
       startInputRef={startInputRef}
       priceInputRef={priceInputRef}
-      isPriceValid={isNumber}
+      isPriceValid={isNaN}
     />
   )
 }
