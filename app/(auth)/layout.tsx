@@ -1,4 +1,4 @@
-import Gnb from '@/libs/gnb/feature/gnb'
+import GnbServer from '@/libs/gnb/feature/gnb-server'
 
 export default async function NoticeDetailLayout({
   children,
@@ -7,7 +7,7 @@ export default async function NoticeDetailLayout({
 }) {
   return (
     <>
-      <Gnb />
+      <GnbServer />
       {children}
       <div id="loader-portal" />
       <div id="btn-portal" />
