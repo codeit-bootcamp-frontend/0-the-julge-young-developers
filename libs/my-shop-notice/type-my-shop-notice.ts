@@ -8,6 +8,7 @@ export interface MyShopNoticeDetailProps {
 export interface MyShopNoticeApplicantProps {
   shopId: string
   noticeId: string
+  page: number
 }
 
 export interface MyShopNoticeEditButtonProps {

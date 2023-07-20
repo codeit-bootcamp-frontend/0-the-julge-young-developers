@@ -1,4 +1,5 @@
 import { getNoticeApplicantsData } from '@/libs/my-shop-notice/data-access/data-access-notice'
+import { MyShopNoticeApplicantProps } from '@/libs/my-shop-notice/type-my-shop-notice'
 import Pagination from '@/libs/shared/pagination/feature/pagination'
 import UiSimpleLayoutResponsive from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout-responsive'
 import { ApplicantListTable } from '@/libs/shared/table/feature/tables'
@@ -8,11 +9,7 @@ export default async function MyShopNoticeApplicant({
   shopId,
   noticeId,
   page,
-}: {
-  shopId: string
-  noticeId: string
-  page: number
-}) {
+}: MyShopNoticeApplicantProps) {
   const [data, totalItems] = await getNoticeApplicantsData(
     shopId,
     noticeId,
