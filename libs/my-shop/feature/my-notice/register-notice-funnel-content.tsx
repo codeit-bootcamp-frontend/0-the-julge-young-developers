@@ -94,19 +94,18 @@ export default function RegisterJobPostingFunnelContent({
     if (funnel !== 'description') {
       setUnmounted(true)
     }
-
     if (funnel === 'hourlyWage') {
-      if (!hourlyWage) {
+      if (!startsAt) {
         setIsAllFilled(false)
       }
       setFunnel('startsAt')
     } else if (funnel === 'startsAt') {
-      if (!startsAt) {
+      if (!workhour) {
         setIsAllFilled(false)
       }
       setFunnel('workhour')
     } else if (funnel === 'workhour') {
-      if (!workhour) {
+      if (!description) {
         setIsAllFilled(false)
       }
       setFunnel('description')
