@@ -21,10 +21,10 @@ export default function MyShopNoticeEditButton({
   const [errorMessage, setErrorMessage] = useState<string>('')
   const router = useRouter()
 
-  const handleClickShowErrorDialog = (text: string) => {
-    setErrorMessage(text)
-    setOpenErrorDialog(true)
-    switch (text) {
+  const handleClickConfirmDialog = () => {
+    setOpenErrorDialog(false)
+
+    switch (errorMessage) {
       case '로그인이 필요합니다':
         router.push('/signin')
         break
@@ -41,7 +41,10 @@ export default function MyShopNoticeEditButton({
         break
     }
   }
-
+  const handleClickShowErrorDialog = (text: string) => {
+    setErrorMessage(text)
+    setOpenErrorDialog(true)
+  }
   const handleClickButton = () => {
     setShownEditModal((prev) => !prev)
 
@@ -79,7 +82,7 @@ export default function MyShopNoticeEditButton({
       {openErrorDialog && (
         <ConfirmDialog
           text={errorMessage || '요청에 실패했습니다.'}
-          onConfirm={() => setOpenErrorDialog(false)}
+          onConfirm={handleClickConfirmDialog}
         />
       )}
     </>

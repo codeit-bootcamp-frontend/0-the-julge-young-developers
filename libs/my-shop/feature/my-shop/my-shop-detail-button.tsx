@@ -32,12 +32,11 @@ export default function MyShopDetailButton({ shop }: { shop: Shop }) {
   const [errorMessage, setErrorMessage] = useState<string>('')
 
   const router = useRouter()
-  const handleClickShowErrorDialog = (text: string) => {
-    console.log(text)
-    setErrorMessage(text)
-    setOpenErrorDialog(true)
 
-    switch (text) {
+  const handleClickConfirmDialog = () => {
+    setOpenErrorDialog(false)
+
+    switch (errorMessage) {
       case '로그인이 필요합니다':
         router.push('/signin')
         break
@@ -47,9 +46,16 @@ export default function MyShopDetailButton({ shop }: { shop: Shop }) {
       case '존재하지 않는 가게입니다':
         router.push('/my-shop')
         break
+      case '시급은 2023년 최저시급 이상이어야 합니다':
+        router.push('/')
+        break
       default:
         break
     }
+  }
+  const handleClickShowErrorDialog = (text: string) => {
+    setErrorMessage(text)
+    setOpenErrorDialog(true)
   }
 
   useEffect(() => {
@@ -116,7 +122,7 @@ export default function MyShopDetailButton({ shop }: { shop: Shop }) {
         {openErrorDialog && (
           <ConfirmDialog
             text={errorMessage || '요청에 실패했습니다.'}
-            onConfirm={() => setOpenErrorDialog(false)}
+            onConfirm={handleClickConfirmDialog}
           />
         )}
       </div>
