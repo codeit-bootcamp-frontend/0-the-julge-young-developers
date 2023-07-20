@@ -1,4 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
+import { SyntheticEvent } from 'react'
+
 import classNames from 'classnames/bind'
 
 import Image from 'next/image'
@@ -34,6 +36,10 @@ export default function UiNoticeCardItem({
     ? `${hourlyPay.toLocaleString()}원 : ${rate}`
     : `${hourlyPay.toLocaleString()}원`
 
+  const handleImgError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = '/images/default-img.svg'
+  }
+
   return (
     <div
       role="presentation"
@@ -45,6 +51,7 @@ export default function UiNoticeCardItem({
           className={cx('img')}
           src={imageUrl || '/images/default-img.svg'}
           alt={name}
+          onError={handleImgError}
         />
         {closed && (
           <div className={cx('closedLayer')}>

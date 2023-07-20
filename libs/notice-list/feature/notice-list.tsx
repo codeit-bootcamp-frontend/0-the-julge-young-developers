@@ -3,12 +3,13 @@
 import { useState } from 'react'
 
 import { FilterDatas } from '@/libs/notice-list/type-notice-list'
+import UiNoticeList from '@/libs/notice-list/ui/ui-notice-list/ui-notice-list'
 import { getNotices } from '@/libs/shared/api/data-access/request/noticeRequest'
 import { AllNoticesData } from '@/libs/shared/api/types/type-notice'
+import { ConfirmDialog } from '@/libs/shared/dialog/feature/dialog'
+import CommonClientLoader from '@/libs/shared/loading/feature/client-loader'
 import UiFilterElement from '@/libs/shared/notice-card/ui/ui-filter-element/ui-filter-element'
 import Pagination from '@/libs/shared/pagination/feature/pagination'
-
-import UiNoticeList from '../ui/ui-notice-list/ui-notice-list'
 
 export default function NoticeList({
   title = '공고목록',
@@ -31,6 +32,11 @@ export default function NoticeList({
   const [filterData, setFilterData] = useState<FilterDatas>({} as FilterDatas)
   const [totalItems, setTotalItems] = useState<number>(initTotalItems)
 
+  const [openClientLoader, setOpenClientLoader] = useState<boolean>(false)
+
+  const [openErrorDialog, setOpenErrorDialog] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string>('')
+
   const handleClickModalOpen = () => {
     setIsModalOpen(true)
   }
@@ -43,9 +49,10 @@ export default function NoticeList({
   }: FilterDatas) => {
     setFilterData({ startDate, price, locations })
 
-    const CARD_ITEMS_PER_PAGE = 6
-    const offset = (page - 1) * CARD_ITEMS_PER_PAGE
-    const limit = CARD_ITEMS_PER_PAGE
+    const TABLES_ITEMS_PER_PAGE = 6
+    const offset = (page - 1) * TABLES_ITEMS_PER_PAGE
+    const limit = TABLES_ITEMS_PER_PAGE
+    setOpenClientLoader(true)
     const response = await getNotices({
       limit,
       offset,
@@ -55,10 +62,13 @@ export default function NoticeList({
       sort: sortData,
       keyword,
     })
+    setOpenClientLoader(false)
     if (response instanceof Error) {
-      // 알 수 없는 에러 처리
+      setErrorMessage('알 수 없는 에러가 발생했습니다.')
+      setOpenErrorDialog(true)
     } else if (typeof response === 'string') {
-      // 에러 메시지에 맞게 처리
+      setErrorMessage(response)
+      setOpenErrorDialog(true)
     } else {
       const { items, count } = response
       const itemArray = items.map((item) => item.item)
@@ -94,6 +104,7 @@ export default function NoticeList({
     const TABLES_ITEMS_PER_PAGE = 6
     const offset = (page - 1) * TABLES_ITEMS_PER_PAGE
     const limit = TABLES_ITEMS_PER_PAGE
+    setOpenClientLoader(true)
     const response = await getNotices({
       limit,
       offset,
@@ -102,10 +113,13 @@ export default function NoticeList({
       hourlyPayGte: price,
       address: locations,
     })
+    setOpenClientLoader(false)
     if (response instanceof Error) {
-      // 알 수 없는 에러 처리
+      setErrorMessage('알 수 없는 에러가 발생했습니다.')
+      setOpenErrorDialog(true)
     } else if (typeof response === 'string') {
-      // 에러 메시지에 맞게 처리
+      setErrorMessage(response)
+      setOpenErrorDialog(true)
     } else {
       const { items, count } = response
       const itemArray = items.map((item) => item.item)
@@ -136,6 +150,13 @@ export default function NoticeList({
           />
         }
       />
+      {openClientLoader && <CommonClientLoader />}
+      {openErrorDialog && (
+        <ConfirmDialog
+          text={errorMessage || '요청에 실패했습니다.'}
+          onConfirm={() => setOpenErrorDialog(false)}
+        />
+      )}
     </div>
   )
 }
