@@ -13,31 +13,35 @@ import UnregisteredMyNotice from './unregistered-notice'
 export default function MyNoticeList({ shopId }: { shopId: string }) {
   const [offset, setOffset] = useState<number>(0)
   const [noticeData, setNoticeData] = useState<ShopNoticesData | undefined>()
+  const [isLoading, setIsLoading] = useState(true)
+
   const [count, setCount] = useState(0)
-  const [isLoading, setIsLoading] = useState(false)
+
+  const [isNoticeListLoading, setIsNoticeListLodaing] = useState(false)
   const [inView, setInView] = useState(false)
   const lastItemRef = useRef<HTMLDivElement>(null)
 
   async function fetchNotices() {
-    setIsLoading(true)
+    setIsNoticeListLodaing(true)
     const response = await getShopNotices({
       shopId,
       offset,
       limit: 3,
     })
-    setIsLoading(false)
+    setIsNoticeListLodaing(false)
+    console.log(response)
 
     if (response instanceof Error) {
       // 알 수 없는 에러 처리
       return false
     }
     if (typeof response === 'string') {
-      // 에러 메시지에 따른 에러 처리
       return false
     }
+
     const newNoticeData = response
     const newCount = newNoticeData.count
-    if (offset > count || isLoading) {
+    if (offset > count || isNoticeListLoading) {
       return
     }
     if (newNoticeData.items && newNoticeData.items.length > 0) {
@@ -53,8 +57,11 @@ export default function MyNoticeList({ shopId }: { shopId: string }) {
       setOffset((prev) => prev + 3)
       setInView(false)
     }
+    setIsLoading(false)
+
     return true
   }
+  console.log(isLoading)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -73,23 +80,10 @@ export default function MyNoticeList({ shopId }: { shopId: string }) {
   }, [])
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isNoticeListLoading) {
       fetchNotices()
     }
   }, [inView])
-
-  if (!noticeData) {
-    return (
-      <UiSimpleLayout
-        title="등록한 공고"
-        titleAlign="start"
-        titleSize={28}
-        gap={24}
-      >
-        <UiLoading />
-      </UiSimpleLayout>
-    )
-  }
 
   return (
     <div>
@@ -99,12 +93,13 @@ export default function MyNoticeList({ shopId }: { shopId: string }) {
         titleSize={28}
         gap={24}
       >
-        {count === 0 ? (
-          <UnregisteredMyNotice />
-        ) : (
+        {isLoading && <UiLoading />}
+        {!isLoading && !noticeData && <UnregisteredMyNotice />}
+
+        {!isLoading && noticeData && count !== 0 && (
           <>
             <NoticeCardList shopId={shopId} notices={noticeData} />
-            {isLoading && <UiLoading />}
+            {isNoticeListLoading && <UiLoading />}
           </>
         )}
       </UiSimpleLayout>
