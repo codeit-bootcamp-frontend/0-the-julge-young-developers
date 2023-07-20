@@ -18,7 +18,6 @@ export default function Gnb({ userType, sid }: GnbClientProps) {
   const [hasNotification, setHasNotification] = useState(false)
 
   const router = useRouter()
-  router.refresh()
 
   const handleCheckNotification = () => {
     setHasNotification(true)
@@ -31,6 +30,10 @@ export default function Gnb({ userType, sid }: GnbClientProps) {
   useEffect(() => {
     setCookie('sid', sid)
   }, [sid])
+
+  useEffect(() => {
+    console.log(userType, sid)
+  }, [userType, sid])
 
   return (
     <UiGnb
