@@ -171,14 +171,25 @@ export default function RegisterJobPostingFunnelContent({
 
   const renderSubmitButton = () => {
     if (!isAllFilled) {
-      return <InactiveBtn text="완료하기" size="large" />
+      return (
+        <InactiveBtn
+          text={funnel === 'description' ? '완료하기' : '다음'}
+          size="large"
+        />
+      )
     }
 
     if (isLoading) {
       return <UiLoading />
     }
 
-    return <ActiveBtn text="완료하기" size="large" type="submit" />
+    return (
+      <ActiveBtn
+        text={funnel === 'description' ? '완료하기' : '다음'}
+        size="large"
+        type="submit"
+      />
+    )
   }
 
   const handleClickDatePicker = (value: Date) => {
