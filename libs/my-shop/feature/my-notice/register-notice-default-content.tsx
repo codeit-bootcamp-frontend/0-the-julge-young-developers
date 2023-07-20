@@ -102,7 +102,7 @@ export default function RegisterNoticeDefaultContent({
                   title="시급*"
                   isValid={false}
                   isRequired={false}
-                  defaultValue={String(hourlyWage) || ''}
+                  defaultValue={hourlyWage ? String(hourlyWage) : ''}
                 />
               </div>
               <div className={cx('inputTopItem')}>
