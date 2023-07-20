@@ -56,18 +56,19 @@ export default function RegisterJobPostingFunnelContent({
     setIsAllFilled,
   } = useRegisterJobPostingState({ variant: 'funnel', notice })
 
-  useEffect(() => {}, [isAllFilled])
   useEffect(() => {
-    if (startsAt) {
+    if (notice) {
       setIsAllFilled(true)
     }
-  }, [startsAt, setIsAllFilled])
+  }, [notice, setIsAllFilled])
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     if (!e.target.value) {
       setIsAllFilled(false)
+    } else {
+      setIsAllFilled(true)
     }
     if (funnel === 'hourlyWage') {
       setHourlyWage(Number(e.target.value))
@@ -76,20 +77,38 @@ export default function RegisterJobPostingFunnelContent({
     } else if (funnel === 'description') {
       setDescription(e.target.value)
     }
-    setIsAllFilled(true)
   }
+
+  useEffect(() => {
+    if (startsAt) {
+      setIsAllFilled(true)
+    } else {
+      setIsAllFilled(false)
+    }
+  }, [startsAt, setIsAllFilled])
 
   const handleClickButton = async (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!isAllFilled) return
 
-    setUnmounted(true)
+    if (funnel !== 'description') {
+      setUnmounted(true)
+    }
 
     if (funnel === 'hourlyWage') {
+      if (!hourlyWage) {
+        setIsAllFilled(false)
+      }
       setFunnel('startsAt')
     } else if (funnel === 'startsAt') {
+      if (!startsAt) {
+        setIsAllFilled(false)
+      }
       setFunnel('workhour')
     } else if (funnel === 'workhour') {
+      if (!workhour) {
+        setIsAllFilled(false)
+      }
       setFunnel('description')
     } else if (funnel === 'description') {
       e.preventDefault()
@@ -119,7 +138,6 @@ export default function RegisterJobPostingFunnelContent({
     }
 
     setTimeout(() => {
-      setIsAllFilled(false)
       setUnmounted(false)
     }, 500)
   }
@@ -194,6 +212,7 @@ export default function RegisterJobPostingFunnelContent({
               )}
               {funnel === 'startsAt' && (
                 <SelectDatePicker
+                  variant="minToday"
                   title={FUNNEL_NOTICE_TITLE[funnel].title}
                   onSelectDate={handleClickDatePicker}
                   selectedDate={startsAt}

@@ -131,7 +131,6 @@ export default function RegisterShopModalFunnelContent({
         break
     }
   }
-  useEffect(() => console.log(category), [category])
   const handleClick = (value: string) => {
     if (!value) return
 
