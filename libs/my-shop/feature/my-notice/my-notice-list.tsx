@@ -29,7 +29,6 @@ export default function MyNoticeList({ shopId }: { shopId: string }) {
       limit: 3,
     })
     setIsNoticeListLodaing(false)
-    console.log(response)
 
     if (response instanceof Error) {
       // 알 수 없는 에러 처리
@@ -61,7 +60,6 @@ export default function MyNoticeList({ shopId }: { shopId: string }) {
 
     return true
   }
-  console.log(isLoading)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
