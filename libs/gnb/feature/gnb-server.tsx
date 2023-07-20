@@ -1,13 +1,8 @@
-import dynamic from 'next/dynamic'
 import { cookies } from 'next/headers'
 
 import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 
-const Gnb = dynamic(() => import('./gnb'), {
-  ssr: false,
-})
-
-// import Gnb from './gnb'
+import Gnb from './gnb'
 
 export const revalidate = 10
 export default async function GnbServer() {

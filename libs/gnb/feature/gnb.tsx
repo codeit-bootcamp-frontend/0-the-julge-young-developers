@@ -18,6 +18,7 @@ export default function Gnb({ userType, sid }: GnbClientProps) {
   const [hasNotification, setHasNotification] = useState(false)
 
   const router = useRouter()
+  router.refresh()
 
   const handleCheckNotification = () => {
     setHasNotification(true)
