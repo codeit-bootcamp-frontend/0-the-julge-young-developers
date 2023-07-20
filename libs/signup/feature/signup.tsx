@@ -45,7 +45,8 @@ export default function SignUp() {
     }
   }
 
-  const handleClickButton = () => {
+  const handleClickButton = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     const inputValue: string[] = []
     userInputRefs.current.forEach((ref, idx) => {
       if (typeof ref !== 'function') {

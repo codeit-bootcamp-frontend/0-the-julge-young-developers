@@ -30,7 +30,7 @@ export default function UiSignUp({
   validPwRepeat: boolean
   userType: UserType
   utilCheck: (type: string, value: string) => void
-  handleClickButton: () => void
+  handleClickButton: (e: React.FormEvent<HTMLFormElement>) => void
   handleClickSelectUserType: (type: UserType) => void
 }) {
   return (
@@ -41,7 +41,7 @@ export default function UiSignUp({
         titleSize={28}
         gap={40}
       >
-        <form className={cx('form')}>
+        <form className={cx('form')} onSubmit={handleClickButton}>
           <Input
             onChange={(
               e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -84,7 +84,7 @@ export default function UiSignUp({
             userType={userType}
             onClick={handleClickSelectUserType}
           />
-          <ActiveBtn text="가입하기" size="large" onClick={handleClickButton} />
+          <ActiveBtn type="submit" text="가입하기" size="large" />
         </form>
       </UiSimpleLayout>
     </div>
