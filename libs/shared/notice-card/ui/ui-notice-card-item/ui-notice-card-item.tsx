@@ -4,6 +4,7 @@ import classNames from 'classnames/bind'
 import Image from 'next/image'
 
 import { UiNoticeCardItemProps } from '@/libs/shared/notice-card/type-notice-card'
+import { chipText } from '@/libs/shared/notice-card/util/util-calc-chip-text'
 
 import UiNoticeCardChip from './ui-notice-card-chip'
 import styles from './ui-notice-card-item.module.scss'
@@ -26,6 +27,13 @@ export default function UiNoticeCardItem({
   if (hourlyPay > 999999) {
     hourlyPayFlag = true
   }
+
+  const rate = chipText(isShowChip, changeRate)
+
+  const hoverText = rate
+    ? `${hourlyPay.toLocaleString()}원 : ${rate}`
+    : `${hourlyPay.toLocaleString()}원`
+
   return (
     <div
       role="presentation"
@@ -81,6 +89,7 @@ export default function UiNoticeCardItem({
           </div>
         </div>
         <div className={cx('payContainer')}>
+          <div className={cx('hoverPay')}>{hoverText}</div>
           <span
             className={cx('pay', { closed, hourlyPayFlag })}
           >{`${hourlyPay.toLocaleString()}원`}</span>
