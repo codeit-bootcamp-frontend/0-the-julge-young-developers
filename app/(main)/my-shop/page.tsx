@@ -21,6 +21,9 @@ export default async function MyShopPage() {
   } else if (typeof userInfo === 'string') {
     throw new Error(userInfo)
   } else {
+    if (userInfo.item.type === 'employee') {
+      redirect('/')
+    }
     shopId = userInfo.item.shop?.item.id
   }
 
