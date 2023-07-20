@@ -9,6 +9,10 @@ import { getShopNotice } from '@/libs/shared/api/data-access/request/noticeReque
 import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 import { ShopNoticeData } from '@/libs/shared/api/types/type-notice'
 
+import { META_DETAIL } from '../../../../_meta'
+
+export const metadata = META_DETAIL
+
 export default async function NoticeDetailPage({
   params,
 }: {

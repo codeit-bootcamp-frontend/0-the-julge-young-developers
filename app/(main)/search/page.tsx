@@ -1,5 +1,9 @@
+import { generateSharedMetadata } from '@/app/_meta'
+
 import SearchNoticeList from '@/libs/search-notice-list/feature/search-notice-list'
 import { getNotices } from '@/libs/shared/api/data-access/request/noticeRequest'
+
+export const generateMetadata = generateSharedMetadata
 
 export default async function SearchPage({
   searchParams,

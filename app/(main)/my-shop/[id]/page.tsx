@@ -6,6 +6,10 @@ import { redirect } from 'next/navigation'
 import MyShopNoticeApplicant from '@/libs/my-shop-notice/feature/my-shop-notice-applicant'
 import CommonDomainLoader from '@/libs/shared/loading/feature/domain-loader'
 
+import { META_MY_SHOP_NOTICE } from '../../../_meta'
+
+export const metadata = META_MY_SHOP_NOTICE
+
 export default async function MyShopNoticeDetailPage({
   params,
   searchParams,
