@@ -3,6 +3,7 @@ import { Suspense } from 'react'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
+import ApplicationDetailBlank from '@/libs/alba/application-history/shared/feature/application-detail-blank'
 import ApplicationDetailShell from '@/libs/alba/application-history/shared/feature/application-detail-shell'
 import MyProfileShell from '@/libs/alba/my-profile/my-profile-h/feature/my-profile-shell'
 import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
@@ -62,6 +63,7 @@ export default async function MyProfilePage({
     <div>
       <MyProfileShell isRegistered={isRegistered} userProfile={userProfile} />
 
+      {!isRegistered && <ApplicationDetailBlank />}
       <Suspense
         fallback={
           <CommonDomainLoader
