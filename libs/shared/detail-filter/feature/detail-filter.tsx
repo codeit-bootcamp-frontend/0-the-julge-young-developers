@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 
 import { DetailFilterProps } from '@/libs/shared/detail-filter/type-detail-filter'
 import UiDetailFilter from '@/libs/shared/detail-filter/ui/ui-detail-filter/ui-detail-filter'
+import { formatDate } from '@/libs/shared/detail-filter/utils/format-date'
 
 /**
  * @param onClickCloseButton 상세 필터 close 이벤트 핸들러 함수
@@ -42,7 +43,7 @@ export default function DetailFilter({
     const numberPrice = Number(priceInputRef.current?.value)
 
     onClickApplyButton({
-      startDate: startDate.toISOString(),
+      startDate: formatDate(startDate),
       price: numberPrice,
       locations: locationsArray,
     })
