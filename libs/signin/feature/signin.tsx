@@ -40,7 +40,8 @@ export default function SignIn() {
 
   const userInputRefs = useRef<HTMLInputElement[]>([])
 
-  const handleClickButton = () => {
+  const handleClickButton = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     const inputValue: string[] = []
     userInputRefs.current.forEach((ref) => {
       if (typeof ref !== 'function') {
