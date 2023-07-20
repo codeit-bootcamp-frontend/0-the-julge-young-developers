@@ -26,6 +26,12 @@ $card-size-small: 171px;
   }
 
   @include utils.mobile {
+    &.isHome {
+      padding: 0 12px;
+    }
+  }
+
+  @include utils.mobile {
     @include utils.flexbox(column, flex-start, flex-start);
 
     gap: 16px;

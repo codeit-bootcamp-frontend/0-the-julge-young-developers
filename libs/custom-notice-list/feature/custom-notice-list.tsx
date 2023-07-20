@@ -13,6 +13,7 @@ import utilAutoplaySlider from '@/libs/custom-notice-list/utils/util-autoplay'
 import UiNoticeCardItem from '@/libs/shared/notice-card/ui/ui-notice-card-item/ui-notice-card-item'
 import { utilCalcChangeRate } from '@/libs/shared/notice-card/util/util-calc-change-rate'
 import { utilCalcPayDiff } from '@/libs/shared/notice-card/util/util-calc-pay-diff'
+import { useMediaQuery } from '@/libs/shared/shared/util/useMediaQuery'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
 import styles from './custom-notice-list.module.scss'
@@ -23,6 +24,8 @@ export default function CustomNoticeList() {
   const router = useRouter()
   const sliderRef = useRef<HTMLDivElement>(null)
   const [customDatas, setCustomDatas] = useState<NoticeCardItemProps[]>([])
+
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
   const handleAutoplaySlider = useCallback(() => {
     utilAutoplaySlider(sliderRef)
@@ -63,7 +66,7 @@ export default function CustomNoticeList() {
 
   return (
     <div className={cx('customListWrapper')}>
-      <UiSimpleLayout title="맞춤 공고" gap={32}>
+      <UiSimpleLayout title="맞춤 공고" gap={32} titleSize={isMobile ? 20 : 28}>
         <div className={cx('noticeCardWrapper')} ref={sliderRef}>
           {customDatas.map((notice) => (
             <UiNoticeCardItem
