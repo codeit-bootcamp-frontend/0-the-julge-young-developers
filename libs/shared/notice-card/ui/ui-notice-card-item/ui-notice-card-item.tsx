@@ -100,7 +100,7 @@ export default function UiNoticeCardItem({
           <span
             className={cx('pay', { closed, hourlyPayFlag })}
           >{`${hourlyPay.toLocaleString()}원`}</span>
-          {changeRate && (
+          {changeRate && changeRate !== Infinity && (
             <UiNoticeCardChip
               isCardItem={true}
               isShowChip={isShowChip}
