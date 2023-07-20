@@ -110,10 +110,10 @@ export default function RegisterNoticeDefaultContent({
                   title="시작 일시*"
                   onSelectDate={setStartsAt}
                   selectedDate={startsAt}
+                  variant="minToday"
                 />
               </div>
               <div className={cx('inputTopItem')}>
-                {/* date picker? */}
                 <Input
                   onChange={(e) => setWorkhour(Number(e.target.value))}
                   variant="input"
