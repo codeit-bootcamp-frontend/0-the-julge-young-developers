@@ -24,6 +24,7 @@ const cx = classNames.bind(styles)
 
 export default function CustomNoticeList() {
   const router = useRouter()
+  const isMobile = useMediaQuery('(max-width: 768px)')
   const sliderRef = useRef<HTMLDivElement>(null)
   const [customDatas, setCustomDatas] = useState<NoticeCardItemProps[]>([])
 
@@ -39,8 +40,6 @@ export default function CustomNoticeList() {
     setErrorMessage(text)
     setOpenErrorDialog(true)
   }
-
-  const isMobile = useMediaQuery('(max-width: 768px)')
 
   const handleAutoplaySlider = useCallback(() => {
     utilAutoplaySlider(sliderRef)
