@@ -1,5 +1,5 @@
 import UiFooter from '@/libs/footer/ui/ui-footer/ui-footer'
-import Gnb from '@/libs/gnb/feature/gnb'
+import GnbServer from '@/libs/gnb/feature/gnb-server'
 
 export default async function MainLayout({
   children,
@@ -8,7 +8,7 @@ export default async function MainLayout({
 }) {
   return (
     <>
-      <Gnb />
+      <GnbServer />
       {children}
       <UiFooter />
     </>

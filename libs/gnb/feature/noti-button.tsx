@@ -35,6 +35,7 @@ export default function NotiButton({
   const userId = getCookie('uid') as string
 
   const handleClickNoti = async () => {
+    if (isModalOpen) return
     const response = await getUserAlertsList(userId)
     if (response instanceof Error) {
       // 알 수 없는 에러 처리
