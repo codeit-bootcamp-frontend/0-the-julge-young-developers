@@ -9,6 +9,8 @@ export default async function GnbServer() {
   const cookieInstance = cookies()
   const userId = cookieInstance.get('uid')?.value
 
+  console.log(userId)
+
   let userType
   let sid
 
@@ -31,6 +33,8 @@ export default async function GnbServer() {
       }
     }
   }
+
+  console.log(userType, userId, sid)
 
   return (
     <Gnb
