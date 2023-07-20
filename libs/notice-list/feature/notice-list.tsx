@@ -129,7 +129,11 @@ export default function NoticeList({
           />
         }
         paginationElement={
-          <Pagination itemsPerPage={6} page={page} totalItems={totalItems} />
+          <Pagination
+            itemsPerPage={6}
+            page={page}
+            totalItems={totalItems || 1}
+          />
         }
       />
     </div>
