@@ -19,10 +19,10 @@ import {
 import { ConfirmDialog } from '@/libs/shared/dialog/feature/dialog'
 import ToastContainer from '@/libs/shared/toast/feature/toast-container'
 
-import styles from './ui-my-shop-detail-button.module.scss'
+import styles from './my-shop-detail-button.module.scss'
 
 const cx = classNames.bind(styles)
-export default function UiMyShopDetailButton({ shop }: { shop: Shop }) {
+export default function MyShopDetailButton({ shop }: { shop: Shop }) {
   const [openShopModal, setOpenShopModal] = useState<boolean>(false)
   const [openNoticeModal, setOpenNoticeModal] = useState<boolean>(false)
   const [showModal, setShowModal] = useState<boolean>(false)
