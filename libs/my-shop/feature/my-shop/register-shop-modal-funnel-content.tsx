@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 import { ADDRESS_OPTIONS } from '@/libs/alba/my-profile/my-profile-h/data-access/select-options'
 import { sendRegisterShopRequest } from '@/libs/my-shop/data-access/data-access-send-register-shop-request'
 import {
-  CATECPRY_DATA,
+  CATEGORY_DATA,
   FUNNEL_SHOP_TITLE,
 } from '@/libs/my-shop/data-access/my-shop-register-data'
 import { Shop } from '@/libs/my-shop/type-my-shop'
@@ -89,20 +89,49 @@ export default function RegisterShopModalFunnelContent({
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    if (!e.target.value) {
-      setIsAllFilled(false)
-    } else if (funnel === 'name') {
-      setShopName(e.target.value)
-    } else if (funnel === 'detailAddress') {
-      setDetailAddress(e.target.value)
-    } else if (funnel === 'defaultHourlyWage') {
-      setDefaultHourlyWage(Number(e.target.value))
-    } else if (funnel === 'description') {
-      setDescription(e.target.value)
-    }
-    setIsAllFilled(true)
-  }
+    console.log('handleChange')
 
+    const { value } = e.target
+    if (value) {
+      setIsAllFilled(true)
+    } else {
+      setIsAllFilled(false)
+    }
+
+    switch (funnel) {
+      case 'name':
+        setShopName(value)
+        break
+      case 'address':
+        setAddress(value)
+        if (ADDRESS_OPTIONS.some((option) => option.value === value)) {
+          setIsAllFilled(true)
+        } else {
+          setIsAllFilled(false)
+        }
+        break
+      case 'detailAddress':
+        setDetailAddress(value)
+        break
+      case 'defaultHourlyWage':
+        setDefaultHourlyWage(Number(value))
+        break
+      case 'description':
+        setDescription(value)
+        break
+      case 'category':
+        setCategory(value)
+        if (CATEGORY_DATA.some((option) => option.value === value)) {
+          setIsAllFilled(true)
+        } else {
+          setIsAllFilled(false)
+        }
+        break
+      default:
+        break
+    }
+  }
+  useEffect(() => console.log(category), [category])
   const handleClick = (value: string) => {
     if (!value) return
 
@@ -177,7 +206,6 @@ export default function RegisterShopModalFunnelContent({
       setFunnel('description')
     } else if (funnel === 'description') {
       await sendRequest()
-      onClickToggelModal()
       return
     }
 
@@ -272,6 +300,7 @@ export default function RegisterShopModalFunnelContent({
                   onClick={handleClick}
                   defaultValue={address}
                   options={ADDRESS_OPTIONS}
+                  onChange={handleChange}
                 />
               )}
               {funnel === 'detailAddress' && (
@@ -298,8 +327,9 @@ export default function RegisterShopModalFunnelContent({
                 <Select
                   variant="search"
                   onClick={handleClick}
-                  options={CATECPRY_DATA}
+                  options={CATEGORY_DATA}
                   defaultValue={category}
+                  onChange={handleChange}
                 />
               )}
               {funnel === 'image' && (

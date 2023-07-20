@@ -1,4 +1,4 @@
-import { ForwardedRef } from 'react'
+import { ChangeEvent, ForwardedRef } from 'react'
 
 export type Option = {
   value: string
@@ -15,6 +15,7 @@ export interface SelectProps {
   options: Option[]
   defaultValue?: string
   onClick?: (value: string) => void
+  onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 }
 
 export interface UiSearchSelectProps {

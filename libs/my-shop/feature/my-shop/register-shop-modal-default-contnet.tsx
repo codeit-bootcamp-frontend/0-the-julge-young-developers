@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 
 import { ADDRESS_OPTIONS } from '@/libs/alba/my-profile/my-profile-h/data-access/select-options'
 import { sendRegisterShopRequest } from '@/libs/my-shop/data-access/data-access-send-register-shop-request'
-import { CATECPRY_DATA } from '@/libs/my-shop/data-access/my-shop-register-data'
+import { CATEGORY_DATA } from '@/libs/my-shop/data-access/my-shop-register-data'
 import { Shop } from '@/libs/my-shop/type-my-shop'
 import useRegisterShopState from '@/libs/my-shop/utill/useRegisterShopState'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
@@ -110,7 +110,7 @@ export default function RegisterShopModalDefaultContent({
               <Select
                 title="분류*"
                 variant="search"
-                options={CATECPRY_DATA}
+                options={CATEGORY_DATA}
                 defaultValue={category}
                 onClick={(value) => setCategory(value)}
               />

@@ -1,4 +1,4 @@
-export const CATECPRY_DATA = [
+export const CATEGORY_DATA = [
   { value: '한식' },
   { value: '중식' },
   { value: '일식' },
