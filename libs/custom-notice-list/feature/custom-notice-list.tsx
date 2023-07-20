@@ -59,7 +59,7 @@ export default function CustomNoticeList() {
       const userShopId = getCookie('sid') as string
 
       if (userShopId === shopId) {
-        router.push(`/myshop/${noticeId}`)
+        router.push(`/my-shop/${noticeId}`)
       } else {
         router.push(`/detail/${shopId}/${noticeId}`)
       }
