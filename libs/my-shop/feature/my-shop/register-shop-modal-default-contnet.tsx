@@ -30,10 +30,12 @@ export default function RegisterShopModalDefaultContent({
   shop,
   onClickToggelModal,
   onClickShowToast,
+  onClickShowErrorDialog,
 }: {
   shop?: Shop
   onClickToggelModal: () => void
   onClickShowToast: () => void
+  onClickShowErrorDialog: (text: string) => void
 }) {
   const [isLoading, setISLoading] = useState(false)
   const router = useRouter()
@@ -59,7 +61,7 @@ export default function RegisterShopModalDefaultContent({
   const handleSubmit = async (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
     setISLoading(true)
-    const isError = await sendRegisterShopRequest(
+    const [isError, errorMessage] = await sendRegisterShopRequest(
       shop,
       shopName,
       category,
@@ -76,7 +78,7 @@ export default function RegisterShopModalDefaultContent({
       router.refresh()
     } else {
       setISLoading(false)
-      // 실패의 경우 처리
+      onClickShowErrorDialog(errorMessage)
     }
   }
 

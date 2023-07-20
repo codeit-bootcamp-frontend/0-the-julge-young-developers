@@ -29,11 +29,13 @@ export default function RegisterNoticeDefaultContent({
   onClickToggelModal,
   notice,
   onClickShowToast,
+  onClickShowErrorDialog,
 }: {
   showModal: boolean
   onClickToggelModal: () => void
   notice?: NoticeEditData
   onClickShowToast: () => void
+  onClickShowErrorDialog: (text: string) => void
 }) {
   const [isLoading, setISLoading] = useState(false)
   const router = useRouter()
@@ -56,7 +58,7 @@ export default function RegisterNoticeDefaultContent({
       return
     }
     setISLoading(true)
-    const isSuccess = await sendNoticeRequest({
+    const [isError, errorMessage] = await sendNoticeRequest({
       shopId: `${sid}`,
       hourlyPay: hourlyWage as number,
       startsAt: startsAt.toISOString(),
@@ -64,15 +66,14 @@ export default function RegisterNoticeDefaultContent({
       description,
       noticeId: notice ? notice.noticeId : undefined,
     })
-    console.log(isSuccess)
-    if (isSuccess) {
+    if (!isError) {
       setISLoading(false)
       onClickToggelModal()
       onClickShowToast()
       router.refresh()
     } else {
       setISLoading(false)
-      // 실패의 경우 처리
+      onClickShowErrorDialog(errorMessage)
     }
   }
 

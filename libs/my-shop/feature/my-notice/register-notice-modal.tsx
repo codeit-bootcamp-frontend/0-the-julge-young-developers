@@ -12,11 +12,13 @@ export default function RegisterNoticeModal({
   onClickToggelModal,
   notice,
   onClickShowToast,
+  onClickShowErrorDialog,
 }: {
   showModal: boolean
   onClickToggelModal: () => void
   notice?: NoticeEditData
   onClickShowToast: () => void
+  onClickShowErrorDialog: (text: string) => void
 }) {
   const isMobile = useMediaQuery('(max-width: 768px)')
 
@@ -27,6 +29,7 @@ export default function RegisterNoticeModal({
           onClickToggelModal={onClickToggelModal}
           notice={notice}
           onClickShowToast={onClickShowToast}
+          onClickShowErrorDialog={onClickShowErrorDialog}
         />
       ) : (
         <RegisterNoticeDefaultContent
@@ -34,6 +37,7 @@ export default function RegisterNoticeModal({
           showModal={showModal}
           notice={notice}
           onClickShowToast={onClickShowToast}
+          onClickShowErrorDialog={onClickShowErrorDialog}
         />
       )}
     </ModalPortalWrapper>

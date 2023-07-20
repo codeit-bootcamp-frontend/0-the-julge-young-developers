@@ -29,10 +29,12 @@ export default function RegisterJobPostingFunnelContent({
   onClickToggelModal,
   notice,
   onClickShowToast,
+  onClickShowErrorDialog,
 }: {
   onClickToggelModal: () => void
   notice?: NoticeEditData
   onClickShowToast: () => void
+  onClickShowErrorDialog: (text: string) => void
 }) {
   const [funnel, setFunnel] = useState<
     'hourlyWage' | 'startsAt' | 'workhour' | 'description'
@@ -90,15 +92,13 @@ export default function RegisterJobPostingFunnelContent({
     } else if (funnel === 'workhour') {
       setFunnel('description')
     } else if (funnel === 'description') {
-      // api
-
       e.preventDefault()
       const sid = getCookie('sid')
       if (!startsAt) {
         return
       }
       setISLoading(true)
-      const isSuccess = await sendNoticeRequest({
+      const [isError, errorMessage] = await sendNoticeRequest({
         shopId: `${sid}`,
         hourlyPay: hourlyWage as number,
         startsAt: startsAt.toISOString(),
@@ -106,7 +106,7 @@ export default function RegisterJobPostingFunnelContent({
         description,
         noticeId: notice ? notice.noticeId : undefined,
       })
-      if (isSuccess) {
+      if (!isError) {
         setISLoading(false)
         onClickToggelModal()
         onClickShowToast() // 토스트 띄우기
@@ -114,6 +114,7 @@ export default function RegisterJobPostingFunnelContent({
       } else {
         setISLoading(false)
         // 실패의 경우 처리
+        onClickShowErrorDialog(errorMessage)
       }
     }
 

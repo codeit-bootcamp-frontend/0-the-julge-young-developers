@@ -16,10 +16,12 @@ export default function RegisterShopModal({
   shop,
   onClickToggelModal,
   onClickShowToast,
+  onClickShowErrorDialog,
 }: {
   shop?: Shop
   onClickToggelModal: () => void
   onClickShowToast: () => void
+  onClickShowErrorDialog: (text: string) => void
 }) {
   const isMobile = useMediaQuery('(max-width: 768px)')
   return (
@@ -29,12 +31,14 @@ export default function RegisterShopModal({
           onClickToggelModal={onClickToggelModal}
           shop={shop}
           onClickShowToast={onClickShowToast}
+          onClickShowErrorDialog={onClickShowErrorDialog}
         />
       ) : (
         <RegisterShopModalDefaultContent
           onClickToggelModal={onClickToggelModal}
           shop={shop}
           onClickShowToast={onClickShowToast}
+          onClickShowErrorDialog={onClickShowErrorDialog}
         />
       )}
     </ModalPortalWrapper>
