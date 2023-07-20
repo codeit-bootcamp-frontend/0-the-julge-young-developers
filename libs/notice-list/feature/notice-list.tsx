@@ -24,7 +24,7 @@ export default function NoticeList({
   initTotalItems: number
   initData: AllNoticesData[]
 }) {
-  const [data, setData] = useState<AllNoticesData[]>(initData)
+  const [data, setData] = useState<AllNoticesData[]>([...initData])
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [sortData, setSortData] = useState<'time' | 'pay' | 'hour' | 'shop'>(
     'time',

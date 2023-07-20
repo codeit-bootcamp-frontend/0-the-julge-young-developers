@@ -160,6 +160,7 @@ interface ShopNoticeData {
       }
       href: string
     }
+    currentUserApplication?: object | null
   }
   links?: Links[]
 }
