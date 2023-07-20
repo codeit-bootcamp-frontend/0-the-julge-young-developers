@@ -4,7 +4,7 @@ import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 
 import Gnb from './gnb'
 
-export const revalidate = 3600
+export const revalidate = 10
 export default async function GnbServer() {
   const cookieInstance = cookies()
   const userId = cookieInstance.get('uid')?.value
