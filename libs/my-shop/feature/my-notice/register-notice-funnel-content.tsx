@@ -134,6 +134,15 @@ export default function RegisterJobPostingFunnelContent({
         setISLoading(false)
         // 실패의 경우 처리
         onClickShowErrorDialog(errorMessage)
+        if (errorMessage === '시급은 2023년 최저시급 이상이어야 합니다') {
+          setFunnel('hourlyWage')
+          setIsAllFilled(false)
+        } else if (
+          errorMessage === '근무시간은 1시간 이상 24시간 이하여야 합니다'
+        ) {
+          setFunnel('workhour')
+          setIsAllFilled(false)
+        }
       }
     }
 

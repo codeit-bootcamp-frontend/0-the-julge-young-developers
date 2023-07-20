@@ -162,6 +162,10 @@ export default function RegisterShopModalFunnelContent({
     } else {
       setISLoading(false)
       onClickShowErrorDialog(errorMessage)
+      if (errorMessage === '시급은 2023년 최저시급 이상이어야 합니다') {
+        setFunnel('defaultHourlyWage')
+        setIsAllFilled(false)
+      }
     }
   }
 

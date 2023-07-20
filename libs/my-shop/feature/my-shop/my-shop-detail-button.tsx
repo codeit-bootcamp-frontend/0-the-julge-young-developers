@@ -46,8 +46,7 @@ export default function MyShopDetailButton({ shop }: { shop: Shop }) {
       case '존재하지 않는 가게입니다':
         router.push('/my-shop')
         break
-      case '시급은 2023년 최저시급 이상이어야 합니다':
-        router.push('/')
+
         break
       default:
         break
