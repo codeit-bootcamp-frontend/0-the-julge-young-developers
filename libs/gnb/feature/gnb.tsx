@@ -41,7 +41,7 @@ export default function Gnb({ userType, sid }: GnbClientProps) {
       if (userType === 'guest' && isLogin) {
         const userId = getCookie('uid')
         const userInfo = await getUserInfo(userId as string)
-        console.log(1)
+
         if (userInfo instanceof Error) {
           throw new Error()
         } else if (typeof userInfo === 'string') {
