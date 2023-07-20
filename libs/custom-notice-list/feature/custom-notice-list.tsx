@@ -61,7 +61,7 @@ export default function CustomNoticeList() {
       if (userShopId === shopId) {
         router.push(`/myshop/${noticeId}`)
       } else {
-        router.push(`/${shopId}/${noticeId}`)
+        router.push(`/detail/${shopId}/${noticeId}`)
       }
     },
     [router],
