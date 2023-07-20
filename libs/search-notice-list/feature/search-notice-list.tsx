@@ -15,9 +15,7 @@ export default function SearchNoticeList({
   initTotalItems: number
   initData: AllNoticesData[]
 }) {
-  // const searchParams = useSearchParams()
-  // const keyword = searchParams.get('keyword') as string
-
+  const ReferenceData = initData.map((item) => item)
   return (
     <div>
       <NoticeList
@@ -25,7 +23,7 @@ export default function SearchNoticeList({
         keyword={keyword}
         page={page}
         initTotalItems={initTotalItems}
-        initData={initData}
+        initData={ReferenceData}
       />
     </div>
   )
