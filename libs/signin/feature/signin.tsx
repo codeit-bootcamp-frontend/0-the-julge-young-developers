@@ -34,6 +34,7 @@ export default function SignIn() {
       const { token, user } = res.item
       setCookie('token', token)
       setCookie('uid', user.item.id)
+      setCookie('isLogin', 'isLogin')
       router.push('/')
     }
   }

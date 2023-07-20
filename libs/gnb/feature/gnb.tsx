@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from 'react'
 
-import { setCookie } from 'cookies-next'
+import { getCookie, setCookie } from 'cookies-next'
 
 import { useRouter } from 'next/navigation'
 
 import Searchbar from '@/libs/gnb/feature/searchbar'
 import UiGnb from '@/libs/gnb/ui/ui-gnb/ui-gnb'
+import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
 
 interface GnbClientProps {
   userType?: 'guest' | 'employee' | 'employer'
@@ -16,6 +17,9 @@ interface GnbClientProps {
 
 export default function Gnb({ userType, sid }: GnbClientProps) {
   const [hasNotification, setHasNotification] = useState(false)
+  const [uType, setUType] = useState<
+    'guest' | 'employee' | 'employer' | undefined
+  >(userType)
 
   const router = useRouter()
 
@@ -31,9 +35,31 @@ export default function Gnb({ userType, sid }: GnbClientProps) {
     setCookie('sid', sid)
   }, [sid])
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const isLogin = getCookie('isLogin')
+      if (userType === 'guest' && isLogin) {
+        const userId = getCookie('uid')
+        const userInfo = await getUserInfo(userId as string)
+
+        if (userInfo instanceof Error) {
+          throw new Error()
+        } else if (typeof userInfo === 'string') {
+          throw new Error(userInfo)
+        } else {
+          setUType(userInfo.item.type)
+          if (userInfo.item.type === 'employer' && userInfo.item.shop) {
+            setCookie('sid', userInfo.item.shop.item.id)
+          }
+        }
+      }
+    }
+    fetchData()
+  }, [userType])
+
   return (
     <UiGnb
-      userType={userType}
+      userType={uType}
       hasNotification={hasNotification}
       searchbarElement={<Searchbar />}
       handleClickMovePage={handleClickMovePage}
