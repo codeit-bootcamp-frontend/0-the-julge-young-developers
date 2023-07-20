@@ -3,7 +3,6 @@ import { Suspense } from 'react'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-import { getShopIdData } from '@/libs/my-shop-notice/data-access/data-access-notice'
 import MyShopNoticeApplicant from '@/libs/my-shop-notice/feature/my-shop-notice-applicant'
 import CommonDomainLoader from '@/libs/shared/loading/feature/domain-loader'
 
@@ -17,7 +16,7 @@ export default async function MyShopNoticeDetailPage({
   const userId = cookies().get('uid')?.value
   if (!userId) return redirect('/')
 
-  const shopId = await getShopIdData(userId)
+  const shopId = cookies().get('sid')?.value
   if (!shopId) return redirect('/my-shop')
 
   const page =
