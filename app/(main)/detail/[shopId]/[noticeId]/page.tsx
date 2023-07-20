@@ -1,5 +1,4 @@
 import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
 
 import NoticeDetailShell from '@/libs/alba/notice-detail/feature/notice-detail-shell'
 import RecentNoticeShell from '@/libs/alba/notice-detail/feature/recent-notice-shell'
@@ -20,10 +19,6 @@ export default async function NoticeDetailPage({
   const cookieInstance = cookies()
   const userId = cookieInstance.get('uid')?.value as string
   const token = cookieInstance.get('token')?.value
-
-  if (!token) {
-    redirect('/signin')
-  }
 
   let userType
   let isProfile = false
