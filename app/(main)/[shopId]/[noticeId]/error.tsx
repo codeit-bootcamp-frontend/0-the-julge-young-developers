@@ -2,11 +2,13 @@
 
 import classNames from 'classnames/bind'
 
+import Image from 'next/image'
+
 import styles from './error.module.scss'
 
 const cx = classNames.bind(styles)
 
-export default function Error({
+export default function ErrorPage({
   reset,
   error,
 }: {
@@ -16,19 +18,33 @@ export default function Error({
   console.log(error.message)
   return (
     <div className={cx('errorContainer')}>
-      <div className={cx('messageContainer')}>
-        <div className={cx('headerContainer')}>
-          <h2>공고 상세 페이지에 알 수 없는 오류가 발생했습니다.</h2>
-        </div>
-        <div className={cx('buttonContainer')}>
+      <div className={cx('errorContent')}>
+        <div className={cx('messageBox')}>
+          <h1 className={cx('description')}>
+            페이지에 알 수 없는 오류가 발생했습니다.
+          </h1>
           <button
-            className={cx('button')}
+            className={cx('refreshButton')}
             type="button"
             onClick={() => reset()}
           >
-            페이지 새로 고침하기
+            새로 고침하기
           </button>
         </div>
+        <Image
+          className={cx('errorContentImage')}
+          src="/images/error-hero.svg"
+          alt="error-hero"
+          width={600}
+          height={322}
+        />
+        <Image
+          className={cx('oops')}
+          src="/images/oops.svg"
+          alt="oops"
+          width={347}
+          height={217}
+        />
       </div>
     </div>
   )
