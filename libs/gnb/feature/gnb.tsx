@@ -9,12 +9,12 @@ import { useRouter } from 'next/navigation'
 import Searchbar from '@/libs/gnb/feature/searchbar'
 import UiGnb from '@/libs/gnb/ui/ui-gnb/ui-gnb'
 
-interface GnbProps {
+interface GnbClientProps {
   userType?: 'guest' | 'employee' | 'employer'
   sid?: string
 }
 
-export default function Gnb({ userType, sid }: GnbProps) {
+export default function Gnb({ userType, sid }: GnbClientProps) {
   const [hasNotification, setHasNotification] = useState(false)
 
   const router = useRouter()
