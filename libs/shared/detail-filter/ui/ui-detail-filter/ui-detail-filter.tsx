@@ -13,6 +13,7 @@ import { UiDetailFilterProps } from '@/libs/shared/detail-filter/type-detail-fil
 import UiDivider from '@/libs/shared/detail-filter/ui/ui-divider/ui-divider'
 import UiLocationContainer from '@/libs/shared/detail-filter/ui/ui-location-container/ui-location-container'
 import UiSelectedChip from '@/libs/shared/detail-filter/ui/ui-selected-chip/ui-selected-chip'
+import SelectDatePicker from '@/libs/shared/input-select-btn/feature/feature-date-picker'
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 
 import styles from './ui-detail-filter.module.scss'
@@ -26,7 +27,8 @@ export default function UiDetailFilter({
   onClickInitButton,
   onClickApplyButton,
   onClickCloseButton,
-  startInputRef,
+  onSelectStartDate,
+  startDate,
   priceInputRef,
   isPriceValid,
 }: UiDetailFilterProps) {
@@ -61,11 +63,10 @@ export default function UiDetailFilter({
         </div>
         <UiDivider />
         <div className={cx('section')}>
-          <Input
-            variant="input"
+          <SelectDatePicker
+            onSelectDate={(e) => onSelectStartDate(e)}
             title="시작일"
-            isRequired={true}
-            ref={startInputRef}
+            selectedDate={startDate}
           />
         </div>
         <UiDivider />

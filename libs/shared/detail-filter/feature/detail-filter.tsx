@@ -19,14 +19,12 @@ export default function DetailFilter({
   )
 
   const [isNaN, setIsNaN] = useState<boolean>(false)
-  const startInputRef = useRef<HTMLInputElement>(null)
   const priceInputRef = useRef<HTMLInputElement>(null)
+  const [startDate, setStartDate] = useState<Date>(new Date())
 
   const handleClickInitButton = () => {
     setSelectedLocations(new Set<string>())
-    if (startInputRef.current) {
-      startInputRef.current.value = ''
-    }
+    setStartDate(new Date())
     if (priceInputRef.current) {
       priceInputRef.current.value = ''
     }
@@ -43,13 +41,11 @@ export default function DetailFilter({
     const locationsArray = Array.from(selectedLocations)
     const numberPrice = Number(priceInputRef.current?.value)
 
-    if (startInputRef.current) {
-      onClickApplyButton({
-        startDate: startInputRef.current.value,
-        price: numberPrice,
-        locations: locationsArray,
-      })
-    }
+    onClickApplyButton({
+      startDate: startDate.toISOString(),
+      price: numberPrice,
+      locations: locationsArray,
+    })
 
     onClickCloseButton(false)
   }
@@ -72,7 +68,8 @@ export default function DetailFilter({
       onClickInitButton={handleClickInitButton}
       onClickApplyButton={handleClickApplyButton}
       onClickCloseButton={() => onClickCloseButton(false)}
-      startInputRef={startInputRef}
+      startDate={startDate}
+      onSelectStartDate={setStartDate}
       priceInputRef={priceInputRef}
       isPriceValid={isNaN}
     />
