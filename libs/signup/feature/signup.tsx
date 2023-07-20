@@ -45,7 +45,7 @@ export default function SignUp() {
     }
   }
 
-  const handleClickButton = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitButton = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const inputValue: string[] = []
     userInputRefs.current.forEach((ref, idx) => {
@@ -95,7 +95,7 @@ export default function SignUp() {
         validPwRepeat={validPwRepeat}
         userType={userType}
         utilCheck={utilCheck}
-        handleClickButton={handleClickButton}
+        onSubmitButton={handleSubmitButton}
         handleClickSelectUserType={handleClickSelectUserType}
       />
       {openClientLoader && <CommonClientLoader />}

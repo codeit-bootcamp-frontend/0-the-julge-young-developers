@@ -40,7 +40,7 @@ export default function SignIn() {
 
   const userInputRefs = useRef<HTMLInputElement[]>([])
 
-  const handleClickButton = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitButton = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const inputValue: string[] = []
     userInputRefs.current.forEach((ref) => {
@@ -56,7 +56,7 @@ export default function SignIn() {
     <div>
       <UiSignIn
         userInputRefs={userInputRefs}
-        handleClickButton={handleClickButton}
+        onSubmitButton={handleSubmitButton}
       />
       {openClientLoader && <CommonClientLoader />}
 

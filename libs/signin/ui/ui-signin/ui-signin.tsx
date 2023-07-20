@@ -14,10 +14,10 @@ const cx = classnames.bind(styles)
 
 export default function UiSignIn({
   userInputRefs,
-  handleClickButton,
+  onSubmitButton,
 }: {
   userInputRefs: MutableRefObject<HTMLInputElement[]>
-  handleClickButton: (e: React.FormEvent<HTMLFormElement>) => void
+  onSubmitButton: (e: React.FormEvent<HTMLFormElement>) => void
 }) {
   return (
     <div className={cx('wrapper')}>
@@ -27,7 +27,7 @@ export default function UiSignIn({
         titleSize={28}
         gap={40}
       >
-        <form className={cx('form')} onSubmit={handleClickButton}>
+        <form className={cx('form')} onSubmit={onSubmitButton}>
           <Input
             variant="input"
             title="이메일"

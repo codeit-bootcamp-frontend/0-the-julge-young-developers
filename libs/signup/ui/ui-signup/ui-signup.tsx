@@ -21,7 +21,7 @@ export default function UiSignUp({
   validPwRepeat,
   userType,
   utilCheck,
-  handleClickButton,
+  onSubmitButton,
   handleClickSelectUserType,
 }: {
   userInputRefs: MutableRefObject<HTMLInputElement[]>
@@ -30,7 +30,7 @@ export default function UiSignUp({
   validPwRepeat: boolean
   userType: UserType
   utilCheck: (type: string, value: string) => void
-  handleClickButton: (e: React.FormEvent<HTMLFormElement>) => void
+  onSubmitButton: (e: React.FormEvent<HTMLFormElement>) => void
   handleClickSelectUserType: (type: UserType) => void
 }) {
   return (
@@ -41,7 +41,7 @@ export default function UiSignUp({
         titleSize={28}
         gap={40}
       >
-        <form className={cx('form')} onSubmit={handleClickButton}>
+        <form className={cx('form')} onSubmit={onSubmitButton}>
           <Input
             onChange={(
               e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
