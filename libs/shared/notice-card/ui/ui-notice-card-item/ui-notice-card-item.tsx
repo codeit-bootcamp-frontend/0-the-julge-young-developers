@@ -22,6 +22,10 @@ export default function UiNoticeCardItem({
   isShowChip,
   onClickToDetail,
 }: UiNoticeCardItemProps) {
+  let hourlyPayFlag = false
+  if (hourlyPay > 999999) {
+    hourlyPayFlag = true
+  }
   return (
     <div
       role="presentation"
@@ -78,7 +82,7 @@ export default function UiNoticeCardItem({
         </div>
         <div className={cx('payContainer')}>
           <span
-            className={cx('pay', { closed })}
+            className={cx('pay', { closed, hourlyPayFlag })}
           >{`${hourlyPay.toLocaleString()}원`}</span>
           {changeRate && (
             <UiNoticeCardChip

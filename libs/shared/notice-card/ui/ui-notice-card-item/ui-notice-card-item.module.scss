@@ -135,6 +135,7 @@
       width: 100%;
 
       .pay {
+        max-width: 120px;
         color: utils.$black;
         font-style: normal;
         letter-spacing: 0.48px;
@@ -145,6 +146,13 @@
 
         &.closed {
           color: utils.$gray-brt3;
+        }
+
+        &.hourlyPayFlag {
+          display: block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
       }
     }
@@ -226,7 +234,15 @@
         @include utils.flexbox(column, flex-start, flex-start);
 
         .pay {
+          max-width: 100%;
           @include utils.font-style('h4Bold');
+
+          &.hourlyPayFlag {
+            display: block;
+            overflow: visible;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
         }
       }
     }

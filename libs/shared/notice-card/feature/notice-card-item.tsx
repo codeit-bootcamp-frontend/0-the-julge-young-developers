@@ -59,8 +59,6 @@ export default function NoticeCardItem({
       handleClickToDetail(item.closed, item.shop.item.id, item.id),
   }))
 
-  console.log(itemDatas)
-
   return (
     <UiNoticeCardList
       isHome={isHome}
