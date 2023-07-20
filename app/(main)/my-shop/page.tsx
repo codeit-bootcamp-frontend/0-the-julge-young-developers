@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
+import ApplicationDetailBlank from '@/libs/alba/application-history/shared/feature/application-detail-blank'
 import MyNoticeList from '@/libs/my-shop/feature/my-notice/my-notice-list'
 import MyShop from '@/libs/my-shop/feature/my-shop/my-shop'
 import { getUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
@@ -27,6 +28,7 @@ export default async function MyShopPage() {
     <div>
       <MyShop shopId={shopId || ''} />
       {shopId && <MyNoticeList shopId={shopId || ''} />}
+      {!shopId && <ApplicationDetailBlank />}
     </div>
   )
 }

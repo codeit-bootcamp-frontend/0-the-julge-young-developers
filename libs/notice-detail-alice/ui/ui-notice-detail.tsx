@@ -30,13 +30,7 @@ export default function UiNoticeDetail() {
             hourlyPay={MOCK_NOTICE_DETAIL_DATA.hourlyPay}
             originalHourlyPay={MOCK_NOTICE_DETAIL_DATA.originalHourlyPay}
           >
-            <ActiveBtn
-              text="신청하기"
-              size="large"
-              onClick={() => {
-                console.log('신청하기~!')
-              }}
-            />
+            <ActiveBtn text="신청하기" size="large" onClick={() => {}} />
           </UiNoticeDetailCard>
         </UiNoticeDetailCardLayout>
       </div>

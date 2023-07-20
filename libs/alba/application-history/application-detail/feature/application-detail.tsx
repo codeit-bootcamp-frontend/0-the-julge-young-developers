@@ -30,8 +30,6 @@ export default function ApplicationDetail() {
     setLoading(true)
     const data = getUserApplicationData()
     setLoading(false)
-
-    console.log(data)
     setApplicationData(data)
   }
 
