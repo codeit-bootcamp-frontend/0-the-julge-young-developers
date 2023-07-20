@@ -19,8 +19,10 @@ export default async function GnbServer() {
 
     if (userInfo instanceof Error) {
       // 알 수 없는 에러 처리
+      throw new Error()
     } else if (typeof userInfo === 'string') {
       // 에러 메시지에 맞게 처리
+      throw new Error(userInfo)
     } else {
       // res 데이터 가공
       userType = userInfo.item.type
