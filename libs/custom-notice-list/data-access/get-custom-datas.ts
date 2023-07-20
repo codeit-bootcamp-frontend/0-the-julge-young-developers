@@ -39,17 +39,12 @@ const getCustomDatas = async (
   const addressArr: string[] = []
   if (userId) {
     const address = await getUserAddress(userId)
-
     if (address instanceof Error) {
       handleStopLoader()
       handleClickShowErrorDialog('알 수 없는 에러가 발생했습니다.')
-      return []
     }
-    if (typeof address === 'string') {
-      handleStopLoader()
-      return []
-    }
-    addressArr.push(address)
+
+    addressArr.push(address as string)
   }
   const response = await getNotices({ address: addressArr })
   if (response instanceof Error) {
@@ -83,6 +78,7 @@ const getCustomDatas = async (
   }))
 
   const filteredItemDatas = itemDatas.filter((item) => !item.closed)
+
   return filteredItemDatas
 }
 
