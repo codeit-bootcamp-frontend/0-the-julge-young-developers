@@ -29,6 +29,7 @@ export default function UiNotificationModal({
   return (
     <div className={cx('modalContainer')}>
       <div className={cx('modalHeaderContainer')}>
+        <h1 className={cx('modalHeader')}>{`알림 ${itemList.length}개`}</h1>
         <button
           className={cx('closeButton')}
           type="button"
@@ -36,8 +37,6 @@ export default function UiNotificationModal({
         >
           <Image src="/images/close.svg" alt="닫기" width={24} height={24} />
         </button>
-
-        <h1 className={cx('modalHeader')}>{`알림 ${itemList.length}개`}</h1>
       </div>
       <div className={cx('notificationList')}>
         {itemList.length === 0 && (

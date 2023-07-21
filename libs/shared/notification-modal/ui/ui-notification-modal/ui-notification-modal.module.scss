@@ -36,7 +36,6 @@
 
   .closeButton {
     display: initial;
-    position: fixed;
     top: 26px;
     right: 20px;
   }
@@ -53,8 +52,10 @@
 }
 
 .modalHeaderContainer {
+  display: flex;
   position: sticky;
   top: 0;
+  justify-content: space-between;
   padding: 24px 0 16px;
   background-color: utils.$red-brt4;
 }
