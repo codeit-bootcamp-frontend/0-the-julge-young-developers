@@ -23,6 +23,7 @@ import ImageInput from '@/libs/shared/input-select-btn/feature/feature-image-inp
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import Select from '@/libs/shared/input-select-btn/feature/feature-select'
 import UiLoading from '@/libs/shared/loading/ui/ui-loading'
+import useEnableToBack from '@/libs/shared/shared/util/useEnableToBack'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
 import styles from './register-shop-modal-funnel-content.module.scss'
@@ -61,6 +62,7 @@ export default function RegisterShopModalFunnelContent({
     isAllFilled,
     setIsAllFilled,
   } = useRegisterShopState({ variant: 'funnel', shop })
+  useEnableToBack(onClickToggelModal)
 
   const [funnel, setFunnel] = useState<
     | 'name'
