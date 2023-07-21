@@ -7,6 +7,7 @@ import { getCookie } from 'cookies-next'
 
 import { useRouter } from 'next/navigation'
 
+import { FUNNEL_PROFILE_STEPS } from '@/libs/alba/my-profile/my-profile-h/data-access/register-my-profile-data'
 import { ADDRESS_OPTIONS } from '@/libs/alba/my-profile/my-profile-h/data-access/select-options'
 import ModalPortalWrapper from '@/libs/portal/feature/modalWrapper'
 import { updateUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
@@ -17,6 +18,7 @@ import {
 } from '@/libs/shared/click-btns/feature/click-btns'
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import Select from '@/libs/shared/input-select-btn/feature/feature-select'
+import ProgressBar from '@/libs/shared/progress-bar/ui/ui-progress-bar'
 import useDisableScroll from '@/libs/shared/shared/util/useDisableScroll'
 import useEnableToBack from '@/libs/shared/shared/util/useEnableToBack'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
@@ -262,12 +264,7 @@ export default function RegisterModalMobile({
           onClickBackModal={handleClickBackModal}
           onClickCloseModal={onClickCloseModal}
         >
-          <div
-            className={cx('simpleWrapper', {
-              unmounted,
-              backmounted,
-            })}
-          >
+          <div className={cx('simpleWrapper')}>
             <UiSimpleLayout
               titleSize={24}
               title={FUNNEL_TEXT[funnel].text}
@@ -353,12 +350,11 @@ export default function RegisterModalMobile({
           </div>
         </UiBgGrayModal>
 
-        <div
-          className={cx('btnWrapper', {
-            unmounted,
-            backmounted,
-          })}
-        >
+        <div className={cx('btnWrapper')}>
+          <ProgressBar
+            currentStep={funnel}
+            funnelSteps={FUNNEL_PROFILE_STEPS}
+          />
           {(name || defaultName) && funnel === 'name' && (
             <ActiveBtn
               text="다음"

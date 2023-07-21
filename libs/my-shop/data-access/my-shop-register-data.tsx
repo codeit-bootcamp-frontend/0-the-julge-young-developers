@@ -39,3 +39,13 @@ export const FUNNEL_SHOP_TITLE = {
     text: '가게에 대해 설명해주세요',
   },
 }
+
+export const FUNNEL_STEPS = [
+  'name',
+  'category',
+  'address',
+  'detailAddress',
+  'defaultHourlyWage',
+  'image',
+  'description',
+]

@@ -16,3 +16,10 @@ export const FUNNEL_NOTICE_TITLE = {
     text: '공고에 대한 부가 설명을 적어주세요',
   },
 }
+
+export const FUNNEL_NOTICE_STEPS = [
+  'hourlyWage',
+  'startsAt',
+  'workhour',
+  'description',
+]

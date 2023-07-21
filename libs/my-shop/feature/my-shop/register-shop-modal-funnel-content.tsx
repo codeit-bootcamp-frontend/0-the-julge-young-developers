@@ -11,6 +11,7 @@ import { sendRegisterShopRequest } from '@/libs/my-shop/data-access/data-access-
 import {
   CATEGORY_DATA,
   FUNNEL_SHOP_TITLE,
+  FUNNEL_STEPS,
 } from '@/libs/my-shop/data-access/my-shop-register-data'
 import { Shop } from '@/libs/my-shop/type-my-shop'
 import useRegisterShopState from '@/libs/my-shop/utill/useRegisterShopState'
@@ -23,6 +24,7 @@ import ImageInput from '@/libs/shared/input-select-btn/feature/feature-image-inp
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import Select from '@/libs/shared/input-select-btn/feature/feature-select'
 import UiLoading from '@/libs/shared/loading/ui/ui-loading'
+import ProgressBar from '@/libs/shared/progress-bar/ui/ui-progress-bar'
 import useDisableScroll from '@/libs/shared/shared/util/useDisableScroll'
 import useEnableToBack from '@/libs/shared/shared/util/useEnableToBack'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
@@ -293,7 +295,7 @@ export default function RegisterShopModalFunnelContent({
       onClickBackModal={handleClickBackModal}
       onClickCloseModal={onClickToggelModal}
     >
-      <div className={cx('wrapper', { unmounted, backUnmounted })}>
+      <div className={cx('wrapper')}>
         <UiSimpleLayout
           titleSize={24}
           title={FUNNEL_SHOP_TITLE[funnel].text}
@@ -369,7 +371,9 @@ export default function RegisterShopModalFunnelContent({
                 />
               )}
             </div>
-            <div className={cx('button', { unmounted, backUnmounted })}>
+            <div className={cx('button')}>
+              <ProgressBar currentStep={funnel} funnelSteps={FUNNEL_STEPS} />
+
               {renderSubmitButton()}
             </div>
           </form>
