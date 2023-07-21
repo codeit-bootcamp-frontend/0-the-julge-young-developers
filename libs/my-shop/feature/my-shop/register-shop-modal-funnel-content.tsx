@@ -95,8 +95,6 @@ export default function RegisterShopModalFunnelContent({
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    console.log('handleChange')
-
     const { value } = e.target
     if (value) {
       setIsAllFilled(true)

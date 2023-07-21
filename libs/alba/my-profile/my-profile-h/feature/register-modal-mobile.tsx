@@ -1,6 +1,13 @@
 'use client'
 
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 import classNames from 'classnames/bind'
 import { getCookie } from 'cookies-next'
@@ -253,6 +260,16 @@ export default function RegisterModalMobile({
     }
   }, [funnel])
 
+  const handleChangeAddress = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { value } = e.target
+    if (ADDRESS_OPTIONS.some((option) => option.value === value)) {
+      setAddress(true)
+    } else {
+      setAddress(false)
+    }
+  }
   return (
     <ModalPortalWrapper id="funnel-portal">
       <div
@@ -329,6 +346,7 @@ export default function RegisterModalMobile({
                     ref={(el: HTMLInputElement) =>
                       (userInputRefs.current[2] = el)
                     }
+                    onChange={handleChangeAddress}
                   />
                 </div>
               )}
