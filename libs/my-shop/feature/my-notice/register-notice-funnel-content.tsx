@@ -7,7 +7,10 @@ import { getCookie } from 'cookies-next'
 
 import { useRouter } from 'next/navigation'
 
-import { FUNNEL_NOTICE_TITLE } from '@/libs/my-shop/data-access/my-notice-data'
+import {
+  FUNNEL_NOTICE_STEPS,
+  FUNNEL_NOTICE_TITLE,
+} from '@/libs/my-shop/data-access/my-notice-data'
 import styles from '@/libs/my-shop/feature/my-shop/register-shop-modal-funnel-content.module.scss'
 import useRegisterJobPostingState from '@/libs/my-shop/utill/useRegisterNoticeState'
 import UiBgGrayModal from '@/libs/shared/bg-gray-modal/ui/ui-bg-gray-modal/ui-bg-gray-modal'
@@ -19,6 +22,9 @@ import SelectDatePicker from '@/libs/shared/input-select-btn/feature/feature-dat
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import UiLoading from '@/libs/shared/loading/ui/ui-loading'
 import { NoticeEditData } from '@/libs/shared/notice-card/type-notice-card'
+import ProgressBar from '@/libs/shared/progress-bar/ui/ui-progress-bar'
+import useDisableScroll from '@/libs/shared/shared/util/useDisableScroll'
+import useEnableToBack from '@/libs/shared/shared/util/useEnableToBack'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
 import { sendNoticeRequest } from '../../data-access/data-access-send-notice-request'
@@ -36,6 +42,8 @@ export default function RegisterJobPostingFunnelContent({
   onClickShowToast: () => void
   onClickShowErrorDialog: (text: string) => void
 }) {
+  useEnableToBack(onClickToggelModal)
+  useDisableScroll()
   const [funnel, setFunnel] = useState<
     'hourlyWage' | 'startsAt' | 'workhour' | 'description'
   >('hourlyWage')
@@ -56,18 +64,19 @@ export default function RegisterJobPostingFunnelContent({
     setIsAllFilled,
   } = useRegisterJobPostingState({ variant: 'funnel', notice })
 
-  useEffect(() => {}, [isAllFilled])
   useEffect(() => {
-    if (startsAt) {
+    if (notice) {
       setIsAllFilled(true)
     }
-  }, [startsAt, setIsAllFilled])
+  }, [notice, setIsAllFilled])
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     if (!e.target.value) {
       setIsAllFilled(false)
+    } else {
+      setIsAllFilled(true)
     }
     if (funnel === 'hourlyWage') {
       setHourlyWage(Number(e.target.value))
@@ -76,20 +85,37 @@ export default function RegisterJobPostingFunnelContent({
     } else if (funnel === 'description') {
       setDescription(e.target.value)
     }
-    setIsAllFilled(true)
   }
+
+  useEffect(() => {
+    if (startsAt) {
+      setIsAllFilled(true)
+    } else {
+      setIsAllFilled(false)
+    }
+  }, [startsAt, setIsAllFilled])
 
   const handleClickButton = async (e: MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!isAllFilled) return
 
-    setUnmounted(true)
-
+    if (funnel !== 'description') {
+      setUnmounted(true)
+    }
     if (funnel === 'hourlyWage') {
+      if (!startsAt) {
+        setIsAllFilled(false)
+      }
       setFunnel('startsAt')
     } else if (funnel === 'startsAt') {
+      if (!workhour) {
+        setIsAllFilled(false)
+      }
       setFunnel('workhour')
     } else if (funnel === 'workhour') {
+      if (!description) {
+        setIsAllFilled(false)
+      }
       setFunnel('description')
     } else if (funnel === 'description') {
       e.preventDefault()
@@ -115,11 +141,19 @@ export default function RegisterJobPostingFunnelContent({
         setISLoading(false)
         // 실패의 경우 처리
         onClickShowErrorDialog(errorMessage)
+        if (errorMessage === '시급은 2023년 최저시급 이상이어야 합니다') {
+          setFunnel('hourlyWage')
+          setIsAllFilled(false)
+        } else if (
+          errorMessage === '근무시간은 1시간 이상 24시간 이하여야 합니다'
+        ) {
+          setFunnel('workhour')
+          setIsAllFilled(false)
+        }
       }
     }
 
     setTimeout(() => {
-      setIsAllFilled(false)
       setUnmounted(false)
     }, 500)
   }
@@ -153,14 +187,25 @@ export default function RegisterJobPostingFunnelContent({
 
   const renderSubmitButton = () => {
     if (!isAllFilled) {
-      return <InactiveBtn text="완료하기" size="large" />
+      return (
+        <InactiveBtn
+          text={funnel === 'description' ? '완료하기' : '다음'}
+          size="large"
+        />
+      )
     }
 
     if (isLoading) {
       return <UiLoading />
     }
 
-    return <ActiveBtn text="완료하기" size="large" type="submit" />
+    return (
+      <ActiveBtn
+        text={funnel === 'description' ? '완료하기' : '다음'}
+        size="large"
+        type="submit"
+      />
+    )
   }
 
   const handleClickDatePicker = (value: Date) => {
@@ -175,7 +220,7 @@ export default function RegisterJobPostingFunnelContent({
       onClickBackModal={handleClickBackModal}
       onClickCloseModal={onClickToggelModal}
     >
-      <div className={cx('wrapper', { unmounted, backUnmounted })}>
+      <div className={cx('wrapper')}>
         <UiSimpleLayout
           titleSize={24}
           title={FUNNEL_NOTICE_TITLE[funnel].text}
@@ -194,6 +239,7 @@ export default function RegisterJobPostingFunnelContent({
               )}
               {funnel === 'startsAt' && (
                 <SelectDatePicker
+                  variant="minToday"
                   title={FUNNEL_NOTICE_TITLE[funnel].title}
                   onSelectDate={handleClickDatePicker}
                   selectedDate={startsAt}
@@ -218,7 +264,12 @@ export default function RegisterJobPostingFunnelContent({
                 />
               )}
             </div>
-            <div className={cx('button', { unmounted, backUnmounted })}>
+            <div className={cx('button')}>
+              <ProgressBar
+                currentStep={funnel}
+                funnelSteps={FUNNEL_NOTICE_STEPS}
+              />
+
               {renderSubmitButton()}
             </div>
           </form>

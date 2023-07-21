@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import classNames from 'classnames/bind'
 
+import MyShopDetailButton from '@/libs/my-shop/feature/my-shop/my-shop-detail-button'
 import { Shop } from '@/libs/my-shop/type-my-shop'
 
-import UiMyShopDetailButton from './ui-my-shop-detail-button'
 import styles from './ui-my-shop-detail.module.scss'
 
 const cx = classNames.bind(styles)
@@ -31,7 +31,7 @@ export default function UiMyShopDetail({ shop }: { shop: Shop }) {
           </div>
           <p className={cx('description')}>{shop.description}</p>
         </div>
-        <UiMyShopDetailButton shop={shop} />
+        <MyShopDetailButton shop={shop} />
       </div>
     </div>
   )

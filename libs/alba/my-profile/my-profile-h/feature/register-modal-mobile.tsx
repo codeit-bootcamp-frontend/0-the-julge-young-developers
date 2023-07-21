@@ -1,12 +1,20 @@
 'use client'
 
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 import classNames from 'classnames/bind'
 import { getCookie } from 'cookies-next'
 
 import { useRouter } from 'next/navigation'
 
+import { FUNNEL_PROFILE_STEPS } from '@/libs/alba/my-profile/my-profile-h/data-access/register-my-profile-data'
 import { ADDRESS_OPTIONS } from '@/libs/alba/my-profile/my-profile-h/data-access/select-options'
 import ModalPortalWrapper from '@/libs/portal/feature/modalWrapper'
 import { updateUserInfo } from '@/libs/shared/api/data-access/request/userRequest'
@@ -17,6 +25,9 @@ import {
 } from '@/libs/shared/click-btns/feature/click-btns'
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import Select from '@/libs/shared/input-select-btn/feature/feature-select'
+import ProgressBar from '@/libs/shared/progress-bar/ui/ui-progress-bar'
+import useDisableScroll from '@/libs/shared/shared/util/useDisableScroll'
+import useEnableToBack from '@/libs/shared/shared/util/useEnableToBack'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
 import styles from './register-modal-mobile.module.scss'
@@ -70,6 +81,9 @@ export default function RegisterModalMobile({
   setOpenClientLoader,
   handleClickShowErrorDialog,
 }: RegisterModalMobileProps) {
+  useEnableToBack(onClickCloseModal)
+  useDisableScroll()
+
   const router = useRouter()
   const [funnel, setFunnel] = useState<'name' | 'phone' | 'address' | 'bio'>(
     'name',
@@ -246,20 +260,16 @@ export default function RegisterModalMobile({
     }
   }, [funnel])
 
-  useEffect(() => {
-    const handlePopstateBackward = () => {
-      window.history.pushState(null, document.title, window.location.href)
-      onClickCloseModal()
+  const handleChangeAddress = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { value } = e.target
+    if (ADDRESS_OPTIONS.some((option) => option.value === value)) {
+      setAddress(true)
+    } else {
+      setAddress(false)
     }
-
-    window.history.pushState(null, document.title, window.location.href)
-    window.addEventListener('popstate', handlePopstateBackward)
-
-    return () => {
-      window.removeEventListener('popstate', handlePopstateBackward)
-    }
-  }, [])
-
+  }
   return (
     <ModalPortalWrapper id="funnel-portal">
       <div
@@ -271,12 +281,7 @@ export default function RegisterModalMobile({
           onClickBackModal={handleClickBackModal}
           onClickCloseModal={onClickCloseModal}
         >
-          <div
-            className={cx('simpleWrapper', {
-              unmounted,
-              backmounted,
-            })}
-          >
+          <div className={cx('simpleWrapper')}>
             <UiSimpleLayout
               titleSize={24}
               title={FUNNEL_TEXT[funnel].text}
@@ -341,33 +346,40 @@ export default function RegisterModalMobile({
                     ref={(el: HTMLInputElement) =>
                       (userInputRefs.current[2] = el)
                     }
+                    onChange={handleChangeAddress}
                   />
                 </div>
               )}
               {funnel === 'bio' && (
-                <Input
-                  variant="explain"
-                  onChange={handleChangeCheckInput(setBio)}
-                  title={FUNNEL_TEXT[funnel].title}
-                  isValid={false}
-                  isRequired={false}
-                  defaultValue={defaultBio || ''}
-                  // eslint-disable-next-line no-return-assign, no-param-reassign
-                  ref={(el: HTMLInputElement) =>
-                    (userInputRefs.current[3] = el)
-                  }
-                />
+                <div
+                  className={cx('inputWrapper', {
+                    unmounted,
+                    backmounted,
+                  })}
+                >
+                  <Input
+                    variant="explain"
+                    onChange={handleChangeCheckInput(setBio)}
+                    title={FUNNEL_TEXT[funnel].title}
+                    isValid={false}
+                    isRequired={false}
+                    defaultValue={defaultBio || ''}
+                    // eslint-disable-next-line no-return-assign, no-param-reassign
+                    ref={(el: HTMLInputElement) =>
+                      (userInputRefs.current[3] = el)
+                    }
+                  />
+                </div>
               )}
             </UiSimpleLayout>
           </div>
         </UiBgGrayModal>
 
-        <div
-          className={cx('btnWrapper', {
-            unmounted,
-            backmounted,
-          })}
-        >
+        <div className={cx('btnWrapper')}>
+          <ProgressBar
+            currentStep={funnel}
+            funnelSteps={FUNNEL_PROFILE_STEPS}
+          />
           {(name || defaultName) && funnel === 'name' && (
             <ActiveBtn
               text="다음"

@@ -21,10 +21,11 @@ export default function RegisterShopBtn() {
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [showToast, setShowToast] = useState(false)
   const router = useRouter()
-  const handleClickShowErrorDialog = (text: string) => {
-    setErrorMessage(text)
-    setOpenErrorDialog(true)
-    switch (text) {
+
+  const handleClickConfirmDialog = () => {
+    setOpenErrorDialog(false)
+
+    switch (errorMessage) {
       case '로그인이 필요합니다':
         router.push('/signin')
         break
@@ -34,6 +35,10 @@ export default function RegisterShopBtn() {
       default:
         break
     }
+  }
+  const handleClickShowErrorDialog = (text: string) => {
+    setErrorMessage(text)
+    setOpenErrorDialog(true)
   }
 
   const handleClickToggleModal = () => {
@@ -64,7 +69,7 @@ export default function RegisterShopBtn() {
       {openErrorDialog && (
         <ConfirmDialog
           text={errorMessage || '요청에 실패했습니다.'}
-          onConfirm={() => setOpenErrorDialog(false)}
+          onConfirm={handleClickConfirmDialog}
         />
       )}
     </div>

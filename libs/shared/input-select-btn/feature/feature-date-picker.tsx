@@ -10,10 +10,12 @@ import './feature-date-picker.scss'
 
 const cx = classNames.bind(styles)
 export default function SelectDatePicker({
+  variant = 'all',
   onSelectDate,
   selectedDate,
   title,
 }: {
+  variant?: string
   onSelectDate: (value: Date) => void
   selectedDate: Date | undefined
   title: string
@@ -36,7 +38,7 @@ export default function SelectDatePicker({
         showYearDropdown={true}
         dropdownMode="select"
         calendarClassName={cx('calenderWrapper')}
-        minDate={new Date()}
+        minDate={variant === 'minToday' ? new Date() : undefined}
       />
     </div>
   )

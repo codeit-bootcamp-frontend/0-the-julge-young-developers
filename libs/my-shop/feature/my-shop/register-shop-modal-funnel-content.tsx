@@ -9,8 +9,9 @@ import { useRouter } from 'next/navigation'
 import { ADDRESS_OPTIONS } from '@/libs/alba/my-profile/my-profile-h/data-access/select-options'
 import { sendRegisterShopRequest } from '@/libs/my-shop/data-access/data-access-send-register-shop-request'
 import {
-  CATECPRY_DATA,
+  CATEGORY_DATA,
   FUNNEL_SHOP_TITLE,
+  FUNNEL_STEPS,
 } from '@/libs/my-shop/data-access/my-shop-register-data'
 import { Shop } from '@/libs/my-shop/type-my-shop'
 import useRegisterShopState from '@/libs/my-shop/utill/useRegisterShopState'
@@ -23,6 +24,9 @@ import ImageInput from '@/libs/shared/input-select-btn/feature/feature-image-inp
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import Select from '@/libs/shared/input-select-btn/feature/feature-select'
 import UiLoading from '@/libs/shared/loading/ui/ui-loading'
+import ProgressBar from '@/libs/shared/progress-bar/ui/ui-progress-bar'
+import useDisableScroll from '@/libs/shared/shared/util/useDisableScroll'
+import useEnableToBack from '@/libs/shared/shared/util/useEnableToBack'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
 import styles from './register-shop-modal-funnel-content.module.scss'
@@ -40,6 +44,8 @@ export default function RegisterShopModalFunnelContent({
   onClickShowToast: () => void
   onClickShowErrorDialog: (text: string) => void
 }) {
+  useEnableToBack(onClickToggelModal)
+  useDisableScroll()
   const [isLoading, setISLoading] = useState(false)
   const router = useRouter()
   const {
@@ -89,20 +95,46 @@ export default function RegisterShopModalFunnelContent({
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    if (!e.target.value) {
+    const { value } = e.target
+    if (value) {
+      setIsAllFilled(true)
+    } else {
       setIsAllFilled(false)
-    } else if (funnel === 'name') {
-      setShopName(e.target.value)
-    } else if (funnel === 'detailAddress') {
-      setDetailAddress(e.target.value)
-    } else if (funnel === 'defaultHourlyWage') {
-      setDefaultHourlyWage(Number(e.target.value))
-    } else if (funnel === 'description') {
-      setDescription(e.target.value)
     }
-    setIsAllFilled(true)
-  }
 
+    switch (funnel) {
+      case 'name':
+        setShopName(value)
+        break
+      case 'address':
+        setAddress(value)
+        if (ADDRESS_OPTIONS.some((option) => option.value === value)) {
+          setIsAllFilled(true)
+        } else {
+          setIsAllFilled(false)
+        }
+        break
+      case 'detailAddress':
+        setDetailAddress(value)
+        break
+      case 'defaultHourlyWage':
+        setDefaultHourlyWage(Number(value))
+        break
+      case 'description':
+        setDescription(value)
+        break
+      case 'category':
+        setCategory(value)
+        if (CATEGORY_DATA.some((option) => option.value === value)) {
+          setIsAllFilled(true)
+        } else {
+          setIsAllFilled(false)
+        }
+        break
+      default:
+        break
+    }
+  }
   const handleClick = (value: string) => {
     if (!value) return
 
@@ -134,6 +166,10 @@ export default function RegisterShopModalFunnelContent({
     } else {
       setISLoading(false)
       onClickShowErrorDialog(errorMessage)
+      if (errorMessage === '시급은 2023년 최저시급 이상이어야 합니다') {
+        setFunnel('defaultHourlyWage')
+        setIsAllFilled(false)
+      }
     }
   }
 
@@ -177,7 +213,6 @@ export default function RegisterShopModalFunnelContent({
       setFunnel('description')
     } else if (funnel === 'description') {
       await sendRequest()
-      onClickToggelModal()
       return
     }
 
@@ -232,14 +267,25 @@ export default function RegisterShopModalFunnelContent({
 
   const renderSubmitButton = () => {
     if (!isAllFilled) {
-      return <InactiveBtn text="완료하기" size="large" />
+      return (
+        <InactiveBtn
+          text={funnel === 'description' ? '완료하기' : '다음'}
+          size="large"
+        />
+      )
     }
 
     if (isLoading) {
       return <UiLoading />
     }
 
-    return <ActiveBtn text="완료하기" size="large" type="submit" />
+    return (
+      <ActiveBtn
+        text={funnel === 'description' ? '완료하기' : '다음'}
+        size="large"
+        type="submit"
+      />
+    )
   }
 
   return (
@@ -247,7 +293,7 @@ export default function RegisterShopModalFunnelContent({
       onClickBackModal={handleClickBackModal}
       onClickCloseModal={onClickToggelModal}
     >
-      <div className={cx('wrapper', { unmounted, backUnmounted })}>
+      <div className={cx('wrapper')}>
         <UiSimpleLayout
           titleSize={24}
           title={FUNNEL_SHOP_TITLE[funnel].text}
@@ -272,6 +318,7 @@ export default function RegisterShopModalFunnelContent({
                   onClick={handleClick}
                   defaultValue={address}
                   options={ADDRESS_OPTIONS}
+                  onChange={handleChange}
                 />
               )}
               {funnel === 'detailAddress' && (
@@ -298,8 +345,9 @@ export default function RegisterShopModalFunnelContent({
                 <Select
                   variant="search"
                   onClick={handleClick}
-                  options={CATECPRY_DATA}
+                  options={CATEGORY_DATA}
                   defaultValue={category}
+                  onChange={handleChange}
                 />
               )}
               {funnel === 'image' && (
@@ -321,7 +369,9 @@ export default function RegisterShopModalFunnelContent({
                 />
               )}
             </div>
-            <div className={cx('button', { unmounted, backUnmounted })}>
+            <div className={cx('button')}>
+              <ProgressBar currentStep={funnel} funnelSteps={FUNNEL_STEPS} />
+
               {renderSubmitButton()}
             </div>
           </form>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 
 import { SelectProps } from '@/libs/shared/input-select-btn/types/type-select'
 
@@ -8,6 +8,7 @@ export default function useSelect({
   options,
   defaultValue,
   onClick,
+  onChange,
 }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [selectedOption, setSelectedOption] = useState(defaultValue || '')
@@ -47,6 +48,9 @@ export default function useSelect({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value
+    if (onChange) {
+      onChange(e as ChangeEvent<HTMLInputElement>)
+    }
     setSelectedOption(inputValue)
     setSearchedOption(inputValue)
     setIsOpen(true)

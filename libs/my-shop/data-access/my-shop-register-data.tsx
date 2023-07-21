@@ -1,4 +1,4 @@
-export const CATECPRY_DATA = [
+export const CATEGORY_DATA = [
   { value: '한식' },
   { value: '중식' },
   { value: '일식' },
@@ -39,3 +39,13 @@ export const FUNNEL_SHOP_TITLE = {
     text: '가게에 대해 설명해주세요',
   },
 }
+
+export const FUNNEL_STEPS = [
+  'name',
+  'category',
+  'address',
+  'detailAddress',
+  'defaultHourlyWage',
+  'image',
+  'description',
+]

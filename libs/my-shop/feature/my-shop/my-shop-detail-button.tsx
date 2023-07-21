@@ -19,10 +19,10 @@ import {
 import { ConfirmDialog } from '@/libs/shared/dialog/feature/dialog'
 import ToastContainer from '@/libs/shared/toast/feature/toast-container'
 
-import styles from './ui-my-shop-detail-button.module.scss'
+import styles from './my-shop-detail-button.module.scss'
 
 const cx = classNames.bind(styles)
-export default function UiMyShopDetailButton({ shop }: { shop: Shop }) {
+export default function MyShopDetailButton({ shop }: { shop: Shop }) {
   const [openShopModal, setOpenShopModal] = useState<boolean>(false)
   const [openNoticeModal, setOpenNoticeModal] = useState<boolean>(false)
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -32,12 +32,11 @@ export default function UiMyShopDetailButton({ shop }: { shop: Shop }) {
   const [errorMessage, setErrorMessage] = useState<string>('')
 
   const router = useRouter()
-  const handleClickShowErrorDialog = (text: string) => {
-    console.log(text)
-    setErrorMessage(text)
-    setOpenErrorDialog(true)
 
-    switch (text) {
+  const handleClickConfirmDialog = () => {
+    setOpenErrorDialog(false)
+
+    switch (errorMessage) {
       case '로그인이 필요합니다':
         router.push('/signin')
         break
@@ -47,9 +46,15 @@ export default function UiMyShopDetailButton({ shop }: { shop: Shop }) {
       case '존재하지 않는 가게입니다':
         router.push('/my-shop')
         break
+
+        break
       default:
         break
     }
+  }
+  const handleClickShowErrorDialog = (text: string) => {
+    setErrorMessage(text)
+    setOpenErrorDialog(true)
   }
 
   useEffect(() => {
@@ -116,7 +121,7 @@ export default function UiMyShopDetailButton({ shop }: { shop: Shop }) {
         {openErrorDialog && (
           <ConfirmDialog
             text={errorMessage || '요청에 실패했습니다.'}
-            onConfirm={() => setOpenErrorDialog(false)}
+            onConfirm={handleClickConfirmDialog}
           />
         )}
       </div>
