@@ -6,7 +6,8 @@
   top: 12px;
   right: 350px;
   width: 368px;
-  padding: 24px 20px;
+  padding: 0 20px 24px;
+  overflow-y: auto;
   border: 1px solid utils.$gray-brt3;
   border-radius: 10px;
   background-color: utils.$red-brt4;
@@ -43,6 +44,17 @@
 
 .modalHeader {
   @include utils.font-style('h3');
+}
 
-  margin-bottom: 16px;
+.empty {
+  @include utils.flexbox(center, center, center);
+
+  height: 300px;
+}
+
+.modalHeaderContainer {
+  position: sticky;
+  top: 0;
+  padding: 24px 0 16px;
+  background-color: utils.$red-brt4;
 }
