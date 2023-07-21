@@ -17,6 +17,8 @@ import {
 } from '@/libs/shared/click-btns/feature/click-btns'
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import Select from '@/libs/shared/input-select-btn/feature/feature-select'
+import useDisableScroll from '@/libs/shared/shared/util/useDisableScroll'
+import useEnableToBack from '@/libs/shared/shared/util/useEnableToBack'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
 import styles from './register-modal-mobile.module.scss'
@@ -70,6 +72,9 @@ export default function RegisterModalMobile({
   setOpenClientLoader,
   handleClickShowErrorDialog,
 }: RegisterModalMobileProps) {
+  useEnableToBack(onClickCloseModal)
+  useDisableScroll()
+
   const router = useRouter()
   const [funnel, setFunnel] = useState<'name' | 'phone' | 'address' | 'bio'>(
     'name',
@@ -245,20 +250,6 @@ export default function RegisterModalMobile({
         ?.removeEventListener('keypress', handleKeypressBlurMove)
     }
   }, [funnel])
-
-  useEffect(() => {
-    const handlePopstateBackward = () => {
-      window.history.pushState(null, document.title, window.location.href)
-      onClickCloseModal()
-    }
-
-    window.history.pushState(null, document.title, window.location.href)
-    window.addEventListener('popstate', handlePopstateBackward)
-
-    return () => {
-      window.removeEventListener('popstate', handlePopstateBackward)
-    }
-  }, [])
 
   return (
     <ModalPortalWrapper id="funnel-portal">

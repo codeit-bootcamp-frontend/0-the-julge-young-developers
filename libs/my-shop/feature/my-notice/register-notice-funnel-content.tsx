@@ -19,6 +19,7 @@ import SelectDatePicker from '@/libs/shared/input-select-btn/feature/feature-dat
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import UiLoading from '@/libs/shared/loading/ui/ui-loading'
 import { NoticeEditData } from '@/libs/shared/notice-card/type-notice-card'
+import useDisableScroll from '@/libs/shared/shared/util/useDisableScroll'
 import useEnableToBack from '@/libs/shared/shared/util/useEnableToBack'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
@@ -38,6 +39,7 @@ export default function RegisterJobPostingFunnelContent({
   onClickShowErrorDialog: (text: string) => void
 }) {
   useEnableToBack(onClickToggelModal)
+  useDisableScroll()
   const [funnel, setFunnel] = useState<
     'hourlyWage' | 'startsAt' | 'workhour' | 'description'
   >('hourlyWage')

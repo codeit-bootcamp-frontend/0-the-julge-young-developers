@@ -23,6 +23,7 @@ import ImageInput from '@/libs/shared/input-select-btn/feature/feature-image-inp
 import Input from '@/libs/shared/input-select-btn/feature/feature-input'
 import Select from '@/libs/shared/input-select-btn/feature/feature-select'
 import UiLoading from '@/libs/shared/loading/ui/ui-loading'
+import useDisableScroll from '@/libs/shared/shared/util/useDisableScroll'
 import useEnableToBack from '@/libs/shared/shared/util/useEnableToBack'
 import UiSimpleLayout from '@/libs/shared/simple-layout/ui/ui-simple-layout/ui-simple-layout'
 
@@ -41,6 +42,8 @@ export default function RegisterShopModalFunnelContent({
   onClickShowToast: () => void
   onClickShowErrorDialog: (text: string) => void
 }) {
+  useEnableToBack(onClickToggelModal)
+  useDisableScroll()
   const [isLoading, setISLoading] = useState(false)
   const router = useRouter()
   const {
@@ -62,7 +65,6 @@ export default function RegisterShopModalFunnelContent({
     isAllFilled,
     setIsAllFilled,
   } = useRegisterShopState({ variant: 'funnel', shop })
-  useEnableToBack(onClickToggelModal)
 
   const [funnel, setFunnel] = useState<
     | 'name'
