@@ -29,7 +29,7 @@ export default function ApplicationDetailLayout({
   return (
     <div>
       {page === 1 && data?.length === 0 && <UiRegisterApplication />}
-      {data?.length && (
+      {data?.length >= 1 && (
         <UiApplicationTable>
           <ApplicationHistoryTable
             data={data}
