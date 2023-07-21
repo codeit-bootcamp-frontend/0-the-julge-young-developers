@@ -351,18 +351,25 @@ export default function RegisterModalMobile({
                 </div>
               )}
               {funnel === 'bio' && (
-                <Input
-                  variant="explain"
-                  onChange={handleChangeCheckInput(setBio)}
-                  title={FUNNEL_TEXT[funnel].title}
-                  isValid={false}
-                  isRequired={false}
-                  defaultValue={defaultBio || ''}
-                  // eslint-disable-next-line no-return-assign, no-param-reassign
-                  ref={(el: HTMLInputElement) =>
-                    (userInputRefs.current[3] = el)
-                  }
-                />
+                <div
+                  className={cx('inputWrapper', {
+                    unmounted,
+                    backmounted,
+                  })}
+                >
+                  <Input
+                    variant="explain"
+                    onChange={handleChangeCheckInput(setBio)}
+                    title={FUNNEL_TEXT[funnel].title}
+                    isValid={false}
+                    isRequired={false}
+                    defaultValue={defaultBio || ''}
+                    // eslint-disable-next-line no-return-assign, no-param-reassign
+                    ref={(el: HTMLInputElement) =>
+                      (userInputRefs.current[3] = el)
+                    }
+                  />
+                </div>
               )}
             </UiSimpleLayout>
           </div>
