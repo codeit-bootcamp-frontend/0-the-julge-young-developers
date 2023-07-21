@@ -14,6 +14,10 @@
 
 .filterWrapper {
   position: absolute;
-  top: 38px;
+  top: 100px;
   right: 0;
+
+  @include utils.tablet {
+    right: 32px;
+  }
 }
