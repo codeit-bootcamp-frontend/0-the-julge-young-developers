@@ -19,7 +19,9 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  min-height: 80vh;
+  padding-top: 100px;
+  padding-bottom: 100px;
   background-color: utils.$red-brt4;
 }
 
@@ -28,6 +30,7 @@
   position: relative;
   align-items: center;
   gap: 30px;
+  margin-top: 200px;
 }
 
 .messageBox {
@@ -42,12 +45,27 @@
     font-weight: 700;
   }
 
-  .refreshButton {
-    padding: 15px;
-    border-radius: 7px;
-    background-color: utils.$red-brt2;
-    color: utils.$white;
-    font-size: 18px;
+  .buttonContainer {
+    display: flex;
+    gap: 12px;
+
+    button {
+      padding: 10px 15px;
+      border-radius: 7px;
+      font-size: 18px;
+    }
+
+    .refreshButton {
+      border: 1px solid utils.$red-brt2;
+      background-color: utils.$red-brt2;
+      color: utils.$white;
+    }
+
+    .homeButton {
+      border: 1px solid utils.$primary;
+      background-color: utils.$white;
+      color: utils.$primary;
+    }
   }
 }
 
@@ -80,7 +98,7 @@
   }
 
   .oops {
-    top: -220px;
+    top: -180px;
   }
 }
 
