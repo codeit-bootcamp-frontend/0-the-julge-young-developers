@@ -1,0 +1,138 @@
+@use '@/styles/utils';
+
+.img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detailCardWrapper {
+  @include utils.flexbox(row, flex-start, flex-start);
+
+  gap: 31px;
+  padding: 24px;
+  border-radius: 12px;
+  background: utils.$red-brt4;
+
+  .imgContainer {
+    --img-width: 539px;
+    --img-height: 308px;
+    --img-border-radius: 12px;
+
+    width: var(--img-width);
+    height: var(--img-height);
+    overflow: hidden;
+    border-radius: var(--img-border-radius);
+  }
+
+  .card {
+    @include utils.flexbox(column, space-between, flex-start);
+
+    width: 346px;
+    height: 308px;
+    padding-top: 16px;
+
+    .content {
+      @include utils.flexbox(column, flex-start, flex-start);
+
+      gap: 12px;
+
+      .contentHeader {
+        @include utils.flexbox(column, flex-start, flex-start);
+
+        gap: 8px;
+
+        .category {
+          color: utils.$primary;
+          @include utils.font-style(body1Bold);
+        }
+
+        .shopName {
+          color: utils.$black;
+          @include utils.font-style(h1);
+        }
+      }
+
+      .addressContainer {
+        display: flex;
+        gap: 6px;
+
+        .imgContainer.icon {
+          width: 20px;
+          height: 20px;
+        }
+
+        .address {
+          color: utils.$gray-brt1;
+          @include utils.font-style('body1');
+        }
+      }
+
+      .description {
+        color: utils.$black;
+        line-height: 26px;
+        @include utils.font-style(body1);
+      }
+    }
+  }
+}
+
+@include utils.tablet {
+  .detailCardWrapper {
+    @include utils.flexbox(column, flex-start, flex-start);
+
+    gap: 0;
+
+    .imgContainer {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1.75/1;
+    }
+
+    .card {
+      @include utils.flexbox(column, flex-start, flex-start);
+
+      width: 100%;
+      height: auto;
+      gap: 40px;
+    }
+  }
+}
+
+@include utils.mobile {
+  .card {
+    padding-top: 12px;
+    gap: 24px;
+
+    .content {
+      gap: 8px;
+
+      .contentHeader {
+        .category {
+          @include utils.font-style(body2Bold);
+        }
+
+        .shopName {
+          @include utils.font-style(h2);
+        }
+      }
+
+      .addressContainer {
+        .imgContainer.icon {
+          width: 16px;
+          height: 16px;
+        }
+
+        .address {
+          @include utils.font-style('body2');
+        }
+      }
+
+      .description {
+        line-height: 22px;
+        @include utils.font-style(body2);
+      }
+    }
+  }
+}

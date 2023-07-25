@@ -1,0 +1,109 @@
+@use '@/styles/utils';
+
+.img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chipWrapper {
+  display: flex;
+  align-items: center;
+  max-width: 160px;
+  height: 36px;
+  padding: 12px;
+  border-radius: 20px;
+  gap: 6px;
+
+  &.red {
+    background: utils.$red-brt1;
+  }
+
+  &.orange {
+    background: utils.$red-brt2;
+  }
+
+  &.closed {
+    background: utils.$gray-brt4;
+  }
+
+  .chipText {
+    max-width: 104px;
+    color: utils.$white;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+
+    &.changeRateFlag {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .imgContainer {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@include utils.mobile {
+  .chipWrapper {
+    max-width: 100%;
+
+    &.isCardItem {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      gap: 2px;
+      background: transparent;
+    }
+
+    .chipText {
+      max-width: 100%;
+      @include utils.font-style('caption');
+    }
+
+    .imgContainer {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .chipWrapper.red.isCardItem {
+    .chipText {
+      color: utils.$red-brt1;
+    }
+
+    .imgContainer {
+      filter: invert(48%) sepia(85%) saturate(4021%) hue-rotate(337deg)
+        brightness(105%) contrast(103%);
+    }
+  }
+
+  .chipWrapper.orange.isCardItem {
+    .chipText {
+      color: utils.$red-brt2;
+    }
+
+    .imgContainer {
+      filter: invert(54%) sepia(98%) saturate(285%) hue-rotate(322deg)
+        brightness(100%) contrast(103%);
+    }
+  }
+
+  .chipWrapper.closed.isCardItem {
+    .chipText {
+      color: utils.$gray-brt4;
+    }
+
+    .imgContainer {
+      filter: invert(10%) sepia(1%) saturate(4440%) hue-rotate(203deg)
+        brightness(125%) contrast(81%);
+    }
+  }
+}

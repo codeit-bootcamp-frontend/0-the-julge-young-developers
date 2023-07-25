@@ -1,0 +1,49 @@
+@use '@/styles/utils';
+@use 'sass:list';
+
+$col-widths-pc: (226px, 300px, 200px, 236px);
+$col-widths-mobile: (186px, 270px, 180px, 165px);
+$total-width-pc: 0;
+$total-width-mobile: 0;
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 964px;
+  overflow: hidden;
+  border: 1px solid utils.$gray-brt3;
+  border-radius: 10px;
+  background: utils.$white;
+}
+
+.contentWrapper {
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    // TODO: 스크롤바 꾸미기 or 스크롤 할 때 그림자 넣기
+    display: none;
+  }
+}
+
+.table {
+  width: utils.sum-list($col-widths-pc);
+
+  @include utils.mobile {
+    width: utils.sum-list($col-widths-mobile);
+  }
+
+  th:first-child {
+    background-color: utils.$red-brt4;
+  }
+
+  td:first-child {
+    background: utils.$white;
+  }
+
+  th:first-child,
+  td:first-child {
+    position: sticky;
+    z-index: 1;
+    left: 0;
+  }
+}

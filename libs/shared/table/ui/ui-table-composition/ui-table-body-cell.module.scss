@@ -1,0 +1,25 @@
+@use '@/styles/utils';
+
+.bodyCell {
+  padding: 20px 12px;
+  vertical-align: middle;
+
+  @include utils.mobile {
+    padding: 9px 8px;
+  }
+}
+
+.content {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  gap: 12px;
+
+  @include utils.flexbox(row, flex-start, center);
+
+  @include utils.mobile {
+    gap: 8px;
+  }
+}

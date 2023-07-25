@@ -1,0 +1,61 @@
+@use '@/styles/utils';
+
+.modalContainer {
+  position: relative;
+  z-index: 1000;
+  top: 12px;
+  right: 350px;
+  width: 368px;
+  padding: 0 20px 24px;
+  overflow-y: auto;
+  border: 1px solid utils.$gray-brt3;
+  border-radius: 10px;
+  background-color: utils.$red-brt4;
+  box-shadow: 0 2px 8px 0 rgb(120 116 134 / 25%);
+}
+
+.notificationList {
+  @include utils.flexbox(column, initial, initial);
+
+  gap: 8px;
+}
+
+.closeButton {
+  display: none;
+}
+
+@include utils.mobile {
+  .modalContainer {
+    position: fixed;
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    inset: 0;
+  }
+
+  .closeButton {
+    display: initial;
+    top: 26px;
+    right: 20px;
+  }
+}
+
+.modalHeader {
+  @include utils.font-style('h3');
+}
+
+.empty {
+  @include utils.flexbox(center, center, center);
+
+  height: 300px;
+}
+
+.modalHeaderContainer {
+  display: flex;
+  position: sticky;
+  top: 0;
+  justify-content: space-between;
+  padding: 24px 0 16px;
+  background-color: utils.$red-brt4;
+}

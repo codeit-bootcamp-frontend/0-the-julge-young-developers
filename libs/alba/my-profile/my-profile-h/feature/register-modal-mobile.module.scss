@@ -1,0 +1,55 @@
+.modalWrapper {
+  opacity: 0;
+
+  &.showModal {
+    transition: opacity 0.5s ease;
+    opacity: 1;
+  }
+}
+
+.simpleWrapper {
+  padding-top: 70px;
+  padding-right: 24px;
+  padding-left: 24px;
+
+  &.backmounted {
+    transform: translateX(110%);
+    transition: transform 0.5s ease;
+  }
+
+  &.unmounted {
+    transform: translateX(-110%);
+    transition: transform 0.5s ease;
+  }
+}
+
+.inputWrapper {
+  &.backmounted {
+    transform: translateX(110%);
+    transition: transform 0.5s ease;
+  }
+
+  &.unmounted {
+    transform: translateX(-110%);
+    transition: transform 0.5s ease;
+  }
+}
+
+.btnWrapper {
+  position: fixed;
+  z-index: 11;
+  bottom: 40px;
+  width: 100%;
+  padding-right: 36px;
+  padding-left: 36px;
+
+  &.backmounted {
+    transform: translateX(110%);
+    transition: transform 0.5s ease;
+  }
+
+  &.unmounted {
+    transform: translateX(-110%);
+    transition: transform 0.5s ease;
+  }
+}

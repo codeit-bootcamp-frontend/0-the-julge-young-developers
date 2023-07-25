@@ -1,0 +1,53 @@
+@use '@/styles/utils';
+
+.itemContainer {
+  @include utils.flexbox(column, flex-start, flex-start);
+
+  width: 328px;
+  padding: 16px 12px;
+  border: 1px solid #e5e4e7;
+  border-radius: 5px;
+  background-color: utils.$white;
+  text-align: start;
+  gap: 4px;
+}
+
+.status {
+  width: 5px;
+  height: 5px;
+  border-radius: 70%;
+}
+
+.accepted {
+  background-color: utils.$blue-brt1;
+}
+
+.rejected {
+  background-color: utils.$red-brt1;
+}
+
+.result {
+  @include utils.font-style('body2');
+
+  color: utils.$black;
+}
+
+.acceptedEmphasis {
+  color: utils.$blue-brt1;
+}
+
+.rejectedEmphasis {
+  color: utils.$red-brt1;
+}
+
+.timeDiff {
+  @include utils.font-style('caption');
+
+  color: utils.$gray-brt2;
+}
+
+@include utils.mobile {
+  .itemContainer {
+    width: 100%;
+  }
+}

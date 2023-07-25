@@ -1,0 +1,27 @@
+@use '@/styles/utils';
+
+.contentWrap {
+  @include utils.flexbox(column, center, flex-start);
+
+  width: 100%;
+  margin: 32px 0;
+  gap: 24px;
+}
+
+.inputContainer {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  width: 100%;
+}
+
+.textAreaContainer {
+  width: 100%;
+}
+
+.button {
+  width: 312px;
+  height: 48px;
+  margin: 0 auto;
+}

@@ -1,0 +1,23 @@
+@use '@/styles/utils';
+
+.wrapper {
+  position: relative;
+  max-width: 964px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 60px 0 0;
+}
+
+.noticeCardWrapper {
+  margin-bottom: 40px;
+}
+
+.filterWrapper {
+  position: absolute;
+  top: 100px;
+  right: 0;
+
+  @include utils.tablet {
+    right: 32px;
+  }
+}

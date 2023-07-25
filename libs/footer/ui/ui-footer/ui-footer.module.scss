@@ -1,0 +1,78 @@
+@use '@/styles/utils';
+
+.footer {
+  @include utils.flexbox;
+
+  width: 100%;
+  height: 100px;
+  background-color: utils.$gray-brt5;
+  color: utils.$gray-brt1;
+  @include utils.font-style('body1');
+}
+
+.wrapper {
+  @include utils.flexbox($justify: space-between);
+
+  width: 964px;
+  margin: auto;
+}
+
+.copyright {
+  grid-area: copyright;
+  height: 16px;
+}
+
+.links {
+  @include utils.flexbox;
+
+  grid-area: links;
+  height: 22px;
+  gap: 30px;
+}
+
+.link {
+  text-decoration: none;
+
+  &:visited {
+    color: utils.$gray-brt1;
+  }
+}
+
+.socials {
+  @include utils.flexbox($justify: space-between);
+
+  grid-area: socials;
+  width: 95px;
+  height: 22px;
+}
+
+.socialWrapper {
+  @include utils.flexbox;
+
+  width: 25px;
+  height: 25px;
+}
+
+@include utils.tablet {
+  .footer {
+    padding: 0 32px;
+  }
+}
+
+@include utils.mobile {
+  .footer {
+    height: 126px;
+    padding: 20px 20px 0;
+    @include utils.font-style;
+
+    .wrapper {
+      display: grid;
+      grid-template-areas:
+        'links socials'
+        'copyright .';
+      height: 78px;
+      margin: 0;
+      row-gap: 40px;
+    }
+  }
+}
