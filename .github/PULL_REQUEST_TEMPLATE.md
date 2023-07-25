@@ -16,24 +16,19 @@
 
 ## 설명
 
-
-
 ### 이슈 번호
 
-<!-- 키워드를 사용해 이슈를 연결해주세요 -->
-<!-- 예시: close #1 / closes #1, #3 / resolve #4 -->
+<!-- 아래 링크에 이슈번호를 적어주세요. 예) .../0-the-julge-young-developers/issues/7 -->
 
-
+https://github.com/codeit-bootcamp-frontend/0-the-julge-young-developers/issues/
 
 ### Key Changes
 
 - 어떤 작업을 했는지
 
-
 ### How it Works
 
 - 간단한 로직 설명
-
 
 ### To Reviewers
 
